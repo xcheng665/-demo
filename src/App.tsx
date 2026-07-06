@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { useMemo, useRef, useState } from "react";
-import { portfolioPages, projects, services } from "./portfolioData";
+import { portfolioPages, projects, publicPath, services } from "./portfolioData";
 import type { Project, SquareSpec } from "./portfolioData";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -100,7 +100,7 @@ function Hero() {
           y.set(0);
         }}
       >
-        <img className="hero-portrait" src="assets/portfolio-pages/page-01.png" alt="程志远建筑作品集封面" />
+        <img className="hero-portrait" src={publicPath("assets/portfolio-pages/page-01.png")} alt="程志远建筑作品集封面" />
       </motion.div>
 
       <div className="hero-bottom">
@@ -160,10 +160,10 @@ function About() {
   return (
     <section className="about" id="about">
       {[
-        ["asset-moon", "assets/portfolio-pages/page-02.png"],
-        ["asset-block", "assets/portfolio-pages/page-10.png"],
-        ["asset-lego", "assets/portfolio-pages/page-16.png"],
-        ["asset-group", "assets/portfolio-pages/page-21.png"]
+        ["asset-moon", publicPath("assets/portfolio-pages/page-02.png")],
+        ["asset-block", publicPath("assets/portfolio-pages/page-10.png")],
+        ["asset-lego", publicPath("assets/portfolio-pages/page-16.png")],
+        ["asset-group", publicPath("assets/portfolio-pages/page-21.png")]
       ].map(([className, src], index) => (
         <motion.img
           className={`floating-asset ${className}`}
@@ -327,7 +327,7 @@ function Projects() {
             从场地、气候、结构与公共生活出发，将每一次课程设计和研究训练整理为可浏览的案例页。
             <span className="en-line">Each card opens independent image pages, keeping the portfolio readable without forcing a full PDF view.</span>
           </p>
-          <a className="work-button" href="程志远作品集1.pdf">
+          <a className="work-button" href={publicPath("程志远作品集1.pdf")}>
             <span>完整作品集</span>
             <span className="work-arrow">
               <ArrowUpRight size={16} strokeWidth={2.3} />
@@ -470,10 +470,10 @@ function Footer() {
       </span>
       <a href="tel:18879819661">18879819661</a>
       <a href="mailto:18879819661@163.com">18879819661@163.com</a>
-      <a href="简历6.3F.pdf">
+      <a href={publicPath("简历6.3F.pdf")}>
         简历 PDF <span className="en">Resume</span>
       </a>
-      <a href="程志远作品集1.pdf">
+      <a href={publicPath("程志远作品集1.pdf")}>
         作品集 PDF <span className="en">Portfolio</span>
       </a>
     </footer>

@@ -15,8 +15,10 @@ export type Project = {
   squares: SquareSpec[];
 };
 
+export const publicPath = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
+
 export const portfolioPages = Array.from({ length: 23 }, (_, index) => {
-  return `assets/portfolio-pages/page-${String(index + 1).padStart(2, "0")}.png`;
+  return publicPath(`assets/portfolio-pages/page-${String(index + 1).padStart(2, "0")}.png`);
 });
 
 export const projects: Project[] = [
@@ -28,9 +30,9 @@ export const projects: Project[] = [
     categoryEn: "Resort Hotel Design",
     year: "2024",
     images: [
-      "assets/portfolio-pages/page-03.png",
-      "assets/portfolio-pages/page-04.png",
-      "assets/portfolio-pages/page-05.png"
+      publicPath("assets/portfolio-pages/page-03.png"),
+      publicPath("assets/portfolio-pages/page-04.png"),
+      publicPath("assets/portfolio-pages/page-05.png")
     ],
     squares: [
       { x: 5, y: 30, size: 16 },
@@ -49,9 +51,9 @@ export const projects: Project[] = [
     categoryEn: "Sustainable Community Space",
     year: "2024",
     images: [
-      "assets/portfolio-pages/page-07.png",
-      "assets/portfolio-pages/page-09.png",
-      "assets/portfolio-pages/page-10.png"
+      publicPath("assets/portfolio-pages/page-07.png"),
+      publicPath("assets/portfolio-pages/page-09.png"),
+      publicPath("assets/portfolio-pages/page-10.png")
     ],
     squares: [
       { x: 82, y: 55, size: 16 },
@@ -69,9 +71,9 @@ export const projects: Project[] = [
     categoryEn: "Urban-Friendly Museum",
     year: "2023",
     images: [
-      "assets/portfolio-pages/page-12.png",
-      "assets/portfolio-pages/page-14.png",
-      "assets/portfolio-pages/page-15.png"
+      publicPath("assets/portfolio-pages/page-12.png"),
+      publicPath("assets/portfolio-pages/page-14.png"),
+      publicPath("assets/portfolio-pages/page-15.png")
     ],
     squares: [
       { x: 4, y: 24, size: 16 },
@@ -89,9 +91,9 @@ export const projects: Project[] = [
     categoryEn: "Park-Oriented Urban Design",
     year: "2023",
     images: [
-      "assets/portfolio-pages/page-16.png",
-      "assets/portfolio-pages/page-18.png",
-      "assets/portfolio-pages/page-19.png"
+      publicPath("assets/portfolio-pages/page-16.png"),
+      publicPath("assets/portfolio-pages/page-18.png"),
+      publicPath("assets/portfolio-pages/page-19.png")
     ],
     squares: [
       { x: 82, y: 26, size: 14 },
@@ -109,9 +111,9 @@ export const projects: Project[] = [
     categoryEn: "Technology, Art and Mixed Works",
     year: "2022",
     images: [
-      "assets/portfolio-pages/page-20.png",
-      "assets/portfolio-pages/page-21.png",
-      "assets/portfolio-pages/page-23.png"
+      publicPath("assets/portfolio-pages/page-20.png"),
+      publicPath("assets/portfolio-pages/page-21.png"),
+      publicPath("assets/portfolio-pages/page-23.png")
     ],
     squares: [
       { x: 6, y: 20, size: 14 },
