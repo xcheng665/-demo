@@ -13,8 +13,7 @@ import { portfolioPages, projects, publicPath, services } from "./portfolioData"
 import type { Project, SquareSpec } from "./portfolioData";
 
 const ease = [0.22, 1, 0.36, 1] as const;
-const portfolioPdfUrl =
-  "https://github.com/xcheng665/-demo/raw/master/archive/%E7%A8%8B%E5%BF%97%E8%BF%9C%E4%BD%9C%E5%93%81%E9%9B%861.pdf";
+const portfolioPdfUrl = publicPath("程志远作品集.pdf");
 
 function Reveal({
   children,
