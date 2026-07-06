@@ -13,6 +13,8 @@ import { portfolioPages, projects, publicPath, services } from "./portfolioData"
 import type { Project, SquareSpec } from "./portfolioData";
 
 const ease = [0.22, 1, 0.36, 1] as const;
+const portfolioPdfUrl =
+  "https://github.com/xcheng665/-demo/raw/master/archive/%E7%A8%8B%E5%BF%97%E8%BF%9C%E4%BD%9C%E5%93%81%E9%9B%861.pdf";
 
 function Reveal({
   children,
@@ -327,7 +329,7 @@ function Projects() {
             从场地、气候、结构与公共生活出发，将每一次课程设计和研究训练整理为可浏览的案例页。
             <span className="en-line">Each card opens independent image pages, keeping the portfolio readable without forcing a full PDF view.</span>
           </p>
-          <a className="work-button" href={publicPath("程志远作品集1.pdf")}>
+          <a className="work-button" href={portfolioPdfUrl}>
             <span>完整作品集</span>
             <span className="work-arrow">
               <ArrowUpRight size={16} strokeWidth={2.3} />
@@ -473,7 +475,7 @@ function Footer() {
       <a href={publicPath("简历6.3F.pdf")}>
         简历 PDF <span className="en">Resume</span>
       </a>
-      <a href={publicPath("程志远作品集1.pdf")}>
+      <a href={portfolioPdfUrl}>
         作品集 PDF <span className="en">Portfolio</span>
       </a>
     </footer>
