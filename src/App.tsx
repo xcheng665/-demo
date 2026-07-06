@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Download, ExternalLink, X } from "lucide-react";
 import {
   motion,
   useInView,
@@ -8,7 +8,7 @@ import {
   useTransform
 } from "framer-motion";
 import type { MotionValue } from "framer-motion";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { portfolioPages, projects, publicPath, services } from "./portfolioData";
 import type { Project, SquareSpec } from "./portfolioData";
 
@@ -283,7 +283,76 @@ function FloatingSquare({
   );
 }
 
-function Projects() {
+function PdfPreviewModal({
+  open,
+  onClose
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.body.classList.add("pdf-preview-open");
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.classList.remove("pdf-preview-open");
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open, onClose]);
+
+  if (!open) return null;
+
+  const previewUrl = `${portfolioPdfUrl}#toolbar=1&navpanes=0&view=FitH`;
+
+  return (
+    <motion.div
+      className="pdf-preview-backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Portfolio PDF preview"
+      onClick={onClose}
+    >
+      <motion.div
+        className="pdf-preview-panel"
+        initial={{ opacity: 0, y: 24, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.36, ease }}
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="pdf-preview-header">
+          <div>
+            <span className="pdf-preview-kicker">Portfolio Preview</span>
+            <h2>程志远作品集 PDF</h2>
+          </div>
+          <div className="pdf-preview-actions">
+            <a href={portfolioPdfUrl} target="_blank" rel="noreferrer" aria-label="Open portfolio PDF in a new tab">
+              <ExternalLink size={18} strokeWidth={2.2} />
+            </a>
+            <a href={portfolioPdfUrl} download aria-label="Download portfolio PDF">
+              <Download size={18} strokeWidth={2.2} />
+            </a>
+            <button type="button" onClick={onClose} aria-label="Close portfolio PDF preview">
+              <X size={19} strokeWidth={2.2} />
+            </button>
+          </div>
+        </div>
+
+        <iframe className="pdf-preview-frame" src={previewUrl} title="程志远作品集 PDF 预览" />
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function Projects({ onPreviewPortfolio }: { onPreviewPortfolio: () => void }) {
   const ref = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const headerInView = useInView(headerRef, { once: true, margin: "-60px" });
@@ -328,12 +397,12 @@ function Projects() {
             从场地、气候、结构与公共生活出发，将每一次课程设计和研究训练整理为可浏览的案例页。
             <span className="en-line">Each card opens independent image pages, keeping the portfolio readable without forcing a full PDF view.</span>
           </p>
-          <a className="work-button" href={portfolioPdfUrl}>
+          <button className="work-button" type="button" onClick={onPreviewPortfolio}>
             <span>完整作品集</span>
             <span className="work-arrow">
               <ArrowUpRight size={16} strokeWidth={2.3} />
             </span>
-          </a>
+          </button>
         </div>
 
         <div className="logo-marquee" aria-label="Portfolio capabilities">
@@ -462,7 +531,7 @@ function CaseStudyCard({ project, index }: { project: Project; index: number }) 
   );
 }
 
-function Footer() {
+function Footer({ onPreviewPortfolio }: { onPreviewPortfolio: () => void }) {
   return (
     <footer className="footer" id="contact">
       <span>
@@ -474,22 +543,25 @@ function Footer() {
       <a href={publicPath("简历6.3F.pdf")}>
         简历 PDF <span className="en">Resume</span>
       </a>
-      <a href={portfolioPdfUrl}>
+      <button className="footer-link" type="button" onClick={onPreviewPortfolio}>
         作品集 PDF <span className="en">Portfolio</span>
-      </a>
+      </button>
     </footer>
   );
 }
 
 export default function App() {
+  const [pdfPreviewOpen, setPdfPreviewOpen] = useState(false);
+
   return (
     <main className="site">
       <Hero />
       <PortfolioMarquee />
       <About />
       <Services />
-      <Projects />
-      <Footer />
+      <Projects onPreviewPortfolio={() => setPdfPreviewOpen(true)} />
+      <Footer onPreviewPortfolio={() => setPdfPreviewOpen(true)} />
+      <PdfPreviewModal open={pdfPreviewOpen} onClose={() => setPdfPreviewOpen(false)} />
     </main>
   );
 }
