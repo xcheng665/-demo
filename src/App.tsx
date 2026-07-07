@@ -490,6 +490,18 @@ function CaseStudyCard({ project, index }: { project: Project; index: number }) 
   const pointerX = useMotionValue(0.5);
   const pointerY = useMotionValue(0.5);
   const [active, setActive] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const currentImage = project.images[currentImageIndex] ?? project.images[0];
+
+  useEffect(() => {
+    if (active || project.images.length <= 1) return;
+
+    const intervalId = window.setInterval(() => {
+      setCurrentImageIndex((imageIndex) => (imageIndex + 1) % project.images.length);
+    }, 3600 + index * 260);
+
+    return () => window.clearInterval(intervalId);
+  }, [active, index, project.images.length]);
 
   return (
     <motion.article
@@ -517,7 +529,20 @@ function CaseStudyCard({ project, index }: { project: Project; index: number }) 
         speed={`${5 + index * 0.35}s`}
         thickness={4}
       >
-        <img className="case-image" src={project.images[0]} alt={`${project.title} ${project.titleEn}`} loading="lazy" />
+        <motion.img
+          className="case-image"
+          src={currentImage}
+          alt={`${project.title} ${project.titleEn} image ${currentImageIndex + 1}`}
+          loading="lazy"
+          key={currentImage}
+          initial={{ opacity: 0, scale: 1.045 }}
+          animate={{
+            opacity: 1,
+            scale: active ? 1.07 : 1.015,
+            filter: active ? "grayscale(0.1) contrast(1.05) brightness(0.82)" : "grayscale(0) contrast(1) brightness(1)"
+          }}
+          transition={{ duration: 0.65, ease }}
+        />
       </StarBorder>
       <PixelOverlay />
 
@@ -525,7 +550,7 @@ function CaseStudyCard({ project, index }: { project: Project; index: number }) 
         <MagneticSquare square={square} pointerX={pointerX} pointerY={pointerY} active={active} key={`${square.x}-${square.y}`} />
       ))}
 
-      <a className="plus-button" href={project.images[0]} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} cover image`}>
+      <a className="plus-button" href={currentImage} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} current image`}>
         +
       </a>
 
@@ -540,9 +565,16 @@ function CaseStudyCard({ project, index }: { project: Project; index: number }) 
 
       <div className="case-thumbs">
         {project.images.map((image, thumbIndex) => (
-          <a href={image} target="_blank" rel="noreferrer" key={image} aria-label={`Open ${project.title} image ${thumbIndex + 1}`}>
+          <button
+            className={thumbIndex === currentImageIndex ? "is-active" : ""}
+            type="button"
+            key={image}
+            onClick={() => setCurrentImageIndex(thumbIndex)}
+            aria-label={`Show ${project.title} image ${thumbIndex + 1}`}
+            aria-current={thumbIndex === currentImageIndex ? "true" : undefined}
+          >
             {String(thumbIndex + 1).padStart(2, "0")}
-          </a>
+          </button>
         ))}
       </div>
     </motion.article>
