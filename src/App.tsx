@@ -9,11 +9,14 @@ import {
 } from "framer-motion";
 import type { MotionValue } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
+import LiquidChrome from "./components/LiquidChrome";
+import StarBorder from "./components/StarBorder";
 import { portfolioPages, projects, publicPath, services } from "./portfolioData";
 import type { Project, SquareSpec } from "./portfolioData";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const portfolioPdfUrl = publicPath("程志远作品集.pdf");
+const heroLiquidBaseColor: [number, number, number] = [0.12, 0.13, 0.15];
 
 function Reveal({
   children,
@@ -72,6 +75,9 @@ function Hero() {
 
   return (
     <section className="hero" id="top">
+      <div className="hero-liquid-background" aria-hidden="true">
+        <LiquidChrome baseColor={heroLiquidBaseColor} speed={0.32} amplitude={0.34} frequencyX={2.6} frequencyY={3.2} interactive />
+      </div>
       <Nav />
       <motion.div
         className="hero-title-wrap"
@@ -136,17 +142,21 @@ function PortfolioMarquee() {
       {rows.map((row, rowIndex) => (
         <div className={`marquee-track marquee-${rowIndex === 0 ? "right" : "left"}`} key={rowIndex}>
           {[...row, ...row, ...row].map((src, index) => (
-            <a
+            <StarBorder
+              as="a"
               className="marquee-tile"
               href={src}
               key={`${src}-${index}`}
               target="_blank"
               rel="noreferrer"
+              color="rgba(255, 255, 255, 0.95)"
+              speed="5s"
+              thickness={3}
               style={{ "--flow-delay": `${(index % row.length) * 90}ms` } as React.CSSProperties}
               aria-label={`Open portfolio page image ${index + 1}`}
             >
               <img src={src} alt={`Project preview ${index + 1}`} loading="lazy" />
-            </a>
+            </StarBorder>
           ))}
         </div>
       ))}
@@ -500,7 +510,15 @@ function CaseStudyCard({ project, index }: { project: Project; index: number }) 
         pointerY.set(0.5);
       }}
     >
-      <img className="case-image" src={project.images[0]} alt={`${project.title} ${project.titleEn}`} loading="lazy" />
+      <StarBorder
+        as="div"
+        className="case-image-border"
+        color="rgba(255, 255, 255, 0.96)"
+        speed={`${5 + index * 0.35}s`}
+        thickness={4}
+      >
+        <img className="case-image" src={project.images[0]} alt={`${project.title} ${project.titleEn}`} loading="lazy" />
+      </StarBorder>
       <PixelOverlay />
 
       {project.squares.map((square) => (

@@ -179,6 +179,24 @@ button {
   overflow: hidden;
 }
 
+.hero-liquid-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.82;
+}
+
+.hero-liquid-background::after {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 60%, rgba(255, 255, 255, 0.1), transparent 30%),
+    linear-gradient(180deg, rgba(12, 12, 12, 0.32) 0%, rgba(12, 12, 12, 0.14) 42%, rgba(12, 12, 12, 0.72) 100%),
+    linear-gradient(90deg, rgba(12, 12, 12, 0.72) 0%, transparent 30%, transparent 70%, rgba(12, 12, 12, 0.72) 100%);
+  content: "";
+  pointer-events: none;
+}
+
 .navbar {
   position: relative;
   z-index: 30;
@@ -404,6 +422,20 @@ button {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.marquee-tile.star-border-container {
+  display: block;
+}
+
+.marquee-tile .inner-content {
+  position: absolute;
+  inset: var(--star-border-thickness, 3px);
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: calc(34px - var(--star-border-thickness, 3px));
+  background: #151518;
 }
 
 .about {
@@ -671,6 +703,24 @@ button {
 .case-card:hover .case-image {
   filter: grayscale(0.1) contrast(1.05) brightness(0.82);
   transform: scale(1.07);
+}
+
+.case-image-border.star-border-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  border-radius: inherit;
+}
+
+.case-image-border .inner-content {
+  position: absolute;
+  inset: var(--star-border-thickness, 4px);
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-radius: calc(42px - var(--star-border-thickness, 4px));
+  background: #151518;
 }
 
 .pixel-overlay {
@@ -1122,6 +1172,10 @@ button {
   .case-card {
     aspect-ratio: 3 / 4;
     border-radius: 30px;
+  }
+
+  .case-image-border .inner-content {
+    border-radius: calc(30px - var(--star-border-thickness, 4px));
   }
 
   .case-info {
