@@ -208,6 +208,7 @@ export const certificates: Certificate[] = [
   certificate("蓝桥杯全国一等奖", "Lanqiao Cup National First Prize", "technology", "certification/蓝桥杯全国一等奖.jpg"),
   certificate("米兰设计周三等奖", "Milan Design Week Third Prize", "design", "certification/米兰设计周三等奖.png"),
   certificate("绿色建筑技能大赛创意一等奖", "Green Building Skills First Prize", "design", "certification/第八届高等院校绿色建筑技能与创意大赛 创意一等奖.jpg"),
+  certificate("绿色建筑技能大赛创意一等奖证书", "Green Building Skills First Prize Certificate", "design", "certification/第八届高等院校绿色建筑技能大赛创意一等奖_02(1).jpg"),
   certificate("CACE 数字建筑创新大赛一等奖", "CACE Digital Construction First Prize", "technology", "certification/CACE数字建筑创新大赛一等奖.jpg"),
   certificate("全国数字建筑创新大赛一等奖", "National Digital Construction First Prize", "technology", "certification/全国数字建筑创新大赛一等奖.jpg"),
   certificate("亚洲大学生创意设计展二等奖", "Asian Student Design Exhibition Second Prize", "design", "certification/亚洲大学生创意设计展二等奖.jpg"),
@@ -229,7 +230,6 @@ export const certificates: Certificate[] = [
   certificate("海洋文化科技创新大赛", "Marine Culture Innovation Competition", "research", "certification/海洋文化科技创新大赛.jpg"),
   certificate("工程实习证明", "Engineering Internship", "practice", "certification/社会实践/程志远海大工程实习_01.jpg"),
   certificate("志愿服务证书", "Volunteer Service Certificate", "practice", "certification/社会实践/社会实践志愿服务_01.jpg"),
-  certificate("指导老师奖", "Instructor Recognition", "practice", "certification/社会实践/指导老师奖.jpg"),
   certificate("志愿者证书（一）", "Volunteer Certificate I", "practice", "certification/社会实践/志愿者证书.jpg"),
   certificate("志愿者证书（二）", "Volunteer Certificate II", "practice", "certification/社会实践/志愿者证书2.jpg"),
   certificate("志愿服务 300 小时", "300 Hours of Volunteer Service", "practice", "certification/社会实践/志愿服务300h.jpg")

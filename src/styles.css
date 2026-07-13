@@ -911,13 +911,13 @@ button {
   place-items: center;
   border: 1px solid rgba(12, 12, 12, 0.22);
   border-radius: 50%;
-  color: rgba(12, 12, 12, 0.76);
+  color: #0c0c0c;
   transition: background 220ms var(--ease), color 220ms var(--ease), transform 320ms var(--ease);
 }
 
 .service-toggle[aria-expanded="true"] .service-toggle-icon {
-  background: #0c0c0c;
-  color: #ffffff;
+  background: #ffffff;
+  color: #0c0c0c;
   transform: rotate(180deg);
 }
 
