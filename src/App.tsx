@@ -1,4 +1,4 @@
-import { ArrowUpRight, Download, ExternalLink, X } from "lucide-react";
+import { ArrowUpRight, Award, ChevronDown, Download, ExternalLink, FileText, ImageIcon, X } from "lucide-react";
 import {
   motion,
   useInView,
@@ -11,8 +11,8 @@ import type { MotionValue } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 import LiquidChrome from "./components/LiquidChrome";
 import StarBorder from "./components/StarBorder";
-import { portfolioPages, projects, publicPath, services } from "./portfolioData";
-import type { Project, SquareSpec } from "./portfolioData";
+import { certificates, portfolioPages, projects, publicPath, services } from "./portfolioData";
+import type { Certificate, Project, SquareSpec } from "./portfolioData";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const portfolioPdfUrl = publicPath("程志远作品集.pdf");
@@ -45,6 +45,7 @@ function Reveal({
 function Nav() {
   const items = [
     ["#about", "关于", "About"],
+    ["#certificates", "获奖证书", "Awards"],
     ["#services", "能力", "Abilities"],
     ["#projects", "作品", "Projects"],
     ["#contact", "联系", "Contact"]
@@ -224,7 +225,151 @@ function AnimatedText({ text }: { text: string }) {
   );
 }
 
+function CertificatePreviewModal({
+  certificate,
+  onClose
+}: {
+  certificate: Certificate | null;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (!certificate) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.body.classList.add("certificate-preview-open");
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.classList.remove("certificate-preview-open");
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [certificate, onClose]);
+
+  if (!certificate) return null;
+
+  const source = publicPath(certificate.source);
+  const isPdf = certificate.type === "pdf";
+
+  return (
+    <div className="certificate-preview-backdrop" role="presentation" onMouseDown={onClose}>
+      <motion.div
+        className={`certificate-preview-panel ${isPdf ? "is-pdf" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="certificate-preview-title"
+        initial={{ opacity: 0, scale: 0.96, y: 18 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.96, y: 18 }}
+        transition={{ duration: 0.28, ease }}
+        onMouseDown={(event) => event.stopPropagation()}
+      >
+        <header className="certificate-preview-header">
+          <div>
+            <span className="certificate-preview-kicker">{isPdf ? "PDF CERTIFICATE" : "AWARD CERTIFICATE"}</span>
+            <h2 id="certificate-preview-title">{certificate.title}</h2>
+          </div>
+          <div className="certificate-preview-actions">
+            <a href={source} target="_blank" rel="noreferrer" aria-label="在新窗口打开证书" title="在新窗口打开">
+              <ExternalLink size={18} />
+            </a>
+            <a href={source} download aria-label="下载证书" title="下载证书">
+              <Download size={18} />
+            </a>
+            <button type="button" onClick={onClose} aria-label="关闭证书预览" title="关闭">
+              <X size={20} />
+            </button>
+          </div>
+        </header>
+        <div className="certificate-preview-content">
+          {isPdf ? (
+            <iframe className="certificate-preview-pdf" src={`${source}#toolbar=1&navpanes=0&view=FitH`} title={certificate.title} />
+          ) : (
+            <img className="certificate-preview-image" src={source} alt={certificate.title} />
+          )}
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+const certificateFilters = [
+  { key: "all", label: "全部", labelEn: "All" },
+  { key: "design", label: "设计竞赛", labelEn: "Design" },
+  { key: "technology", label: "数字技术", labelEn: "Digital" },
+  { key: "research", label: "科研建模", labelEn: "Research" },
+  { key: "practice", label: "社会实践", labelEn: "Practice" }
+] as const;
+
+function Certificates() {
+  const [filter, setFilter] = useState<(typeof certificateFilters)[number]["key"]>("all");
+  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
+  const visibleCertificates = useMemo(
+    () => certificates.filter((certificate) => filter === "all" || certificate.category === filter),
+    [filter]
+  );
+
+  return (
+    <section className="certificates" id="certificates">
+      <div className="certificates-inner">
+        <Reveal className="certificates-heading" y={36}>
+          <span className="certificates-eyebrow"><Award size={15} /> 荣誉档案 / Award Archive</span>
+          <h2 className="section-title title-en-only">AWARDS</h2>
+          <p>竞赛、科研、数字技术与社会实践成果。点击任意卡片即可查看原始证书。</p>
+        </Reveal>
+
+        <div className="certificate-filters" role="tablist" aria-label="证书分类">
+          {certificateFilters.map((item) => (
+            <button
+              className={filter === item.key ? "is-active" : ""}
+              key={item.key}
+              onClick={() => setFilter(item.key)}
+              role="tab"
+              type="button"
+              aria-selected={filter === item.key}
+            >
+              <span className="zh">{item.label}</span>
+              <span className="en">{item.labelEn}</span>
+            </button>
+          ))}
+        </div>
+
+        <div className="certificate-grid">
+          {visibleCertificates.map((certificate, index) => {
+            const source = publicPath(certificate.source);
+            const isPdf = certificate.type === "pdf";
+
+            return (
+              <Reveal className="certificate-card-wrap" delay={Math.min(index * 0.035, 0.28)} key={certificate.source} y={22}>
+                <button className="certificate-card" type="button" onClick={() => setSelectedCertificate(certificate)}>
+                  <span className="certificate-card-media">
+                    {isPdf ? (
+                      <span className="certificate-pdf-cover"><FileText size={34} /><span>PDF</span></span>
+                    ) : (
+                      <img src={source} alt="" loading="lazy" />
+                    )}
+                    <span className="certificate-card-open">{isPdf ? <FileText size={15} /> : <ImageIcon size={15} />} PREVIEW</span>
+                  </span>
+                  <span className="certificate-card-copy">
+                    <span className="certificate-card-index">{String(index + 1).padStart(2, "0")}</span>
+                    <strong className="zh">{certificate.title}</strong>
+                    <small className="en">{certificate.titleEn}</small>
+                  </span>
+                </button>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+      <CertificatePreviewModal certificate={selectedCertificate} onClose={() => setSelectedCertificate(null)} />
+    </section>
+  );
+}
+
 function Services() {
+  const [openService, setOpenService] = useState<string | null>(null);
+
   return (
     <section className="services" id="services">
       <Reveal y={42}>
@@ -237,16 +382,41 @@ function Services() {
         {services.map((service, index) => (
           <Reveal className="service-item" delay={index * 0.08} key={service.number}>
             <span className="service-number">{service.number}</span>
-            <div>
-              <h3 className="service-name">
-                <span className="zh">{service.title}</span>
-                <span className="en">{service.titleEn}</span>
-              </h3>
-              <p className="service-desc">
-                {service.description}
-                <span className="en-line">{service.descriptionEn}</span>
-              </p>
-            </div>
+            <button
+              className="service-toggle"
+              type="button"
+              onClick={() => setOpenService((current) => (current === service.number ? null : service.number))}
+              aria-expanded={openService === service.number}
+              aria-controls={`service-experience-${service.number}`}
+            >
+              <span className="service-toggle-heading">
+                <span>
+                  <h3 className="service-name">
+                    <span className="zh">{service.title}</span>
+                    <span className="en">{service.titleEn}</span>
+                  </h3>
+                  <p className="service-desc">
+                    {service.description}
+                    <span className="en-line">{service.descriptionEn}</span>
+                  </p>
+                </span>
+                <span className="service-toggle-icon" aria-hidden="true"><ChevronDown size={21} /></span>
+              </span>
+              {openService === service.number ? (
+                <motion.span
+                  className="service-experience"
+                  id={`service-experience-${service.number}`}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  transition={{ duration: 0.35, ease }}
+                >
+                  <span className="service-experience-label">PERSONAL EXPERIENCE</span>
+                  <span className="zh">{service.experience}</span>
+                  <span className="en-line">{service.experienceEn}</span>
+                  <span className="service-evidence">{service.evidence}</span>
+                </motion.span>
+              ) : null}
+            </button>
           </Reveal>
         ))}
       </div>
@@ -606,6 +776,7 @@ export default function App() {
   return (
     <main className="site">
       <Hero />
+      <Certificates />
       <PortfolioMarquee />
       <About />
       <Services />

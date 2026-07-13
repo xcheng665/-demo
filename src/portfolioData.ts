@@ -15,6 +15,25 @@ export type Project = {
   squares: SquareSpec[];
 };
 
+export type Certificate = {
+  title: string;
+  titleEn: string;
+  category: "design" | "technology" | "research" | "practice";
+  source: string;
+  type: "image" | "pdf";
+};
+
+export type Service = {
+  number: string;
+  title: string;
+  titleEn: string;
+  description: string;
+  descriptionEn: string;
+  experience: string;
+  experienceEn: string;
+  evidence: string;
+};
+
 export const publicPath = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 
 export const portfolioPages = Array.from({ length: 23 }, (_, index) => {
@@ -125,40 +144,102 @@ export const projects: Project[] = [
   }
 ];
 
-export const services = [
+export const services: Service[] = [
   {
     number: "01",
     title: "建筑设计",
     titleEn: "Architectural Design",
     description: "建筑设计 1-6 均分 90+，覆盖公共建筑、居住原理、空间叙事、场地策略与建筑表达。",
-    descriptionEn: "Design studio experience across public buildings, housing principles and spatial representation."
+    descriptionEn: "Design studio experience across public buildings, housing principles and spatial representation.",
+    experience: "从公共建筑、居住原理到城市设计，我持续将场地研究、空间叙事与建筑表达整合进完整方案。作品集中的山海绿境、城市绿洲与大地黎纹，分别对应度假酒店、邻里中心与博物馆等不同尺度的设计命题。",
+    experienceEn: "I develop complete architectural proposals by combining site research, spatial narrative and architectural representation across multiple scales.",
+    evidence: "代表作品：山海 · 绿境 / 城市绿洲 · 邻里中心 / 大地 · 黎纹"
   },
   {
     number: "02",
     title: "绿色模拟",
     titleEn: "Green Simulation",
     description: "熟悉建筑物理、热工/声光环境分析与绿建模拟软件，并具备绿色建筑竞赛获奖实践。",
-    descriptionEn: "Building physics, environmental analysis and green building simulation workflows."
+    descriptionEn: "Building physics, environmental analysis and green building simulation workflows.",
+    experience: "围绕建筑热工、声光环境与绿色策略开展分析训练，并把模拟结果转化为设计决策。参与绿色建筑技能与创意大赛相关实践，获得第八届高等院校绿色建筑技能与创意大赛创意一等奖。",
+    experienceEn: "I translate building-physics analysis and simulation results into design decisions, supported by award-winning green-building competition work.",
+    evidence: "获奖佐证：绿色建筑技能与创意大赛 创意一等奖"
   },
   {
     number: "03",
     title: "BIM 与可视化",
     titleEn: "BIM & Visualization",
     description: "熟悉 Revit、SketchUp 建模、渲染、施工模拟、漫游动画与竞赛级汇报表达。",
-    descriptionEn: "BIM modeling, rendering, construction simulation and walkthrough presentation."
+    descriptionEn: "BIM modeling, rendering, construction simulation and walkthrough presentation.",
+    experience: "以 Revit、SketchUp 为基础完成模型搭建、渲染表达与施工模拟，并把技术流程转化为可读的竞赛汇报。相关实践覆盖 BIM 毕业设计、斯维尔建模与数字建筑创新赛事。",
+    experienceEn: "I use BIM workflows from modeling through visualization and construction simulation, then turn the process into clear competition-ready presentations.",
+    evidence: "获奖佐证：BIM 毕业设计大赛二等奖 / 斯维尔大赛建模一等奖"
   },
   {
     number: "04",
     title: "参数化与数据",
     titleEn: "Computational Design",
     description: "运用 Rhino Grasshopper、Python、NumPy 与 Pandas 进行参数化推演、数据处理与研究建模。",
-    descriptionEn: "Parametric workflows, Python data processing and research-oriented modeling."
+    descriptionEn: "Parametric workflows, Python data processing and research-oriented modeling.",
+    experience: "将 Rhino Grasshopper 的几何推演与 Python 数据处理结合，用于方案参数化、信息整理和研究辅助。通过蓝桥杯、Python 技能认证及多项建模竞赛持续检验编码与数据建模能力。",
+    experienceEn: "I combine Grasshopper-based geometric exploration with Python data workflows for parametric design, information processing and research support.",
+    evidence: "获奖佐证：蓝桥杯全国一等奖 / Python 知识一等奖"
   },
   {
     number: "05",
     title: "科研与编程",
     titleEn: "Research & Coding",
     description: "参与椰壳围护结构能耗研究、灾后恢复多智能体流程与建筑规范可视化校验系统。",
-    descriptionEn: "Research on low-energy envelopes, post-disaster workflows and code-checking systems."
+    descriptionEn: "Research on low-energy envelopes, post-disaster workflows and code-checking systems.",
+    experience: "参与椰壳围护结构能耗、灾后恢复多智能体流程与建筑规范可视化校验等研究型工作，关注从问题定义、数据处理到技术表达的完整链路，并完成相关论文与成果存证。",
+    experienceEn: "My research work spans low-energy envelopes, post-disaster multi-agent workflows and visual code-checking systems from problem framing to documented outcomes.",
+    evidence: "成果佐证：多智能体灾后恢复研究 / 区块链司法存证 / 专利申请受理书"
   }
+];
+
+const certificate = (title: string, titleEn: string, category: Certificate["category"], source: string): Certificate => ({
+  title,
+  titleEn,
+  category,
+  source,
+  type: source.toLowerCase().endsWith(".pdf") ? "pdf" : "image"
+});
+
+export const certificates: Certificate[] = [
+  certificate("蓝桥杯省一等奖", "Lanqiao Cup Provincial First Prize", "technology", "certification/蓝桥杯省一等奖.jpg"),
+  certificate("蓝桥杯全国一等奖", "Lanqiao Cup National First Prize", "technology", "certification/蓝桥杯全国一等奖.jpg"),
+  certificate("米兰设计周三等奖", "Milan Design Week Third Prize", "design", "certification/米兰设计周三等奖.png"),
+  certificate("绿色建筑技能大赛创意一等奖", "Green Building Skills First Prize", "design", "certification/第八届高等院校绿色建筑技能与创意大赛 创意一等奖.jpg"),
+  certificate("绿色建筑技能大赛证书", "Green Building Skills Certificate", "design", "certification/第八届高等院校绿色建筑技能大赛创意一等奖.pdf"),
+  certificate("CACE 竞赛证书", "CACE Competition Certificate", "design", "certification/程志远-18879819661-CACE202501GLD0027.jpg"),
+  certificate("全国数字建筑创新大赛一等奖", "National Digital Construction First Prize", "technology", "certification/全国数字建筑创新大赛一等奖.jpg"),
+  certificate("全国数字建筑创新大赛初赛一等奖", "Digital Construction Preliminary First Prize", "technology", "certification/全国数字建筑创新大赛初赛一等奖.png"),
+  certificate("亚洲大学生创意设计展二等奖", "Asian Student Design Exhibition Second Prize", "design", "certification/亚洲大学生创意设计展二等奖.jpg"),
+  certificate("五一数学建模一等奖", "May Day Mathematical Modeling First Prize", "research", "certification/五一数学建模.jpg"),
+  certificate("五一数学建模证书", "May Day Mathematical Modeling Certificate", "research", "certification/五一数学建模二等奖.pdf"),
+  certificate("Python 知识一等奖", "Python Knowledge First Prize", "technology", "certification/python知识一等奖.jpg"),
+  certificate("Python 二级良好", "Python Level 2 Certificate", "technology", "certification/python二级良好.pdf"),
+  certificate("IP 区块链司法存证", "IP Blockchain Evidence Record", "research", "certification/IP区块链司法存证.pdf"),
+  certificate("BIM 毕业设计大赛二等奖", "BIM Graduation Design Second Prize", "technology", "certification/BIM毕业设计大赛二等奖_01.jpg"),
+  certificate("BIM 毕业设计大赛证书", "BIM Graduation Design Certificate", "technology", "certification/BIM毕业设计大赛二等奖.pdf"),
+  certificate("3D 大赛省级特等奖", "3D Competition Provincial Grand Prize", "technology", "certification/3d大赛省级特等奖.jpg"),
+  certificate("3D 大赛省级一等奖", "3D Competition Provincial First Prize", "technology", "certification/3d大赛省级一等奖.jpg"),
+  certificate("学院杯 2025 银奖", "College Cup 2025 Silver Award", "design", "certification/学院杯2025银奖.jpg"),
+  certificate("学院杯 2025 证书", "College Cup 2025 Certificate", "design", "certification/学院杯2025银奖.pdf"),
+  certificate("华灿奖证书", "Huacan Award Certificate", "design", "certification/华灿奖证书.jpg"),
+  certificate("奖状与奖杯", "Awards and Trophies", "design", "certification/奖状和奖杯.jpg"),
+  certificate("斯维尔大赛建模一等奖", "Swell Modeling First Prize", "technology", "certification/斯维尔大赛建模一等奖.jpg"),
+  certificate("机器人与算法比赛一等奖", "Robotics and Algorithms First Prize", "technology", "certification/机器人与算法比赛一等奖.jpg"),
+  certificate("农林杯数学建模一等奖", "Agriculture and Forestry Modeling First Prize", "research", "certification/农林杯数学建模一等奖.jpg"),
+  certificate("实用新型专利申请受理书", "Utility Model Patent Acceptance", "research", "certification/实用新型专利申请受理书.pdf"),
+  certificate("摄影大赛一等奖", "Photography Competition First Prize", "design", "certification/摄影大赛一等奖.jpg"),
+  certificate("海洋文化科技创新大赛", "Marine Culture Innovation Competition", "research", "certification/海洋文化科技创新大赛.jpg"),
+  certificate("工程实习证明", "Engineering Internship", "practice", "certification/社会实践/程志远海大工程实习_01.jpg"),
+  certificate("工程实习证明（PDF）", "Engineering Internship PDF", "practice", "certification/社会实践/程志远海大工程实习.pdf"),
+  certificate("志愿服务证书", "Volunteer Service Certificate", "practice", "certification/社会实践/社会实践志愿服务_01.jpg"),
+  certificate("志愿服务扫描件", "Volunteer Service Scan", "practice", "certification/社会实践/社会实践志愿服务_扫描版.pdf"),
+  certificate("指导老师奖", "Instructor Recognition", "practice", "certification/社会实践/指导老师奖.jpg"),
+  certificate("志愿者证书（一）", "Volunteer Certificate I", "practice", "certification/社会实践/志愿者证书.jpg"),
+  certificate("志愿者证书（二）", "Volunteer Certificate II", "practice", "certification/社会实践/志愿者证书2.jpg"),
+  certificate("志愿服务 300 小时", "300 Hours of Volunteer Service", "practice", "certification/社会实践/志愿服务300h.jpg")
 ];
