@@ -224,6 +224,7 @@ export const certificates: Certificate[] = [
   certificate("斯维尔大赛建模一等奖", "Swell Modeling First Prize", "technology", "certification/斯维尔大赛建模一等奖.jpg"),
   certificate("机器人与算法比赛一等奖", "Robotics and Algorithms First Prize", "technology", "certification/机器人与算法比赛一等奖.jpg"),
   certificate("农林杯数学建模一等奖", "Agriculture and Forestry Modeling First Prize", "research", "certification/农林杯数学建模一等奖.jpg"),
+  certificate("灾后恢复多智能体研究", "Post-typhoon Recovery Multi-agent Planning", "research", "ID_273_Lean_Post-typhoon_Recovery_Multi-agent_Look-ahead_and_Constraints_for_the_Last_Planner_System_00.jpg"),
   certificate("摄影大赛一等奖", "Photography Competition First Prize", "design", "certification/摄影大赛一等奖.jpg"),
   certificate("海洋文化科技创新大赛", "Marine Culture Innovation Competition", "research", "certification/海洋文化科技创新大赛.jpg"),
   certificate("工程实习证明", "Engineering Internship", "practice", "certification/社会实践/程志远海大工程实习_01.jpg"),
