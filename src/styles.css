@@ -668,20 +668,6 @@ button {
   transform: scale(1.04);
 }
 
-.certificate-pdf-cover {
-  display: grid;
-  width: 64px;
-  height: 76px;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.9);
-  font-family: var(--font-en);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-}
-
 .certificate-card-open {
   position: absolute;
   right: 0.7rem;
@@ -765,10 +751,6 @@ button {
   box-shadow: 0 28px 90px rgba(0, 0, 0, 0.62);
 }
 
-.certificate-preview-panel.is-pdf {
-  height: min(88vh, 900px);
-}
-
 .certificate-preview-header {
   display: flex;
   flex: 0 0 auto;
@@ -834,13 +816,6 @@ button {
   width: 100%;
   max-height: calc(91vh - 74px);
   object-fit: contain;
-}
-
-.certificate-preview-pdf {
-  width: 100%;
-  height: 100%;
-  border: 0;
-  background: #ffffff;
 }
 
 .floating-asset {
@@ -1560,10 +1535,6 @@ button {
   .certificate-preview-panel {
     max-height: 93vh;
     border-radius: 20px;
-  }
-
-  .certificate-preview-panel.is-pdf {
-    height: 93vh;
   }
 
   .certificate-preview-header {

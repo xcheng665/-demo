@@ -1,4 +1,4 @@
-import { ArrowUpRight, Award, ChevronDown, Download, ExternalLink, FileText, ImageIcon, X } from "lucide-react";
+import { ArrowUpRight, Award, ChevronDown, Download, ExternalLink, ImageIcon, X } from "lucide-react";
 import {
   motion,
   useInView,
@@ -250,12 +250,10 @@ function CertificatePreviewModal({
   if (!certificate) return null;
 
   const source = publicPath(certificate.source);
-  const isPdf = certificate.type === "pdf";
-
   return (
     <div className="certificate-preview-backdrop" role="presentation" onMouseDown={onClose}>
       <motion.div
-        className={`certificate-preview-panel ${isPdf ? "is-pdf" : ""}`}
+        className="certificate-preview-panel"
         role="dialog"
         aria-modal="true"
         aria-labelledby="certificate-preview-title"
@@ -267,7 +265,7 @@ function CertificatePreviewModal({
       >
         <header className="certificate-preview-header">
           <div>
-            <span className="certificate-preview-kicker">{isPdf ? "PDF CERTIFICATE" : "AWARD CERTIFICATE"}</span>
+            <span className="certificate-preview-kicker">AWARD CERTIFICATE</span>
             <h2 id="certificate-preview-title">{certificate.title}</h2>
           </div>
           <div className="certificate-preview-actions">
@@ -283,11 +281,7 @@ function CertificatePreviewModal({
           </div>
         </header>
         <div className="certificate-preview-content">
-          {isPdf ? (
-            <iframe className="certificate-preview-pdf" src={`${source}#toolbar=1&navpanes=0&view=FitH`} title={certificate.title} />
-          ) : (
-            <img className="certificate-preview-image" src={source} alt={certificate.title} />
-          )}
+          <img className="certificate-preview-image" src={source} alt={certificate.title} />
         </div>
       </motion.div>
     </div>
@@ -338,18 +332,13 @@ function Certificates() {
         <div className="certificate-grid">
           {visibleCertificates.map((certificate, index) => {
             const source = publicPath(certificate.source);
-            const isPdf = certificate.type === "pdf";
 
             return (
               <Reveal className="certificate-card-wrap" delay={Math.min(index * 0.035, 0.28)} key={certificate.source} y={22}>
                 <button className="certificate-card" type="button" onClick={() => setSelectedCertificate(certificate)}>
                   <span className="certificate-card-media">
-                    {isPdf ? (
-                      <span className="certificate-pdf-cover"><FileText size={34} /><span>PDF</span></span>
-                    ) : (
-                      <img src={source} alt="" loading="lazy" />
-                    )}
-                    <span className="certificate-card-open">{isPdf ? <FileText size={15} /> : <ImageIcon size={15} />} PREVIEW</span>
+                    <img src={source} alt="" loading="lazy" />
+                    <span className="certificate-card-open"><ImageIcon size={15} /> PREVIEW</span>
                   </span>
                   <span className="certificate-card-copy">
                     <span className="certificate-card-index">{String(index + 1).padStart(2, "0")}</span>
