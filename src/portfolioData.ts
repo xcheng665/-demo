@@ -35,9 +35,15 @@ export type Service = {
 
 export const publicPath = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 
-export const portfolioPages = Array.from({ length: 23 }, (_, index) => {
-  return publicPath(`assets/portfolio-pages/page-${String(index + 1).padStart(2, "0")}.png`);
+const portfolioPageFiles = Array.from({ length: 23 }, (_, index) => {
+  const pageNumber = String(index + 1).padStart(2, "0");
+  return `assets/portfolio-pages/page-${pageNumber}${pageNumber === "12" || pageNumber === "14" ? ".jpg" : ".png"}`;
 });
+
+export const portfolioPages = [
+  ...portfolioPageFiles.map(publicPath),
+  publicPath("assets/portfolio-pages/page-jianli.jpg")
+];
 
 export const projects: Project[] = [
   {
@@ -89,8 +95,8 @@ export const projects: Project[] = [
     categoryEn: "Urban-Friendly Museum",
     year: "2023",
     images: [
-      publicPath("assets/portfolio-pages/page-12.png"),
-      publicPath("assets/portfolio-pages/page-14.png"),
+      publicPath("assets/portfolio-pages/page-12.jpg"),
+      publicPath("assets/portfolio-pages/page-14.jpg"),
       publicPath("assets/portfolio-pages/page-15.png")
     ],
     squares: [
