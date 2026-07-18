@@ -15,6 +15,9 @@
 - In-site portfolio PDF preview
 - History API navigation between routes
 - Expandable personal experience entries on the abilities page
+- Animated monochrome perimeter light on the cover
+- Original-color project imagery and five project design statements
+- Four images for projects 01, 03, 04 and 05; five images for project 02
 
 ## Comparison Notes
 
@@ -23,5 +26,9 @@
 - AI avatar panel intentionally omitted for the later phase requested by the user.
 - No horizontal overflow was found at the tested mobile breakpoint.
 - All inspected project images reported a non-zero natural width.
+- Project imagery uses its original color with no CSS grayscale filter.
+- Project previews use the source page ratio and `object-fit: contain` so no page content is cropped.
+- Project images rotate automatically, pause on hover/focus and remain manually selectable.
+- The full site uses the provided cream, sage, olive and deep brown-gray palette: `#F7F1E5`, `#C6D0B4`, `#7A8B64`, `#3B352F`.
 
 final result: passed

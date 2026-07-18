@@ -11,6 +11,8 @@ export type Project = {
   category: string;
   categoryEn: string;
   year: string;
+  description: string;
+  descriptionEn: string;
   images: string[];
   squares: SquareSpec[];
 };
@@ -46,10 +48,13 @@ export const projects: Project[] = [
     category: "高品质度假酒店设计",
     categoryEn: "Resort Hotel Design",
     year: "2024",
+    description: "项目回应三亚热带滨海气候与度假生活需求，以面向海景的公共轴线串联入口、庭院、客房与滨水活动空间。错动体量形成遮阳与通风界面，并通过灰空间和连续景观弱化建筑与自然之间的边界。",
+    descriptionEn: "A climate-responsive resort organized by a public axis that links arrival, courtyards, guest rooms and the waterfront landscape.",
     images: [
       publicPath("assets/portfolio-pages/page-03.png"),
       publicPath("assets/portfolio-pages/page-04.png"),
-      publicPath("assets/portfolio-pages/page-05.png")
+      publicPath("assets/portfolio-pages/page-05.png"),
+      publicPath("assets/portfolio-pages/page-06.png")
     ],
     squares: [
       { x: 5, y: 30, size: 16 },
@@ -67,10 +72,14 @@ export const projects: Project[] = [
     category: "可持续社区空间设计",
     categoryEn: "Sustainable Community Space",
     year: "2024",
+    description: "设计以社区共享和步行可达为核心，将邻里服务、休闲活动与绿色庭院叠合为开放的公共客厅。建筑首层保持通透，屋顶与退台转化为可使用的立体花园，建立全天候的社区交往网络。",
+    descriptionEn: "A walkable neighborhood hub that layers community services, shared rooms and accessible green terraces.",
     images: [
       publicPath("assets/portfolio-pages/page-07.png"),
+      publicPath("assets/portfolio-pages/page-08.png"),
       publicPath("assets/portfolio-pages/page-09.png"),
-      publicPath("assets/portfolio-pages/page-10.png")
+      publicPath("assets/portfolio-pages/page-10.png"),
+      publicPath("assets/portfolio-pages/page-11.png")
     ],
     squares: [
       { x: 82, y: 55, size: 16 },
@@ -87,8 +96,11 @@ export const projects: Project[] = [
     category: "城市友好型博物馆设计",
     categoryEn: "Urban-Friendly Museum",
     year: "2023",
+    description: "项目从海南黎锦纹样与在地聚落中提取空间秩序，将展览、教育和城市公共活动编织进连续的参观路径。首层向城市开放，层层递进的庭院与天光空间营造具有地域记忆的博物馆体验。",
+    descriptionEn: "A civic museum shaped by Li brocade patterns, layered courtyards and a continuous public exhibition route.",
     images: [
       publicPath("assets/portfolio-pages/page-12.jpg"),
+      publicPath("assets/portfolio-pages/page-13.png"),
       publicPath("assets/portfolio-pages/page-14.jpg"),
       publicPath("assets/portfolio-pages/page-15.png")
     ],
@@ -107,8 +119,11 @@ export const projects: Project[] = [
     category: "公园型综合体城市设计",
     categoryEn: "Park-Oriented Urban Design",
     year: "2023",
+    description: "方案以“绿脉生长”为城市结构，将生态廊道、慢行系统和复合功能组织为可持续扩展的公园型综合体。建筑体量顺应公共绿轴展开，在不同标高连接商业、文化、办公与社区生活。",
+    descriptionEn: "A park-oriented mixed-use district where ecological corridors and pedestrian networks guide phased urban growth.",
     images: [
       publicPath("assets/portfolio-pages/page-16.png"),
+      publicPath("assets/portfolio-pages/page-17.png"),
       publicPath("assets/portfolio-pages/page-18.png"),
       publicPath("assets/portfolio-pages/page-19.png")
     ],
@@ -127,9 +142,12 @@ export const projects: Project[] = [
     category: "技术与艺术 / 综合作品",
     categoryEn: "Technology, Art and Mixed Works",
     year: "2022",
+    description: "本组收录建筑技术、数字建模、视觉表达与艺术实践，呈现从手工观察到计算工具的多种工作方式。不同媒介共同服务于空间理解、构造研究和设计沟通。",
+    descriptionEn: "A collection of technical studies, digital models and visual experiments spanning handcraft and computation.",
     images: [
       publicPath("assets/portfolio-pages/page-20.png"),
       publicPath("assets/portfolio-pages/page-21.png"),
+      publicPath("assets/portfolio-pages/page-22.png"),
       publicPath("assets/portfolio-pages/page-23.png")
     ],
     squares: [

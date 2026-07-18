@@ -292,7 +292,8 @@ function PageControls({
 function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
   return (
     <main className="home-page page-screen">
-      <img className="home-background" src={publicPath("assets/portfolio-pages/page-16.png")} alt="生生不息绿脉生长城市设计鸟瞰" />
+      <img className="home-background" src={publicPath("assets/home-architecture-collage.png")} alt="建筑设计与表达拼贴" />
+      <div className="home-perimeter-glow" aria-hidden="true" />
       <SiteHeader current="/" navigate={navigate} />
       <motion.section
         className="home-intro"
@@ -438,12 +439,45 @@ function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
 
 function ProjectCard({ project }: { project: Project }) {
   const [activeImage, setActiveImage] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const image = project.images[activeImage];
 
+  useEffect(() => {
+    project.images.forEach((src) => {
+      const preload = new Image();
+      preload.src = src;
+    });
+  }, [project.images]);
+
+  useEffect(() => {
+    if (isPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timer = window.setInterval(() => {
+      setActiveImage((current) => (current + 1) % project.images.length);
+    }, 4200);
+    return () => window.clearInterval(timer);
+  }, [isPaused, project.images.length]);
+
   return (
-    <article className="project-card-new">
+    <article
+      className="project-card-new"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={() => setIsPaused(false)}
+    >
       <a className="project-image-link" href={image} target="_blank" rel="noreferrer" aria-label={`打开${project.title}图片`}>
-        <img src={image} alt={`${project.title}项目展示`} loading="lazy" />
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.img
+            key={image}
+            src={image}
+            alt={`${project.title}项目展示`}
+            loading="lazy"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.36 }}
+          />
+        </AnimatePresence>
         <span><ExternalLink size={16} /> OPEN IMAGE</span>
       </a>
       <div className="project-card-info">
@@ -465,6 +499,11 @@ function ProjectCard({ project }: { project: Project }) {
               {String(index + 1).padStart(2, "0")}
             </button>
           ))}
+        </div>
+        <div className="project-description">
+          <small>DESIGN STATEMENT</small>
+          <p>{project.description}</p>
+          <span>{project.descriptionEn}</span>
         </div>
       </div>
     </article>
