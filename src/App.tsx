@@ -421,7 +421,7 @@ function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
             <a href="mailto:18879819661@163.com"><Mail size={17} /> 18879819661@163.com</a>
           </div>
           <div className="resume-metrics" aria-label="Academic profile">
-            <div><strong>3.64 / 4.0</strong><span>GPA</span></div>
+            <div><strong>3.65 / 4.0</strong><span>GPA</span></div>
             <div><strong>4 / 57</strong><span>专业绩点排名</span></div>
             <div><strong>492</strong><span>CET-6</span></div>
           </div>
