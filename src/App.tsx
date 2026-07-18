@@ -47,7 +47,7 @@ type SkillGroup = {
 };
 
 const portfolioPdfUrl = publicPath("程志远作品集.pdf");
-const resumePdfUrl = publicPath("简历6.3F.pdf");
+const resumePdfUrl = publicPath("简历_程志远.pdf");
 
 const routes: { path: RoutePath; label: string; labelEn: string }[] = [
   { path: "/", label: "首页", labelEn: "Home" },
@@ -402,14 +402,38 @@ function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
       <SiteHeader current="/about" navigate={navigate} />
       <div className="page-eyebrow">PROFILE · ARCHITECTURE STUDENT · HAINAN UNIVERSITY</div>
       <section className="about-layout">
-        <motion.div
-          className="about-portrait"
+        <motion.aside
+          className="resume-profile-panel"
           initial={{ opacity: 0, x: -24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <img src={publicPath("assets/portfolio-pages/page-jianli.jpg")} alt="程志远个人简历" />
-        </motion.div>
+          <div className="resume-profile-top">
+            <img src={publicPath("assets/profile-color.png")} alt="程志远彩色证件照" />
+            <div>
+              <small>ARCHITECTURE · RESEARCH · COMPUTATION</small>
+              <h1>程志远</h1>
+              <p>CHENG ZHIYUAN</p>
+            </div>
+          </div>
+          <div className="resume-contact-row">
+            <a href="tel:18879819661"><Phone size={17} /> 18879819661</a>
+            <a href="mailto:18879819661@163.com"><Mail size={17} /> 18879819661@163.com</a>
+          </div>
+          <div className="resume-metrics" aria-label="Academic profile">
+            <div><strong>3.64 / 4.0</strong><span>GPA</span></div>
+            <div><strong>4 / 57</strong><span>专业绩点排名</span></div>
+            <div><strong>492</strong><span>CET-6</span></div>
+          </div>
+          <dl className="resume-education">
+            <div><dt>EDUCATION</dt><dd>海南大学 · 建筑学<br /><span>2022.09 — 至今</span></dd></div>
+            <div><dt>TOOLS</dt><dd>Revit / SketchUp / Rhino / Grasshopper / Python</dd></div>
+            <div><dt>RESEARCH</dt><dd>绿色建筑性能 / 多智能体灾后恢复 / 建筑知识图谱</dd></div>
+          </dl>
+          <a className="resume-document-link" href={resumePdfUrl} target="_blank" rel="noreferrer">
+            查看完整简历 PDF <ExternalLink size={16} />
+          </a>
+        </motion.aside>
         <motion.div
           className="about-story"
           initial={{ opacity: 0, y: 24 }}
@@ -545,7 +569,8 @@ function ContactPage({ navigate, onPreviewPortfolio }: { navigate: (to: RoutePat
       <section className="contact-layout">
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}>
           <span>LET'S TALK</span>
-          <h1>让设计、数据与研究<br />在一个项目里相遇。</h1>
+          <h1><span>让设计、数据与研究</span><span>在一个项目里相遇。</span></h1>
+          <p className="contact-tagline-en">DESIGN, DATA AND RESEARCH.<br />UNITED IN ONE SPATIAL PRACTICE.</p>
           <p>欢迎联系建筑设计、绿色模拟、BIM、参数化与研究协作。</p>
         </motion.div>
         <div className="contact-links">

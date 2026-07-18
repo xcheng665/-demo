@@ -30,5 +30,7 @@
 - Project previews use the source page ratio and `object-fit: contain` so no page content is cropped.
 - Project images rotate automatically, pause on hover/focus and remain manually selectable.
 - The full site uses the provided cream, sage, olive and deep brown-gray palette: `#F7F1E5`, `#C6D0B4`, `#7A8B64`, `#3B352F`.
+- The about page uses the replacement resume PDF, a full-color extracted portrait and a legible olive-green web resume panel.
+- The contact heading is locked to two intentional Chinese lines with an English subtitle.
 
 final result: passed
