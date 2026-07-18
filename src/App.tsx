@@ -1,777 +1,597 @@
-import { ArrowUpRight, Award, ChevronDown, Download, ExternalLink, ImageIcon, X } from "lucide-react";
 import {
-  motion,
-  useInView,
-  useMotionValue,
-  useScroll,
-  useSpring,
-  useTransform
-} from "framer-motion";
-import type { MotionValue } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
-import LiquidChrome from "./components/LiquidChrome";
-import StarBorder from "./components/StarBorder";
-import { certificates, portfolioPages, projects, publicPath, services } from "./portfolioData";
-import type { Certificate, Project, SquareSpec } from "./portfolioData";
+  ArrowDown,
+  ArrowRight,
+  ArrowUp,
+  ChevronRight,
+  Circle,
+  Clock3,
+  Code2,
+  Compass,
+  Download,
+  DraftingCompass,
+  ExternalLink,
+  FileText,
+  Layers3,
+  Leaf,
+  Mail,
+  MapPin,
+  Phone,
+  X
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import type { AnchorHTMLAttributes } from "react";
+import { portfolioPages, projects, publicPath, services } from "./portfolioData";
+import type { Project } from "./portfolioData";
 
-const ease = [0.22, 1, 0.36, 1] as const;
+type RoutePath = "/" | "/abilities" | "/about" | "/projects" | "/contact";
+
+type RouteLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
+  to: RoutePath;
+  navigate: (to: RoutePath) => void;
+};
+
+type SkillItem = {
+  title: string;
+  level: "熟练" | "能运用" | "研究中";
+  summary: string;
+  experience: string;
+};
+
+type SkillGroup = {
+  title: string;
+  titleEn: string;
+  icon: LucideIcon;
+  items: SkillItem[];
+};
+
 const portfolioPdfUrl = publicPath("程志远作品集.pdf");
-const heroLiquidBaseColor: [number, number, number] = [0.12, 0.13, 0.15];
+const resumePdfUrl = publicPath("简历6.3F.pdf");
 
-function Reveal({
-  children,
-  className = "",
-  delay = 0,
-  y = 28
-}: {
-  children: React.ReactNode;
-  className?: string;
-  delay?: number;
-  y?: number;
-}) {
+const routes: { path: RoutePath; label: string; labelEn: string }[] = [
+  { path: "/", label: "首页", labelEn: "Home" },
+  { path: "/about", label: "关于我", labelEn: "About" },
+  { path: "/abilities", label: "能力", labelEn: "Abilities" },
+  { path: "/projects", label: "作品集", labelEn: "Projects" },
+  { path: "/contact", label: "联系方式", labelEn: "Contact" }
+];
+
+const skillGroups: SkillGroup[] = [
+  {
+    title: "建筑设计与表达",
+    titleEn: "Architecture & Representation",
+    icon: DraftingCompass,
+    items: [
+      {
+        title: "建筑设计",
+        level: "熟练",
+        summary: "公共建筑 / 居住原理 / 城市设计 / 空间叙事",
+        experience: services[0].experience
+      },
+      {
+        title: "场地与策略",
+        level: "熟练",
+        summary: "场地研究 / 人群与流线 / 气候适应 / 功能组织",
+        experience: "从三亚滨海度假酒店到海口新区综合体，持续用场地条件建立方案逻辑，并通过轴线、节点与公共空间组织设计。"
+      },
+      {
+        title: "图纸与汇报",
+        level: "熟练",
+        summary: "总图 / 平立剖 / 分析图 / 竞赛级版式",
+        experience: "能够独立完成从设计推演到成套图纸、渲染图与汇报文本的整合表达。"
+      }
+    ]
+  },
+  {
+    title: "绿色建筑与模拟",
+    titleEn: "Green Building & Simulation",
+    icon: Leaf,
+    items: [
+      {
+        title: "建筑物理",
+        level: "熟练",
+        summary: "热工 / 声环境 / 光环境 / 气候响应",
+        experience: services[1].experience
+      },
+      {
+        title: "性能分析",
+        level: "能运用",
+        summary: "日照时数 / 通风模拟 / 能耗判断 / 数据可视化",
+        experience: "在城市综合体与绿色建筑竞赛中，将日照和通风结果用于建筑朝向、体量与景观空间的调整。"
+      },
+      {
+        title: "低能耗研究",
+        level: "研究中",
+        summary: "围护结构 / 椰壳材料 / 绿色策略验证",
+        experience: "参与椰壳围护结构能耗研究，关注材料、构造与建筑性能之间的量化关系。"
+      }
+    ]
+  },
+  {
+    title: "BIM 与可视化",
+    titleEn: "BIM & Visualization",
+    icon: Layers3,
+    items: [
+      {
+        title: "BIM 建模",
+        level: "熟练",
+        summary: "Revit / 协同建模 / 构件信息 / 施工模拟",
+        experience: services[2].experience
+      },
+      {
+        title: "三维表达",
+        level: "熟练",
+        summary: "SketchUp / Rhino / 建筑动画 / 漫游",
+        experience: "使用 SketchUp 与 Rhino 快速完成体量推演、精细建模，并衔接渲染与漫游动画流程。"
+      },
+      {
+        title: "渲染与后期",
+        level: "熟练",
+        summary: "效果图 / Photoshop / Illustrator / 版面整合",
+        experience: "能够独立控制建筑效果图、分析图和版面视觉的一致性，形成可直接汇报的成果。"
+      }
+    ]
+  },
+  {
+    title: "参数化、数据与科研",
+    titleEn: "Computation, Data & Research",
+    icon: Code2,
+    items: [
+      {
+        title: "参数化设计",
+        level: "能运用",
+        summary: "Grasshopper / 几何推演 / 参数控制 / 方案比较",
+        experience: services[3].experience
+      },
+      {
+        title: "Python 数据处理",
+        level: "熟练",
+        summary: "Python / NumPy / Pandas / 图表与研究建模",
+        experience: "使用 Python 完成数据整理、指标计算与研究建模，并把结果转化为可读图表和设计判断。"
+      },
+      {
+        title: "科研与系统开发",
+        level: "研究中",
+        summary: "多智能体流程 / 规范校验 / Git / GitHub",
+        experience: services[4].experience
+      }
+    ]
+  }
+];
+
+function normalizePath(pathname: string): RoutePath {
+  const clean = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+  return routes.some((route) => route.path === clean) ? (clean as RoutePath) : "/";
+}
+
+function useRoute() {
+  const [route, setRoute] = useState<RoutePath>(() => normalizePath(window.location.pathname));
+
+  useEffect(() => {
+    const onPopState = () => setRoute(normalizePath(window.location.pathname));
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  const navigate = (to: RoutePath) => {
+    if (to !== route) window.history.pushState({}, "", to);
+    setRoute(to);
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
+  return { route, navigate };
+}
+
+function RouteLink({ to, navigate, onClick, children, ...props }: RouteLinkProps) {
   return (
-    <motion.div
-      className={className}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.72, ease, delay }}
+    <a
+      href={to}
+      onClick={(event) => {
+        onClick?.(event);
+        if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        navigate(to);
+      }}
+      {...props}
     >
       {children}
-    </motion.div>
+    </a>
   );
 }
 
-function Nav() {
-  const items = [
-    ["#about", "关于", "About"],
-    ["#certificates", "获奖证书", "Awards"],
-    ["#services", "能力", "Abilities"],
-    ["#projects", "作品", "Projects"],
-    ["#contact", "联系", "Contact"]
-  ];
+function useCurrentTime() {
+  const format = () =>
+    new Intl.DateTimeFormat("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "Asia/Shanghai"
+    }).format(new Date());
+  const [time, setTime] = useState(format);
 
-  return (
-    <motion.nav
-      className="navbar"
-      initial={{ opacity: 0, y: -18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease }}
-    >
-      {items.map(([href, label, labelEn]) => (
-        <a className="nav-link" href={href} key={href}>
-          <span className="zh">{label}</span>
-          <span className="en">{labelEn}</span>
-        </a>
-      ))}
-    </motion.nav>
-  );
-}
-
-function Hero() {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 80, damping: 18, mass: 0.7 });
-  const springY = useSpring(y, { stiffness: 80, damping: 18, mass: 0.7 });
-
-  return (
-    <section className="hero" id="top">
-      <div className="hero-liquid-background" aria-hidden="true">
-        <LiquidChrome baseColor={heroLiquidBaseColor} speed={0.32} amplitude={0.34} frequencyX={2.6} frequencyY={3.2} interactive />
-      </div>
-      <Nav />
-      <motion.div
-        className="hero-title-wrap"
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease, delay: 0.1 }}
-      >
-        <h1 className="hero-title hero-heading">CHENG ZHIYUAN</h1>
-      </motion.div>
-
-      <div className="hero-orbit" aria-hidden="true" />
-
-      <motion.div
-        className="hero-portrait-wrap"
-        style={{ x: springX, y: springY }}
-        initial={{ opacity: 0, scale: 0.96 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.9, ease, delay: 0.35 }}
-        onPointerMove={(event) => {
-          if (event.pointerType === "touch") return;
-          const rect = event.currentTarget.getBoundingClientRect();
-          x.set((event.clientX - rect.left - rect.width / 2) / 5);
-          y.set((event.clientY - rect.top - rect.height / 2) / 6);
-        }}
-        onPointerLeave={() => {
-          x.set(0);
-          y.set(0);
-        }}
-      >
-        <img className="hero-portrait" src={publicPath("assets/portfolio-pages/page-01.png")} alt="程志远建筑作品集封面" />
-      </motion.div>
-
-      <div className="hero-bottom">
-        <motion.p
-          className="hero-copy"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.72, ease, delay: 0.25 }}
-        >
-          海南大学建筑学专业，关注地域、气候、绿色性能与数字技术之间的空间实践。
-          <span className="en-line">Architecture portfolio focused on locality, climate, sustainability and computational workflows.</span>
-        </motion.p>
-        <motion.a
-          className="contact-button"
-          href="mailto:18879819661@163.com"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.72, ease, delay: 0.42 }}
-        >
-          CONTACT
-        </motion.a>
-      </div>
-    </section>
-  );
-}
-
-function PortfolioMarquee() {
-  const rows = useMemo(() => [portfolioPages.slice(0, 12), portfolioPages.slice(8, 23)], []);
-
-  return (
-    <section className="marquee-section" aria-label="Animated project previews">
-      {rows.map((row, rowIndex) => (
-        <div className={`marquee-track marquee-${rowIndex === 0 ? "right" : "left"}`} key={rowIndex}>
-          {[...row, ...row, ...row].map((src, index) => (
-            <StarBorder
-              as="a"
-              className="marquee-tile"
-              href={src}
-              key={`${src}-${index}`}
-              target="_blank"
-              rel="noreferrer"
-              color="rgba(255, 255, 255, 0.95)"
-              speed="5s"
-              thickness={3}
-              style={{ "--flow-delay": `${(index % row.length) * 90}ms` } as React.CSSProperties}
-              aria-label={`Open portfolio page image ${index + 1}`}
-            >
-              <img src={src} alt={`Project preview ${index + 1}`} loading="lazy" />
-            </StarBorder>
-          ))}
-        </div>
-      ))}
-    </section>
-  );
-}
-
-function About() {
-  const text =
-    "我是程志远，海南大学土木建筑工程学院建筑学专业学生。我的设计与研究关注在地性、气候适应、绿色建筑性能与数字工具的结合，具备建筑设计、BIM 建模、Grasshopper 参数化流程、Python 数据分析与韧性低能耗环境研究经验。English auxiliary: my work connects locality, climate, building performance and computational tools.";
-
-  return (
-    <section className="about" id="about">
-      {[
-        ["asset-moon", publicPath("assets/portfolio-pages/page-02.png")],
-        ["asset-block", publicPath("assets/portfolio-pages/page-10.png")],
-        ["asset-lego", publicPath("assets/portfolio-pages/page-16.png")],
-        ["asset-group", publicPath("assets/portfolio-pages/page-21.png")]
-      ].map(([className, src], index) => (
-        <motion.img
-          className={`floating-asset ${className}`}
-          src={src}
-          alt=""
-          key={src}
-          initial={{ opacity: 0, x: index < 2 ? -70 : 70 }}
-          whileInView={{ opacity: 0.72, x: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.9, ease, delay: index * 0.08 }}
-        />
-      ))}
-
-      <div className="about-inner">
-        <Reveal y={42}>
-          <h2 className="section-title title-en-only hero-heading">ABOUT ME</h2>
-        </Reveal>
-        <AnimatedText text={text} />
-        <Reveal delay={0.1} y={24}>
-          <a className="contact-button" href="mailto:18879819661@163.com">
-            CONTACT
-          </a>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-function AnimatedText({ text }: { text: string }) {
-  const ref = useRef<HTMLParagraphElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 82%", "end 58%"]
-  });
-
-  return (
-    <p className="about-copy" ref={ref}>
-      {text.split("").map((char, index) => {
-        const opacity = useTransform(scrollYProgress, [index / text.length, (index + 20) / text.length], [0.2, 1]);
-        return (
-          <motion.span style={{ opacity }} key={`${char}-${index}`}>
-            {char}
-          </motion.span>
-        );
-      })}
-    </p>
-  );
-}
-
-function CertificatePreviewModal({
-  certificate,
-  onClose
-}: {
-  certificate: Certificate | null;
-  onClose: () => void;
-}) {
   useEffect(() => {
-    if (!certificate) return;
+    const timer = window.setInterval(() => setTime(format()), 30_000);
+    return () => window.clearInterval(timer);
+  }, []);
 
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
+  return time;
+}
 
-    document.body.classList.add("certificate-preview-open");
-    window.addEventListener("keydown", closeOnEscape);
-    return () => {
-      document.body.classList.remove("certificate-preview-open");
-      window.removeEventListener("keydown", closeOnEscape);
-    };
-  }, [certificate, onClose]);
+function SiteHeader({ current, navigate }: { current: RoutePath; navigate: (to: RoutePath) => void }) {
+  const time = useCurrentTime();
 
-  if (!certificate) return null;
-
-  const source = publicPath(certificate.source);
   return (
-    <div className="certificate-preview-backdrop" role="presentation" onMouseDown={onClose}>
-      <motion.div
-        className="certificate-preview-panel"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="certificate-preview-title"
-        initial={{ opacity: 0, scale: 0.96, y: 18 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96, y: 18 }}
-        transition={{ duration: 0.28, ease }}
-        onMouseDown={(event) => event.stopPropagation()}
-      >
-        <header className="certificate-preview-header">
-          <div>
-            <span className="certificate-preview-kicker">AWARD CERTIFICATE</span>
-            <h2 id="certificate-preview-title">{certificate.title}</h2>
-          </div>
-          <div className="certificate-preview-actions">
-            <a href={source} target="_blank" rel="noreferrer" aria-label="在新窗口打开证书" title="在新窗口打开">
-              <ExternalLink size={18} />
-            </a>
-            <a href={source} download aria-label="下载证书" title="下载证书">
-              <Download size={18} />
-            </a>
-            <button type="button" onClick={onClose} aria-label="关闭证书预览" title="关闭">
-              <X size={20} />
-            </button>
-          </div>
-        </header>
-        <div className="certificate-preview-content">
-          <img className="certificate-preview-image" src={source} alt={certificate.title} />
-        </div>
-      </motion.div>
+    <header className="site-header">
+      <div className="site-meta" aria-label="Location and local time">
+        <span><MapPin size={14} /> HAIKOU, CN</span>
+        <span><Clock3 size={14} /> {time} CST</span>
+        <span><Compass size={14} /> 20.02° N, 110.35° E</span>
+      </div>
+      <nav className="top-nav" aria-label="Primary navigation">
+        {routes.map((item) => (
+          <RouteLink
+            className={current === item.path ? "is-active" : ""}
+            key={item.path}
+            to={item.path}
+            navigate={navigate}
+          >
+            <span>{item.label}</span>
+            <small>{item.labelEn}</small>
+          </RouteLink>
+        ))}
+      </nav>
+    </header>
+  );
+}
+
+function PageRail({ current, navigate }: { current: RoutePath; navigate: (to: RoutePath) => void }) {
+  return (
+    <nav className="page-rail" aria-label="Page index">
+      {routes.map((item) => (
+        <RouteLink
+          className={current === item.path ? "is-active" : ""}
+          key={item.path}
+          to={item.path}
+          navigate={navigate}
+          aria-label={item.label}
+          title={item.label}
+        >
+          <Circle size={11} fill={current === item.path ? "currentColor" : "none"} />
+        </RouteLink>
+      ))}
+    </nav>
+  );
+}
+
+function PageControls({
+  previous,
+  next,
+  navigate
+}: {
+  previous?: RoutePath;
+  next?: RoutePath;
+  navigate: (to: RoutePath) => void;
+}) {
+  return (
+    <div className="page-controls">
+      {previous ? (
+        <RouteLink className="outline-control" to={previous} navigate={navigate}>
+          <ArrowUp size={14} /> UP
+        </RouteLink>
+      ) : null}
+      {next ? (
+        <RouteLink className="outline-control" to={next} navigate={navigate}>
+          NEXT <ArrowDown size={14} />
+        </RouteLink>
+      ) : null}
     </div>
   );
 }
 
-const certificateFilters = [
-  { key: "all", label: "全部", labelEn: "All" },
-  { key: "design", label: "设计竞赛", labelEn: "Design" },
-  { key: "technology", label: "数字技术", labelEn: "Digital" },
-  { key: "research", label: "科研建模", labelEn: "Research" },
-  { key: "practice", label: "社会实践", labelEn: "Practice" }
-] as const;
-
-function Certificates() {
-  const [filter, setFilter] = useState<(typeof certificateFilters)[number]["key"]>("all");
-  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
-  const visibleCertificates = useMemo(
-    () => certificates.filter((certificate) => filter === "all" || certificate.category === filter),
-    [filter]
+function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
+  return (
+    <main className="home-page page-screen">
+      <img className="home-background" src={publicPath("assets/portfolio-pages/page-16.png")} alt="生生不息绿脉生长城市设计鸟瞰" />
+      <SiteHeader current="/" navigate={navigate} />
+      <motion.section
+        className="home-intro"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <span className="home-kicker">ARCHITECTURE · COMPUTATION · RESEARCH</span>
+        <h1>程志远</h1>
+        <p className="home-formula"><span>ARCHITECTURE</span> + DATA = SPATIAL PRACTICE</p>
+        <p className="home-identity">CHENG ZHIYUAN <i /> 海南 · HAINAN</p>
+        <div className="home-actions">
+          <RouteLink className="primary-action" to="/projects" navigate={navigate}>
+            查看作品集 <ArrowRight size={18} />
+          </RouteLink>
+          <RouteLink className="text-action" to="/contact" navigate={navigate}>
+            联系方式 <ChevronRight size={17} />
+          </RouteLink>
+        </div>
+      </motion.section>
+      <div className="home-discipline-strip">
+        建筑设计 <i /> 绿色模拟 <i /> BIM 可视化 <i /> 参数化设计 <i /> Python 研究
+      </div>
+      <div className="availability"><Circle size={10} fill="currentColor" /> OPEN TO 2026 OPPORTUNITIES</div>
+      <PageControls next="/abilities" navigate={navigate} />
+      <PageRail current="/" navigate={navigate} />
+    </main>
   );
+}
+
+function AbilitiesPage({ navigate }: { navigate: (to: RoutePath) => void }) {
+  const [openSkill, setOpenSkill] = useState<string | null>(null);
 
   return (
-    <section className="certificates" id="certificates">
-      <div className="certificates-inner">
-        <Reveal className="certificates-heading" y={36}>
-          <span className="certificates-eyebrow"><Award size={15} /> 荣誉档案 / Award Archive</span>
-          <h2 className="section-title title-en-only">AWARDS</h2>
-          <p>竞赛、科研、数字技术与社会实践成果。点击任意卡片即可查看原始证书。</p>
-        </Reveal>
-
-        <div className="certificate-filters" role="tablist" aria-label="证书分类">
-          {certificateFilters.map((item) => (
-            <button
-              className={filter === item.key ? "is-active" : ""}
-              key={item.key}
-              onClick={() => setFilter(item.key)}
-              role="tab"
-              type="button"
-              aria-selected={filter === item.key}
+    <main className="editorial-page abilities-page page-screen">
+      <SiteHeader current="/abilities" navigate={navigate} />
+      <div className="page-eyebrow">ABOUT ME · 子篇 B · 具备技能</div>
+      <section className="abilities-heading">
+        <p>BUILT THROUGH DESIGN STUDIOS, COMPETITIONS AND RESEARCH</p>
+        <h1>已掌握的硬技能</h1>
+        <div>
+          按真实项目经验分为熟练、能运用与研究中。<br />点击每一项可查看对应的个人经历。
+        </div>
+      </section>
+      <section className="skill-grid" aria-label="Professional abilities">
+        {skillGroups.map((group, groupIndex) => {
+          const Icon = group.icon;
+          return (
+            <motion.article
+              className="skill-column"
+              key={group.title}
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: groupIndex * 0.08, duration: 0.5 }}
             >
-              <span className="zh">{item.label}</span>
-              <span className="en">{item.labelEn}</span>
+              <header>
+                <Icon size={21} />
+                <div><h2>{group.title}</h2><p>{group.titleEn}</p></div>
+              </header>
+              <div className="skill-items">
+                {group.items.map((item) => {
+                  const key = `${group.title}-${item.title}`;
+                  const isOpen = openSkill === key;
+                  return (
+                    <button
+                      className={`skill-item ${isOpen ? "is-open" : ""}`}
+                      type="button"
+                      key={key}
+                      onClick={() => setOpenSkill(isOpen ? null : key)}
+                      aria-expanded={isOpen}
+                    >
+                      <span className="skill-item-title">
+                        <strong>{item.title}</strong>
+                        <em>{item.level}</em>
+                      </span>
+                      <span className="skill-summary">{item.summary}</span>
+                      <AnimatePresence initial={false}>
+                        {isOpen ? (
+                          <motion.span
+                            className="skill-experience"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                          >
+                            {item.experience}
+                          </motion.span>
+                        ) : null}
+                      </AnimatePresence>
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.article>
+          );
+        })}
+      </section>
+      <PageControls previous="/" next="/about" navigate={navigate} />
+      <PageRail current="/abilities" navigate={navigate} />
+    </main>
+  );
+}
+
+function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
+  return (
+    <main className="editorial-page about-page-new page-screen">
+      <SiteHeader current="/about" navigate={navigate} />
+      <div className="page-eyebrow">PROFILE · ARCHITECTURE STUDENT · HAINAN UNIVERSITY</div>
+      <section className="about-layout">
+        <motion.div
+          className="about-portrait"
+          initial={{ opacity: 0, x: -24 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <img src={publicPath("assets/portfolio-pages/page-jianli.jpg")} alt="程志远个人简历" />
+        </motion.div>
+        <motion.div
+          className="about-story"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <span>ABOUT ME</span>
+          <h1>建筑设计，是我理解<br />场地与人的方式。</h1>
+          <p>我是程志远，海南大学土木建筑工程学院建筑学专业学生。我的设计与研究关注在地性、气候适应、绿色建筑性能与数字工具的结合。</p>
+          <p>我希望把建筑设计、BIM、参数化流程和 Python 数据分析放在同一条工作链中，让空间判断既有感受，也有证据。</p>
+          <dl className="about-facts">
+            <div><dt>EDUCATION</dt><dd>海南大学 · 建筑学</dd></div>
+            <div><dt>FOCUS</dt><dd>绿色性能 · 数字建造 · 韧性研究</dd></div>
+            <div><dt>WORKFLOW</dt><dd>Design → Simulation → Data → Story</dd></div>
+          </dl>
+          <div className="inline-actions">
+            <a className="primary-action" href={resumePdfUrl} target="_blank" rel="noreferrer">查看简历 <ExternalLink size={17} /></a>
+            <RouteLink className="text-action" to="/contact" navigate={navigate}>联系我 <ChevronRight size={17} /></RouteLink>
+          </div>
+        </motion.div>
+      </section>
+      <PageControls previous="/abilities" next="/projects" navigate={navigate} />
+      <PageRail current="/about" navigate={navigate} />
+    </main>
+  );
+}
+
+function ProjectCard({ project }: { project: Project }) {
+  const [activeImage, setActiveImage] = useState(0);
+  const image = project.images[activeImage];
+
+  return (
+    <article className="project-card-new">
+      <a className="project-image-link" href={image} target="_blank" rel="noreferrer" aria-label={`打开${project.title}图片`}>
+        <img src={image} alt={`${project.title}项目展示`} loading="lazy" />
+        <span><ExternalLink size={16} /> OPEN IMAGE</span>
+      </a>
+      <div className="project-card-info">
+        <span className="project-number">{project.number}</span>
+        <div>
+          <h2>{project.title}</h2>
+          <p>{project.titleEn}</p>
+        </div>
+        <div className="project-category"><strong>{project.category}</strong><span>{project.categoryEn} · {project.year}</span></div>
+        <div className="project-thumbnails" aria-label={`${project.title}图片选择`}>
+          {project.images.map((src, index) => (
+            <button
+              className={index === activeImage ? "is-active" : ""}
+              type="button"
+              key={src}
+              onClick={() => setActiveImage(index)}
+              aria-label={`显示第${index + 1}张图片`}
+            >
+              {String(index + 1).padStart(2, "0")}
             </button>
           ))}
         </div>
-
-        <div className="certificate-grid">
-          {visibleCertificates.map((certificate, index) => {
-            const source = publicPath(certificate.source);
-
-            return (
-              <Reveal className="certificate-card-wrap" delay={Math.min(index * 0.035, 0.28)} key={certificate.source} y={22}>
-                <button className="certificate-card" type="button" onClick={() => setSelectedCertificate(certificate)}>
-                  <span className="certificate-card-media">
-                    <img src={source} alt="" loading="lazy" />
-                    <span className="certificate-card-open"><ImageIcon size={15} /> PREVIEW</span>
-                  </span>
-                  <span className="certificate-card-copy">
-                    <span className="certificate-card-index">{String(index + 1).padStart(2, "0")}</span>
-                    <strong className="zh">{certificate.title}</strong>
-                    <small className="en">{certificate.titleEn}</small>
-                  </span>
-                </button>
-              </Reveal>
-            );
-          })}
-        </div>
       </div>
-      <CertificatePreviewModal certificate={selectedCertificate} onClose={() => setSelectedCertificate(null)} />
-    </section>
+    </article>
   );
 }
 
-function Services() {
-  const [openService, setOpenService] = useState<string | null>(null);
-
+function ProjectsPage({ navigate, onPreviewPortfolio }: { navigate: (to: RoutePath) => void; onPreviewPortfolio: () => void }) {
   return (
-    <section className="services" id="services">
-      <Reveal y={42}>
-        <h2 className="section-title">
-          <span className="zh">能力结构</span>
-          <span className="en">Abilities</span>
-        </h2>
-      </Reveal>
-      <div className="services-list">
-        {services.map((service, index) => (
-          <Reveal className="service-item" delay={index * 0.08} key={service.number}>
-            <span className="service-number">{service.number}</span>
-            <button
-              className="service-toggle"
-              type="button"
-              onClick={() => setOpenService((current) => (current === service.number ? null : service.number))}
-              aria-expanded={openService === service.number}
-              aria-controls={`service-experience-${service.number}`}
-            >
-              <span className="service-toggle-heading">
-                <span>
-                  <h3 className="service-name">
-                    <span className="zh">{service.title}</span>
-                    <span className="en">{service.titleEn}</span>
-                  </h3>
-                  <p className="service-desc">
-                    {service.description}
-                    <span className="en-line">{service.descriptionEn}</span>
-                  </p>
-                </span>
-                <span className="service-toggle-icon" aria-hidden="true"><ChevronDown size={21} /></span>
-              </span>
-              {openService === service.number ? (
-                <motion.span
-                  className="service-experience"
-                  id={`service-experience-${service.number}`}
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  transition={{ duration: 0.35, ease }}
-                >
-                  <span className="service-experience-label">PERSONAL EXPERIENCE</span>
-                  <span className="zh">{service.experience}</span>
-                  <span className="en-line">{service.experienceEn}</span>
-                  <span className="service-evidence">{service.evidence}</span>
-                </motion.span>
-              ) : null}
-            </button>
-          </Reveal>
+    <main className="editorial-page projects-page-new page-screen">
+      <SiteHeader current="/projects" navigate={navigate} />
+      <div className="page-eyebrow">SELECTED WORKS · 2022—2026</div>
+      <section className="projects-title-block">
+        <span>PORTFOLIO</span>
+        <h1>作品集</h1>
+        <p>从场地、气候、结构与公共生活出发，整理五组建筑与城市设计案例。每张项目图片都可独立打开。</p>
+        <button className="outline-action" type="button" onClick={onPreviewPortfolio}><FileText size={17} /> 预览完整作品集</button>
+      </section>
+      <section className="projects-grid-new">
+        {projects.map((project) => <ProjectCard project={project} key={project.number} />)}
+      </section>
+      <section className="image-index-strip" aria-label="Portfolio image index">
+        {portfolioPages.slice(0, 12).map((src, index) => (
+          <a href={src} target="_blank" rel="noreferrer" key={src} aria-label={`打开作品集第${index + 1}页`}>
+            <img src={src} alt="" loading="lazy" />
+          </a>
         ))}
-      </div>
-    </section>
+      </section>
+      <PageControls previous="/about" next="/contact" navigate={navigate} />
+      <PageRail current="/projects" navigate={navigate} />
+    </main>
   );
 }
 
-const floatingSquares: SquareSpec[] = [
-  { x: 6, y: 20, size: 12 },
-  { x: 12, y: 32, size: 8 },
-  { x: 8, y: 44, size: 6 },
-  { x: 88, y: 18, size: 10 },
-  { x: 92, y: 30, size: 14 },
-  { x: 85, y: 42, size: 7 },
-  { x: 90, y: 52, size: 5 },
-  { x: 14, y: 56, size: 5 }
-];
-
-function FloatingSquare({
-  square,
-  index,
-  progress
-}: {
-  square: SquareSpec;
-  index: number;
-  progress: MotionValue<number>;
-}) {
-  const rawY = useTransform(progress, [0, 1], [0, -(80 + index * 30)]);
-  const y = useSpring(rawY, { stiffness: 40, damping: 20 });
-
+function ContactPage({ navigate, onPreviewPortfolio }: { navigate: (to: RoutePath) => void; onPreviewPortfolio: () => void }) {
   return (
-    <motion.span
-      className="projects-floating-square"
-      style={{
-        left: `${square.x}%`,
-        top: `${square.y}%`,
-        width: square.size,
-        height: square.size,
-        y
-      }}
-      animate={{ translateY: [0, -10, 0] }}
-      transition={{ duration: 3 + index * 0.4, ease: "easeInOut", repeat: Infinity, delay: index * 0.3 }}
-    />
+    <main className="editorial-page contact-page-new page-screen">
+      <SiteHeader current="/contact" navigate={navigate} />
+      <div className="page-eyebrow">CONTACT · COLLABORATION · OPPORTUNITIES</div>
+      <section className="contact-layout">
+        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }}>
+          <span>LET'S TALK</span>
+          <h1>让设计、数据与研究<br />在一个项目里相遇。</h1>
+          <p>欢迎联系建筑设计、绿色模拟、BIM、参数化与研究协作。</p>
+        </motion.div>
+        <div className="contact-links">
+          <a href="tel:18879819661"><Phone size={22} /><span><small>PHONE</small>18879819661</span><ArrowUpRightIcon /></a>
+          <a href="mailto:18879819661@163.com"><Mail size={22} /><span><small>EMAIL</small>18879819661@163.com</span><ArrowUpRightIcon /></a>
+          <a href={resumePdfUrl} target="_blank" rel="noreferrer"><Download size={22} /><span><small>DOCUMENT</small>下载个人简历</span><ArrowUpRightIcon /></a>
+          <button type="button" onClick={onPreviewPortfolio}><FileText size={22} /><span><small>PORTFOLIO</small>站内预览作品集</span><ArrowUpRightIcon /></button>
+        </div>
+      </section>
+      <div className="contact-footer">© 2026 CHENG ZHIYUAN · ARCHITECTURE PORTFOLIO</div>
+      <PageControls previous="/projects" navigate={navigate} />
+      <PageRail current="/contact" navigate={navigate} />
+    </main>
   );
 }
 
-function PdfPreviewModal({
-  open,
-  onClose
-}: {
-  open: boolean;
-  onClose: () => void;
-}) {
+function ArrowUpRightIcon() {
+  return <ExternalLink size={17} aria-hidden="true" />;
+}
+
+function PdfPreviewModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   useEffect(() => {
     if (!open) return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
     };
-
-    document.body.classList.add("pdf-preview-open");
-    window.addEventListener("keydown", handleKeyDown);
-
+    document.body.classList.add("modal-open");
+    window.addEventListener("keydown", onKeyDown);
     return () => {
-      document.body.classList.remove("pdf-preview-open");
-      window.removeEventListener("keydown", handleKeyDown);
+      document.body.classList.remove("modal-open");
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, [open, onClose]);
 
-  if (!open) return null;
-
-  const previewUrl = `${portfolioPdfUrl}#toolbar=1&navpanes=0&view=FitH`;
-
   return (
-    <motion.div
-      className="pdf-preview-backdrop"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      role="dialog"
-      aria-modal="true"
-      aria-label="Portfolio PDF preview"
-      onClick={onClose}
-    >
-      <motion.div
-        className="pdf-preview-panel"
-        initial={{ opacity: 0, y: 24, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.36, ease }}
-        onClick={(event) => event.stopPropagation()}
-      >
-        <div className="pdf-preview-header">
-          <div>
-            <span className="pdf-preview-kicker">Portfolio Preview</span>
-            <h2>程志远作品集 PDF</h2>
-          </div>
-          <div className="pdf-preview-actions">
-            <a href={portfolioPdfUrl} target="_blank" rel="noreferrer" aria-label="Open portfolio PDF in a new tab">
-              <ExternalLink size={18} strokeWidth={2.2} />
-            </a>
-            <a href={portfolioPdfUrl} download aria-label="Download portfolio PDF">
-              <Download size={18} strokeWidth={2.2} />
-            </a>
-            <button type="button" onClick={onClose} aria-label="Close portfolio PDF preview">
-              <X size={19} strokeWidth={2.2} />
-            </button>
-          </div>
-        </div>
-
-        <iframe className="pdf-preview-frame" src={previewUrl} title="程志远作品集 PDF 预览" />
-      </motion.div>
-    </motion.div>
-  );
-}
-
-function Projects({ onPreviewPortfolio }: { onPreviewPortfolio: () => void }) {
-  const ref = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const headerInView = useInView(headerRef, { once: true, margin: "-60px" });
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  return (
-    <section className="projects" id="projects" ref={ref}>
-      <div className="projects-square-layer" aria-hidden="true">
-        {floatingSquares.map((square, index) => (
-          <FloatingSquare square={square} index={index} progress={scrollYProgress} key={`${square.x}-${square.y}`} />
-        ))}
-      </div>
-
-      <motion.div
-        className="projects-header"
-        ref={headerRef}
-        initial={{ opacity: 0, y: 24 }}
-        animate={headerInView ? { opacity: 1, y: 0 } : undefined}
-        transition={{ duration: 0.7, ease }}
-      >
-        <span className="projects-badge">Projects</span>
-        <h2>
-          Insights from <span>Architectural</span>
-          <br />
-          <span>Case Studies</span>
-        </h2>
-      </motion.div>
-
-      <div className="case-grid">
-        {projects.map((project, index) => (
-          <CaseStudyCard project={project} index={index} key={project.number} />
-        ))}
-      </div>
-
-      <div className="projects-footer">
-        <div className="projects-footer-copy">
-          <span className="plus-mark">+</span>
-          <p>
-            从场地、气候、结构与公共生活出发，将每一次课程设计和研究训练整理为可浏览的案例页。
-            <span className="en-line">Each card opens independent image pages, keeping the portfolio readable without forcing a full PDF view.</span>
-          </p>
-          <button className="work-button" type="button" onClick={onPreviewPortfolio}>
-            <span>完整作品集</span>
-            <span className="work-arrow">
-              <ArrowUpRight size={16} strokeWidth={2.3} />
-            </span>
-          </button>
-        </div>
-
-        <div className="logo-marquee" aria-label="Portfolio capabilities">
-          <div className="logo-track">
-            {["Architecture", "BIM", "Green Simulation", "Grasshopper", "Python", "Research", "Rendering", "Urban Design"]
-              .concat(["Architecture", "BIM", "Green Simulation", "Grasshopper", "Python", "Research", "Rendering", "Urban Design"])
-              .map((item, index) => (
-                <span className="logo-item" key={`${item}-${index}`}>
-                  <span className="logo-icon" />
-                  {item}
-                </span>
-              ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function MagneticSquare({
-  square,
-  pointerX,
-  pointerY,
-  active
-}: {
-  square: SquareSpec;
-  pointerX: MotionValue<number>;
-  pointerY: MotionValue<number>;
-  active: boolean;
-}) {
-  const dx = useTransform(pointerX, (value) => (active ? (value - 0.5) * 40 : 0));
-  const dy = useTransform(pointerY, (value) => (active ? (value - 0.5) * 40 : 0));
-  const x = useSpring(dx, { stiffness: 80, damping: 18, mass: 0.6 });
-  const y = useSpring(dy, { stiffness: 80, damping: 18, mass: 0.6 });
-
-  return (
-    <motion.span
-      className="card-magnetic-square"
-      style={{
-        left: `${square.x}%`,
-        top: `${square.y}%`,
-        width: square.size,
-        height: square.size,
-        x,
-        y
-      }}
-    />
-  );
-}
-
-function PixelOverlay() {
-  return (
-    <div className="pixel-overlay" aria-hidden="true">
-      {Array.from({ length: 8 }).map((_, row) =>
-        Array.from({ length: 12 }).map((__, col) => (
-          <span
-            className="pixel-block"
-            key={`${row}-${col}`}
-            style={
-              {
-                "--row": row,
-                "--col": col,
-                left: `${(col * 100) / 12}%`,
-                top: `${(row * 100) / 8}%`
-              } as React.CSSProperties
-            }
-          />
-        ))
-      )}
-    </div>
-  );
-}
-
-function CaseStudyCard({ project, index }: { project: Project; index: number }) {
-  const pointerX = useMotionValue(0.5);
-  const pointerY = useMotionValue(0.5);
-  const [active, setActive] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const currentImage = project.images[currentImageIndex] ?? project.images[0];
-
-  useEffect(() => {
-    if (active || project.images.length <= 1) return;
-
-    const intervalId = window.setInterval(() => {
-      setCurrentImageIndex((imageIndex) => (imageIndex + 1) % project.images.length);
-    }, 3600 + index * 260);
-
-    return () => window.clearInterval(intervalId);
-  }, [active, index, project.images.length]);
-
-  return (
-    <motion.article
-      className="case-card"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease, delay: index * 0.1 }}
-      onPointerMove={(event) => {
-        const rect = event.currentTarget.getBoundingClientRect();
-        pointerX.set((event.clientX - rect.left) / rect.width);
-        pointerY.set((event.clientY - rect.top) / rect.height);
-      }}
-      onPointerEnter={() => setActive(true)}
-      onPointerLeave={() => {
-        setActive(false);
-        pointerX.set(0.5);
-        pointerY.set(0.5);
-      }}
-    >
-      <StarBorder
-        as="div"
-        className="case-image-border"
-        color="rgba(255, 255, 255, 0.96)"
-        speed={`${5 + index * 0.35}s`}
-        thickness={4}
-      >
-        <motion.img
-          className="case-image"
-          src={currentImage}
-          alt={`${project.title} ${project.titleEn} image ${currentImageIndex + 1}`}
-          loading="lazy"
-          key={currentImage}
-          initial={{ opacity: 0, scale: 1.045 }}
-          animate={{
-            opacity: 1,
-            scale: active ? 1.07 : 1.015,
-            filter: active ? "grayscale(0.1) contrast(1.05) brightness(0.82)" : "grayscale(0) contrast(1) brightness(1)"
-          }}
-          transition={{ duration: 0.65, ease }}
-        />
-      </StarBorder>
-      <PixelOverlay />
-
-      {project.squares.map((square) => (
-        <MagneticSquare square={square} pointerX={pointerX} pointerY={pointerY} active={active} key={`${square.x}-${square.y}`} />
-      ))}
-
-      <a className="plus-button" href={currentImage} target="_blank" rel="noreferrer" aria-label={`Open ${project.title} current image`}>
-        +
-      </a>
-
-      <div className="case-info">
-        <span className="case-number">{project.number}</span>
-        <h3>{project.titleEn}</h3>
-        <div className="case-meta">
-          <span>{project.category}</span>
-          <strong>{project.year}</strong>
-        </div>
-      </div>
-
-      <div className="case-thumbs">
-        {project.images.map((image, thumbIndex) => (
-          <button
-            className={thumbIndex === currentImageIndex ? "is-active" : ""}
-            type="button"
-            key={image}
-            onClick={() => setCurrentImageIndex(thumbIndex)}
-            aria-label={`Show ${project.title} image ${thumbIndex + 1}`}
-            aria-current={thumbIndex === currentImageIndex ? "true" : undefined}
+    <AnimatePresence>
+      {open ? (
+        <motion.div className="pdf-modal-backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onMouseDown={onClose}>
+          <motion.div
+            className="pdf-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="作品集 PDF 预览"
+            initial={{ opacity: 0, scale: 0.97, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.97, y: 16 }}
+            onMouseDown={(event) => event.stopPropagation()}
           >
-            {String(thumbIndex + 1).padStart(2, "0")}
-          </button>
-        ))}
-      </div>
-    </motion.article>
-  );
-}
-
-function Footer({ onPreviewPortfolio }: { onPreviewPortfolio: () => void }) {
-  return (
-    <footer className="footer" id="contact">
-      <span>
-        <span className="zh">2026 程志远 · 海南大学建筑学</span>
-        <span className="en">Architecture Portfolio</span>
-      </span>
-      <a href="tel:18879819661">18879819661</a>
-      <a href="mailto:18879819661@163.com">18879819661@163.com</a>
-      <a href={publicPath("简历6.3F.pdf")}>
-        简历 PDF <span className="en">Resume</span>
-      </a>
-      <button className="footer-link" type="button" onClick={onPreviewPortfolio}>
-        作品集 PDF <span className="en">Portfolio</span>
-      </button>
-    </footer>
+            <header>
+              <div><small>PORTFOLIO PREVIEW</small><strong>程志远作品集</strong></div>
+              <nav>
+                <a href={portfolioPdfUrl} target="_blank" rel="noreferrer" title="新窗口打开"><ExternalLink size={18} /></a>
+                <a href={portfolioPdfUrl} download title="下载作品集"><Download size={18} /></a>
+                <button type="button" onClick={onClose} title="关闭"><X size={19} /></button>
+              </nav>
+            </header>
+            <iframe src={`${portfolioPdfUrl}#toolbar=1&navpanes=0&view=FitH`} title="程志远作品集 PDF" />
+          </motion.div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
   );
 }
 
 export default function App() {
+  const { route, navigate } = useRoute();
   const [pdfPreviewOpen, setPdfPreviewOpen] = useState(false);
 
+  useEffect(() => {
+    const page = routes.find((item) => item.path === route)?.label ?? "首页";
+    document.title = `${page} | 程志远建筑作品集`;
+  }, [route]);
+
   return (
-    <main className="site">
-      <Hero />
-      <Certificates />
-      <PortfolioMarquee />
-      <About />
-      <Services />
-      <Projects onPreviewPortfolio={() => setPdfPreviewOpen(true)} />
-      <Footer onPreviewPortfolio={() => setPdfPreviewOpen(true)} />
+    <div className="app-shell">
+      <AnimatePresence mode="wait">
+        <motion.div key={route} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.22 }}>
+          {route === "/" ? <HomePage navigate={navigate} /> : null}
+          {route === "/abilities" ? <AbilitiesPage navigate={navigate} /> : null}
+          {route === "/about" ? <AboutPage navigate={navigate} /> : null}
+          {route === "/projects" ? <ProjectsPage navigate={navigate} onPreviewPortfolio={() => setPdfPreviewOpen(true)} /> : null}
+          {route === "/contact" ? <ContactPage navigate={navigate} onPreviewPortfolio={() => setPdfPreviewOpen(true)} /> : null}
+        </motion.div>
+      </AnimatePresence>
       <PdfPreviewModal open={pdfPreviewOpen} onClose={() => setPdfPreviewOpen(false)} />
-    </main>
+    </div>
   );
 }

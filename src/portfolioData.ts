@@ -15,13 +15,6 @@ export type Project = {
   squares: SquareSpec[];
 };
 
-export type Certificate = {
-  title: string;
-  titleEn: string;
-  category: "design" | "technology" | "research" | "practice";
-  source: string;
-};
-
 export type Service = {
   number: string;
   title: string;
@@ -200,43 +193,4 @@ export const services: Service[] = [
     experienceEn: "My research work spans low-energy envelopes, post-disaster multi-agent workflows and visual code-checking systems from problem framing to documented outcomes.",
     evidence: "成果佐证：多智能体灾后恢复研究 / 区块链司法存证 / 专利申请受理书"
   }
-];
-
-const certificate = (title: string, titleEn: string, category: Certificate["category"], source: string): Certificate => ({
-  title,
-  titleEn,
-  category,
-  source
-});
-
-export const certificates: Certificate[] = [
-  certificate("蓝桥杯省一等奖", "Lanqiao Cup Provincial First Prize", "technology", "certification/蓝桥杯省一等奖.jpg"),
-  certificate("蓝桥杯全国一等奖", "Lanqiao Cup National First Prize", "technology", "certification/蓝桥杯全国一等奖.jpg"),
-  certificate("米兰设计周三等奖", "Milan Design Week Third Prize", "design", "certification/米兰设计周三等奖.png"),
-  certificate("绿色建筑技能大赛创意一等奖", "Green Building Skills First Prize", "design", "certification/第八届高等院校绿色建筑技能与创意大赛 创意一等奖.jpg"),
-  certificate("绿色建筑技能大赛网络优秀作品", "Green Building Skills Network Excellence Award", "design", "certification/第八届高等院校绿色建筑技能大赛创意一等奖_02(1).jpg"),
-  certificate("CACE 数字建筑创新大赛一等奖", "CACE Digital Construction First Prize", "technology", "certification/CACE数字建筑创新大赛一等奖.jpg"),
-  certificate("全国数字建筑创新大赛一等奖", "National Digital Construction First Prize", "technology", "certification/全国数字建筑创新大赛一等奖.jpg"),
-  certificate("亚洲大学生创意设计展二等奖", "Asian Student Design Exhibition Second Prize", "design", "certification/亚洲大学生创意设计展二等奖.jpg"),
-  certificate("五一数学建模一等奖", "May Day Mathematical Modeling First Prize", "research", "certification/五一数学建模.jpg"),
-  certificate("Python 知识一等奖", "Python Knowledge First Prize", "technology", "certification/python知识一等奖.jpg"),
-  certificate("Python 二级良好证书", "Python Level 2 Certificate", "technology", "certification/python二级良好_01(1).jpg"),
-  certificate("实用新型专利申请受理书", "Utility Model Patent Acceptance", "research", "certification/实用新型专利申请受理书.jpg"),
-  certificate("BIM 毕业设计大赛二等奖", "BIM Graduation Design Second Prize", "technology", "certification/BIM毕业设计大赛二等奖_01.jpg"),
-  certificate("3D 大赛省级特等奖", "3D Competition Provincial Grand Prize", "technology", "certification/3d大赛省级特等奖.jpg"),
-  certificate("3D 大赛省级一等奖", "3D Competition Provincial First Prize", "technology", "certification/3d大赛省级一等奖.jpg"),
-  certificate("学院杯2025国家银奖", "College Cup 2025 Silver Award", "design", "certification/学院杯2025银奖.jpg"),
-  certificate("华灿奖省级奖项", "Huacan Award Certificate", "design", "certification/华灿奖证书.jpg"),
-  certificate("绿建大赛奖状与奖杯", "Awards and Trophies", "design", "certification/奖状和奖杯.jpg"),
-  certificate("斯维尔大赛建模一等奖", "Swell Modeling First Prize", "technology", "certification/斯维尔大赛建模一等奖.jpg"),
-  certificate("机器人与算法比赛一等奖", "Robotics and Algorithms First Prize", "technology", "certification/机器人与算法比赛一等奖.jpg"),
-  certificate("农林杯数学建模一等奖", "Agriculture and Forestry Modeling First Prize", "research", "certification/农林杯数学建模一等奖.jpg"),
-  certificate("灾后恢复多智能体研究", "Post-typhoon Recovery Multi-agent Planning", "research", "ID_273_Lean_Post-typhoon_Recovery_Multi-agent_Look-ahead_and_Constraints_for_the_Last_Planner_System_00.jpg"),
-  certificate("摄影大赛一等奖", "Photography Competition First Prize", "design", "certification/摄影大赛一等奖.jpg"),
-  certificate("海洋文化科技创新大赛", "Marine Culture Innovation Competition", "research", "certification/海洋文化科技创新大赛.jpg"),
-  certificate("工程实习证明", "Engineering Internship", "practice", "certification/社会实践/程志远海大工程实习_01.jpg"),
-  certificate("志愿服务证书", "Volunteer Service Certificate", "practice", "certification/社会实践/社会实践志愿服务_01.jpg"),
-  certificate("志愿者证书（一）", "Volunteer Certificate I", "practice", "certification/社会实践/志愿者证书.jpg"),
-  certificate("志愿者证书（二）", "Volunteer Certificate II", "practice", "certification/社会实践/志愿者证书2.jpg"),
-  certificate("志愿服务 300 小时", "300 Hours of Volunteer Service", "practice", "certification/社会实践/志愿服务300h.jpg")
 ];
