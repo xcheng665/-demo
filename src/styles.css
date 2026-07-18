@@ -13,6 +13,7 @@
   --line: rgba(59, 53, 47, 0.16);
   --line-strong: rgba(59, 53, 47, 0.46);
   --font-zh: "FangSong", "仿宋", "FangSong_GB2312", "STFangsong", "Songti SC", serif;
+  --font-song: "SimSun", "宋体", "Songti SC", serif;
   --font-display: "SimHei", "黑体", "Microsoft YaHei", sans-serif;
   --font-en: "Arial Narrow", "Segoe UI", Arial, sans-serif;
 }
@@ -486,7 +487,7 @@ img {
 
 .skill-column {
   min-width: 0;
-  font-family: var(--font-display);
+  font-family: var(--font-song);
 }
 
 .skill-column > header {
@@ -504,7 +505,7 @@ img {
 
 .skill-column h2 {
   margin: 0 0 4px;
-  font-family: var(--font-display);
+  font-family: var(--font-song);
   font-size: clamp(21px, 1.55vw, 25px);
   font-weight: 800;
   line-height: 1.2;
@@ -513,7 +514,7 @@ img {
 .skill-column header p {
   margin: 0;
   color: var(--faint);
-  font-family: var(--font-display);
+  font-family: var(--font-song);
   font-size: clamp(11px, 0.8vw, 13px);
   font-weight: 700;
   line-height: 1.35;
@@ -541,7 +542,7 @@ img {
 }
 
 .skill-item strong {
-  font-family: var(--font-display);
+  font-family: var(--font-song);
   font-size: clamp(18px, 1.25vw, 21px);
   line-height: 1.35;
 }
@@ -553,7 +554,7 @@ img {
   border-radius: 999px;
   color: var(--muted);
   background: rgba(198, 208, 180, 0.28);
-  font-family: var(--font-display);
+  font-family: var(--font-song);
   font-size: clamp(11px, 0.8vw, 13px);
   line-height: 1.35;
   font-style: normal;
@@ -568,9 +569,12 @@ img {
 .skill-summary {
   margin-top: 10px;
   color: var(--muted);
-  font-family: var(--font-display);
+  font-family: var(--font-song);
   font-size: clamp(15px, 1.05vw, 17px);
   line-height: 1.72;
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-ideograph;
 }
 
 .skill-experience {
@@ -578,9 +582,12 @@ img {
   padding-left: 14px;
   border-left: 2px solid var(--accent);
   color: var(--ink);
-  font-family: var(--font-display);
+  font-family: var(--font-song);
   font-size: clamp(15px, 1.05vw, 17px);
   line-height: 1.72;
+  text-align: justify;
+  text-align-last: left;
+  text-justify: inter-ideograph;
 }
 
 .skill-item:hover strong,
