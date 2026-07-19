@@ -26,8 +26,8 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import type { AnchorHTMLAttributes, CSSProperties, FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { AnchorHTMLAttributes, CSSProperties, FormEvent, SyntheticEvent } from "react";
 import { portfolioPages, projects, publicPath, services } from "./portfolioData";
 import type { Project } from "./portfolioData";
 
@@ -55,6 +55,13 @@ type SkillGroup = {
 const portfolioPdfUrl = publicPath("程志远作品集.pdf");
 const resumePdfUrl = publicPath("简历_程志远.pdf");
 const practiceCardImage = publicPath("assets/practice-cards/architecture-card.png");
+const uiDesignImages = [
+  { label: "总览", src: publicPath("assets/ui-design/overview.jpg") },
+  { label: "环境", src: publicPath("assets/ui-design/environment.jpg") },
+  { label: "告警", src: publicPath("assets/ui-design/alerts.jpg") },
+  { label: "储能", src: publicPath("assets/ui-design/energy.jpg") },
+  { label: "设置", src: publicPath("assets/ui-design/settings.jpg") }
+] as const;
 
 const routes: { path: RoutePath; label: string; labelEn: string }[] = [
   { path: "/", label: "首页", labelEn: "Home" },
@@ -176,50 +183,131 @@ type PracticeCard = {
   description: string;
   image: string;
   detail: string;
+  tags?: string[];
+  mode?: "text" | "phones";
+  uiImages?: { label: string; src: string }[];
 };
 
 const practices: PracticeCard[] = [
   {
-    title: "建筑表达",
-    titleEn: "Spatial Storytelling",
+    title: "vibe coding",
+    titleEn: "Frontend & UI Design",
     eyebrow: "01 / 05",
-    description: "从场地叙事、体量推演到成套图纸，让设计判断形成清晰可读的空间故事。",
-    image: practiceCardImage,
-    detail: "适用于公共建筑、居住与城市设计的方案表达。"
-  },
-  {
-    title: "绿色性能",
-    titleEn: "Green Performance",
-    eyebrow: "02 / 05",
-    description: "把热工、日照、通风与能耗分析放入设计过程，让气候响应成为方案的一部分。",
-    image: practiceCardImage,
-    detail: "关注建筑物理、性能优化和材料策略验证。"
-  },
-  {
-    title: "BIM 协同",
-    titleEn: "BIM Workflow",
-    eyebrow: "03 / 05",
-    description: "以 Revit 为核心衔接构件信息、协同建模与施工模拟，让设计成果更可落地。",
-    image: practiceCardImage,
-    detail: "覆盖建模、构件信息管理和三维协同表达。"
-  },
-  {
-    title: "参数推演",
-    titleEn: "Parametric Studies",
-    eyebrow: "04 / 05",
-    description: "通过 Grasshopper、几何规则与方案比较，快速观察尺度、形态与性能之间的关系。",
-    image: practiceCardImage,
-    detail: "用于前期推演、参数控制与多方案迭代。"
+    description: "把前端实现与界面视觉放在同一套展示语言中，聚焦储能应用的总览、环境、告警、储能与设置五个页面。",
+    image: uiDesignImages[0].src,
+    detail: "五台手机同时展示真实 APP 界面，每台设备内部独立纵向滚动，以完整呈现长页面的 UI 设计。",
+    tags: ["前端实现", "UI 设计"],
+    mode: "phones",
+    uiImages: [...uiDesignImages]
   },
   {
     title: "数据科研",
-    titleEn: "Research Systems",
-    eyebrow: "05 / 05",
-    description: "用 Python 处理数据、建立研究模型，并将多智能体与建筑知识组织成可验证的工作流。",
+    titleEn: "Research Papers",
+    eyebrow: "02 / 05",
+    description: "围绕数据整理、研究分析与成果表达，完成两篇论文的内容组织、图表整理与研究输出。",
     image: practiceCardImage,
-    detail: "聚焦空间数据、绿色建筑与灾后恢复研究。"
+    detail: "重点体现数据处理、研究判断、论文写作与结果可视化之间的完整链路。",
+    tags: ["论文两篇", "研究分析"]
+  },
+  {
+    title: "数学建模",
+    titleEn: "Modeling Paper",
+    eyebrow: "03 / 05",
+    description: "从问题抽象、模型建立到结果验证和成文表达，形成完整的数学建模论文工作流。",
+    image: practiceCardImage,
+    detail: "重点体现建模分析、参数推导、结果解释以及数模论文的结构化表达。",
+    tags: ["数模论文", "模型分析"]
+  },
+  {
+    title: "绿色性能",
+    titleEn: "Simulation & Energy",
+    eyebrow: "04 / 05",
+    description: "结合动画模拟、性能分析与节能大创实践，把绿色策略与技术路径转化为可读的成果展示。",
+    image: practiceCardImage,
+    detail: "重点体现模拟过程、节能研究、方案验证与项目成果之间的关联。",
+    tags: ["动画模拟", "节能大创"]
+  },
+  {
+    title: "实习项目",
+    titleEn: "Working Drawings",
+    eyebrow: "05 / 05",
+    description: "在实习中参与施工图设计与表达，关注制图规范、节点细化和设计成果的工程落地。",
+    image: practiceCardImage,
+    detail: "重点体现施工图设计、图纸表达标准、协作流程与项目执行能力。",
+    tags: ["施工图设计", "实习经历"]
   }
 ];
+
+function PhoneMockup({
+  src,
+  label,
+  index
+}: {
+  src: string;
+  label: string;
+  index: number;
+}) {
+  const screenRef = useRef<HTMLDivElement | null>(null);
+  const [travel, setTravel] = useState(0);
+  const [duration, setDuration] = useState(14);
+
+  const updateMotion = (imgEl: HTMLImageElement) => {
+    const screen = screenRef.current;
+    if (!screen || !imgEl.naturalWidth || !imgEl.naturalHeight) return;
+    const renderedHeight = screen.clientWidth * (imgEl.naturalHeight / imgEl.naturalWidth);
+    const nextTravel = Math.max(renderedHeight - screen.clientHeight, 0);
+    setTravel(nextTravel);
+    setDuration(Math.max(12, Math.round(nextTravel / 18)));
+  };
+
+  const onLoad = (event: SyntheticEvent<HTMLImageElement>) => {
+    updateMotion(event.currentTarget);
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const imgEl = screenRef.current?.querySelector("img");
+      if (imgEl instanceof HTMLImageElement && imgEl.complete) updateMotion(imgEl);
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, [src]);
+
+  return (
+    <article className="phone-mockup" style={{ "--phone-delay": `${index * 1.25}s` } as CSSProperties}>
+      <div className="phone-mockup-top">
+        <span className="phone-mockup-camera" />
+      </div>
+      <div className="phone-screen" ref={screenRef}>
+        <img
+          src={src}
+          alt={`${label}页面界面展示`}
+          onLoad={onLoad}
+          style={
+            {
+              "--scroll-distance": `${travel}px`,
+              "--scroll-duration": `${duration}s`
+            } as CSSProperties
+          }
+        />
+      </div>
+      <div className="phone-mockup-label">{label}</div>
+    </article>
+  );
+}
+
+function PhoneShowcase({ images }: { images: { label: string; src: string }[] }) {
+  return (
+    <div className="phone-showcase" aria-label="APP 页面手机展示">
+      {images.map((item, index) => (
+        <PhoneMockup key={item.src} src={item.src} label={item.label} index={index} />
+      ))}
+    </div>
+  );
+}
 
 type AiMessage = {
   role: "assistant" | "user";
@@ -671,13 +759,13 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
   return (
     <main className="editorial-page other-page page-screen">
       <SiteHeader current="/other" navigate={navigate} />
-      <div className="page-eyebrow">OTHER PRACTICES · TOOLS AS A DESIGN LANGUAGE</div>
+      <div className="page-eyebrow">CROSS-DISCIPLINARY WORK · RESEARCH · INTERFACE</div>
       <section className="other-heading">
-        <span>EXTRAS</span>
-        <h1>设计之外的<br />工作方法</h1>
-        <p>把擅长的工具、研究方法与表达习惯，整理成可以进入不同项目的五种能力。</p>
+        <span>SELECTED DIRECTIONS</span>
+        <h1>跨学科实践与<br />项目表达</h1>
+        <p>把前端界面、科研写作、数学建模、绿色性能与实习项目整理成五个可被快速理解的主题。</p>
       </section>
-      <section className="practice-stage" aria-label="Other professional practices">
+      <section className="practice-stage" aria-label="Cross-disciplinary practice cards">
         <div className="practice-deck">
           {practices.map((item, index) => {
             const offset = getOffset(index);
@@ -707,7 +795,7 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
           })}
         </div>
         <motion.div
-          className="practice-detail"
+          className={`practice-detail ${practice.mode === "phones" ? "practice-detail-wide" : ""}`}
           key={practice.title}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -717,10 +805,18 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
           <h2>{practice.title}</h2>
           <p>{practice.description}</p>
           <span>{practice.detail}</span>
-          <div className="practice-switcher" aria-label="切换能力卡片">
-            <button type="button" onClick={() => movePractice(-1)} aria-label="上一张能力卡片"><ChevronLeft size={18} /></button>
+          {practice.tags?.length ? (
+            <div className="practice-tags" aria-label={`${practice.title}标签`}>
+              {practice.tags.map((tag) => (
+                <i key={tag}>{tag}</i>
+              ))}
+            </div>
+          ) : null}
+          {practice.mode === "phones" && practice.uiImages ? <PhoneShowcase images={practice.uiImages} /> : null}
+          <div className="practice-switcher" aria-label="切换主题卡片">
+            <button type="button" onClick={() => movePractice(-1)} aria-label="上一张主题卡片"><ChevronLeft size={18} /></button>
             <div>{practices.map((item, index) => <i className={index === activePractice ? "is-active" : ""} key={item.title} />)}</div>
-            <button type="button" onClick={() => movePractice(1)} aria-label="下一张能力卡片"><ChevronRight size={18} /></button>
+            <button type="button" onClick={() => movePractice(1)} aria-label="下一张主题卡片"><ChevronRight size={18} /></button>
           </div>
         </motion.div>
       </section>
