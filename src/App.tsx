@@ -2,6 +2,9 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUp,
+  Bot,
+  BrainCircuit,
+  ChevronLeft,
   ChevronRight,
   Circle,
   Clock3,
@@ -15,17 +18,20 @@ import {
   Leaf,
   Mail,
   MapPin,
+  MessageCircle,
   Phone,
+  Send,
+  Sparkles,
   X
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import type { AnchorHTMLAttributes } from "react";
+import type { AnchorHTMLAttributes, CSSProperties, FormEvent } from "react";
 import { portfolioPages, projects, publicPath, services } from "./portfolioData";
 import type { Project } from "./portfolioData";
 
-type RoutePath = "/" | "/abilities" | "/about" | "/projects" | "/contact";
+type RoutePath = "/" | "/abilities" | "/about" | "/projects" | "/other" | "/contact" | "/ai";
 
 type RouteLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   to: RoutePath;
@@ -48,13 +54,16 @@ type SkillGroup = {
 
 const portfolioPdfUrl = publicPath("程志远作品集.pdf");
 const resumePdfUrl = publicPath("简历_程志远.pdf");
+const practiceCardImage = publicPath("assets/practice-cards/architecture-card.png");
 
 const routes: { path: RoutePath; label: string; labelEn: string }[] = [
   { path: "/", label: "首页", labelEn: "Home" },
   { path: "/about", label: "关于我", labelEn: "About" },
   { path: "/abilities", label: "能力", labelEn: "Abilities" },
   { path: "/projects", label: "作品集", labelEn: "Projects" },
-  { path: "/contact", label: "联系方式", labelEn: "Contact" }
+  { path: "/other", label: "其他", labelEn: "Extras" },
+  { path: "/contact", label: "联系方式", labelEn: "Contact" },
+  { path: "/ai", label: "分身", labelEn: "AI" }
 ];
 
 const skillGroups: SkillGroup[] = [
@@ -160,6 +169,87 @@ const skillGroups: SkillGroup[] = [
   }
 ];
 
+type PracticeCard = {
+  title: string;
+  titleEn: string;
+  eyebrow: string;
+  description: string;
+  image: string;
+  detail: string;
+};
+
+const practices: PracticeCard[] = [
+  {
+    title: "建筑表达",
+    titleEn: "Spatial Storytelling",
+    eyebrow: "01 / 05",
+    description: "从场地叙事、体量推演到成套图纸，让设计判断形成清晰可读的空间故事。",
+    image: practiceCardImage,
+    detail: "适用于公共建筑、居住与城市设计的方案表达。"
+  },
+  {
+    title: "绿色性能",
+    titleEn: "Green Performance",
+    eyebrow: "02 / 05",
+    description: "把热工、日照、通风与能耗分析放入设计过程，让气候响应成为方案的一部分。",
+    image: practiceCardImage,
+    detail: "关注建筑物理、性能优化和材料策略验证。"
+  },
+  {
+    title: "BIM 协同",
+    titleEn: "BIM Workflow",
+    eyebrow: "03 / 05",
+    description: "以 Revit 为核心衔接构件信息、协同建模与施工模拟，让设计成果更可落地。",
+    image: practiceCardImage,
+    detail: "覆盖建模、构件信息管理和三维协同表达。"
+  },
+  {
+    title: "参数推演",
+    titleEn: "Parametric Studies",
+    eyebrow: "04 / 05",
+    description: "通过 Grasshopper、几何规则与方案比较，快速观察尺度、形态与性能之间的关系。",
+    image: practiceCardImage,
+    detail: "用于前期推演、参数控制与多方案迭代。"
+  },
+  {
+    title: "数据科研",
+    titleEn: "Research Systems",
+    eyebrow: "05 / 05",
+    description: "用 Python 处理数据、建立研究模型，并将多智能体与建筑知识组织成可验证的工作流。",
+    image: practiceCardImage,
+    detail: "聚焦空间数据、绿色建筑与灾后恢复研究。"
+  }
+];
+
+type AiMessage = {
+  role: "assistant" | "user";
+  text: string;
+};
+
+const aiPrompts = [
+  "你擅长哪些设计工具？",
+  "绿色建筑方面有哪些经验？",
+  "可以参与科研或系统开发吗？",
+  "适合怎样的合作项目？"
+];
+
+function getAiReply(prompt: string) {
+  const value = prompt.toLowerCase();
+  if (value.includes("绿色") || value.includes("性能") || value.includes("模拟")) {
+    return "我会把热工、日照、通风与能耗分析纳入设计推演，并有绿色建筑竞赛和椰壳围护结构能耗研究的实践。";
+  }
+  if (value.includes("科研") || value.includes("系统") || value.includes("python") || value.includes("数据")) {
+    return "可以。我使用 Python 完成数据整理、指标计算和研究建模，也在探索多智能体灾后恢复、规范校验与建筑知识图谱等方向。";
+  }
+  if (value.includes("工具") || value.includes("软件") || value.includes("bim") || value.includes("建模")) {
+    return "我常用 Revit、SketchUp、Rhino、Grasshopper、Photoshop、Illustrator 与 Python，覆盖建模、参数推演、可视化和数据分析。";
+  }
+  if (value.includes("合作") || value.includes("项目") || value.includes("适合")) {
+    return "更适合建筑方案、绿色性能分析、BIM 建模与表达、参数化推演及空间数据研究等需要设计与研究协同推进的项目。";
+  }
+  return "我会从建筑设计、绿色模拟、BIM、参数化和数据研究的交叉经验出发，先厘清项目目标，再匹配合适的设计与技术路径。";
+}
+
 function normalizePath(pathname: string): RoutePath {
   const clean = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
   return routes.some((route) => route.path === clean) ? (clean as RoutePath) : "/";
@@ -218,11 +308,11 @@ function useCurrentTime() {
   return time;
 }
 
-function SiteHeader({ current, navigate }: { current: RoutePath; navigate: (to: RoutePath) => void }) {
+function SiteHeader({ current, navigate, dark = false }: { current: RoutePath; navigate: (to: RoutePath) => void; dark?: boolean }) {
   const time = useCurrentTime();
 
   return (
-    <header className="site-header">
+    <header className={`site-header ${dark ? "site-header-dark" : ""}`}>
       <div className="site-meta" aria-label="Location and local time">
         <span><MapPin size={14} /> HAIKOU, CN</span>
         <span><Clock3 size={14} /> {time} CST</span>
@@ -245,9 +335,9 @@ function SiteHeader({ current, navigate }: { current: RoutePath; navigate: (to: 
   );
 }
 
-function PageRail({ current, navigate }: { current: RoutePath; navigate: (to: RoutePath) => void }) {
+function PageRail({ current, navigate, dark = false }: { current: RoutePath; navigate: (to: RoutePath) => void; dark?: boolean }) {
   return (
-    <nav className="page-rail" aria-label="Page index">
+    <nav className={`page-rail ${dark ? "page-rail-dark" : ""}`} aria-label="Page index">
       {routes.map((item) => (
         <RouteLink
           className={current === item.path ? "is-active" : ""}
@@ -267,14 +357,16 @@ function PageRail({ current, navigate }: { current: RoutePath; navigate: (to: Ro
 function PageControls({
   previous,
   next,
-  navigate
+  navigate,
+  dark = false
 }: {
   previous?: RoutePath;
   next?: RoutePath;
   navigate: (to: RoutePath) => void;
+  dark?: boolean;
 }) {
   return (
-    <div className="page-controls">
+    <div className={`page-controls ${dark ? "page-controls-dark" : ""}`}>
       {previous ? (
         <RouteLink className="outline-control" to={previous} navigate={navigate}>
           <ArrowUp size={14} /> UP
@@ -555,8 +647,85 @@ function ProjectsPage({ navigate, onPreviewPortfolio }: { navigate: (to: RoutePa
           </a>
         ))}
       </section>
-      <PageControls previous="/about" next="/contact" navigate={navigate} />
+      <PageControls previous="/about" next="/other" navigate={navigate} />
       <PageRail current="/projects" navigate={navigate} />
+    </main>
+  );
+}
+
+function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
+  const [activePractice, setActivePractice] = useState(0);
+  const practice = practices[activePractice];
+
+  const getOffset = (index: number) => {
+    let offset = index - activePractice;
+    if (offset > Math.floor(practices.length / 2)) offset -= practices.length;
+    if (offset < -Math.floor(practices.length / 2)) offset += practices.length;
+    return offset;
+  };
+
+  const movePractice = (direction: number) => {
+    setActivePractice((current) => (current + direction + practices.length) % practices.length);
+  };
+
+  return (
+    <main className="editorial-page other-page page-screen">
+      <SiteHeader current="/other" navigate={navigate} />
+      <div className="page-eyebrow">OTHER PRACTICES · TOOLS AS A DESIGN LANGUAGE</div>
+      <section className="other-heading">
+        <span>EXTRAS</span>
+        <h1>设计之外的<br />工作方法</h1>
+        <p>把擅长的工具、研究方法与表达习惯，整理成可以进入不同项目的五种能力。</p>
+      </section>
+      <section className="practice-stage" aria-label="Other professional practices">
+        <div className="practice-deck">
+          {practices.map((item, index) => {
+            const offset = getOffset(index);
+            const isActive = index === activePractice;
+            return (
+              <button
+                className={`practice-card ${isActive ? "is-active" : ""}`}
+                key={item.title}
+                type="button"
+                onClick={() => setActivePractice(index)}
+                aria-pressed={isActive}
+                aria-label={`查看${item.title}`}
+                style={{
+                  "--card-x": `${offset * 218}px`,
+                  "--card-rotation": `${offset * 5.2}deg`,
+                  "--card-scale": offset === 0 ? "1" : String(0.84 - Math.abs(offset) * 0.035),
+                  "--card-z": String(10 - Math.abs(offset)),
+                  "--card-tint": ["rgba(247, 241, 229, 0.02)", "rgba(198, 208, 180, 0.18)", "rgba(122, 139, 100, 0.18)", "rgba(59, 53, 47, 0.12)", "rgba(198, 208, 180, 0.1)"][index]
+                } as CSSProperties}
+              >
+                <img src={item.image} alt={`${item.title}能力插画卡片`} />
+                <span className="practice-card-tint" aria-hidden="true" />
+                <span className="practice-card-shade" aria-hidden="true" />
+                <span className="practice-card-copy"><small>{item.eyebrow}</small><strong>{item.title}</strong><em>{item.titleEn}</em></span>
+              </button>
+            );
+          })}
+        </div>
+        <motion.div
+          className="practice-detail"
+          key={practice.title}
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.35 }}
+        >
+          <div className="practice-detail-count">{practice.eyebrow}</div>
+          <h2>{practice.title}</h2>
+          <p>{practice.description}</p>
+          <span>{practice.detail}</span>
+          <div className="practice-switcher" aria-label="切换能力卡片">
+            <button type="button" onClick={() => movePractice(-1)} aria-label="上一张能力卡片"><ChevronLeft size={18} /></button>
+            <div>{practices.map((item, index) => <i className={index === activePractice ? "is-active" : ""} key={item.title} />)}</div>
+            <button type="button" onClick={() => movePractice(1)} aria-label="下一张能力卡片"><ChevronRight size={18} /></button>
+          </div>
+        </motion.div>
+      </section>
+      <PageControls previous="/projects" next="/contact" navigate={navigate} />
+      <PageRail current="/other" navigate={navigate} />
     </main>
   );
 }
@@ -581,8 +750,75 @@ function ContactPage({ navigate, onPreviewPortfolio }: { navigate: (to: RoutePat
         </div>
       </section>
       <div className="contact-footer">© 2026 CHENG ZHIYUAN · ARCHITECTURE PORTFOLIO</div>
-      <PageControls previous="/projects" navigate={navigate} />
+      <PageControls previous="/other" next="/ai" navigate={navigate} />
       <PageRail current="/contact" navigate={navigate} />
+    </main>
+  );
+}
+
+function AiPage({ navigate }: { navigate: (to: RoutePath) => void }) {
+  const [messages, setMessages] = useState<AiMessage[]>([
+    {
+      role: "assistant",
+      text: "你好，我是程志远的 AI 分身。可以从设计能力、绿色建筑、BIM、参数化和科研经历中，帮你快速找到合适的合作切入点。"
+    }
+  ]);
+  const [draft, setDraft] = useState("");
+
+  const ask = (prompt: string) => {
+    const question = prompt.trim();
+    if (!question) return;
+    setMessages((current) => [...current, { role: "user", text: question }, { role: "assistant", text: getAiReply(question) }]);
+    setDraft("");
+  };
+
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    ask(draft);
+  };
+
+  return (
+    <main className="editorial-page ai-page page-screen">
+      <img className="ai-background" src={publicPath("assets/home-architecture-collage.png")} alt="" aria-hidden="true" />
+      <SiteHeader current="/ai" navigate={navigate} dark />
+      <div className="page-eyebrow ai-eyebrow">AI AVATAR · DESIGN COLLABORATION</div>
+      <section className="ai-heading">
+        <span><Sparkles size={15} /> PERSONAL AI AVATAR</span>
+        <h1>AI 分身</h1>
+        <p>从作品集与真实经历出发，30 秒了解程志远能为一个项目带来什么。</p>
+      </section>
+      <section className="ai-layout">
+        <motion.div className="ai-chat-panel" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
+          <header>
+            <span className="ai-avatar-icon"><Bot size={20} /></span>
+            <div><small>CHENG ZHIYUAN / AI</small><strong>和我的 AI 分身聊聊</strong></div>
+            <span className="ai-status"><i /> 在线</span>
+          </header>
+          <div className="ai-transcript" aria-live="polite">
+            {messages.map((message, index) => <p className={message.role} key={`${message.role}-${index}`}>{message.text}</p>)}
+          </div>
+          <div className="ai-prompts" aria-label="快捷提问">
+            {aiPrompts.map((prompt) => <button type="button" onClick={() => ask(prompt)} key={prompt}>{prompt}</button>)}
+          </div>
+          <form className="ai-input" onSubmit={onSubmit}>
+            <input value={draft} onChange={(event) => setDraft(event.target.value)} placeholder="输入想了解的问题" aria-label="向 AI 分身提问" />
+            <button type="submit" aria-label="发送问题"><Send size={17} /></button>
+          </form>
+        </motion.div>
+        <motion.aside className="ai-intro-panel" initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.08 }}>
+          <span><BrainCircuit size={19} /> PROFILE SNAPSHOT</span>
+          <h2>让设计能力<br />被更快理解。</h2>
+          <p>这个 AI 分身基于本站公开的作品与经历进行回答，适合快速了解设计方向、技术路径与研究协作方式。</p>
+          <dl>
+            <div><dt>DESIGN</dt><dd>建筑设计 / 空间表达 / 场地策略</dd></div>
+            <div><dt>TOOLS</dt><dd>Revit / Rhino / Grasshopper / Python</dd></div>
+            <div><dt>FOCUS</dt><dd>绿色性能 / BIM / 数据与科研</dd></div>
+          </dl>
+          <RouteLink className="ai-contact-link" to="/contact" navigate={navigate}><MessageCircle size={17} /> 直接联系我 <ArrowRight size={17} /></RouteLink>
+        </motion.aside>
+      </section>
+      <PageControls previous="/contact" navigate={navigate} dark />
+      <PageRail current="/ai" navigate={navigate} dark />
     </main>
   );
 }
@@ -652,7 +888,9 @@ export default function App() {
           {route === "/abilities" ? <AbilitiesPage navigate={navigate} /> : null}
           {route === "/about" ? <AboutPage navigate={navigate} /> : null}
           {route === "/projects" ? <ProjectsPage navigate={navigate} onPreviewPortfolio={() => setPdfPreviewOpen(true)} /> : null}
+          {route === "/other" ? <OtherPage navigate={navigate} /> : null}
           {route === "/contact" ? <ContactPage navigate={navigate} onPreviewPortfolio={() => setPdfPreviewOpen(true)} /> : null}
+          {route === "/ai" ? <AiPage navigate={navigate} /> : null}
         </motion.div>
       </AnimatePresence>
       <PdfPreviewModal open={pdfPreviewOpen} onClose={() => setPdfPreviewOpen(false)} />
