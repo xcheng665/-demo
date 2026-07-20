@@ -54,7 +54,13 @@ type SkillGroup = {
 
 const portfolioPdfUrl = publicPath("程志远作品集.pdf");
 const resumePdfUrl = publicPath("简历_程志远.pdf");
-const practiceCardImage = publicPath("assets/practice-cards/architecture-card.png");
+const practiceCardImages = {
+  frontend: publicPath("assets/practice-cards/frontend-ui-tarot-card.png"),
+  research: publicPath("assets/practice-cards/research-papers-tarot-card.png"),
+  modeling: publicPath("assets/practice-cards/modeling-tarot-card.png"),
+  green: publicPath("assets/practice-cards/green-performance-male-card.png"),
+  drawings: publicPath("assets/practice-cards/working-drawings-male-card.png")
+} as const;
 const uiDesignImages = [
   { label: "总览", src: publicPath("assets/ui-design/overview.jpg") },
   { label: "环境", src: publicPath("assets/ui-design/environment.jpg") },
@@ -194,7 +200,7 @@ const practices: PracticeCard[] = [
     titleEn: "Frontend & UI Design",
     eyebrow: "01 / 05",
     description: "把前端实现与界面视觉放在同一套展示语言中，聚焦储能应用的总览、环境、告警、储能与设置五个页面。",
-    image: uiDesignImages[0].src,
+    image: practiceCardImages.frontend,
     detail: "五台手机同时展示真实 APP 界面，每台设备内部独立纵向滚动，以完整呈现长页面的 UI 设计。",
     tags: ["前端实现", "UI 设计"],
     mode: "phones",
@@ -205,7 +211,7 @@ const practices: PracticeCard[] = [
     titleEn: "Research Papers",
     eyebrow: "02 / 05",
     description: "围绕数据整理、研究分析与成果表达，完成两篇论文的内容组织、图表整理与研究输出。",
-    image: practiceCardImage,
+    image: practiceCardImages.research,
     detail: "重点体现数据处理、研究判断、论文写作与结果可视化之间的完整链路。",
     tags: ["论文两篇", "研究分析"]
   },
@@ -214,7 +220,7 @@ const practices: PracticeCard[] = [
     titleEn: "Modeling Paper",
     eyebrow: "03 / 05",
     description: "从问题抽象、模型建立到结果验证和成文表达，形成完整的数学建模论文工作流。",
-    image: practiceCardImage,
+    image: practiceCardImages.modeling,
     detail: "重点体现建模分析、参数推导、结果解释以及数模论文的结构化表达。",
     tags: ["数模论文", "模型分析"]
   },
@@ -223,7 +229,7 @@ const practices: PracticeCard[] = [
     titleEn: "Simulation & Energy",
     eyebrow: "04 / 05",
     description: "结合动画模拟、性能分析与节能大创实践，把绿色策略与技术路径转化为可读的成果展示。",
-    image: practiceCardImage,
+    image: practiceCardImages.green,
     detail: "重点体现模拟过程、节能研究、方案验证与项目成果之间的关联。",
     tags: ["动画模拟", "节能大创"]
   },
@@ -232,7 +238,7 @@ const practices: PracticeCard[] = [
     titleEn: "Working Drawings",
     eyebrow: "05 / 05",
     description: "在实习中参与施工图设计与表达，关注制图规范、节点细化和设计成果的工程落地。",
-    image: practiceCardImage,
+    image: practiceCardImages.drawings,
     detail: "重点体现施工图设计、图纸表达标准、协作流程与项目执行能力。",
     tags: ["施工图设计", "实习经历"]
   }
@@ -782,12 +788,10 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
                   "--card-x": `${offset * 218}px`,
                   "--card-rotation": `${offset * 5.2}deg`,
                   "--card-scale": offset === 0 ? "1" : String(0.84 - Math.abs(offset) * 0.035),
-                  "--card-z": String(10 - Math.abs(offset)),
-                  "--card-tint": ["rgba(247, 241, 229, 0.02)", "rgba(198, 208, 180, 0.18)", "rgba(122, 139, 100, 0.18)", "rgba(59, 53, 47, 0.12)", "rgba(198, 208, 180, 0.1)"][index]
+                  "--card-z": String(10 - Math.abs(offset))
                 } as CSSProperties}
               >
                 <img src={item.image} alt={`${item.title}能力插画卡片`} />
-                <span className="practice-card-tint" aria-hidden="true" />
                 <span className="practice-card-shade" aria-hidden="true" />
                 <span className="practice-card-copy"><small>{item.eyebrow}</small><strong>{item.title}</strong><em>{item.titleEn}</em></span>
               </button>
@@ -860,6 +864,18 @@ function AiPage({ navigate }: { navigate: (to: RoutePath) => void }) {
     }
   ]);
   const [draft, setDraft] = useState("");
+  const transcriptRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const transcript = transcriptRef.current;
+    if (!transcript) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      transcript.scrollTo({ top: transcript.scrollHeight, behavior: "smooth" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [messages]);
 
   const ask = (prompt: string) => {
     const question = prompt.trim();
@@ -890,7 +906,7 @@ function AiPage({ navigate }: { navigate: (to: RoutePath) => void }) {
             <div><small>CHENG ZHIYUAN / AI</small><strong>和我的 AI 分身聊聊</strong></div>
             <span className="ai-status"><i /> 在线</span>
           </header>
-          <div className="ai-transcript" aria-live="polite">
+          <div className="ai-transcript" aria-live="polite" ref={transcriptRef}>
             {messages.map((message, index) => <p className={message.role} key={`${message.role}-${index}`}>{message.text}</p>)}
           </div>
           <div className="ai-prompts" aria-label="快捷提问">
