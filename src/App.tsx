@@ -536,7 +536,7 @@ function AbilitiesPage({ navigate }: { navigate: (to: RoutePath) => void }) {
               transition={{ delay: groupIndex * 0.08, duration: 0.5 }}
             >
               <header>
-                <Icon size={21} />
+                <span className="skill-column-icon"><Icon size={23} /></span>
                 <div><h2>{group.title}</h2><p>{group.titleEn}</p></div>
               </header>
               <div className="skill-items">
