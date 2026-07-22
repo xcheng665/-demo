@@ -1540,7 +1540,7 @@ img {
 
 .ai-chat-panel {
   display: grid;
-  grid-template-rows: auto minmax(142px, 1fr) auto auto;
+  grid-template-rows: auto auto minmax(142px, 1fr) auto auto;
   min-height: 420px;
   overflow: hidden;
   border: 1px solid rgba(247, 241, 229, 0.28);
@@ -1601,6 +1601,16 @@ img {
   background: var(--accent-soft);
 }
 
+.ai-disclosure {
+  margin: 0;
+  padding: 9px 20px;
+  border-bottom: 1px solid rgba(247, 241, 229, 0.12);
+  color: rgba(247, 241, 229, 0.62);
+  font-family: var(--font-song);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
 .ai-transcript {
   display: grid;
   align-content: start;
@@ -1610,8 +1620,11 @@ img {
   padding: 18px 20px;
 }
 
-.ai-transcript p {
+.ai-message {
   max-width: 92%;
+}
+
+.ai-message p {
   margin: 0;
   padding: 11px 13px;
   font-family: var(--font-song);
@@ -1619,16 +1632,80 @@ img {
   line-height: 1.65;
 }
 
-.ai-transcript p.assistant {
+.ai-message.assistant {
   justify-self: start;
+}
+
+.ai-message.assistant > p {
   border: 1px solid rgba(247, 241, 229, 0.18);
   background: rgba(247, 241, 229, 0.08);
 }
 
-.ai-transcript p.user {
+.ai-message.user {
   justify-self: end;
+}
+
+.ai-message.user > p {
   color: var(--ink);
   background: var(--accent-soft);
+}
+
+.ai-message.is-pending > p {
+  color: rgba(247, 241, 229, 0.7);
+  font-style: italic;
+}
+
+.ai-message.is-error > p {
+  border-color: rgba(255, 190, 150, 0.5);
+  color: #ffd8c5;
+}
+
+.ai-evidence-list {
+  display: grid;
+  gap: 6px;
+  margin-top: 7px;
+}
+
+.ai-evidence-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 9px;
+  align-items: center;
+  padding: 9px 10px;
+  border: 1px solid rgba(198, 208, 180, 0.42);
+  color: var(--paper-strong);
+  background: rgba(198, 208, 180, 0.1);
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.ai-evidence-card:hover {
+  border-color: var(--accent-soft);
+  background: rgba(198, 208, 180, 0.22);
+}
+
+.ai-evidence-card span {
+  display: grid;
+  gap: 2px;
+}
+
+.ai-evidence-card small {
+  color: rgba(198, 208, 180, 0.82);
+  font-family: var(--font-en);
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.ai-evidence-card strong {
+  font-family: var(--font-display);
+  font-size: 12px;
+}
+
+.ai-evidence-card em {
+  color: rgba(247, 241, 229, 0.7);
+  font-family: var(--font-song);
+  font-size: 10px;
+  font-style: normal;
+  line-height: 1.4;
 }
 
 .ai-prompts {
@@ -1653,6 +1730,12 @@ img {
 .ai-prompts button:hover {
   color: var(--ink);
   background: var(--accent-soft);
+}
+
+.ai-prompts button:disabled,
+.ai-input button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
 }
 
 .ai-input {

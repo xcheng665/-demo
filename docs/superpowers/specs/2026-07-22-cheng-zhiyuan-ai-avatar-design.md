@@ -89,7 +89,7 @@
 
 ### 知识库职责
 
-知识库是仓库中的公开 Markdown/JSON 文件，而不是模型自行记忆或临时抓取的网页。每张事实卡至少包含：标题、主题标签、可核验事实、来源链接和公开状态。资料更丰富时，可在不改变前端接口的前提下替换为向量检索。
+知识库是仓库中版本受控的 JSON 公开事实卡，而不是模型自行记忆或临时抓取的网页。每张事实卡至少包含：标题、主题标签、可核验事实与站内来源链接。资料更丰富时，可在不改变前端接口的前提下替换为向量检索。
 
 ## 建议的 GitHub 结构
 
@@ -100,13 +100,12 @@ cheng-zhiyuan-portfolio/
 │  ├─ lib/aiClient.ts
 │  └─ content/aiQuickPrompts.ts
 ├─ knowledge/
-│  ├─ profile.md
-│  ├─ projects/*.md
-│  ├─ research/*.md
-│  └─ index.json
-├─ api/chat.ts
+│  └─ index.json                     # 公开事实卡与证据白名单
+├─ functions/
+│  ├─ api/chat.ts                    # Cloudflare Pages 聊天入口
+│  └─ api/lib/                       # 检索、限流与响应校验
 ├─ prompts/system.ts
-├─ scripts/build-knowledge.ts
+├─ scripts/validate-knowledge.mjs
 ├─ .env.example
 └─ README.md
 ```
@@ -167,8 +166,9 @@ cheng-zhiyuan-portfolio/
 
 ## 部署与安全
 
-- 前端继续部署在 Cloudflare Pages；使用 Pages Functions 或同等的无服务器函数承载 `/api/chat`。
-- 仅在部署平台环境变量中配置模型密钥；`.env.example` 只列变量名和说明，绝不含真值。
+- 前端继续部署在 Cloudflare Pages；使用 `functions/api/chat.ts` 承载 `/api/chat`。Cloudflare Pages 按 `functions/` 下的文件路径生成函数路由。
+- 模型服务商为 DeepSeek；服务端调用其 OpenAI 兼容的 Chat Completions API。第一版默认使用 `deepseek-v4-flash`，以满足短回答和结构化证据输出的成本与响应速度要求。
+- 仅在 Cloudflare Pages 环境变量中配置 `DEEPSEEK_API_KEY`；`.env.example` 只列变量名和说明，绝不含真值。
 - 对接口实施基础限流和请求长度限制，降低被滥用和成本失控的风险。
 - 将模型输出视为不可信数据：链接只来自知识库中的白名单 evidence ID。
 - 不向模型发送本站未公开资料、老师身份信息或聊天历史中的敏感信息。

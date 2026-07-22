@@ -2,7 +2,6 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUp,
-  Bot,
   BrainCircuit,
   ChevronLeft,
   ChevronRight,
@@ -20,14 +19,14 @@ import {
   MapPin,
   MessageCircle,
   Phone,
-  Send,
   Sparkles,
   X
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import type { AnchorHTMLAttributes, CSSProperties, FormEvent, SyntheticEvent } from "react";
+import type { AnchorHTMLAttributes, CSSProperties, SyntheticEvent } from "react";
+import { AiChat } from "./components/AiChat";
 import { portfolioPages, projects, publicPath, services } from "./portfolioData";
 import type { Project } from "./portfolioData";
 
@@ -313,35 +312,6 @@ function PhoneShowcase({ images }: { images: { label: string; src: string }[] })
       ))}
     </div>
   );
-}
-
-type AiMessage = {
-  role: "assistant" | "user";
-  text: string;
-};
-
-const aiPrompts = [
-  "你擅长哪些设计工具？",
-  "绿色建筑方面有哪些经验？",
-  "可以参与科研或系统开发吗？",
-  "适合怎样的合作项目？"
-];
-
-function getAiReply(prompt: string) {
-  const value = prompt.toLowerCase();
-  if (value.includes("绿色") || value.includes("性能") || value.includes("模拟")) {
-    return "我会把热工、日照、通风与能耗分析纳入设计推演，并有绿色建筑竞赛和椰壳围护结构能耗研究的实践。";
-  }
-  if (value.includes("科研") || value.includes("系统") || value.includes("python") || value.includes("数据")) {
-    return "可以。我使用 Python 完成数据整理、指标计算和研究建模，也在探索多智能体灾后恢复、规范校验与建筑知识图谱等方向。";
-  }
-  if (value.includes("工具") || value.includes("软件") || value.includes("bim") || value.includes("建模")) {
-    return "我常用 Revit、SketchUp、Rhino、Grasshopper、Photoshop、Illustrator 与 Python，覆盖建模、参数推演、可视化和数据分析。";
-  }
-  if (value.includes("合作") || value.includes("项目") || value.includes("适合")) {
-    return "更适合建筑方案、绿色性能分析、BIM 建模与表达、参数化推演及空间数据研究等需要设计与研究协同推进的项目。";
-  }
-  return "我会从建筑设计、绿色模拟、BIM、参数化和数据研究的交叉经验出发，先厘清项目目标，再匹配合适的设计与技术路径。";
 }
 
 function normalizePath(pathname: string): RoutePath {
@@ -857,38 +827,6 @@ function ContactPage({ navigate, onPreviewPortfolio }: { navigate: (to: RoutePat
 }
 
 function AiPage({ navigate }: { navigate: (to: RoutePath) => void }) {
-  const [messages, setMessages] = useState<AiMessage[]>([
-    {
-      role: "assistant",
-      text: "你好，我是程志远的 AI 分身。可以从设计能力、绿色建筑、BIM、参数化和科研经历中，帮你快速找到合适的合作切入点。"
-    }
-  ]);
-  const [draft, setDraft] = useState("");
-  const transcriptRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const transcript = transcriptRef.current;
-    if (!transcript) return;
-
-    const frame = window.requestAnimationFrame(() => {
-      transcript.scrollTo({ top: transcript.scrollHeight, behavior: "smooth" });
-    });
-
-    return () => window.cancelAnimationFrame(frame);
-  }, [messages]);
-
-  const ask = (prompt: string) => {
-    const question = prompt.trim();
-    if (!question) return;
-    setMessages((current) => [...current, { role: "user", text: question }, { role: "assistant", text: getAiReply(question) }]);
-    setDraft("");
-  };
-
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    ask(draft);
-  };
-
   return (
     <main className="editorial-page ai-page page-screen">
       <img className="ai-background" src={publicPath("assets/home-architecture-collage.png")} alt="" aria-hidden="true" />
@@ -900,22 +838,8 @@ function AiPage({ navigate }: { navigate: (to: RoutePath) => void }) {
         <p>从作品集与真实经历出发，30 秒了解程志远能为一个项目带来什么。</p>
       </section>
       <section className="ai-layout">
-        <motion.div className="ai-chat-panel" initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-          <header>
-            <span className="ai-avatar-icon"><Bot size={20} /></span>
-            <div><small>CHENG ZHIYUAN / AI</small><strong>和我的 AI 分身聊聊</strong></div>
-            <span className="ai-status"><i /> 在线</span>
-          </header>
-          <div className="ai-transcript" aria-live="polite" ref={transcriptRef}>
-            {messages.map((message, index) => <p className={message.role} key={`${message.role}-${index}`}>{message.text}</p>)}
-          </div>
-          <div className="ai-prompts" aria-label="快捷提问">
-            {aiPrompts.map((prompt) => <button type="button" onClick={() => ask(prompt)} key={prompt}>{prompt}</button>)}
-          </div>
-          <form className="ai-input" onSubmit={onSubmit}>
-            <input value={draft} onChange={(event) => setDraft(event.target.value)} placeholder="输入想了解的问题" aria-label="向 AI 分身提问" />
-            <button type="submit" aria-label="发送问题"><Send size={17} /></button>
-          </form>
+        <motion.div initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
+          <AiChat />
         </motion.div>
         <motion.aside className="ai-intro-panel" initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.08 }}>
           <span><BrainCircuit size={19} /> PROFILE SNAPSHOT</span>
