@@ -9,9 +9,11 @@ function normalize(value: string) {
 
 export function retrieveEvidence(question: string, limit = 3): KnowledgeRecord[] {
   const normalizedQuestion = normalize(question);
+  const asksForResearchDirection = normalizedQuestion.includes("研究兴趣") || normalizedQuestion.includes("研究方向");
   return records
     .map((record) => {
-      const score = record.tags.reduce((total, tag) => total + (normalizedQuestion.includes(normalize(tag)) ? 3 : 0), 0)
+      const focusBoost = asksForResearchDirection && record.id === "green-performance" ? 12 : 0;
+      const score = focusBoost + record.tags.reduce((total, tag) => total + (normalizedQuestion.includes(normalize(tag)) ? 3 : 0), 0)
         + record.facts.reduce((total, fact) => total + (normalizedQuestion.includes(normalize(fact.slice(0, 6))) ? 1 : 0), 0);
       return { record, score };
     })

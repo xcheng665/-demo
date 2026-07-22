@@ -848,7 +848,7 @@ function AiPage({ navigate }: { navigate: (to: RoutePath) => void }) {
           <dl>
             <div><dt>DESIGN</dt><dd>建筑设计 / 空间表达 / 场地策略</dd></div>
             <div><dt>TOOLS</dt><dd>Revit / Rhino / Grasshopper / Python</dd></div>
-            <div><dt>FOCUS</dt><dd>绿色性能 / BIM / 数据与科研</dd></div>
+            <div><dt>FOCUS</dt><dd>建筑环境 / 绿色建筑 / 性能研究</dd></div>
           </dl>
           <RouteLink className="ai-contact-link" to="/contact" navigate={navigate}><MessageCircle size={17} /> 直接联系我 <ArrowRight size={17} /></RouteLink>
         </motion.aside>

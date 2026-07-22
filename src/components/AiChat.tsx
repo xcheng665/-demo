@@ -17,7 +17,7 @@ type AiMessage = {
 const initialMessage: AiMessage = {
   id: 0,
   role: "assistant",
-  text: "你好，我是程志远的 AI 分身。我会基于本站公开的作品与成果，帮助老师快速核验设计、研究和技术经历。"
+  text: "老师好，我会基于本站公开的作品与成果，用更直观的方式介绍我的设计、研究和技术经历。"
 };
 
 export function AiChat() {
@@ -76,7 +76,7 @@ export function AiChat() {
     <section className="ai-chat-panel" aria-label="程志远 AI 分身问答">
       <header>
         <span className="ai-avatar-icon"><Bot size={20} /></span>
-        <div><small>CHENG ZHIYUAN / AI</small><strong>和我的 AI 分身聊聊</strong></div>
+        <div><small>PORTFOLIO / AI</small><strong>和我的 AI 分身聊聊</strong></div>
         <span className="ai-status"><i /> 在线</span>
       </header>
       <p className="ai-disclosure">AI 仅依据本站公开资料回答；重要事项请以本人确认为准。</p>

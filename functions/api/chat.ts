@@ -22,6 +22,14 @@ function readModelResult(value: string): ModelResult | null {
   }
 }
 
+function normalizeFirstPersonAnswer(answer: string): string {
+  return answer
+    .replaceAll("程志远", "我")
+    .replaceAll("Cheng Zhiyuan", "我")
+    .replaceAll("CHENG ZHIYUAN", "我")
+    .trim();
+}
+
 export async function onRequestPost({ request, env }: Context): Promise<Response> {
   if (isRateLimited(getClientKey(request))) return json({ error: "提问过于频繁，请稍后再试。" }, 429);
 
@@ -67,7 +75,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
     : matchedRecords.slice(0, 2);
 
   return json({
-    answer: parsed.answer.trim().slice(0, 420),
+    answer: normalizeFirstPersonAnswer(parsed.answer).slice(0, 420),
     evidence: publicEvidence(evidenceRecords)
   });
 }
