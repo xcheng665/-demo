@@ -663,46 +663,84 @@ function ProjectsPage({ navigate }: { navigate: (to: RoutePath) => void }) {
 }
 
 function ProjectDetailPage({ project, navigate }: { project: Project; navigate: (to: RoutePath) => void }) {
-  const remainingImages = project.images.slice(1);
+  const projectIndex = projects.findIndex((item) => item.number === project.number);
+  const previousProject = projects[(projectIndex - 1 + projects.length) % projects.length];
+  const nextProject = projects[(projectIndex + 1) % projects.length];
 
   return (
-    <main className="editorial-page project-detail-page page-screen">
-      <SiteHeader current={projectRoute(project)} navigate={navigate} />
-      <section className="project-detail-intro">
-        <RouteLink className="project-back-link" to="/projects" navigate={navigate}><ChevronLeft size={16} /> RETURN TO PROJECT</RouteLink>
-        <div className="project-detail-label"><span>PROJECT {project.number} / {projects.length}</span><span>{project.categoryEn} · {project.year}</span></div>
-        <div className="project-detail-hero">
-          <a href={project.images[0]} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}主图`}>
-            <img src={project.images[0]} alt={`${project.title}项目主图`} />
-          </a>
-          <div className="project-detail-copy">
-            <div>
-              <h1>{project.title}</h1>
-              <p className="project-detail-title-en">{project.titleEn}</p>
-              <p>{project.description}</p>
-              <p className="project-detail-description-en">{project.descriptionEn}</p>
+    <main className="project-detail-page">
+      <div className="project-detail-scroll">
+        <motion.section
+          className="project-slide project-cover-slide"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <RouteLink className="project-return" to="/projects" navigate={navigate}><ChevronLeft size={15} /> ALL PROJECTS</RouteLink>
+          <div className="project-wordmark">Project</div>
+          <div className="project-cover-content">
+            <span className="project-cover-index">{project.number}</span>
+            <h1>{project.title}</h1>
+            <p className="project-cover-title-en">{project.titleEn}</p>
+            <div className="project-cover-meta">
+              <span>{project.category}</span>
+              <span>{project.categoryEn}</span>
+              <span>{project.year}</span>
+              <span>程志远</span>
             </div>
-            <dl>
-              <div><dt>TYPE</dt><dd>{project.category}</dd></div>
-              <div><dt>YEAR</dt><dd>{project.year}</dd></div>
-              <div><dt>DRAWINGS</dt><dd>{String(project.images.length).padStart(2, "0")}</dd></div>
-            </dl>
+            <p className="project-cover-summary">{project.description}</p>
+            <a className="project-cover-image" href={project.images[0]} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}项目封面`}>
+              <img src={project.images[0]} alt={`${project.title}项目封面`} />
+            </a>
           </div>
-        </div>
-      </section>
-      <section className="project-detail-gallery" aria-label={`${project.title}项目图纸`}>
-        {remainingImages.map((src, index) => (
-          <figure key={src}>
-            <figcaption><span>{String(index + 2).padStart(2, "0")} / {String(project.images.length).padStart(2, "0")}</span><span>{project.titleEn}</span></figcaption>
+          <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
+          <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
+          <span className="project-scroll-hint">SCROLL FOR DRAWINGS</span>
+        </motion.section>
+        {project.images.slice(1).map((src, index) => (
+          <motion.section
+            className="project-slide project-drawing-slide"
+            key={src}
+            initial={{ opacity: 0, scale: 0.985 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ amount: 0.58, once: true }}
+            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <header><span>{String(index + 2).padStart(2, "0")} / {String(project.images.length).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
             <a href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 2}张图纸`}>
               <img src={src} alt={`${project.title}图纸 ${index + 2}`} loading="lazy" />
             </a>
-          </figure>
+            <span className="project-drawing-page">{String(index + 1).padStart(2, "0")}</span>
+            <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
+            <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
+          </motion.section>
         ))}
-      </section>
-      <div className="project-detail-footer"><RouteLink className="project-back-link" to="/projects" navigate={navigate}><ChevronLeft size={16} /> ALL PROJECTS</RouteLink></div>
-      <PageRail current={projectRoute(project)} navigate={navigate} />
+      </div>
     </main>
+  );
+}
+
+function ProjectSwitchControl({
+  direction,
+  project,
+  navigate
+}: {
+  direction: "previous" | "next";
+  project: Project;
+  navigate: (to: RoutePath) => void;
+}) {
+  const isPrevious = direction === "previous";
+
+  return (
+    <RouteLink
+      className={`project-switch project-switch-${direction}`}
+      to={projectRoute(project)}
+      navigate={navigate}
+      aria-label={`切换到${isPrevious ? "上一" : "下一"}项目：${project.title}`}
+    >
+      {isPrevious ? <ChevronLeft size={42} /> : <ChevronRight size={42} />}
+      <span>{project.number}<small>{isPrevious ? "PREV" : "NEXT"}</small></span>
+    </RouteLink>
   );
 }
 
