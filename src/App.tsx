@@ -27,10 +27,12 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import type { AnchorHTMLAttributes, CSSProperties, SyntheticEvent } from "react";
 import { AiChat } from "./components/AiChat";
-import { portfolioPages, projects, publicPath, services } from "./portfolioData";
+import { projects, publicPath, services } from "./portfolioData";
 import type { Project } from "./portfolioData";
 
-type RoutePath = "/" | "/abilities" | "/about" | "/projects" | "/other" | "/contact" | "/ai";
+type MainRoutePath = "/" | "/abilities" | "/about" | "/projects" | "/other" | "/contact" | "/ai";
+type ProjectRoutePath = `/projects/${string}`;
+type RoutePath = MainRoutePath | ProjectRoutePath;
 
 type RouteLinkProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   to: RoutePath;
@@ -68,15 +70,23 @@ const uiDesignImages = [
   { label: "设置", src: publicPath("assets/ui-design/settings.jpg") }
 ] as const;
 
-const routes: { path: RoutePath; label: string; labelEn: string }[] = [
+const routes: { path: MainRoutePath; label: string; labelEn: string }[] = [
   { path: "/", label: "首页", labelEn: "Home" },
   { path: "/about", label: "关于我", labelEn: "About" },
   { path: "/abilities", label: "能力", labelEn: "Abilities" },
-  { path: "/projects", label: "作品集", labelEn: "Projects" },
+  { path: "/projects", label: "项目", labelEn: "Project" },
   { path: "/other", label: "其他", labelEn: "Extras" },
   { path: "/contact", label: "联系方式", labelEn: "Contact" },
   { path: "/ai", label: "分身", labelEn: "AI" }
 ];
+
+function projectRoute(project: Project): ProjectRoutePath {
+  return `/projects/${project.number}`;
+}
+
+function projectForPath(pathname: string): Project | undefined {
+  return projects.find((project) => projectRoute(project) === pathname);
+}
 
 const skillGroups: SkillGroup[] = [
   {
@@ -316,7 +326,8 @@ function PhoneShowcase({ images }: { images: { label: string; src: string }[] })
 
 function normalizePath(pathname: string): RoutePath {
   const clean = pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
-  return routes.some((route) => route.path === clean) ? (clean as RoutePath) : "/";
+  if (routes.some((route) => route.path === clean)) return clean as MainRoutePath;
+  return projectForPath(clean) ? (clean as ProjectRoutePath) : "/";
 }
 
 function useRoute() {
@@ -385,7 +396,7 @@ function SiteHeader({ current, navigate, dark = false }: { current: RoutePath; n
       <nav className="top-nav" aria-label="Primary navigation">
         {routes.map((item) => (
           <RouteLink
-            className={current === item.path ? "is-active" : ""}
+            className={current === item.path || (item.path === "/projects" && current.startsWith("/projects/")) ? "is-active" : ""}
             key={item.path}
             to={item.path}
             navigate={navigate}
@@ -404,7 +415,7 @@ function PageRail({ current, navigate, dark = false }: { current: RoutePath; nav
     <nav className={`page-rail ${dark ? "page-rail-dark" : ""}`} aria-label="Page index">
       {routes.map((item) => (
         <RouteLink
-          className={current === item.path ? "is-active" : ""}
+          className={current === item.path || (item.path === "/projects" && current.startsWith("/projects/")) ? "is-active" : ""}
           key={item.path}
           to={item.path}
           navigate={navigate}
@@ -617,102 +628,80 @@ function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
-  const [activeImage, setActiveImage] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const image = project.images[activeImage];
-
-  useEffect(() => {
-    project.images.forEach((src) => {
-      const preload = new Image();
-      preload.src = src;
-    });
-  }, [project.images]);
-
-  useEffect(() => {
-    if (isPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timer = window.setInterval(() => {
-      setActiveImage((current) => (current + 1) % project.images.length);
-    }, 4200);
-    return () => window.clearInterval(timer);
-  }, [isPaused, project.images.length]);
-
+function ProjectIndexCard({ project, navigate }: { project: Project; navigate: (to: RoutePath) => void }) {
   return (
-    <article
-      className="project-card-new"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onFocusCapture={() => setIsPaused(true)}
-      onBlurCapture={() => setIsPaused(false)}
-    >
-      <a className="project-image-link" href={image} target="_blank" rel="noreferrer" aria-label={`打开${project.title}图片`}>
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.img
-            key={image}
-            src={image}
-            alt={`${project.title}项目展示`}
-            loading="lazy"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.36 }}
-          />
-        </AnimatePresence>
-        <span><ExternalLink size={16} /> OPEN IMAGE</span>
-      </a>
-      <div className="project-card-info">
-        <span className="project-number">{project.number}</span>
-        <div>
-          <h2>{project.title}</h2>
-          <p>{project.titleEn}</p>
-        </div>
-        <div className="project-category"><strong>{project.category}</strong><span>{project.categoryEn} · {project.year}</span></div>
-        <div className="project-thumbnails" aria-label={`${project.title}图片选择`}>
-          {project.images.map((src, index) => (
-            <button
-              className={index === activeImage ? "is-active" : ""}
-              type="button"
-              key={src}
-              onClick={() => setActiveImage(index)}
-              aria-label={`显示第${index + 1}张图片`}
-            >
-              {String(index + 1).padStart(2, "0")}
-            </button>
-          ))}
-        </div>
-        <div className="project-description">
-          <small>DESIGN STATEMENT</small>
-          <p>{project.description}</p>
-          <span>{project.descriptionEn}</span>
-        </div>
+    <RouteLink className="project-index-card" to={projectRoute(project)} navigate={navigate} aria-label={`查看项目：${project.title}`}>
+      <figure>
+        <img src={project.images[0]} alt={`${project.title}项目封面`} />
+        <span>VIEW PROJECT <ArrowRight size={15} /></span>
+      </figure>
+      <div>
+        <strong>{project.number} / {project.title}</strong>
+        <small>{project.categoryEn}</small>
       </div>
-    </article>
+    </RouteLink>
   );
 }
 
-function ProjectsPage({ navigate, onPreviewPortfolio }: { navigate: (to: RoutePath) => void; onPreviewPortfolio: () => void }) {
+function ProjectsPage({ navigate }: { navigate: (to: RoutePath) => void }) {
   return (
-    <main className="editorial-page projects-page-new page-screen">
+    <main className="editorial-page projects-page page-screen">
       <SiteHeader current="/projects" navigate={navigate} />
       <div className="page-eyebrow">SELECTED WORKS · 2022—2026</div>
       <section className="projects-title-block">
-        <span>PORTFOLIO</span>
-        <h1>作品集</h1>
-        <p>从场地、气候、结构与公共生活出发，整理五组建筑与城市设计案例。每张项目图片都可独立打开。</p>
-        <button className="outline-action" type="button" onClick={onPreviewPortfolio}><FileText size={17} /> 预览完整作品集</button>
+        <span>ABOUT ME</span>
+        <h1>Project</h1>
+        <p>项目</p>
       </section>
-      <section className="projects-grid-new">
-        {projects.map((project) => <ProjectCard project={project} key={project.number} />)}
-      </section>
-      <section className="image-index-strip" aria-label="Portfolio image index">
-        {portfolioPages.slice(0, 12).map((src, index) => (
-          <a href={src} target="_blank" rel="noreferrer" key={src} aria-label={`打开作品集第${index + 1}页`}>
-            <img src={src} alt="" loading="lazy" />
-          </a>
-        ))}
+      <section className="project-index-grid" aria-label="项目列表">
+        {projects.map((project) => <ProjectIndexCard project={project} navigate={navigate} key={project.number} />)}
       </section>
       <PageControls previous="/about" next="/other" navigate={navigate} />
       <PageRail current="/projects" navigate={navigate} />
+    </main>
+  );
+}
+
+function ProjectDetailPage({ project, navigate }: { project: Project; navigate: (to: RoutePath) => void }) {
+  const remainingImages = project.images.slice(1);
+
+  return (
+    <main className="editorial-page project-detail-page page-screen">
+      <SiteHeader current={projectRoute(project)} navigate={navigate} />
+      <section className="project-detail-intro">
+        <RouteLink className="project-back-link" to="/projects" navigate={navigate}><ChevronLeft size={16} /> RETURN TO PROJECT</RouteLink>
+        <div className="project-detail-label"><span>PROJECT {project.number} / {projects.length}</span><span>{project.categoryEn} · {project.year}</span></div>
+        <div className="project-detail-hero">
+          <a href={project.images[0]} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}主图`}>
+            <img src={project.images[0]} alt={`${project.title}项目主图`} />
+          </a>
+          <div className="project-detail-copy">
+            <div>
+              <h1>{project.title}</h1>
+              <p className="project-detail-title-en">{project.titleEn}</p>
+              <p>{project.description}</p>
+              <p className="project-detail-description-en">{project.descriptionEn}</p>
+            </div>
+            <dl>
+              <div><dt>TYPE</dt><dd>{project.category}</dd></div>
+              <div><dt>YEAR</dt><dd>{project.year}</dd></div>
+              <div><dt>DRAWINGS</dt><dd>{String(project.images.length).padStart(2, "0")}</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+      <section className="project-detail-gallery" aria-label={`${project.title}项目图纸`}>
+        {remainingImages.map((src, index) => (
+          <figure key={src}>
+            <figcaption><span>{String(index + 2).padStart(2, "0")} / {String(project.images.length).padStart(2, "0")}</span><span>{project.titleEn}</span></figcaption>
+            <a href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 2}张图纸`}>
+              <img src={src} alt={`${project.title}图纸 ${index + 2}`} loading="lazy" />
+            </a>
+          </figure>
+        ))}
+      </section>
+      <div className="project-detail-footer"><RouteLink className="project-back-link" to="/projects" navigate={navigate}><ChevronLeft size={16} /> ALL PROJECTS</RouteLink></div>
+      <PageRail current={projectRoute(project)} navigate={navigate} />
     </main>
   );
 }
@@ -910,11 +899,12 @@ function PdfPreviewModal({ open, onClose }: { open: boolean; onClose: () => void
 export default function App() {
   const { route, navigate } = useRoute();
   const [pdfPreviewOpen, setPdfPreviewOpen] = useState(false);
+  const activeProject = projectForPath(route);
 
   useEffect(() => {
-    const page = routes.find((item) => item.path === route)?.label ?? "首页";
+    const page = activeProject?.title ?? routes.find((item) => item.path === route)?.label ?? "首页";
     document.title = `${page} | 程志远建筑作品集`;
-  }, [route]);
+  }, [activeProject, route]);
 
   return (
     <div className="app-shell">
@@ -923,7 +913,8 @@ export default function App() {
           {route === "/" ? <HomePage navigate={navigate} /> : null}
           {route === "/abilities" ? <AbilitiesPage navigate={navigate} /> : null}
           {route === "/about" ? <AboutPage navigate={navigate} /> : null}
-          {route === "/projects" ? <ProjectsPage navigate={navigate} onPreviewPortfolio={() => setPdfPreviewOpen(true)} /> : null}
+          {route === "/projects" ? <ProjectsPage navigate={navigate} /> : null}
+          {activeProject ? <ProjectDetailPage project={activeProject} navigate={navigate} /> : null}
           {route === "/other" ? <OtherPage navigate={navigate} /> : null}
           {route === "/contact" ? <ContactPage navigate={navigate} onPreviewPortfolio={() => setPdfPreviewOpen(true)} /> : null}
           {route === "/ai" ? <AiPage navigate={navigate} /> : null}
