@@ -1352,6 +1352,37 @@ img {
   margin-top: 28px;
 }
 
+.practice-video-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+  width: min(960px, 100%);
+  margin-top: 28px;
+}
+
+.practice-video-showcase figure {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  text-align: left;
+}
+
+.practice-video-showcase figcaption {
+  color: var(--faint);
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.practice-video-showcase video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line);
+  background: var(--ink);
+}
+
 .phone-mockup {
   position: relative;
   display: grid;
@@ -2297,6 +2328,12 @@ img {
     justify-content: flex-start;
   }
 
+  .practice-video-showcase {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    width: 100%;
+  }
+
   .phone-showcase {
     display: flex;
     gap: 12px;
@@ -2876,27 +2913,52 @@ img {
   line-height: 1.55;
 }
 
-.project-cover-image {
+.project-cover-media {
   grid-column: 1 / -1;
-  display: block;
-  width: min(310px, 34vw);
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(150px, 0.72fr) minmax(0, 1.55fr);
+  align-items: end;
+  gap: clamp(16px, 2vw, 32px);
+  width: min(1100px, 100%);
   margin-top: 40px;
+}
+
+.project-cover-card {
+  display: block;
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--accent-soft);
 }
 
-.project-cover-image img {
+.project-cover-card-landscape {
+  aspect-ratio: 1.75 / 1;
+}
+
+.project-cover-card-portrait {
+  aspect-ratio: 0.92 / 1;
+}
+
+.project-cover-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 1.414 / 1;
+  height: 100%;
   object-fit: cover;
   transition: transform 360ms ease;
 }
 
-.project-cover-image:hover img,
-.project-cover-image:focus-visible img {
+.project-cover-card:hover img,
+.project-cover-card:focus-visible img {
   transform: scale(1.025);
+}
+
+.project-cover-card.is-placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--faint);
+  background: rgba(247, 241, 229, 0.42);
+  font-family: var(--font-en);
+  font-size: 9px;
+  letter-spacing: 0.16em;
 }
 
 .project-scroll-hint {
@@ -3048,9 +3110,16 @@ img {
     font-size: 14px;
   }
 
-  .project-cover-image {
-    width: min(250px, 64vw);
+  .project-cover-media {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    width: min(100%, 360px);
     margin-top: 8px;
+  }
+
+  .project-cover-card-portrait {
+    width: min(74%, 250px);
+    justify-self: center;
   }
 
   .project-scroll-hint {

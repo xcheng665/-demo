@@ -14,6 +14,7 @@ export type Project = {
   description: string;
   descriptionEn: string;
   images: string[];
+  coverImages?: [string | undefined, string | undefined];
   squares: SquareSpec[];
 };
 

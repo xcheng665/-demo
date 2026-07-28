@@ -57,7 +57,7 @@ const portfolioPdfUrl = publicPath("程志远作品集.pdf");
 const resumePdfUrl = publicPath("简历_程志远.pdf");
 const practiceCardImages = {
   frontend: publicPath("assets/practice-cards/frontend-ui-tarot-card.png"),
-  research: publicPath("assets/practice-cards/research-papers-tarot-card.png"),
+  research: publicPath("assets/practice-cards/research-papers-tarot-card-v2.png"),
   modeling: publicPath("assets/practice-cards/modeling-tarot-card.png"),
   green: publicPath("assets/practice-cards/green-performance-male-card.png"),
   drawings: publicPath("assets/practice-cards/working-drawings-male-card.png")
@@ -201,6 +201,7 @@ type PracticeCard = {
   tags?: string[];
   mode?: "text" | "phones";
   uiImages?: { label: string; src: string }[];
+  videos?: { label: string; src: string }[];
 };
 
 const practices: PracticeCard[] = [
@@ -240,7 +241,11 @@ const practices: PracticeCard[] = [
     description: "结合动画模拟、性能分析与节能大创实践，把绿色策略与技术路径转化为可读的成果展示。",
     image: practiceCardImages.green,
     detail: "重点体现模拟过程、节能研究、方案验证与项目成果之间的关联。",
-    tags: ["动画模拟", "节能大创"]
+    tags: ["动画模拟", "节能大创"],
+    videos: [
+      { label: "风环境模拟", src: publicPath("assets/practice-videos/wind-environment-simulation.mp4") },
+      { label: "剖面模拟", src: publicPath("assets/practice-videos/section-simulation.mp4") }
+    ]
   },
   {
     title: "实习项目",
@@ -319,6 +324,22 @@ function PhoneShowcase({ images }: { images: { label: string; src: string }[] })
     <div className="phone-showcase" aria-label="APP 页面手机展示">
       {images.map((item, index) => (
         <PhoneMockup key={item.src} src={item.src} label={item.label} index={index} />
+      ))}
+    </div>
+  );
+}
+
+function PracticeVideoShowcase({ videos }: { videos: { label: string; src: string }[] }) {
+  return (
+    <div className="practice-video-showcase" aria-label="绿色性能模拟视频">
+      {videos.map((video) => (
+        <figure key={video.src}>
+          <figcaption>{video.label}</figcaption>
+          <video controls preload="metadata" playsInline>
+            <source src={video.src} type="video/mp4" />
+            您的浏览器不支持视频播放。
+          </video>
+        </figure>
       ))}
     </div>
   );
@@ -666,6 +687,11 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   const projectIndex = projects.findIndex((item) => item.number === project.number);
   const previousProject = projects[(projectIndex - 1 + projects.length) % projects.length];
   const nextProject = projects[(projectIndex + 1) % projects.length];
+  const coverCards = [
+    { src: project.images[0], size: "landscape", label: "项目封面" },
+    { src: project.coverImages?.[0], size: "portrait", label: "项目补充图片一" },
+    { src: project.coverImages?.[1], size: "landscape", label: "项目补充图片二" }
+  ] as const;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
@@ -710,9 +736,19 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               <span>程志远</span>
             </div>
             <p className="project-cover-summary">{project.description}</p>
-            <a className="project-cover-image" href={project.images[0]} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}项目封面`}>
-              <img src={project.images[0]} alt={`${project.title}项目封面`} />
-            </a>
+            <div className="project-cover-media" aria-label={`${project.title}项目图片`}>
+              {coverCards.map((card, index) =>
+                card.src ? (
+                  <a className={`project-cover-card project-cover-card-${card.size}`} href={card.src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}${card.label}`} key={card.label}>
+                    <img src={card.src} alt={`${project.title}${card.label}`} />
+                  </a>
+                ) : (
+                  <div className={`project-cover-card project-cover-card-${card.size} is-placeholder`} aria-label={`${project.title}${card.label}占位`} key={card.label}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                  </div>
+                )
+              )}
+            </div>
           </div>
           <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
           <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
@@ -817,7 +853,7 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
           })}
         </div>
         <motion.div
-          className={`practice-detail ${practice.mode === "phones" ? "practice-detail-wide" : ""}`}
+          className={`practice-detail ${practice.mode === "phones" || practice.videos?.length ? "practice-detail-wide" : ""}`}
           key={practice.title}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -835,6 +871,7 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
             </div>
           ) : null}
           {practice.mode === "phones" && practice.uiImages ? <PhoneShowcase images={practice.uiImages} /> : null}
+          {practice.videos?.length ? <PracticeVideoShowcase videos={practice.videos} /> : null}
           <div className="practice-switcher" aria-label="切换主题卡片">
             <button type="button" onClick={() => movePractice(-1)} aria-label="上一张主题卡片"><ChevronLeft size={18} /></button>
             <div>{practices.map((item, index) => <i className={index === activePractice ? "is-active" : ""} key={item.title} />)}</div>
