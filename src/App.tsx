@@ -25,7 +25,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import type { AnchorHTMLAttributes, CSSProperties, SyntheticEvent } from "react";
+import type { AnchorHTMLAttributes, CSSProperties, SyntheticEvent, TouchEvent } from "react";
 import { AiChat } from "./components/AiChat";
 import { projects, publicPath, services } from "./portfolioData";
 import type { Project } from "./portfolioData";
@@ -666,10 +666,31 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   const projectIndex = projects.findIndex((item) => item.number === project.number);
   const previousProject = projects[(projectIndex - 1 + projects.length) % projects.length];
   const nextProject = projects[(projectIndex + 1) % projects.length];
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    touchStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
+  };
+
+  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
+    const start = touchStart.current;
+    const touch = event.changedTouches[0];
+    touchStart.current = null;
+    if (!start || !touch) return;
+
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+    const horizontalDistance = Math.abs(deltaX);
+    const verticalDistance = Math.abs(deltaY);
+
+    if (horizontalDistance < 56 || horizontalDistance <= verticalDistance) return;
+    navigate(projectRoute(deltaX > 0 ? previousProject : nextProject));
+  };
 
   return (
     <main className="project-detail-page">
-      <div className="project-detail-scroll">
+      <div className="project-detail-scroll" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
         <motion.section
           className="project-slide project-cover-slide"
           initial={{ opacity: 0, y: 18 }}
