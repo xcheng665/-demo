@@ -650,10 +650,12 @@ function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
 }
 
 function ProjectIndexCard({ project, navigate }: { project: Project; navigate: (to: RoutePath) => void }) {
+  const indexCover = project.coverMedia?.[0]?.src ?? project.images[0];
+
   return (
     <RouteLink className="project-index-card" to={projectRoute(project)} navigate={navigate} aria-label={`查看项目：${project.title}`}>
       <figure>
-        <img src={project.images[0]} alt={`${project.title}项目封面`} />
+        <img src={indexCover} alt={`${project.title}项目封面`} />
         <span>VIEW PROJECT <ArrowRight size={15} /></span>
       </figure>
       <div>
@@ -687,11 +689,12 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   const projectIndex = projects.findIndex((item) => item.number === project.number);
   const previousProject = projects[(projectIndex - 1 + projects.length) % projects.length];
   const nextProject = projects[(projectIndex + 1) % projects.length];
-  const coverCards = [
-    { src: project.images[0], size: "landscape", label: "项目封面" },
-    { src: project.coverImages?.[0], size: "portrait", label: "项目补充图片一" },
-    { src: project.coverImages?.[1], size: "landscape", label: "项目补充图片二" }
-  ] as const;
+  const coverCards = project.coverMedia ?? [
+    { src: project.images[0], type: "image" as const, size: "landscape" as const, label: "项目封面" },
+    { type: "image" as const, size: "portrait" as const, label: "项目补充图片一" },
+    { type: "image" as const, size: "landscape" as const, label: "项目补充图片二" }
+  ];
+  const usesLandscapeTriptych = coverCards.length === 3 && coverCards.every((card) => card.size === "landscape");
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
@@ -736,16 +739,23 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               <span>程志远</span>
             </div>
             <p className="project-cover-summary">{project.description}</p>
-            <div className="project-cover-media" aria-label={`${project.title}项目图片`}>
+            <div className={`project-cover-media${usesLandscapeTriptych ? " is-landscape-triptych" : ""}`} aria-label={`${project.title}项目媒体`}>
               {coverCards.map((card, index) =>
-                card.src ? (
-                  <a className={`project-cover-card project-cover-card-${card.size}`} href={card.src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}${card.label}`} key={card.label}>
-                    <img src={card.src} alt={`${project.title}${card.label}`} />
-                  </a>
-                ) : (
+                !card.src ? (
                   <div className={`project-cover-card project-cover-card-${card.size} is-placeholder`} aria-label={`${project.title}${card.label}占位`} key={card.label}>
                     <span>{String(index + 1).padStart(2, "0")}</span>
                   </div>
+                ) : card.type === "video" ? (
+                  <div className={`project-cover-card project-cover-card-${card.size} project-cover-card-video`} aria-label={`${project.title}${card.label}`} key={card.label}>
+                    <video autoPlay loop muted playsInline preload="metadata" aria-label={`${project.title}${card.label}`}>
+                      <source src={card.src} type="video/mp4" />
+                    </video>
+                    <span className="project-cover-video-label">{card.label}</span>
+                  </div>
+                ) : (
+                  <a className={`project-cover-card project-cover-card-${card.size}`} href={card.src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}${card.label}`} key={card.label}>
+                    <img src={card.src} alt={`${project.title}${card.label}`} />
+                  </a>
                 )
               )}
             </div>

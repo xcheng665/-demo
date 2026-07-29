@@ -4,6 +4,13 @@ export type SquareSpec = {
   size: number;
 };
 
+export type CoverMedia = {
+  src?: string;
+  type: "image" | "video";
+  size: "landscape" | "portrait";
+  label: string;
+};
+
 export type Project = {
   number: string;
   title: string;
@@ -14,7 +21,7 @@ export type Project = {
   description: string;
   descriptionEn: string;
   images: string[];
-  coverImages?: [string | undefined, string | undefined];
+  coverMedia?: CoverMedia[];
   squares: SquareSpec[];
 };
 
@@ -57,6 +64,11 @@ export const projects: Project[] = [
       publicPath("assets/portfolio-pages/page-05.png"),
       publicPath("assets/portfolio-pages/page-06.png")
     ],
+    coverMedia: [
+      { src: publicPath("assets/portfolio-pages/page-03.png"), type: "image", size: "landscape", label: "项目封面" },
+      { src: publicPath("assets/project-covers/project-01-detail.jpg"), type: "image", size: "portrait", label: "项目补充图片一" },
+      { src: publicPath("assets/project-covers/project-01-wide.jpg"), type: "image", size: "landscape", label: "项目补充图片二" }
+    ],
     squares: [
       { x: 5, y: 30, size: 16 },
       { x: 10, y: 42, size: 10 },
@@ -82,6 +94,11 @@ export const projects: Project[] = [
       publicPath("assets/portfolio-pages/page-10.png"),
       publicPath("assets/portfolio-pages/page-11.png")
     ],
+    coverMedia: [
+      { src: publicPath("assets/project-covers/project-02-cover.png"), type: "image", size: "landscape", label: "项目封面" },
+      { src: publicPath("assets/project-covers/project-02-walkthrough.mp4"), type: "video", size: "landscape", label: "漫游动画" },
+      { src: publicPath("assets/project-covers/project-02-growth.mp4"), type: "video", size: "landscape", label: "生长动画" }
+    ],
     squares: [
       { x: 82, y: 55, size: 16 },
       { x: 88, y: 68, size: 10 },
@@ -104,6 +121,11 @@ export const projects: Project[] = [
       publicPath("assets/portfolio-pages/page-13.png"),
       publicPath("assets/portfolio-pages/page-14.jpg"),
       publicPath("assets/portfolio-pages/page-15.png")
+    ],
+    coverMedia: [
+      { src: publicPath("assets/project-covers/project-03-cover.jpg"), type: "image", size: "landscape", label: "项目封面" },
+      { src: publicPath("assets/portfolio-pages/page-12.jpg"), type: "image", size: "portrait", label: "项目补充图片一" },
+      { src: publicPath("assets/portfolio-pages/page-13.png"), type: "image", size: "landscape", label: "项目补充图片二" }
     ],
     squares: [
       { x: 4, y: 24, size: 16 },
@@ -128,6 +150,11 @@ export const projects: Project[] = [
       publicPath("assets/portfolio-pages/page-18.png"),
       publicPath("assets/portfolio-pages/page-19.png")
     ],
+    coverMedia: [
+      { src: publicPath("assets/portfolio-pages/page-16.png"), type: "image", size: "landscape", label: "项目封面" },
+      { src: publicPath("assets/portfolio-pages/page-17.png"), type: "image", size: "portrait", label: "项目补充图片一" },
+      { src: publicPath("assets/portfolio-pages/page-18.png"), type: "image", size: "landscape", label: "项目补充图片二" }
+    ],
     squares: [
       { x: 82, y: 26, size: 14 },
       { x: 88, y: 38, size: 10 },
@@ -150,6 +177,11 @@ export const projects: Project[] = [
       publicPath("assets/portfolio-pages/page-21.png"),
       publicPath("assets/portfolio-pages/page-22.png"),
       publicPath("assets/portfolio-pages/page-23.png")
+    ],
+    coverMedia: [
+      { src: publicPath("assets/portfolio-pages/page-20.png"), type: "image", size: "landscape", label: "项目封面" },
+      { src: publicPath("assets/portfolio-pages/page-21.png"), type: "image", size: "portrait", label: "项目补充图片一" },
+      { src: publicPath("assets/portfolio-pages/page-22.png"), type: "image", size: "landscape", label: "项目补充图片二" }
     ],
     squares: [
       { x: 6, y: 20, size: 14 },
