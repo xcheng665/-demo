@@ -59,15 +59,16 @@ export const projects: Project[] = [
     description: "项目回应三亚热带滨海气候与度假生活需求，以面向海景的公共轴线串联入口、庭院、客房与滨水活动空间。错动体量形成遮阳与通风界面，并通过灰空间和连续景观弱化建筑与自然之间的边界。",
     descriptionEn: "A climate-responsive resort organized by a public axis that links arrival, courtyards, guest rooms and the waterfront landscape.",
     images: [
-      publicPath("assets/portfolio-pages/page-03.png"),
-      publicPath("assets/portfolio-pages/page-04.png"),
-      publicPath("assets/portfolio-pages/page-05.png"),
-      publicPath("assets/portfolio-pages/page-06.png")
+      publicPath("assets/project-pages/page-04.jpg"),
+      publicPath("assets/project-pages/page-05.jpg"),
+      publicPath("assets/project-pages/page-06.jpg"),
+      publicPath("assets/project-pages/page-07.jpg"),
+      publicPath("assets/project-pages/page-08.jpg")
     ],
     coverMedia: [
-      { src: publicPath("assets/portfolio-pages/page-03.png"), type: "image", size: "landscape", label: "项目封面" },
-      { src: publicPath("assets/project-covers/project-01-detail.jpg"), type: "image", size: "portrait", label: "项目补充图片一" },
-      { src: publicPath("assets/project-covers/project-01-wide.jpg"), type: "image", size: "landscape", label: "项目补充图片二" }
+      { src: publicPath("assets/project-pages/page-04.jpg"), type: "image", size: "landscape", label: "作品集第 04 页" },
+      { src: publicPath("assets/project-pages/page-05.jpg"), type: "image", size: "portrait", label: "作品集第 05 页" },
+      { src: publicPath("assets/project-pages/page-06.jpg"), type: "image", size: "landscape", label: "作品集第 06 页" }
     ],
     squares: [
       { x: 5, y: 30, size: 16 },
@@ -88,16 +89,17 @@ export const projects: Project[] = [
     description: "设计以社区共享和步行可达为核心，将邻里服务、休闲活动与绿色庭院叠合为开放的公共客厅。建筑首层保持通透，屋顶与退台转化为可使用的立体花园，建立全天候的社区交往网络。",
     descriptionEn: "A walkable neighborhood hub that layers community services, shared rooms and accessible green terraces.",
     images: [
-      publicPath("assets/portfolio-pages/page-07.png"),
-      publicPath("assets/portfolio-pages/page-08.png"),
-      publicPath("assets/portfolio-pages/page-09.png"),
-      publicPath("assets/portfolio-pages/page-10.png"),
-      publicPath("assets/portfolio-pages/page-11.png")
+      publicPath("assets/project-pages/page-09.jpg"),
+      publicPath("assets/project-pages/page-10.jpg"),
+      publicPath("assets/project-pages/page-11.jpg"),
+      publicPath("assets/project-pages/page-12.jpg"),
+      publicPath("assets/project-pages/page-13.jpg"),
+      publicPath("assets/project-pages/page-14.jpg")
     ],
     coverMedia: [
-      { src: publicPath("assets/project-covers/project-02-cover.png"), type: "image", size: "landscape", label: "项目封面" },
-      { src: publicPath("assets/project-covers/project-02-walkthrough.mp4"), type: "video", size: "landscape", label: "漫游动画" },
-      { src: publicPath("assets/project-covers/project-02-growth.mp4"), type: "video", size: "landscape", label: "生长动画" }
+      { src: publicPath("assets/project-pages/page-09.jpg"), type: "image", size: "landscape", label: "作品集第 09 页" },
+      { src: publicPath("assets/project-pages/page-10.jpg"), type: "image", size: "portrait", label: "作品集第 10 页" },
+      { src: publicPath("assets/project-pages/page-11.jpg"), type: "image", size: "landscape", label: "作品集第 11 页" }
     ],
     squares: [
       { x: 82, y: 55, size: 16 },
@@ -117,15 +119,15 @@ export const projects: Project[] = [
     description: "项目从海南黎锦纹样与在地聚落中提取空间秩序，将展览、教育和城市公共活动编织进连续的参观路径。首层向城市开放，层层递进的庭院与天光空间营造具有地域记忆的博物馆体验。",
     descriptionEn: "A civic museum shaped by Li brocade patterns, layered courtyards and a continuous public exhibition route.",
     images: [
-      publicPath("assets/portfolio-pages/page-12.jpg"),
-      publicPath("assets/portfolio-pages/page-13.png"),
-      publicPath("assets/portfolio-pages/page-14.jpg"),
-      publicPath("assets/portfolio-pages/page-15.png")
+      publicPath("assets/project-pages/page-15.jpg"),
+      publicPath("assets/project-pages/page-16.jpg"),
+      publicPath("assets/project-pages/page-17.jpg"),
+      publicPath("assets/project-pages/page-18.jpg")
     ],
     coverMedia: [
-      { src: publicPath("assets/project-covers/project-03-cover.jpg"), type: "image", size: "landscape", label: "项目封面" },
-      { src: publicPath("assets/portfolio-pages/page-12.jpg"), type: "image", size: "portrait", label: "项目补充图片一" },
-      { src: publicPath("assets/portfolio-pages/page-13.png"), type: "image", size: "landscape", label: "项目补充图片二" }
+      { src: publicPath("assets/project-pages/page-15.jpg"), type: "image", size: "landscape", label: "作品集第 15 页" },
+      { src: publicPath("assets/project-pages/page-16.jpg"), type: "image", size: "portrait", label: "作品集第 16 页" },
+      { src: publicPath("assets/project-pages/page-17.jpg"), type: "image", size: "landscape", label: "作品集第 17 页" }
     ],
     squares: [
       { x: 4, y: 24, size: 16 },
@@ -145,15 +147,15 @@ export const projects: Project[] = [
     description: "方案以“绿脉生长”为城市结构，将生态廊道、慢行系统和复合功能组织为可持续扩展的公园型综合体。建筑体量顺应公共绿轴展开，在不同标高连接商业、文化、办公与社区生活。",
     descriptionEn: "A park-oriented mixed-use district where ecological corridors and pedestrian networks guide phased urban growth.",
     images: [
-      publicPath("assets/portfolio-pages/page-16.png"),
-      publicPath("assets/portfolio-pages/page-17.png"),
-      publicPath("assets/portfolio-pages/page-18.png"),
-      publicPath("assets/portfolio-pages/page-19.png")
+      publicPath("assets/project-pages/page-19.jpg"),
+      publicPath("assets/project-pages/page-20.jpg"),
+      publicPath("assets/project-pages/page-21.jpg"),
+      publicPath("assets/project-pages/page-22.jpg")
     ],
     coverMedia: [
-      { src: publicPath("assets/portfolio-pages/page-16.png"), type: "image", size: "landscape", label: "项目封面" },
-      { src: publicPath("assets/portfolio-pages/page-17.png"), type: "image", size: "portrait", label: "项目补充图片一" },
-      { src: publicPath("assets/portfolio-pages/page-18.png"), type: "image", size: "landscape", label: "项目补充图片二" }
+      { src: publicPath("assets/project-pages/page-19.jpg"), type: "image", size: "landscape", label: "作品集第 19 页" },
+      { src: publicPath("assets/project-pages/page-20.jpg"), type: "image", size: "portrait", label: "作品集第 20 页" },
+      { src: publicPath("assets/project-pages/page-21.jpg"), type: "image", size: "landscape", label: "作品集第 21 页" }
     ],
     squares: [
       { x: 82, y: 26, size: 14 },
@@ -173,15 +175,18 @@ export const projects: Project[] = [
     description: "本组收录建筑技术、数字建模、视觉表达与艺术实践，呈现从手工观察到计算工具的多种工作方式。不同媒介共同服务于空间理解、构造研究和设计沟通。",
     descriptionEn: "A collection of technical studies, digital models and visual experiments spanning handcraft and computation.",
     images: [
-      publicPath("assets/portfolio-pages/page-20.png"),
-      publicPath("assets/portfolio-pages/page-21.png"),
-      publicPath("assets/portfolio-pages/page-22.png"),
-      publicPath("assets/portfolio-pages/page-23.png")
+      publicPath("assets/project-pages/page-23.jpg"),
+      publicPath("assets/project-pages/page-24.jpg"),
+      publicPath("assets/project-pages/page-25.jpg"),
+      publicPath("assets/project-pages/page-26.jpg"),
+      publicPath("assets/project-pages/page-27.jpg"),
+      publicPath("assets/project-pages/page-28.jpg"),
+      publicPath("assets/project-pages/page-29.jpg")
     ],
     coverMedia: [
-      { src: publicPath("assets/portfolio-pages/page-20.png"), type: "image", size: "landscape", label: "项目封面" },
-      { src: publicPath("assets/portfolio-pages/page-21.png"), type: "image", size: "portrait", label: "项目补充图片一" },
-      { src: publicPath("assets/portfolio-pages/page-22.png"), type: "image", size: "landscape", label: "项目补充图片二" }
+      { src: publicPath("assets/project-pages/page-23.jpg"), type: "image", size: "landscape", label: "作品集第 23 页" },
+      { src: publicPath("assets/project-pages/page-24.jpg"), type: "image", size: "portrait", label: "作品集第 24 页" },
+      { src: publicPath("assets/project-pages/page-25.jpg"), type: "image", size: "landscape", label: "作品集第 25 页" }
     ],
     squares: [
       { x: 6, y: 20, size: 14 },
