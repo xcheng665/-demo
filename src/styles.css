@@ -3065,7 +3065,12 @@ img {
 .project-video-stage {
   position: relative;
   display: grid;
+  align-self: center;
+  justify-self: center;
   min-height: 0;
+  width: min(100%, 1180px);
+  max-height: calc(100svh - 112px);
+  aspect-ratio: 16 / 9;
   place-items: center;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -3075,7 +3080,7 @@ img {
 .project-video-stage video {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: contain;
 }
 
 .project-video-stage span {
@@ -3324,5 +3329,14 @@ img {
 
   .project-video-slide > header {
     font-size: 8px;
+  }
+
+  .project-video-stage {
+    width: min(88vw, 420px);
+    max-height: min(46svh, 300px);
+  }
+
+  .project-video-stage span {
+    display: none;
   }
 }

@@ -780,7 +780,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           >
             <header><span>VIDEO {String(index + 1).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
             <div className="project-video-stage">
-              <video autoPlay loop muted playsInline controls aria-label={`${project.title}${media.label}`}>
+              <video autoPlay loop muted controls playsInline preload="metadata" aria-label={`${project.title}${media.label}`}>
                 <source src={media.src} type="video/mp4" />
               </video>
               <span>{media.label}</span>
