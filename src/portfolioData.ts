@@ -138,8 +138,8 @@ export const projects: Project[] = [
     ],
     coverMedia: [
       { src: projectCover("项目3_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.55, label: "项目 3 - 0" },
-      { src: projectCover("项目3_1.jpg"), type: "image", size: "portrait", aspectRatio: 1.79, label: "项目 3 - 1" },
-      { src: projectCover("项目3_2.jpg"), type: "image", size: "landscape", aspectRatio: 0.75, label: "项目 3 - 2" }
+      { src: projectCover("项目3_1.jpg"), type: "image", size: "landscape", aspectRatio: 1.79, label: "项目 3 - 1" },
+      { src: projectCover("项目3_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.75, label: "项目 3 - 2" }
     ],
     squares: [
       { x: 4, y: 24, size: 16 },

@@ -3023,6 +3023,20 @@ img {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.project-cover-media-03 {
+  grid-template-columns: 1.48fr 1.35fr 0.88fr;
+  justify-self: center;
+  gap: clamp(28px, 3.2vw, 52px);
+  width: min(1320px, calc(100vw - 250px));
+}
+
+.project-cover-media-05 {
+  grid-template-columns: 1.28fr 0.78fr 1.07fr;
+  justify-self: center;
+  gap: clamp(24px, 2.8vw, 46px);
+  width: min(1320px, calc(100vw - 250px));
+}
+
 .project-video-slide {
   display: grid;
   grid-template-rows: auto 1fr;
@@ -3172,14 +3186,14 @@ img {
 
 .project-drawing-slide img {
   display: block;
-  width: min(94vw, 1660px);
+  width: auto;
   max-width: 94vw;
   height: min(calc(100svh - 96px), 1100px);
   max-height: 100%;
   border: 1px solid var(--line);
   background: var(--paper-strong);
   box-shadow: 0 20px 44px rgba(56, 45, 25, 0.16), 0 4px 10px rgba(56, 45, 25, 0.08);
-  object-fit: fill;
+  object-fit: contain;
   transition: transform 360ms ease;
 }
 
@@ -3290,7 +3304,7 @@ img {
   .project-drawing-slide img {
     width: 96vw;
     max-width: 96vw;
-    height: calc(100svh - 128px);
+    height: auto;
     max-height: calc(100svh - 128px);
   }
 

@@ -53,8 +53,8 @@ type SkillGroup = {
   items: SkillItem[];
 };
 
-const portfolioPdfUrl = publicPath("程志远作品集.pdf");
-const resumePdfUrl = publicPath("简历_程志远.pdf");
+const portfolioPdfUrl = publicPath("portfolio-preview.pdf");
+const resumePdfUrl = publicPath("resume.pdf");
 const practiceCardImages = {
   frontend: publicPath("assets/practice-cards/frontend-ui-tarot-card.png"),
   research: publicPath("assets/practice-cards/research-papers-tarot-card-v2.png"),
@@ -744,7 +744,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               <p className="project-cover-summary">{project.description}</p>
               <p className="project-cover-summary-en">{project.descriptionEn}</p>
             </div>
-            <div className={`project-cover-media${usesLandscapeTriptych ? " is-landscape-triptych" : ""}`} aria-label={`${project.title}项目媒体`}>
+            <div className={`project-cover-media project-cover-media-${project.number}${usesLandscapeTriptych ? " is-landscape-triptych" : ""}`} aria-label={`${project.title}项目媒体`}>
               {coverCards.map((card, index) =>
                 !card.src ? (
                   <div className={`project-cover-card project-cover-card-${card.size} is-placeholder`} aria-label={`${project.title}${card.label}占位`} key={card.label}>
@@ -1014,12 +1014,10 @@ function PdfPreviewModal({ open, onClose }: { open: boolean; onClose: () => void
             <header>
               <div><small>PORTFOLIO PREVIEW</small><strong>程志远作品集</strong></div>
               <nav>
-                <a href={portfolioPdfUrl} target="_blank" rel="noreferrer" title="新窗口打开"><ExternalLink size={18} /></a>
-                <a href={portfolioPdfUrl} download title="下载作品集"><Download size={18} /></a>
                 <button type="button" onClick={onClose} title="关闭"><X size={19} /></button>
               </nav>
             </header>
-            <iframe src={`${portfolioPdfUrl}#toolbar=1&navpanes=0&view=FitH`} title="程志远作品集 PDF" />
+            <iframe src={`${portfolioPdfUrl}#toolbar=0&navpanes=0&view=FitH`} title="程志远作品集 PDF" />
           </motion.div>
         </motion.div>
       ) : null}
