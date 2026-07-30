@@ -694,6 +694,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   ];
   const galleryImages = project.images.filter((src) => !coverCards.some((card) => card.src === src));
   const usesLandscapeTriptych = coverCards.length === 3 && coverCards.every((card) => card.size === "landscape");
+  const projectSplashImage = coverCards.find((card) => card.type === "image" && card.src)?.src ?? project.thumbnail;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
@@ -720,6 +721,33 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     <main className="project-detail-page">
       <div className="project-detail-scroll" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
         <motion.section
+          className="project-slide project-splash-slide"
+          initial={{ opacity: 0, scale: 1.025 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <img className="project-splash-image" src={projectSplashImage} alt={`${project.title}项目全屏封面`} />
+          <div className="project-splash-overlay" aria-hidden="true" />
+          <RouteLink className="project-return project-splash-return" to="/projects" navigate={navigate}>
+            <ChevronLeft size={18} />
+            <span><strong>全部项目</strong><small>ALL PROJECTS</small></span>
+          </RouteLink>
+          <div className="project-wordmark project-splash-wordmark">Project</div>
+          <div className="project-splash-content">
+            <span>{project.number} / SELECTED WORK</span>
+            <h1>{project.title}</h1>
+            <p>{project.titleEn}</p>
+            <a className="project-splash-enter" href="#project-profile">
+              <span>浏览项目</span>
+              <span>EXPLORE PROJECT</span>
+              <ArrowDown size={18} />
+            </a>
+          </div>
+          <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
+          <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
+        </motion.section>
+        <motion.section
+          id="project-profile"
           className="project-slide project-cover-slide"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
