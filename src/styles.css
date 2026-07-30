@@ -3030,6 +3030,13 @@ img {
   width: min(1320px, calc(100vw - 250px));
 }
 
+.project-cover-media-02 {
+  grid-template-columns: 1.38fr 0.84fr 1.3fr;
+  justify-self: center;
+  gap: clamp(24px, 2.8vw, 46px);
+  width: min(1320px, calc(100vw - 250px));
+}
+
 .project-cover-media-05 {
   grid-template-columns: 1.28fr 0.78fr 1.07fr;
   justify-self: center;

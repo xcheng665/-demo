@@ -106,7 +106,7 @@ export const projects: Project[] = [
     coverMedia: [
       { src: projectCover("项目2_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 2 - 0" },
       { src: projectCover("项目2_1.png"), type: "image", size: "portrait", aspectRatio: 1.33, label: "项目 2 - 1" },
-      { src: projectCover("项目2.jpg"), type: "image", size: "landscape", aspectRatio: 1.06, label: "项目 2" }
+      { src: projectCover("项目2_2.jpg"), type: "image", size: "landscape", aspectRatio: 1.52, label: "项目 2 - 2" }
     ],
     preludeMedia: [
       { src: projectCover("项目2_漫游动画.mp4"), type: "video", size: "landscape", label: "空间漫游" },
