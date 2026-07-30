@@ -692,6 +692,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     { type: "image" as const, size: "portrait" as const, label: "项目补充图片一" },
     { type: "image" as const, size: "landscape" as const, label: "项目补充图片二" }
   ];
+  const galleryImages = project.images.filter((src) => !coverCards.some((card) => card.src === src));
   const usesLandscapeTriptych = coverCards.length === 3 && coverCards.every((card) => card.size === "landscape");
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
@@ -724,7 +725,10 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
         >
-          <RouteLink className="project-return" to="/projects" navigate={navigate}><ChevronLeft size={15} /> ALL PROJECTS</RouteLink>
+          <RouteLink className="project-return" to="/projects" navigate={navigate}>
+            <ChevronLeft size={18} />
+            <span><strong>全部项目</strong><small>ALL PROJECTS</small></span>
+          </RouteLink>
           <div className="project-wordmark">Project</div>
           <div className="project-cover-content">
             <span className="project-cover-index">{project.number}</span>
@@ -747,14 +751,14 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
                     <span>{String(index + 1).padStart(2, "0")}</span>
                   </div>
                 ) : card.type === "video" ? (
-                  <div className={`project-cover-card project-cover-card-${card.size} project-cover-card-video`} aria-label={`${project.title}${card.label}`} key={card.label}>
+                  <div className={`project-cover-card project-cover-card-${card.size} project-cover-card-video`} style={{ aspectRatio: card.aspectRatio }} aria-label={`${project.title}${card.label}`} key={card.label}>
                     <video autoPlay loop muted playsInline preload="metadata" aria-label={`${project.title}${card.label}`}>
                       <source src={card.src} type="video/mp4" />
                     </video>
                     <span className="project-cover-video-label">{card.label}</span>
                   </div>
                 ) : (
-                  <a className={`project-cover-card project-cover-card-${card.size}`} href={card.src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}${card.label}`} key={card.label}>
+                  <a className={`project-cover-card project-cover-card-${card.size}`} style={{ aspectRatio: card.aspectRatio }} href={card.src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}${card.label}`} key={card.label}>
                     <img src={card.src} alt={`${project.title}${card.label}`} />
                   </a>
                 )
@@ -785,7 +789,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
             <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
           </motion.section>
         ))}
-        {project.images.slice(1).map((src, index) => (
+        {galleryImages.map((src, index) => (
           <motion.section
             className="project-slide project-drawing-slide"
             key={src}
@@ -794,9 +798,9 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
             viewport={{ amount: 0.58, once: true }}
             transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           >
-            <header><span>{String(index + 2).padStart(2, "0")} / {String(project.images.length).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
-            <a href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 2}张图纸`}>
-              <img src={src} alt={`${project.title}图纸 ${index + 2}`} loading="lazy" />
+            <header><span>{String(index + 1).padStart(2, "0")} / {String(galleryImages.length).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
+            <a href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 1}张图纸`}>
+              <img src={src} alt={`${project.title}图纸 ${index + 1}`} loading="lazy" />
             </a>
             <span className="project-drawing-page">{String(index + 1).padStart(2, "0")}</span>
             <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />

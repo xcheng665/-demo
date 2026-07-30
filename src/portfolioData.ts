@@ -8,6 +8,7 @@ export type CoverMedia = {
   src?: string;
   type: "image" | "video";
   size: "landscape" | "portrait";
+  aspectRatio?: number;
   label: string;
 };
 
@@ -63,11 +64,17 @@ export const projects: Project[] = [
     description: "项目回应三亚热带滨海气候与度假生活需求，以面向海景的公共轴线串联入口、庭院、客房与滨水活动空间。错动体量形成遮阳与通风界面，并通过灰空间和连续景观弱化建筑与自然之间的边界。",
     descriptionEn: "A climate-responsive resort organized by a public axis that links arrival, courtyards, guest rooms and the waterfront landscape.",
     thumbnail: projectCover("项目1.jpg"),
-    images: [projectCover("项目1_0.jpg"), projectCover("项目1_1.jpg"), projectCover("项目1_2.jpg")],
+    images: [
+      publicPath("assets/project-pages/page-04.jpg"),
+      publicPath("assets/project-pages/page-05.jpg"),
+      publicPath("assets/project-pages/page-06.jpg"),
+      publicPath("assets/project-pages/page-07.jpg"),
+      publicPath("assets/project-pages/page-08.jpg")
+    ],
     coverMedia: [
-      { src: projectCover("项目1_0.jpg"), type: "image", size: "landscape", label: "项目 1 - 0" },
-      { src: projectCover("项目1_1.jpg"), type: "image", size: "portrait", label: "项目 1 - 1" },
-      { src: projectCover("项目1_2.jpg"), type: "image", size: "landscape", label: "项目 1 - 2" }
+      { src: projectCover("项目1_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.79, label: "项目 1 - 0" },
+      { src: projectCover("项目1_1.jpg"), type: "image", size: "portrait", aspectRatio: 1.32, label: "项目 1 - 1" },
+      { src: projectCover("项目1_2.jpg"), type: "image", size: "landscape", aspectRatio: 2.14, label: "项目 1 - 2" }
     ],
     squares: [
       { x: 5, y: 30, size: 16 },
@@ -88,11 +95,18 @@ export const projects: Project[] = [
     description: "设计以社区共享和步行可达为核心，将邻里服务、休闲活动与绿色庭院叠合为开放的公共客厅。建筑首层保持通透，屋顶与退台转化为可使用的立体花园，建立全天候的社区交往网络。",
     descriptionEn: "A walkable neighborhood hub that layers community services, shared rooms and accessible green terraces.",
     thumbnail: projectCover("项目2.jpg"),
-    images: [projectCover("项目2_0.jpg"), projectCover("项目2_1.png"), projectCover("项目2.jpg")],
+    images: [
+      publicPath("assets/project-pages/page-09.jpg"),
+      publicPath("assets/project-pages/page-10.jpg"),
+      publicPath("assets/project-pages/page-11.jpg"),
+      publicPath("assets/project-pages/page-12.jpg"),
+      publicPath("assets/project-pages/page-13.jpg"),
+      publicPath("assets/project-pages/page-14.jpg")
+    ],
     coverMedia: [
-      { src: projectCover("项目2_0.jpg"), type: "image", size: "landscape", label: "项目 2 - 0" },
-      { src: projectCover("项目2_1.png"), type: "image", size: "portrait", label: "项目 2 - 1" },
-      { src: projectCover("项目2.jpg"), type: "image", size: "landscape", label: "项目 2" }
+      { src: projectCover("项目2_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 2 - 0" },
+      { src: projectCover("项目2_1.png"), type: "image", size: "portrait", aspectRatio: 1.33, label: "项目 2 - 1" },
+      { src: projectCover("项目2.jpg"), type: "image", size: "landscape", aspectRatio: 1.06, label: "项目 2" }
     ],
     preludeMedia: [
       { src: projectCover("项目2_漫游动画.mp4"), type: "video", size: "landscape", label: "空间漫游" },
@@ -116,11 +130,16 @@ export const projects: Project[] = [
     description: "项目从海南黎锦纹样与在地聚落中提取空间秩序，将展览、教育和城市公共活动编织进连续的参观路径。首层向城市开放，层层递进的庭院与天光空间营造具有地域记忆的博物馆体验。",
     descriptionEn: "A civic museum shaped by Li brocade patterns, layered courtyards and a continuous public exhibition route.",
     thumbnail: projectCover("项目3.jpg"),
-    images: [projectCover("项目3_0.jpg"), projectCover("项目3_1.jpg"), projectCover("项目3_2.jpg")],
+    images: [
+      publicPath("assets/project-pages/page-15.jpg"),
+      publicPath("assets/project-pages/page-16.jpg"),
+      publicPath("assets/project-pages/page-17.jpg"),
+      publicPath("assets/project-pages/page-18.jpg")
+    ],
     coverMedia: [
-      { src: projectCover("项目3_0.jpg"), type: "image", size: "landscape", label: "项目 3 - 0" },
-      { src: projectCover("项目3_1.jpg"), type: "image", size: "portrait", label: "项目 3 - 1" },
-      { src: projectCover("项目3_2.jpg"), type: "image", size: "landscape", label: "项目 3 - 2" }
+      { src: projectCover("项目3_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.55, label: "项目 3 - 0" },
+      { src: projectCover("项目3_1.jpg"), type: "image", size: "portrait", aspectRatio: 1.79, label: "项目 3 - 1" },
+      { src: projectCover("项目3_2.jpg"), type: "image", size: "landscape", aspectRatio: 0.75, label: "项目 3 - 2" }
     ],
     squares: [
       { x: 4, y: 24, size: 16 },
@@ -140,11 +159,16 @@ export const projects: Project[] = [
     description: "方案以“绿脉生长”为城市结构，将生态廊道、慢行系统和复合功能组织为可持续扩展的公园型综合体。建筑体量顺应公共绿轴展开，在不同标高连接商业、文化、办公与社区生活。",
     descriptionEn: "A park-oriented mixed-use district where ecological corridors and pedestrian networks guide phased urban growth.",
     thumbnail: projectCover("项目4.jpg"),
-    images: [projectCover("项目4_0.jpg"), projectCover("项目4_1.jpg"), projectCover("项目4_2.jpg")],
+    images: [
+      publicPath("assets/project-pages/page-19.jpg"),
+      publicPath("assets/project-pages/page-20.jpg"),
+      publicPath("assets/project-pages/page-21.jpg"),
+      publicPath("assets/project-pages/page-22.jpg")
+    ],
     coverMedia: [
-      { src: projectCover("项目4_0.jpg"), type: "image", size: "landscape", label: "项目 4 - 0" },
-      { src: projectCover("项目4_1.jpg"), type: "image", size: "portrait", label: "项目 4 - 1" },
-      { src: projectCover("项目4_2.jpg"), type: "image", size: "landscape", label: "项目 4 - 2" }
+      { src: projectCover("项目4_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.53, label: "项目 4 - 0" },
+      { src: projectCover("项目4_1.jpg"), type: "image", size: "portrait", aspectRatio: 1.1, label: "项目 4 - 1" },
+      { src: projectCover("项目4_2.jpg"), type: "image", size: "landscape", aspectRatio: 1.87, label: "项目 4 - 2" }
     ],
     squares: [
       { x: 82, y: 26, size: 14 },
@@ -163,12 +187,20 @@ export const projects: Project[] = [
     year: "2022",
     description: "本组收录建筑技术、数字建模、视觉表达与艺术实践，呈现从手工观察到计算工具的多种工作方式。不同媒介共同服务于空间理解、构造研究和设计沟通。",
     descriptionEn: "A collection of technical studies, digital models and visual experiments spanning handcraft and computation.",
-    thumbnail: projectCover("项目5.jpg"),
-    images: [projectCover("项目5_1.jpg"), projectCover("项目5_2.jpg"), projectCover("项目5_3.jpg")],
+    thumbnail: projectCover("项目5-首页封面.png"),
+    images: [
+      publicPath("assets/project-pages/page-23.jpg"),
+      publicPath("assets/project-pages/page-24.jpg"),
+      publicPath("assets/project-pages/page-25.jpg"),
+      publicPath("assets/project-pages/page-26.jpg"),
+      publicPath("assets/project-pages/page-27.jpg"),
+      publicPath("assets/project-pages/page-28.jpg"),
+      publicPath("assets/project-pages/page-29.jpg")
+    ],
     coverMedia: [
-      { src: projectCover("项目5_1.jpg"), type: "image", size: "landscape", label: "项目 5 - 1" },
-      { src: projectCover("项目5_2.jpg"), type: "image", size: "portrait", label: "项目 5 - 2" },
-      { src: projectCover("项目5_3.jpg"), type: "image", size: "landscape", label: "项目 5 - 3" }
+      { src: projectCover("项目5_1.jpg"), type: "image", size: "landscape", aspectRatio: 1.69, label: "项目 5 - 1" },
+      { src: projectCover("项目5_2.jpg"), type: "image", size: "portrait", aspectRatio: 1.41, label: "项目 5 - 2" },
+      { src: projectCover("项目5_3.jpg"), type: "image", size: "landscape", aspectRatio: 1.77, label: "项目 5 - 3" }
     ],
     squares: [
       { x: 6, y: 20, size: 14 },
