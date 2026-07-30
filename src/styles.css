@@ -3076,7 +3076,7 @@ img {
 .project-drawing-slide {
   display: grid;
   grid-template-rows: auto 1fr auto;
-  padding: 24px 5vw 22px;
+  padding: clamp(14px, 2vh, 24px) clamp(20px, 2.6vw, 54px) 14px;
 }
 
 .project-drawing-slide > header {
@@ -3094,13 +3094,15 @@ img {
   display: grid;
   place-items: center;
   min-height: 0;
-  padding: 4vh 6vw;
+  padding: clamp(8px, 1.5vh, 18px) clamp(6px, 1.2vw, 24px);
 }
 
 .project-drawing-slide img {
   display: block;
-  width: min(76vw, 1280px);
-  height: min(68svh, 760px);
+  width: auto;
+  max-width: 94vw;
+  height: min(calc(100svh - 96px), 1100px);
+  max-height: 100%;
   border: 1px solid var(--line);
   background: var(--paper-strong);
   box-shadow: 0 20px 44px rgba(56, 45, 25, 0.16), 0 4px 10px rgba(56, 45, 25, 0.08);
@@ -3201,7 +3203,7 @@ img {
   }
 
   .project-drawing-slide {
-    padding: 18px 20px;
+    padding: 14px 12px 10px;
   }
 
   .project-drawing-slide > header {
@@ -3209,11 +3211,13 @@ img {
   }
 
   .project-drawing-slide > a {
-    padding: 30px 0;
+    padding: 16px 0;
   }
 
   .project-drawing-slide img {
-    width: 88vw;
-    height: 62svh;
+    width: 96vw;
+    max-width: 96vw;
+    height: auto;
+    max-height: calc(100svh - 128px);
   }
 }
