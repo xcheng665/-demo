@@ -650,12 +650,10 @@ function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
 }
 
 function ProjectIndexCard({ project, navigate }: { project: Project; navigate: (to: RoutePath) => void }) {
-  const indexCover = project.coverMedia?.[0]?.src ?? project.images[0];
-
   return (
     <RouteLink className="project-index-card" to={projectRoute(project)} navigate={navigate} aria-label={`查看项目：${project.title}`}>
       <figure>
-        <img src={indexCover} alt={`${project.title}项目封面`} />
+        <img src={project.thumbnail} alt={`${project.title}项目封面`} />
         <span>VIEW PROJECT <ArrowRight size={15} /></span>
       </figure>
       <div>
@@ -738,7 +736,10 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               <span>{project.year}</span>
               <span>程志远</span>
             </div>
-            <p className="project-cover-summary">{project.description}</p>
+            <div className="project-cover-description">
+              <p className="project-cover-summary">{project.description}</p>
+              <p className="project-cover-summary-en">{project.descriptionEn}</p>
+            </div>
             <div className={`project-cover-media${usesLandscapeTriptych ? " is-landscape-triptych" : ""}`} aria-label={`${project.title}项目媒体`}>
               {coverCards.map((card, index) =>
                 !card.src ? (
@@ -764,6 +765,26 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
           <span className="project-scroll-hint">SCROLL FOR DRAWINGS</span>
         </motion.section>
+        {project.preludeMedia?.map((media, index) => (
+          <motion.section
+            className="project-slide project-video-slide"
+            key={media.src}
+            initial={{ opacity: 0, scale: 0.985 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ amount: 0.58, once: true }}
+            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <header><span>VIDEO {String(index + 1).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
+            <div className="project-video-stage">
+              <video autoPlay loop muted playsInline controls aria-label={`${project.title}${media.label}`}>
+                <source src={media.src} type="video/mp4" />
+              </video>
+              <span>{media.label}</span>
+            </div>
+            <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
+            <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
+          </motion.section>
+        ))}
         {project.images.slice(1).map((src, index) => (
           <motion.section
             className="project-slide project-drawing-slide"
