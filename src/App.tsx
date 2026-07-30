@@ -53,8 +53,8 @@ type SkillGroup = {
   items: SkillItem[];
 };
 
-const portfolioPdfUrl = publicPath("程志远作品集.pdf");
-const resumePdfUrl = publicPath("简历_程志远.pdf");
+const portfolioPdfUrl = publicPath("portfolio-preview.pdf");
+const resumePdfUrl = publicPath("resume.pdf");
 const practiceCardImages = {
   frontend: publicPath("assets/practice-cards/frontend-ui-tarot-card.png"),
   research: publicPath("assets/practice-cards/research-papers-tarot-card-v2.png"),
@@ -650,12 +650,10 @@ function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
 }
 
 function ProjectIndexCard({ project, navigate }: { project: Project; navigate: (to: RoutePath) => void }) {
-  const indexCover = project.coverMedia?.[0]?.src ?? project.images[0];
-
   return (
     <RouteLink className="project-index-card" to={projectRoute(project)} navigate={navigate} aria-label={`查看项目：${project.title}`}>
       <figure>
-        <img src={indexCover} alt={`${project.title}项目封面`} />
+        <img src={project.thumbnail} alt={`${project.title}项目封面`} />
         <span>VIEW PROJECT <ArrowRight size={15} /></span>
       </figure>
       <div>
@@ -694,6 +692,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     { type: "image" as const, size: "portrait" as const, label: "项目补充图片一" },
     { type: "image" as const, size: "landscape" as const, label: "项目补充图片二" }
   ];
+  const galleryImages = project.images.filter((src) => !coverCards.some((card) => card.src === src));
   const usesLandscapeTriptych = coverCards.length === 3 && coverCards.every((card) => card.size === "landscape");
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
@@ -726,7 +725,10 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
         >
-          <RouteLink className="project-return" to="/projects" navigate={navigate}><ChevronLeft size={15} /> ALL PROJECTS</RouteLink>
+          <RouteLink className="project-return" to="/projects" navigate={navigate}>
+            <ChevronLeft size={18} />
+            <span><strong>全部项目</strong><small>ALL PROJECTS</small></span>
+          </RouteLink>
           <div className="project-wordmark">Project</div>
           <div className="project-cover-content">
             <span className="project-cover-index">{project.number}</span>
@@ -738,22 +740,25 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               <span>{project.year}</span>
               <span>程志远</span>
             </div>
-            <p className="project-cover-summary">{project.description}</p>
-            <div className={`project-cover-media${usesLandscapeTriptych ? " is-landscape-triptych" : ""}`} aria-label={`${project.title}项目媒体`}>
+            <div className="project-cover-description">
+              <p className="project-cover-summary">{project.description}</p>
+              <p className="project-cover-summary-en">{project.descriptionEn}</p>
+            </div>
+            <div className={`project-cover-media project-cover-media-${project.number}${usesLandscapeTriptych ? " is-landscape-triptych" : ""}`} aria-label={`${project.title}项目媒体`}>
               {coverCards.map((card, index) =>
                 !card.src ? (
                   <div className={`project-cover-card project-cover-card-${card.size} is-placeholder`} aria-label={`${project.title}${card.label}占位`} key={card.label}>
                     <span>{String(index + 1).padStart(2, "0")}</span>
                   </div>
                 ) : card.type === "video" ? (
-                  <div className={`project-cover-card project-cover-card-${card.size} project-cover-card-video`} aria-label={`${project.title}${card.label}`} key={card.label}>
+                  <div className={`project-cover-card project-cover-card-${card.size} project-cover-card-video`} style={{ aspectRatio: card.aspectRatio }} aria-label={`${project.title}${card.label}`} key={card.label}>
                     <video autoPlay loop muted playsInline preload="metadata" aria-label={`${project.title}${card.label}`}>
                       <source src={card.src} type="video/mp4" />
                     </video>
                     <span className="project-cover-video-label">{card.label}</span>
                   </div>
                 ) : (
-                  <a className={`project-cover-card project-cover-card-${card.size}`} href={card.src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}${card.label}`} key={card.label}>
+                  <a className={`project-cover-card project-cover-card-${card.size}`} style={{ aspectRatio: card.aspectRatio }} href={card.src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}${card.label}`} key={card.label}>
                     <img src={card.src} alt={`${project.title}${card.label}`} />
                   </a>
                 )
@@ -764,7 +769,27 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
           <span className="project-scroll-hint">SCROLL FOR DRAWINGS</span>
         </motion.section>
-        {project.images.slice(1).map((src, index) => (
+        {project.preludeMedia?.map((media, index) => (
+          <motion.section
+            className="project-slide project-video-slide"
+            key={media.src}
+            initial={{ opacity: 0, scale: 0.985 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ amount: 0.58, once: true }}
+            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <header><span>VIDEO {String(index + 1).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
+            <div className="project-video-stage">
+              <video autoPlay loop muted playsInline controls aria-label={`${project.title}${media.label}`}>
+                <source src={media.src} type="video/mp4" />
+              </video>
+              <span>{media.label}</span>
+            </div>
+            <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
+            <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
+          </motion.section>
+        ))}
+        {galleryImages.map((src, index) => (
           <motion.section
             className="project-slide project-drawing-slide"
             key={src}
@@ -773,9 +798,9 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
             viewport={{ amount: 0.58, once: true }}
             transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           >
-            <header><span>{String(index + 2).padStart(2, "0")} / {String(project.images.length).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
-            <a href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 2}张图纸`}>
-              <img src={src} alt={`${project.title}图纸 ${index + 2}`} loading="lazy" />
+            <header><span>{String(index + 1).padStart(2, "0")} / {String(galleryImages.length).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
+            <a href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 1}张图纸`}>
+              <img src={src} alt={`${project.title}图纸 ${index + 1}`} loading="lazy" />
             </a>
             <span className="project-drawing-page">{String(index + 1).padStart(2, "0")}</span>
             <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
@@ -989,12 +1014,10 @@ function PdfPreviewModal({ open, onClose }: { open: boolean; onClose: () => void
             <header>
               <div><small>PORTFOLIO PREVIEW</small><strong>程志远作品集</strong></div>
               <nav>
-                <a href={portfolioPdfUrl} target="_blank" rel="noreferrer" title="新窗口打开"><ExternalLink size={18} /></a>
-                <a href={portfolioPdfUrl} download title="下载作品集"><Download size={18} /></a>
                 <button type="button" onClick={onClose} title="关闭"><X size={19} /></button>
               </nav>
             </header>
-            <iframe src={`${portfolioPdfUrl}#toolbar=1&navpanes=0&view=FitH`} title="程志远作品集 PDF" />
+            <iframe src={`${portfolioPdfUrl}#toolbar=0&navpanes=0&view=FitH`} title="程志远作品集 PDF" />
           </motion.div>
         </motion.div>
       ) : null}
