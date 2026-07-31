@@ -629,7 +629,7 @@ function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <span>ABOUT ME</span>
-          <h1>建筑设计，是我理解<br />场地与人的方式。</h1>
+          <h1>建筑技术，是我理解<br />场地与人的方式。</h1>
           <p>我是程志远，海南大学土木建筑工程学院建筑学专业学生。我的设计与研究关注在地性、气候适应、绿色建筑性能与数字工具的结合。</p>
           <p>我希望把建筑设计、BIM、参数化流程和 Python 数据分析放在同一条工作链中，让空间判断既有感受，也有证据。</p>
           <dl className="about-facts">
