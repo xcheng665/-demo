@@ -3142,7 +3142,10 @@ img {
   left: 38px;
   display: inline-flex;
   align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
   gap: 8px;
+  min-width: 142px;
   padding: 10px 13px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 14px;
@@ -3169,7 +3172,13 @@ img {
 .project-return span {
   display: grid;
   gap: 2px;
+  min-width: 0;
   line-height: 1.08;
+  white-space: nowrap;
+}
+
+.project-return > svg {
+  flex: none;
 }
 
 .project-return strong {
