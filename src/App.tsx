@@ -693,6 +693,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     { type: "image" as const, size: "landscape" as const, label: "项目补充图片二" }
   ];
   const galleryImages = project.images.filter((src) => !coverCards.some((card) => card.src === src));
+  const closingMedia = project.closingMedia ?? [];
   const usesLandscapeTriptych = coverCards.length === 3 && coverCards.every((card) => card.size === "landscape");
   const projectSplashImage = coverCards.find((card) => card.type === "image" && card.src)?.src ?? project.thumbnail;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
@@ -844,7 +845,20 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           >
             <header><span>VIDEO {String(index + 1).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
             <div className="project-video-stage">
-              <video autoPlay loop muted controls playsInline preload="metadata" aria-label={`${project.title}${media.label}`}>
+              <video
+                autoPlay
+                loop
+                muted
+                controls
+                playsInline
+                preload="metadata"
+                aria-label={`${project.title}${media.label}`}
+                onTimeUpdate={media.clipEndSeconds ? (event) => {
+                  if (event.currentTarget.currentTime >= media.clipEndSeconds!) {
+                    event.currentTarget.currentTime = 0;
+                  }
+                } : undefined}
+              >
                 <source src={media.src} type="video/mp4" />
               </video>
               <span>{media.label}</span>
@@ -867,6 +881,47 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               <img src={src} alt={`${project.title}图纸 ${index + 1}`} loading="lazy" />
             </a>
             <span className="project-drawing-page">{String(index + 1).padStart(2, "0")}</span>
+            <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
+            <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
+            </motion.section>
+        ))}
+        {closingMedia.map((media, index) => (
+          <motion.section
+            className="project-slide project-closing-slide"
+            key={media.src ?? media.label}
+            initial={{ opacity: 0, scale: 0.985 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ amount: 0.58, once: true }}
+            transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <header><span>END / {String(index + 1).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
+            <div className="project-closing-content">
+              <div className="project-closing-video">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  controls
+                  playsInline
+                  preload="metadata"
+                  aria-label={`${project.title}${media.label}`}
+                >
+                  <source src={media.src} type="video/mp4" />
+                </video>
+                <span>{media.label}</span>
+              </div>
+              <div className="project-closing-copy">
+                <span className="project-closing-eyebrow">SPACE WALKTHROUGH</span>
+                <h2>{project.title}</h2>
+                <p className="project-closing-title-en">{project.titleEn}</p>
+                <p>{project.description}</p>
+                <p className="project-closing-copy-en">{project.descriptionEn}</p>
+                <div className="project-closing-meta">
+                  <span>{project.category}</span>
+                  <span>{project.year}</span>
+                </div>
+              </div>
+            </div>
             <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
             <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
           </motion.section>

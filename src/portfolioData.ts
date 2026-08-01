@@ -9,6 +9,7 @@ export type CoverMedia = {
   type: "image" | "video";
   size: "landscape" | "portrait";
   aspectRatio?: number;
+  clipEndSeconds?: number;
   label: string;
 };
 
@@ -25,6 +26,7 @@ export type Project = {
   images: string[];
   coverMedia?: CoverMedia[];
   preludeMedia?: CoverMedia[];
+  closingMedia?: CoverMedia[];
   squares: SquareSpec[];
 };
 
@@ -109,8 +111,10 @@ export const projects: Project[] = [
       { src: projectCover("项目2_2.jpg"), type: "image", size: "landscape", aspectRatio: 1.52, label: "项目 2 - 2" }
     ],
     preludeMedia: [
-      { src: projectCover("项目2_漫游动画.mp4"), type: "video", size: "landscape", label: "空间漫游" },
-      { src: projectCover("项目2_生长动画.mp4"), type: "video", size: "landscape", label: "生长动画" }
+      { src: projectCover("项目2_生长动画.mp4"), type: "video", size: "landscape", clipEndSeconds: 15, label: "生长动画" }
+    ],
+    closingMedia: [
+      { src: projectCover("项目2_漫游动画.mp4"), type: "video", size: "landscape", label: "空间漫游" }
     ],
     squares: [
       { x: 82, y: 55, size: 16 },
