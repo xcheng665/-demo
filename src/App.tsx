@@ -25,7 +25,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import type { AnchorHTMLAttributes, CSSProperties, SyntheticEvent, TouchEvent } from "react";
+import type { AnchorHTMLAttributes, CSSProperties, KeyboardEvent as ReactKeyboardEvent, SyntheticEvent, TouchEvent, WheelEvent as ReactWheelEvent } from "react";
 import { AiChat } from "./components/AiChat";
 import { projects, publicPath, services } from "./portfolioData";
 import type { Project } from "./portfolioData";
@@ -696,6 +696,33 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   const usesLandscapeTriptych = coverCards.length === 3 && coverCards.every((card) => card.size === "landscape");
   const projectSplashImage = coverCards.find((card) => card.type === "image" && card.src)?.src ?? project.thumbnail;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const detailScrollRef = useRef<HTMLDivElement>(null);
+
+  const handleDetailWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
+    if (!window.matchMedia("(min-width: 761px)").matches) return;
+
+    const container = event.currentTarget;
+    const delta = Math.abs(event.deltaY) >= Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+    if (!delta) return;
+
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    const nextScrollLeft = Math.max(0, Math.min(maxScrollLeft, container.scrollLeft + delta));
+    if (nextScrollLeft === container.scrollLeft) return;
+
+    event.preventDefault();
+    container.scrollLeft = nextScrollLeft;
+  };
+
+  const handleDetailKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
+    if (!window.matchMedia("(min-width: 761px)").matches) return;
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+
+    event.preventDefault();
+    event.currentTarget.scrollBy({
+      left: event.key === "ArrowRight" ? event.currentTarget.clientWidth : -event.currentTarget.clientWidth,
+      behavior: "smooth"
+    });
+  };
 
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
     const touch = event.touches[0];
@@ -719,7 +746,16 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
 
   return (
     <main className="project-detail-page">
-      <div className="project-detail-scroll" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+      <div
+        className="project-detail-scroll"
+        ref={detailScrollRef}
+        tabIndex={0}
+        aria-label={`${project.title}项目详情横向浏览区域`}
+        onWheel={handleDetailWheel}
+        onKeyDown={handleDetailKeyDown}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <motion.section
           className="project-slide project-splash-slide"
           initial={{ opacity: 0, scale: 1.025 }}

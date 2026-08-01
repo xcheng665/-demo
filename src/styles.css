@@ -2803,14 +2803,19 @@ img {
 
 .project-detail-scroll {
   height: 100%;
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
 }
 
 .project-detail-scroll::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 .project-detail-scroll::-webkit-scrollbar-thumb {
@@ -2821,6 +2826,9 @@ img {
 
 .project-slide {
   position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
   min-height: 100svh;
   height: 100svh;
   scroll-snap-align: start;
@@ -3350,6 +3358,25 @@ img {
 }
 
 @media (max-width: 760px) {
+  .project-detail-scroll {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-x: auto;
+    overscroll-behavior-y: contain;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+  }
+
+  .project-detail-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .project-slide {
+    width: 100%;
+    min-width: 0;
+  }
+
   .project-splash-content {
     width: calc(100% - 48px);
     margin: 0 24px 88px;
