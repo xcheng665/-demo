@@ -269,6 +269,10 @@ img {
   background: var(--paper);
 }
 
+.home-hero {
+  isolation: isolate;
+}
+
 .home-background {
   position: absolute;
   z-index: -2;
@@ -281,7 +285,7 @@ img {
   opacity: 0.5;
 }
 
-.home-page::after {
+.home-hero::after {
   position: absolute;
   z-index: -1;
   inset: 0;
@@ -696,6 +700,115 @@ img {
   border: 0;
   border-radius: 14px;
   background: transparent;
+}
+
+.home-project-preview {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.76fr) minmax(0, 1.24fr);
+  align-items: center;
+  gap: clamp(44px, 8vw, 150px);
+  min-height: 100dvh;
+  padding: clamp(96px, 10vh, 132px) max(7vw, calc((100vw - 1340px) / 2)) clamp(72px, 8vh, 110px);
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 88% 18%, rgba(154, 173, 128, 0.22), transparent 25%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.58), transparent 48%),
+    var(--paper);
+}
+
+.home-project-preview::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(transparent, var(--line), transparent);
+  content: "";
+  opacity: 0.72;
+}
+
+.home-project-preview-copy,
+.home-project-preview-media {
+  position: relative;
+  z-index: 1;
+}
+
+.home-project-preview-copy {
+  max-width: 430px;
+}
+
+.home-project-preview-index,
+.home-project-preview-kicker,
+.home-project-preview-media figcaption,
+.home-project-preview-scroll {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.home-project-preview-index {
+  display: inline-flex;
+  color: var(--accent);
+}
+
+.home-project-preview-kicker {
+  margin: 34px 0 12px;
+  color: var(--muted);
+}
+
+.home-project-preview-copy h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5.4vw, 88px);
+  font-weight: 800;
+  letter-spacing: -0.075em;
+  line-height: 1.04;
+}
+
+.home-project-preview-copy > p:not(.home-project-preview-kicker) {
+  max-width: 360px;
+  margin: 30px 0 34px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.home-project-preview-media {
+  width: min(100%, 900px);
+  margin: 0;
+  padding: clamp(8px, 1vw, 14px);
+  border: 1px solid rgba(106, 101, 88, 0.3);
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 26px 58px rgba(57, 48, 31, 0.17), 0 4px 12px rgba(57, 48, 31, 0.08);
+}
+
+.home-project-preview-media video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #1f211b;
+  object-fit: cover;
+}
+
+.home-project-preview-media figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 4px 1px;
+  color: var(--muted);
+}
+
+.home-project-preview-scroll {
+  position: absolute;
+  right: max(7vw, calc((100vw - 1340px) / 2));
+  bottom: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--accent);
 }
 
 .resume-profile-top small,
@@ -2115,6 +2228,58 @@ img {
   .home-intro {
     top: 30%;
     width: calc(100% - 32px);
+  }
+
+  .home-project-preview {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 34px;
+    min-height: 100svh;
+    padding: 84px 24px 70px;
+  }
+
+  .home-project-preview::before {
+    top: 48%;
+    right: 24px;
+    bottom: auto;
+    left: 24px;
+    width: auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line), transparent);
+  }
+
+  .home-project-preview-copy {
+    max-width: 520px;
+  }
+
+  .home-project-preview-kicker {
+    margin: 20px 0 8px;
+    font-size: 8px;
+  }
+
+  .home-project-preview-copy h2 {
+    font-size: clamp(42px, 13vw, 62px);
+  }
+
+  .home-project-preview-copy > p:not(.home-project-preview-kicker) {
+    margin: 20px 0 24px;
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .home-project-preview-media {
+    max-width: 560px;
+  }
+
+  .home-project-preview-media figcaption {
+    padding-top: 9px;
+    font-size: 8px;
+  }
+
+  .home-project-preview-scroll {
+    right: 24px;
+    bottom: 24px;
+    font-size: 8px;
   }
 
   .home-kicker {

@@ -479,35 +479,59 @@ function PageControls({
 
 function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
   return (
-    <main className="home-page page-screen">
-      <img className="home-background" src={publicPath("assets/home-architecture-collage.png")} alt="建筑设计与表达拼贴" />
-      <div className="home-perimeter-glow" aria-hidden="true" />
-      <SiteHeader current="/" navigate={navigate} />
-      <motion.section
-        className="home-intro"
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <span className="home-kicker">ARCHITECTURE · COMPUTATION · RESEARCH</span>
-        <h1>程志远</h1>
-        <p className="home-formula"><span>ARCHITECTURE</span> + DATA = SPATIAL PRACTICE</p>
-        <p className="home-identity">CHENG ZHIYUAN <i /> 海南 · HAINAN</p>
-        <div className="home-actions">
-          <RouteLink className="primary-action" to="/projects" navigate={navigate}>
-            查看作品集 <ArrowRight size={18} />
-          </RouteLink>
-          <RouteLink className="text-action" to="/contact" navigate={navigate}>
-            联系方式 <ChevronRight size={17} />
+    <main className="home-page">
+      <section className="home-hero page-screen">
+        <img className="home-background" src={publicPath("assets/home-architecture-collage.png")} alt="建筑设计与表达拼贴" />
+        <div className="home-perimeter-glow" aria-hidden="true" />
+        <SiteHeader current="/" navigate={navigate} />
+        <motion.section
+          className="home-intro"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className="home-kicker">ARCHITECTURE · COMPUTATION · RESEARCH</span>
+          <h1>程志远</h1>
+          <p className="home-formula"><span>ARCHITECTURE</span> + DATA = SPATIAL PRACTICE</p>
+          <p className="home-identity">CHENG ZHIYUAN <i /> 海南 · HAINAN</p>
+          <div className="home-actions">
+            <RouteLink className="primary-action" to="/projects" navigate={navigate}>
+              查看作品集 <ArrowRight size={18} />
+            </RouteLink>
+            <RouteLink className="text-action" to="/contact" navigate={navigate}>
+              联系方式 <ChevronRight size={17} />
+            </RouteLink>
+          </div>
+        </motion.section>
+        <div className="home-discipline-strip">
+          建筑设计 <i /> 绿色模拟 <i /> BIM 可视化 <i /> 参数化设计 <i /> Python 研究
+        </div>
+        <div className="availability"><Circle size={10} fill="currentColor" /> OPEN TO 2026 OPPORTUNITIES</div>
+        <PageControls next="/abilities" navigate={navigate} />
+        <PageRail current="/" navigate={navigate} />
+      </section>
+
+      <section className="home-project-preview" aria-labelledby="home-project-preview-title">
+        <div className="home-project-preview-copy">
+          <span className="home-project-preview-index">01 / PROJECT DETAIL</span>
+          <p className="home-project-preview-kicker">CONTINUOUS PROJECT READING</p>
+          <h2 id="home-project-preview-title">从项目详情，<br />进入设计叙事。</h2>
+          <p>
+            以连续切换的版面阅读方式，呈现「山海 · 绿境」从项目概览、场地策略到完整图纸的设计过程。
+          </p>
+          <RouteLink className="primary-action" to="/projects/01" navigate={navigate}>
+            打开所在项目 <ArrowRight size={18} />
           </RouteLink>
         </div>
-      </motion.section>
-      <div className="home-discipline-strip">
-        建筑设计 <i /> 绿色模拟 <i /> BIM 可视化 <i /> 参数化设计 <i /> Python 研究
-      </div>
-      <div className="availability"><Circle size={10} fill="currentColor" /> OPEN TO 2026 OPPORTUNITIES</div>
-      <PageControls next="/abilities" navigate={navigate} />
-      <PageRail current="/" navigate={navigate} />
+        <figure className="home-project-preview-media">
+          <video controls autoPlay loop muted playsInline preload="metadata" aria-label="山海绿境项目详情页滚动演示">
+            <source src={publicPath("assets/home-project-detail-scroll-preview.mp4")} type="video/mp4" />
+            您的浏览器不支持视频播放。
+          </video>
+          <figcaption><span>DETAIL READER / 01</span><span>SCROLL PREVIEW</span></figcaption>
+        </figure>
+        <span className="home-project-preview-scroll" aria-hidden="true">SCROLL TO EXPLORE <ArrowDown size={14} /></span>
+      </section>
     </main>
   );
 }
