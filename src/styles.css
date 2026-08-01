@@ -2797,7 +2797,8 @@ img {
 .project-detail-page {
   height: 100svh;
   padding-bottom: 0;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   background: var(--paper);
 }
 
@@ -2805,11 +2806,14 @@ img {
   height: 100%;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  gap: clamp(18px, 2vw, 34px);
+  padding: 36px clamp(24px, 4vw, 72px);
   overflow-x: auto;
   overflow-y: hidden;
   overscroll-behavior-x: contain;
   scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: none;
   scrollbar-width: thin;
 }
 
@@ -2826,16 +2830,38 @@ img {
 
 .project-slide {
   position: relative;
-  flex: 0 0 100%;
-  width: 100%;
-  min-width: 100%;
-  min-height: 100svh;
-  height: 100svh;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+  flex: 0 0 min(78vw, 1120px);
+  width: min(78vw, 1120px);
+  min-width: min(78vw, 1120px);
+  min-height: calc(100svh - 72px);
+  height: calc(100svh - 72px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--paper-strong);
+  box-shadow: 0 18px 36px rgba(56, 45, 25, 0.12), 0 3px 8px rgba(56, 45, 25, 0.06);
+}
+
+.project-cover-slide {
+  flex-basis: min(88vw, 1240px);
+  width: min(88vw, 1240px);
+  min-width: min(88vw, 1240px);
+}
+
+.project-cover-content {
+  min-height: 0;
+  height: 100%;
 }
 
 .project-splash-slide {
+  flex: none;
+  width: 100%;
+  min-width: 0;
+  min-height: 100svh;
+  height: 100svh;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   isolation: isolate;
   display: grid;
   overflow: hidden;
@@ -2961,6 +2987,11 @@ img {
 
 .project-cover-slide {
   padding: 38px 9vw 34px;
+}
+
+.project-detail-scroll .project-cover-content {
+  min-height: 0;
+  height: 100%;
 }
 
 .project-return {
@@ -3469,10 +3500,16 @@ img {
 }
 
 @media (max-width: 760px) {
-  .project-detail-scroll {
-    display: block;
-    overflow-x: hidden;
+  .project-detail-page {
     overflow-y: auto;
+  }
+
+  .project-detail-scroll {
+    height: auto;
+    min-height: 100svh;
+    display: block;
+    padding: 0;
+    overflow: visible;
     overscroll-behavior-x: auto;
     overscroll-behavior-y: contain;
     scroll-snap-type: y mandatory;
@@ -3484,8 +3521,24 @@ img {
   }
 
   .project-slide {
+    flex: none;
     width: 100%;
     min-width: 0;
+    min-height: 100svh;
+    height: auto;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .project-cover-slide {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .project-detail-scroll .project-cover-content {
+    height: auto;
   }
 
   .project-splash-content {

@@ -725,6 +725,61 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     });
   };
 
+  useEffect(() => {
+    const container = detailScrollRef.current;
+    if (!container) return;
+
+    let animationFrame = 0;
+    let lastTimestamp = performance.now();
+    let paused = false;
+    let visible = false;
+    const scrollSpeed = 28;
+    const mediaQuery = window.matchMedia("(min-width: 761px)");
+
+    const pause = () => { paused = true; };
+    const resume = () => {
+      paused = false;
+      lastTimestamp = performance.now();
+    };
+    const handleVisibility = (entries: IntersectionObserverEntry[]) => {
+      visible = entries[0]?.isIntersecting ?? false;
+    };
+    const observer = new IntersectionObserver(handleVisibility, { threshold: 0.2 });
+
+    const animate = (timestamp: number) => {
+      const elapsed = Math.min(timestamp - lastTimestamp, 80);
+      lastTimestamp = timestamp;
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+      if (!paused && visible && mediaQuery.matches && maxScrollLeft > 0) {
+        const nextScrollLeft = container.scrollLeft + (elapsed / 1000) * scrollSpeed;
+        container.scrollLeft = nextScrollLeft >= maxScrollLeft ? 0 : nextScrollLeft;
+      }
+      animationFrame = window.requestAnimationFrame(animate);
+    };
+
+    container.style.scrollBehavior = "auto";
+    container.addEventListener("mouseenter", pause);
+    container.addEventListener("mouseleave", resume);
+    container.addEventListener("focusin", pause);
+    container.addEventListener("focusout", resume);
+    container.addEventListener("touchstart", pause, { passive: true });
+    container.addEventListener("touchend", resume, { passive: true });
+    observer.observe(container);
+    animationFrame = window.requestAnimationFrame(animate);
+
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      observer.disconnect();
+      container.style.scrollBehavior = "";
+      container.removeEventListener("mouseenter", pause);
+      container.removeEventListener("mouseleave", resume);
+      container.removeEventListener("focusin", pause);
+      container.removeEventListener("focusout", resume);
+      container.removeEventListener("touchstart", pause);
+      container.removeEventListener("touchend", resume);
+    };
+  }, [project.number]);
+
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
     const touch = event.touches[0];
     touchStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
@@ -747,6 +802,32 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
 
   return (
     <main className="project-detail-page">
+      <motion.section
+        className="project-slide project-splash-slide"
+        initial={{ opacity: 0, scale: 1.025 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <img className="project-splash-image" src={projectSplashImage} alt={`${project.title}项目全屏封面`} />
+        <div className="project-splash-overlay" aria-hidden="true" />
+        <RouteLink className="project-return project-splash-return" to="/projects" navigate={navigate}>
+          <ChevronLeft size={18} />
+          <span><strong>全部项目</strong><small>ALL PROJECTS</small></span>
+        </RouteLink>
+        <div className="project-wordmark project-splash-wordmark">Project</div>
+        <div className="project-splash-content">
+          <span>{project.number} / SELECTED WORK</span>
+          <h1>{project.title}</h1>
+          <p>{project.titleEn}</p>
+          <a className="project-splash-enter" href="#project-profile">
+            <span>浏览项目</span>
+            <span>EXPLORE PROJECT</span>
+            <ArrowDown size={18} />
+          </a>
+        </div>
+        <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
+        <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
+      </motion.section>
       <div
         className="project-detail-scroll"
         ref={detailScrollRef}
@@ -757,32 +838,6 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <motion.section
-          className="project-slide project-splash-slide"
-          initial={{ opacity: 0, scale: 1.025 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <img className="project-splash-image" src={projectSplashImage} alt={`${project.title}项目全屏封面`} />
-          <div className="project-splash-overlay" aria-hidden="true" />
-          <RouteLink className="project-return project-splash-return" to="/projects" navigate={navigate}>
-            <ChevronLeft size={18} />
-            <span><strong>全部项目</strong><small>ALL PROJECTS</small></span>
-          </RouteLink>
-          <div className="project-wordmark project-splash-wordmark">Project</div>
-          <div className="project-splash-content">
-            <span>{project.number} / SELECTED WORK</span>
-            <h1>{project.title}</h1>
-            <p>{project.titleEn}</p>
-            <a className="project-splash-enter" href="#project-profile">
-              <span>浏览项目</span>
-              <span>EXPLORE PROJECT</span>
-              <ArrowDown size={18} />
-            </a>
-          </div>
-          <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
-          <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
-        </motion.section>
         <motion.section
           id="project-profile"
           className="project-slide project-cover-slide"
