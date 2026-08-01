@@ -729,35 +729,28 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     const container = detailScrollRef.current;
     if (!container) return;
 
-    let animationFrame = 0;
-    let lastTimestamp = performance.now();
     let paused = false;
     let visible = false;
-    const scrollSpeed = 28;
     const mediaQuery = window.matchMedia("(min-width: 761px)");
 
     const pause = () => { paused = true; };
-    const resume = () => {
-      paused = false;
-      lastTimestamp = performance.now();
-    };
+    const resume = () => { paused = false; };
     const handleVisibility = (entries: IntersectionObserverEntry[]) => {
       visible = entries[0]?.isIntersecting ?? false;
     };
     const observer = new IntersectionObserver(handleVisibility, { threshold: 0.2 });
 
-    const animate = (timestamp: number) => {
-      const elapsed = Math.min(timestamp - lastTimestamp, 80);
-      lastTimestamp = timestamp;
+    const advance = () => {
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
       if (!paused && visible && mediaQuery.matches && maxScrollLeft > 0) {
-        const nextScrollLeft = container.scrollLeft + (elapsed / 1000) * scrollSpeed;
-        container.scrollLeft = nextScrollLeft >= maxScrollLeft ? 0 : nextScrollLeft;
+        const nextScrollLeft = container.scrollLeft + container.clientWidth;
+        container.scrollTo({
+          left: nextScrollLeft >= maxScrollLeft - 1 ? 0 : nextScrollLeft,
+          behavior: "smooth"
+        });
       }
-      animationFrame = window.requestAnimationFrame(animate);
     };
 
-    container.style.scrollBehavior = "auto";
     container.addEventListener("mouseenter", pause);
     container.addEventListener("mouseleave", resume);
     container.addEventListener("focusin", pause);
@@ -765,12 +758,11 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     container.addEventListener("touchstart", pause, { passive: true });
     container.addEventListener("touchend", resume, { passive: true });
     observer.observe(container);
-    animationFrame = window.requestAnimationFrame(animate);
+    const intervalId = window.setInterval(advance, 2600);
 
     return () => {
-      window.cancelAnimationFrame(animationFrame);
+      window.clearInterval(intervalId);
       observer.disconnect();
-      container.style.scrollBehavior = "";
       container.removeEventListener("mouseenter", pause);
       container.removeEventListener("mouseleave", resume);
       container.removeEventListener("focusin", pause);
@@ -825,8 +817,6 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
             <ArrowDown size={18} />
           </a>
         </div>
-        <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
-        <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
       </motion.section>
       <div
         className="project-detail-scroll"
@@ -885,8 +875,6 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               )}
             </div>
           </div>
-          <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
-          <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
           <span className="project-scroll-hint">SCROLL FOR DRAWINGS</span>
         </motion.section>
         {project.preludeMedia?.map((media, index) => (
@@ -918,8 +906,6 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               </video>
               <span>{media.label}</span>
             </div>
-            <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
-            <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
           </motion.section>
         ))}
         {galleryImages.map((src, index) => (
@@ -936,8 +922,6 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               <img src={src} alt={`${project.title}图纸 ${index + 1}`} loading="lazy" />
             </a>
             <span className="project-drawing-page">{String(index + 1).padStart(2, "0")}</span>
-            <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
-            <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
             </motion.section>
         ))}
         {closingMedia.map((media, index) => (
@@ -977,10 +961,12 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
                 </div>
               </div>
             </div>
-            <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
-            <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
           </motion.section>
         ))}
+      </div>
+      <div className="project-page-switches" aria-label="切换项目">
+        <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
+        <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
       </div>
     </main>
   );
