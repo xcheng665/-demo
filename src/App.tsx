@@ -724,6 +724,12 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   ];
   const galleryImages = project.images.filter((src) => !coverCards.some((card) => card.src === src));
   const closingMedia = project.closingMedia ?? [];
+  const detailPages = [
+    { label: "概览" },
+    ...project.preludeMedia?.map((media, index) => ({ label: media.label || `视频 ${index + 1}` })) ?? [],
+    ...galleryImages.map((_, index) => ({ label: `图纸 ${String(index + 1).padStart(2, "0")}` })),
+    ...closingMedia.map((media, index) => ({ label: media.label || `结尾 ${index + 1}` }))
+  ];
   const usesLandscapeTriptych = coverCards.length === 3 && coverCards.every((card) => card.size === "landscape");
   const projectSplashImage = coverCards.find((card) => card.type === "image" && card.src)?.src ?? project.thumbnail;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
@@ -731,6 +737,20 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   const projectPageRef = useRef<HTMLElement>(null);
   const wheelLockUntil = useRef(0);
   const verticalWheelLockUntil = useRef(0);
+  const [activeDetailPage, setActiveDetailPage] = useState(0);
+
+  const scrollToDetailPage = (pageIndex: number) => {
+    const container = detailScrollRef.current;
+    if (!container) return;
+
+    const target = container.querySelector<HTMLElement>(`[data-detail-page="${pageIndex}"]`);
+    setActiveDetailPage(pageIndex);
+    if (window.matchMedia("(min-width: 761px)").matches) {
+      container.scrollTo({ left: pageIndex * container.clientWidth, behavior: "smooth" });
+      return;
+    }
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const handleProjectPageWheel = (event: ReactWheelEvent<HTMLElement>) => {
     if (event.defaultPrevented || !window.matchMedia("(min-width: 761px)").matches) return;
@@ -789,6 +809,12 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     });
   };
 
+  const handleDetailScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    const container = event.currentTarget;
+    if (!window.matchMedia("(min-width: 761px)").matches || !container.clientWidth) return;
+    setActiveDetailPage(Math.max(0, Math.min(detailPages.length - 1, Math.round(container.scrollLeft / container.clientWidth))));
+  };
+
   useEffect(() => {
     const container = detailScrollRef.current;
     if (!container) return;
@@ -834,6 +860,10 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
       container.removeEventListener("touchstart", pause);
       container.removeEventListener("touchend", resume);
     };
+  }, [project.number]);
+
+  useEffect(() => {
+    setActiveDetailPage(0);
   }, [project.number]);
 
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
@@ -889,12 +919,14 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
         aria-label={`${project.title}项目详情横向浏览区域`}
         onWheel={handleDetailWheel}
         onKeyDown={handleDetailKeyDown}
+        onScroll={handleDetailScroll}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
         <motion.section
           id="project-profile"
           className="project-slide project-cover-slide"
+          data-detail-page="0"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
@@ -945,6 +977,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <motion.section
             className="project-slide project-video-slide"
             key={media.src}
+            data-detail-page={index + 1}
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.58, once: true }}
@@ -976,6 +1009,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <motion.section
             className="project-slide project-drawing-slide"
             key={src}
+            data-detail-page={1 + (project.preludeMedia?.length ?? 0) + index}
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.58, once: true }}
@@ -992,6 +1026,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <motion.section
             className="project-slide project-closing-slide"
             key={media.src ?? media.label}
+            data-detail-page={1 + (project.preludeMedia?.length ?? 0) + galleryImages.length + index}
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.58, once: true }}
@@ -1032,6 +1067,24 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
         <ProjectSwitchControl direction="previous" project={previousProject} navigate={navigate} />
         <ProjectSwitchControl direction="next" project={nextProject} navigate={navigate} />
       </div>
+      <nav className="project-detail-pager" aria-label="项目详情页码">
+        <span className="project-detail-pager-status">{String(activeDetailPage + 1).padStart(2, "0")} / {String(detailPages.length).padStart(2, "0")}</span>
+        <div className="project-detail-pager-pages">
+          {detailPages.map((page, index) => (
+            <button
+              type="button"
+              className={index === activeDetailPage ? "is-active" : ""}
+              key={`${page.label}-${index}`}
+              onClick={() => scrollToDetailPage(index)}
+              aria-label={`跳转至第${index + 1}页：${page.label}`}
+              aria-current={index === activeDetailPage ? "page" : undefined}
+              title={page.label}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </button>
+          ))}
+        </div>
+      </nav>
     </main>
   );
 }
