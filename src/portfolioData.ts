@@ -47,7 +47,8 @@ const projectCover = (file: string) => publicPath(`assets/project-covers/${file}
 
 const portfolioPageFiles = Array.from({ length: 23 }, (_, index) => {
   const pageNumber = String(index + 1).padStart(2, "0");
-  return `assets/portfolio-pages/page-${pageNumber}${pageNumber === "12" || pageNumber === "14" ? ".jpg" : ".png"}`;
+  const jpgPages = new Set(["01", "03", "05", "07", "09", "12", "14"]);
+  return `assets/portfolio-pages/page-${pageNumber}${jpgPages.has(pageNumber) ? ".jpg" : ".png"}`;
 });
 
 export const portfolioPages = [
