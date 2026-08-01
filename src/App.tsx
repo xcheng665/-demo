@@ -69,6 +69,11 @@ const uiDesignImages = [
   { label: "储能", src: publicPath("assets/ui-design/energy.jpg") },
   { label: "设置", src: publicPath("assets/ui-design/settings.jpg") }
 ] as const;
+const homeProjectPreviewColumns = [0, 1, 2].map((columnIndex) =>
+  projects
+    .flatMap((project) => project.images.map((src) => ({ project, src })))
+    .filter((_, itemIndex) => itemIndex % 3 === columnIndex)
+);
 
 const routes: { path: MainRoutePath; label: string; labelEn: string }[] = [
   { path: "/", label: "首页", labelEn: "Home" },
@@ -511,26 +516,27 @@ function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
         <PageRail current="/" navigate={navigate} />
       </section>
 
-      <section className="home-project-preview" aria-labelledby="home-project-preview-title">
-        <div className="home-project-preview-copy">
-          <span className="home-project-preview-index">01 / PROJECT DETAIL</span>
-          <p className="home-project-preview-kicker">CONTINUOUS PROJECT READING</p>
-          <h2 id="home-project-preview-title">从项目详情，<br />进入设计叙事。</h2>
-          <p>
-            以连续切换的版面阅读方式，呈现「山海 · 绿境」从项目概览、场地策略到完整图纸的设计过程。
-          </p>
-          <RouteLink className="primary-action" to="/projects/01" navigate={navigate}>
-            打开所在项目 <ArrowRight size={18} />
-          </RouteLink>
+      <section className="home-project-preview" aria-label="项目详情滚动预览">
+        <div className="home-project-preview-gallery">
+          {homeProjectPreviewColumns.map((column, columnIndex) => (
+            <div className={`home-project-preview-column column-${columnIndex + 1}`} key={columnIndex}>
+              <div className="home-project-preview-track">
+                {[...column, ...column].map((item, itemIndex) => (
+                  <RouteLink
+                    className="home-project-preview-card"
+                    key={`${item.src}-${itemIndex}`}
+                    to={projectRoute(item.project)}
+                    navigate={navigate}
+                    aria-label={`打开${item.project.title}项目`}
+                    title={item.project.title}
+                  >
+                    <img src={item.src} alt={`${item.project.title}项目详情图`} />
+                  </RouteLink>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
-        <figure className="home-project-preview-media">
-          <video controls autoPlay loop muted playsInline preload="metadata" aria-label="山海绿境项目详情页滚动演示">
-            <source src={publicPath("assets/home-project-detail-scroll-preview.mp4")} type="video/mp4" />
-            您的浏览器不支持视频播放。
-          </video>
-          <figcaption><span>DETAIL READER / 01</span><span>SCROLL PREVIEW</span></figcaption>
-        </figure>
-        <span className="home-project-preview-scroll" aria-hidden="true">SCROLL TO EXPLORE <ArrowDown size={14} /></span>
       </section>
     </main>
   );
