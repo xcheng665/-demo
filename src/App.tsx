@@ -737,12 +737,14 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   const projectPageRef = useRef<HTMLElement>(null);
   const wheelLockUntil = useRef(0);
   const verticalWheelLockUntil = useRef(0);
+  const autoAdvanceResumeAt = useRef(0);
   const [activeDetailPage, setActiveDetailPage] = useState(0);
 
   const scrollToDetailPage = (pageIndex: number) => {
     const container = detailScrollRef.current;
     if (!container) return;
 
+    autoAdvanceResumeAt.current = performance.now() + 30_000;
     const target = container.querySelector<HTMLElement>(`[data-detail-page="${pageIndex}"]`);
     setActiveDetailPage(pageIndex);
     if (window.matchMedia("(min-width: 761px)").matches) {
@@ -832,7 +834,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
 
     const advance = () => {
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
-      if (!paused && visible && mediaQuery.matches && maxScrollLeft > 0) {
+      if (!paused && performance.now() >= autoAdvanceResumeAt.current && visible && mediaQuery.matches && maxScrollLeft > 0) {
         const nextScrollLeft = container.scrollLeft + container.clientWidth;
         container.scrollTo({
           left: nextScrollLeft >= maxScrollLeft - 1 ? 0 : nextScrollLeft,
@@ -864,6 +866,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
 
   useEffect(() => {
     setActiveDetailPage(0);
+    autoAdvanceResumeAt.current = 0;
   }, [project.number]);
 
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
@@ -984,6 +987,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
             transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           >
             <header><span>VIDEO {String(index + 1).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
+            <ProjectReturnControl navigate={navigate} />
             <div className="project-video-stage">
               <video
                 autoPlay
@@ -1016,6 +1020,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
             transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           >
             <header><span>{String(index + 1).padStart(2, "0")} / {String(galleryImages.length).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
+            <ProjectReturnControl navigate={navigate} />
             <a href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 1}张图纸`}>
               <img src={src} alt={`${project.title}图纸 ${index + 1}`} loading="lazy" />
             </a>
@@ -1033,6 +1038,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
             transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
           >
             <header><span>END / {String(index + 1).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
+            <ProjectReturnControl navigate={navigate} />
             <div className="project-closing-content">
               <div className="project-closing-video">
                 <video
@@ -1086,6 +1092,15 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
         </div>
       </nav>
     </main>
+  );
+}
+
+function ProjectReturnControl({ navigate }: { navigate: (to: RoutePath) => void }) {
+  return (
+    <RouteLink className="project-return project-detail-return" to="/projects" navigate={navigate}>
+      <ChevronLeft size={18} />
+      <span><strong>全部项目</strong><small>ALL PROJECTS</small></span>
+    </RouteLink>
   );
 }
 
