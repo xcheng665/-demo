@@ -698,6 +698,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   const projectSplashImage = coverCards.find((card) => card.type === "image" && card.src)?.src ?? project.thumbnail;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const detailScrollRef = useRef<HTMLDivElement>(null);
+  const wheelLockUntil = useRef(0);
 
   const handleDetailWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
     if (!window.matchMedia("(min-width: 761px)").matches) return;
@@ -707,11 +708,20 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     if (!delta) return;
 
     const maxScrollLeft = container.scrollWidth - container.clientWidth;
-    const nextScrollLeft = Math.max(0, Math.min(maxScrollLeft, container.scrollLeft + delta));
+    const now = performance.now();
+    if (now < wheelLockUntil.current || maxScrollLeft <= 0) {
+      event.preventDefault();
+      return;
+    }
+
+    const currentPage = Math.round(container.scrollLeft / container.clientWidth);
+    const nextPage = Math.max(0, Math.min(Math.round(maxScrollLeft / container.clientWidth), currentPage + (delta > 0 ? 1 : -1)));
+    const nextScrollLeft = nextPage * container.clientWidth;
     if (nextScrollLeft === container.scrollLeft) return;
 
     event.preventDefault();
-    container.scrollLeft = nextScrollLeft;
+    wheelLockUntil.current = now + 700;
+    container.scrollTo({ left: nextScrollLeft, behavior: "smooth" });
   };
 
   const handleDetailKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
@@ -758,7 +768,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     container.addEventListener("touchstart", pause, { passive: true });
     container.addEventListener("touchend", resume, { passive: true });
     observer.observe(container);
-    const intervalId = window.setInterval(advance, 2600);
+    const intervalId = window.setInterval(advance, 2000);
 
     return () => {
       window.clearInterval(intervalId);
