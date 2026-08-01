@@ -1097,7 +1097,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
 
 function ProjectReturnControl({ navigate }: { navigate: (to: RoutePath) => void }) {
   return (
-    <RouteLink className="project-return project-detail-return" to="/projects" navigate={navigate}>
+    <RouteLink className="project-return project-detail-return" to="/projects" navigate={navigate} aria-label="返回全部项目">
       <ChevronLeft size={18} />
       <span><strong>全部项目</strong><small>ALL PROJECTS</small></span>
     </RouteLink>
