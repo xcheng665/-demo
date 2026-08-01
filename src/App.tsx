@@ -698,7 +698,31 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   const projectSplashImage = coverCards.find((card) => card.type === "image" && card.src)?.src ?? project.thumbnail;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const detailScrollRef = useRef<HTMLDivElement>(null);
+  const projectPageRef = useRef<HTMLElement>(null);
   const wheelLockUntil = useRef(0);
+  const verticalWheelLockUntil = useRef(0);
+
+  const handleProjectPageWheel = (event: ReactWheelEvent<HTMLElement>) => {
+    if (event.defaultPrevented || !window.matchMedia("(min-width: 761px)").matches) return;
+    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX) || !event.deltaY) return;
+
+    const container = event.currentTarget;
+    const now = performance.now();
+    if (now < verticalWheelLockUntil.current) {
+      event.preventDefault();
+      return;
+    }
+
+    const maxScrollTop = container.scrollHeight - container.clientHeight;
+    const currentPage = Math.round(container.scrollTop / container.clientHeight);
+    const nextPage = Math.max(0, Math.min(Math.round(maxScrollTop / container.clientHeight), currentPage + (event.deltaY > 0 ? 1 : -1)));
+    const nextScrollTop = nextPage * container.clientHeight;
+    if (nextScrollTop === container.scrollTop) return;
+
+    event.preventDefault();
+    verticalWheelLockUntil.current = now + 700;
+    container.scrollTo({ top: nextScrollTop, behavior: "smooth" });
+  };
 
   const handleDetailWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
     if (!window.matchMedia("(min-width: 761px)").matches) return;
@@ -803,7 +827,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   };
 
   return (
-    <main className="project-detail-page">
+    <main className="project-detail-page" ref={projectPageRef} onWheel={handleProjectPageWheel}>
       <motion.section
         className="project-slide project-splash-slide"
         initial={{ opacity: 0, scale: 1.025 }}
