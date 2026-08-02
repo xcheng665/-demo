@@ -3144,11 +3144,13 @@ img {
   align-items: center;
   justify-content: flex-start;
   flex-wrap: nowrap;
-  gap: 8px;
-  min-width: 142px;
-  padding: 10px 13px;
+  gap: 12px;
+  width: 214px;
+  min-width: 0;
+  height: 70px;
+  padding: 0 20px;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 14px;
+  border-radius: 999px;
   color: var(--muted);
   background: rgba(255, 255, 255, 0.5);
   box-shadow: 0 8px 20px rgba(20, 25, 21, 0.14);
@@ -3819,6 +3821,7 @@ img {
   .project-return {
     top: 20px;
     left: 20px;
+    width: auto;
   }
 
   .project-detail-return {
