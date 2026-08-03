@@ -43,6 +43,51 @@ export type Service = {
 
 export const publicPath = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 
+export type ResearchPaper = {
+  title: string;
+  titleEn?: string;
+  category: string;
+  summary: string;
+  href?: string;
+  award?: string;
+};
+
+const paperPath = (file: string) => publicPath(`papers/${file}`);
+
+export const researchPapers: ResearchPaper[] = [
+  {
+    title: "椰壳混凝土建筑围护结构",
+    titleEn: "Coconut Concrete Building Envelope",
+    category: "SCI PAPER",
+    summary: "围绕椰壳废弃物在建筑围护结构中的应用，梳理材料性能、构造策略与建筑节能之间的关系。",
+    href: paperPath("coconut-concrete-envelope-sci.pdf")
+  },
+  {
+    title: "台风后恢复管理中的多智能体协同",
+    titleEn: "Lean Post-typhoon Recovery Multi-agent Look-ahead and Constraints for the Last Planner System",
+    category: "RESEARCH PAPER",
+    summary: "研究台风灾后恢复场景中的多智能体前瞻计划与约束管理，探索 Last Planner System 的协同工作流。",
+    href: paperPath("post-typhoon-recovery-last-planner.pdf")
+  },
+  {
+    title: "海口历史建筑遗产知识图谱",
+    titleEn: "Haikou Heritage Knowledge Graph",
+    category: "RESEARCH PAPER",
+    summary: "以海口历史建筑遗产为对象，整理建筑、历史、空间与保护信息之间的关联，形成可检索的知识图谱。",
+    href: paperPath("haikou-heritage-knowledge-graph.pdf")
+  }
+];
+
+export const modelingPapers: ResearchPaper[] = [
+  {
+    title: "嵌入式养老社区服务优化问题",
+    category: "CONTENT THEME",
+    summary: "从服务需求、资源配置与优化目标出发，建立嵌入式养老社区服务的数学建模与分析框架。",
+    href: paperPath("embedded-elderly-community-service-optimization.pdf"),
+    award: "电工杯一等奖"
+  }
+];
+
 const projectCover = (file: string) => publicPath(`assets/project-covers/${file}`);
 
 const portfolioPageFiles = Array.from({ length: 23 }, (_, index) => {

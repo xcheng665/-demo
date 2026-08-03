@@ -27,8 +27,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import type { AnchorHTMLAttributes, CSSProperties, KeyboardEvent as ReactKeyboardEvent, SyntheticEvent, TouchEvent, WheelEvent as ReactWheelEvent } from "react";
 import { AiChat } from "./components/AiChat";
-import { projects, publicPath, services } from "./portfolioData";
-import type { Project } from "./portfolioData";
+import { modelingPapers, projects, publicPath, researchPapers, services } from "./portfolioData";
+import type { Project, ResearchPaper } from "./portfolioData";
 
 type MainRoutePath = "/" | "/abilities" | "/about" | "/projects" | "/other" | "/contact" | "/ai";
 type ProjectRoutePath = `/projects/${string}`;
@@ -207,6 +207,7 @@ type PracticeCard = {
   mode?: "text" | "phones";
   uiImages?: { label: string; src: string }[];
   videos?: { label: string; src: string }[];
+  papers?: ResearchPaper[];
 };
 
 const practices: PracticeCard[] = [
@@ -225,10 +226,11 @@ const practices: PracticeCard[] = [
     title: "数据科研",
     titleEn: "Research Papers",
     eyebrow: "02 / 05",
-    description: "围绕数据整理、研究分析与成果表达，完成两篇论文的内容组织、图表整理与研究输出。",
+    description: "围绕数据整理、研究分析与成果表达，完成三篇论文的内容组织、图表整理与研究输出。",
     image: practiceCardImages.research,
     detail: "重点体现数据处理、研究判断、论文写作与结果可视化之间的完整链路。",
-    tags: ["论文两篇", "研究分析"]
+    tags: ["论文三篇", "研究分析"],
+    papers: researchPapers
   },
   {
     title: "数学建模",
@@ -237,7 +239,8 @@ const practices: PracticeCard[] = [
     description: "从问题抽象、模型建立到结果验证和成文表达，形成完整的数学建模论文工作流。",
     image: practiceCardImages.modeling,
     detail: "重点体现建模分析、参数推导、结果解释以及数模论文的结构化表达。",
-    tags: ["数模论文", "模型分析"]
+    tags: ["数模论文", "模型分析"],
+    papers: modelingPapers
   },
   {
     title: "绿色性能",
@@ -1128,6 +1131,37 @@ function ProjectSwitchControl({
   );
 }
 
+function ResearchPaperArchive({ papers }: { papers: ResearchPaper[] }) {
+  return (
+    <section className="paper-archive" aria-label="研究论文全文下载">
+      <div className="paper-archive-heading">
+        <span>RESEARCH ARCHIVE</span>
+        <strong>全文下载</strong>
+      </div>
+      <div className="paper-archive-list">
+        {papers.map((paper, index) => (
+          <article className="paper-archive-card" key={paper.title}>
+            <div className="paper-archive-index">{String(index + 1).padStart(2, "0")}</div>
+            <div className="paper-archive-body">
+              <small>{paper.category}</small>
+              <h3>{paper.title}</h3>
+              {paper.titleEn ? <p className="paper-archive-title-en">{paper.titleEn}</p> : null}
+              {paper.award ? <p className="paper-archive-award">{paper.award}</p> : null}
+              <p className="paper-archive-summary">{paper.summary}</p>
+            </div>
+            {paper.href ? (
+              <a className="paper-archive-download" href={paper.href} download aria-label={`下载${paper.title}全文 PDF`}>
+                <Download size={16} aria-hidden="true" />
+                <span>下载全文 PDF</span>
+              </a>
+            ) : null}
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
   const [activePractice, setActivePractice] = useState(0);
   const practice = practices[activePractice];
@@ -1197,6 +1231,7 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
               ))}
             </div>
           ) : null}
+          {practice.papers?.length ? <ResearchPaperArchive papers={practice.papers} /> : null}
           {practice.mode === "phones" && practice.uiImages ? <PhoneShowcase images={practice.uiImages} /> : null}
           {practice.videos?.length ? <PracticeVideoShowcase videos={practice.videos} /> : null}
           <div className="practice-switcher" aria-label="切换主题卡片">
