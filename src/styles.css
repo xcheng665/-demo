@@ -3998,28 +3998,26 @@ img {
   }
 
   .project-detail-return {
-    top: 50%;
-    left: 0;
-    min-width: 84px;
-    height: 44px;
-    padding: 0 14px 0 10px;
-    border-left: 0;
-    border-radius: 0 999px 999px 0;
-    gap: 6px;
-    transform: translateY(-50%);
+    top: 18px;
+    left: 18px;
+    width: max-content !important;
+    max-width: calc(100vw - 36px);
+    min-width: 0;
+    min-height: 46px;
+    height: auto;
+    padding: 8px 13px;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 999px;
+    gap: 7px;
+    transform: none;
   }
 
   .project-detail-return span {
-    display: none;
+    display: grid;
   }
 
   .project-detail-return::after {
-    content: "项目";
-    color: currentColor;
-    font-family: var(--font-en);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    display: none;
   }
 
   .project-video-slide > header,
