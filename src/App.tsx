@@ -27,6 +27,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import type { AnchorHTMLAttributes, CSSProperties, KeyboardEvent as ReactKeyboardEvent, SyntheticEvent, TouchEvent, WheelEvent as ReactWheelEvent } from "react";
 import { AiChat } from "./components/AiChat";
+import BorderGlow from "./components/BorderGlow";
 import { modelingPapers, projects, publicPath, researchPapers, services } from "./portfolioData";
 import type { Project, ResearchPaper } from "./portfolioData";
 
@@ -685,10 +686,12 @@ function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
 function ProjectIndexCard({ project, navigate }: { project: Project; navigate: (to: RoutePath) => void }) {
   return (
     <RouteLink className="project-index-card" to={projectRoute(project)} navigate={navigate} aria-label={`查看项目：${project.title}`}>
-      <figure>
-        <img src={project.thumbnail} alt={`${project.title}项目封面`} />
-        <span>VIEW PROJECT <ArrowRight size={15} /></span>
-      </figure>
+      <BorderGlow className="project-index-glow" borderRadius={14} glowRadius={22}>
+        <figure>
+          <img src={project.thumbnail} alt={`${project.title}项目封面`} />
+          <span>VIEW PROJECT <ArrowRight size={15} /></span>
+        </figure>
+      </BorderGlow>
       <div>
         <strong>{project.number} / {project.title}</strong>
         <small>{project.categoryEn}</small>
@@ -1192,13 +1195,12 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
             const offset = getOffset(index);
             const isActive = index === activePractice;
             return (
-              <button
+              <BorderGlow
                 className={`practice-card ${isActive ? "is-active" : ""}`}
                 key={item.title}
-                type="button"
-                onClick={() => setActivePractice(index)}
-                aria-pressed={isActive}
-                aria-label={`查看${item.title}`}
+                borderRadius={4}
+                glowRadius={18}
+                glowIntensity={0.55}
                 style={{
                   "--card-x": `${offset * 218}px`,
                   "--card-rotation": `${offset * 5.2}deg`,
@@ -1206,10 +1208,18 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
                   "--card-z": String(10 - Math.abs(offset))
                 } as CSSProperties}
               >
-                <img src={item.image} alt={`${item.title}能力插画卡片`} />
-                <span className="practice-card-shade" aria-hidden="true" />
-                <span className="practice-card-copy"><small>{item.eyebrow}</small><strong>{item.title}</strong><em>{item.titleEn}</em></span>
-              </button>
+                <button
+                  className="practice-card-button"
+                  type="button"
+                  onClick={() => setActivePractice(index)}
+                  aria-pressed={isActive}
+                  aria-label={`查看${item.title}`}
+                >
+                  <img src={item.image} alt={`${item.title}能力插画卡片`} />
+                  <span className="practice-card-shade" aria-hidden="true" />
+                  <span className="practice-card-copy"><small>{item.eyebrow}</small><strong>{item.title}</strong><em>{item.titleEn}</em></span>
+                </button>
+              </BorderGlow>
             );
           })}
         </div>
