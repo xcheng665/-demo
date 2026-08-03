@@ -3309,11 +3309,11 @@ img {
   z-index: 2;
   top: 36px;
   left: 38px;
-  display: inline-flex;
+  display: inline-grid !important;
+  grid-template-columns: 18px max-content;
   align-items: center;
   justify-content: flex-start;
-  flex-wrap: nowrap;
-  gap: 12px;
+  column-gap: 10px;
   width: max-content !important;
   min-width: 0;
   max-width: calc(100vw - 48px);
@@ -3352,7 +3352,14 @@ img {
 }
 
 .project-return > svg {
+  grid-column: 1;
+  grid-row: 1;
   flex: none;
+}
+
+.project-return > span {
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .project-return strong {
