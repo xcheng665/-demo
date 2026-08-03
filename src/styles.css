@@ -3314,10 +3314,12 @@ img {
   justify-content: flex-start;
   flex-wrap: nowrap;
   gap: 12px;
-  width: 214px;
+  width: max-content !important;
   min-width: 0;
-  height: 70px;
-  padding: 0 20px;
+  max-width: calc(100vw - 48px);
+  height: auto;
+  min-height: 48px;
+  padding: 9px 14px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
   color: var(--muted);
@@ -3327,6 +3329,7 @@ img {
   font-family: var(--font-en);
   font-size: 12px;
   text-decoration: none;
+  box-sizing: border-box;
 }
 
 .project-splash-return {
@@ -3990,7 +3993,8 @@ img {
   .project-return {
     top: 20px;
     left: 20px;
-    width: auto;
+    width: max-content !important;
+    max-width: calc(100vw - 40px);
   }
 
   .project-detail-return {
