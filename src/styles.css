@@ -3318,8 +3318,8 @@ img {
   min-width: 0;
   max-width: calc(100vw - 48px);
   height: auto;
-  min-height: 48px;
-  padding: 9px 14px;
+  min-height: 0;
+  padding: 7px 12px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
   color: var(--muted);
@@ -3345,7 +3345,7 @@ img {
 
 .project-return span {
   display: grid;
-  gap: 2px;
+  gap: 1px;
   min-width: 0;
   line-height: 1.08;
   white-space: nowrap;
@@ -3359,12 +3359,14 @@ img {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.04em;
+  line-height: 1.05;
 }
 
 .project-return small {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.11em;
+  line-height: 1;
 }
 
 .project-return:hover,
