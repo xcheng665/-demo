@@ -1816,6 +1816,7 @@ img {
 .ai-chat-panel {
   display: grid;
   grid-template-rows: auto auto minmax(142px, 1fr) auto auto;
+  height: 100%;
   min-height: 420px;
   overflow: hidden;
   border: 1px solid rgba(247, 241, 229, 0.28);
@@ -1890,7 +1891,7 @@ img {
   display: grid;
   align-content: start;
   gap: 10px;
-  max-height: 228px;
+  min-height: 0;
   overflow-y: auto;
   padding: 18px 20px;
 }
@@ -2132,9 +2133,16 @@ img {
 }
 
 .ai-rag-column {
+  position: relative;
   display: grid;
   align-content: start;
   gap: 18px;
+}
+
+.ai-rag-column > .ai-contact-link {
+  position: absolute;
+  top: calc(100% + 18px);
+  left: 0;
 }
 
 .rag-overview {
@@ -2910,6 +2918,10 @@ img {
     padding: 15px;
   }
 
+  .ai-chat-panel {
+    height: auto;
+  }
+
   .ai-prompts {
     padding: 0 15px 12px;
   }
@@ -2921,6 +2933,10 @@ img {
   .ai-intro-panel {
     gap: 16px;
     padding: 8px 0 0;
+  }
+
+  .ai-rag-column > .ai-contact-link {
+    position: static;
   }
 
   .rag-overview {
