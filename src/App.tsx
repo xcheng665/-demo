@@ -2,7 +2,6 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUp,
-  BrainCircuit,
   ChevronLeft,
   ChevronRight,
   Circle,
@@ -28,6 +27,7 @@ import { useEffect, useRef, useState } from "react";
 import type { AnchorHTMLAttributes, CSSProperties, KeyboardEvent as ReactKeyboardEvent, SyntheticEvent, TouchEvent, WheelEvent as ReactWheelEvent } from "react";
 import { AiChat } from "./components/AiChat";
 import BorderGlow from "./components/BorderGlow";
+import { RagOverview } from "./components/RagOverview";
 import { modelingPapers, projects, publicPath, researchPapers, services } from "./portfolioData";
 import type { Project, ResearchPaper } from "./portfolioData";
 
@@ -1290,25 +1290,18 @@ function AiPage({ navigate }: { navigate: (to: RoutePath) => void }) {
       <SiteHeader current="/ai" navigate={navigate} dark />
       <div className="page-eyebrow ai-eyebrow">AI AVATAR · DESIGN COLLABORATION</div>
       <section className="ai-heading">
-        <span><Sparkles size={15} /> PERSONAL AI AVATAR</span>
+        <span><Sparkles size={15} /> PERSONAL AI AVATAR · RAG</span>
         <h1>AI 分身</h1>
-        <p>从作品集与真实经历出发，30 秒了解程志远能为一个项目带来什么。</p>
+        <p>先检索公开证据，再回答你的问题。30 秒了解程志远能为一个项目带来什么。</p>
       </section>
       <section className="ai-layout">
         <motion.div initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
           <AiChat />
         </motion.div>
-        <motion.aside className="ai-intro-panel" initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.08 }}>
-          <span><BrainCircuit size={19} /> PROFILE SNAPSHOT</span>
-          <h2>让设计能力<br />被更快理解。</h2>
-          <p>这个 AI 分身基于本站公开的作品与经历进行回答，适合快速了解设计方向、技术路径与研究协作方式。</p>
-          <dl>
-            <div><dt>DESIGN</dt><dd>建筑设计 / 空间表达 / 场地策略</dd></div>
-            <div><dt>TOOLS</dt><dd>Revit / Rhino / Grasshopper / Python</dd></div>
-            <div><dt>FOCUS</dt><dd>建筑环境 / 绿色建筑 / 性能研究</dd></div>
-          </dl>
+        <motion.div className="ai-rag-column" initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.08 }}>
+          <RagOverview />
           <RouteLink className="ai-contact-link" to="/contact" navigate={navigate}><MessageCircle size={17} /> 直接联系我 <ArrowRight size={17} /></RouteLink>
-        </motion.aside>
+        </motion.div>
       </section>
       <PageControls previous="/contact" navigate={navigate} dark />
       <PageRail current="/ai" navigate={navigate} dark />

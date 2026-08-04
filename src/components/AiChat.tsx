@@ -17,7 +17,7 @@ type AiMessage = {
 const initialMessage: AiMessage = {
   id: 0,
   role: "assistant",
-  text: "老师好，我会基于本站公开的作品与成果，用更直观的方式介绍我的设计、研究和技术经历。"
+  text: "老师好，我会先从本站公开资料中检索依据，再用更直观的方式介绍我的设计、研究和技术经历。"
 };
 
 export function AiChat() {
@@ -76,16 +76,17 @@ export function AiChat() {
     <section className="ai-chat-panel" aria-label="程志远 AI 分身问答">
       <header>
         <span className="ai-avatar-icon"><Bot size={20} /></span>
-        <div><small>PORTFOLIO / AI</small><strong>和我的 AI 分身聊聊</strong></div>
-        <span className="ai-status"><i /> 在线</span>
+        <div><small>RAG / PORTFOLIO AI</small><strong>和我的 AI 分身聊聊</strong></div>
+        <span className="ai-status"><i /> 检索在线</span>
       </header>
-      <p className="ai-disclosure">AI 仅依据本站公开资料回答；重要事项请以本人确认为准。</p>
+      <p className="ai-disclosure">先检索，再回答 · 相关公开依据会附在答案下方</p>
       <div className="ai-transcript" aria-live="polite" ref={transcriptRef}>
         {messages.map((message) => (
           <article className={`ai-message ${message.role}${message.pending ? " is-pending" : ""}${message.error ? " is-error" : ""}`} key={message.id}>
             <p>{message.text}</p>
             {message.evidence?.length ? (
               <div className="ai-evidence-list" aria-label="相关公开资料">
+                <div className="ai-evidence-heading">RETRIEVED EVIDENCE · {String(message.evidence.length).padStart(2, "0")}</div>
                 {message.evidence.map((evidence) => (
                   <a className="ai-evidence-card" href={evidence.href} key={evidence.id}>
                     <span><small>公开依据</small><strong>{evidence.title}</strong><em>{evidence.summary}</em></span>
