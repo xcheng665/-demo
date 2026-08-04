@@ -49,7 +49,7 @@ export async function onRequestPost({ request, env }: Context): Promise<Response
     },
     body: JSON.stringify({
       model: "deepseek-v4-flash",
-      temperature: 0.2,
+      temperature: 0.4,
       max_tokens: 550,
       response_format: { type: "json_object" },
       messages: [

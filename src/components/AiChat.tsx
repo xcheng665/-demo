@@ -17,7 +17,7 @@ type AiMessage = {
 const initialMessage: AiMessage = {
   id: 0,
   role: "assistant",
-  text: "老师好，我会先从本站公开资料中检索依据，再用更直观的方式介绍我的设计、研究和技术经历。"
+  text: "老师好，欢迎来问我！我会先从本站公开资料中检索依据，再用轻松直观的方式介绍我的设计、研究和技术经历。"
 };
 
 export function AiChat() {
