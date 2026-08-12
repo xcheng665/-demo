@@ -64,11 +64,18 @@ const practiceCardImages = {
   drawings: publicPath("assets/practice-cards/working-drawings-male-card.png")
 } as const;
 const uiDesignImages = [
-  { label: "总览", src: publicPath("assets/ui-design/overview.jpg") },
-  { label: "环境", src: publicPath("assets/ui-design/environment.jpg") },
-  { label: "告警", src: publicPath("assets/ui-design/alerts.jpg") },
-  { label: "储能", src: publicPath("assets/ui-design/energy.jpg") },
-  { label: "设置", src: publicPath("assets/ui-design/settings.jpg") }
+  { label: "附近地图", src: publicPath("assets/community-helper/nearby-map.png") },
+  { label: "快递代取", src: publicPath("assets/community-helper/parcel-pickup.png") },
+  { label: "物品互借", src: publicPath("assets/community-helper/item-borrowing.png") },
+  { label: "顺路拼车", src: publicPath("assets/community-helper/carpool.png") },
+  { label: "我的邻里", src: publicPath("assets/community-helper/my-neighborhood.png") }
+] as const;
+const energyManagementImages = [
+  { label: "能耗总览", src: publicPath("assets/energy-manager/overview.png") },
+  { label: "环境监测", src: publicPath("assets/energy-manager/environment.png") },
+  { label: "告警中心", src: publicPath("assets/energy-manager/alerts.png") },
+  { label: "储能调控", src: publicPath("assets/energy-manager/storage.png") },
+  { label: "个人设置", src: publicPath("assets/energy-manager/settings.png") }
 ] as const;
 const homeProjectPreviewColumns = [0, 1, 2].map((columnIndex) =>
   projects
@@ -213,20 +220,31 @@ type PracticeCard = {
 
 const practices: PracticeCard[] = [
   {
-    title: "vibe coding",
-    titleEn: "Frontend & UI Design",
-    eyebrow: "01 / 05",
-    description: "把前端实现与界面视觉放在同一套展示语言中，聚焦储能应用的总览、环境、告警、储能与设置五个页面。",
+    title: "邻里帮",
+    titleEn: "Neighborhood Helper",
+    eyebrow: "01 / 06",
+    description: "以真实社区地图与生活场景为入口，搭建围绕快递代取、物品互借和顺路拼车的邻里互助需求平台。",
     image: practiceCardImages.frontend,
-    detail: "五台手机同时展示真实 APP 界面，每台设备内部独立纵向滚动，以完整呈现长页面的 UI 设计。",
-    tags: ["前端实现", "UI 设计"],
+    detail: "五台手机以地图、快递、借物、拼车和个人中心串联完整互助流程；所有场景均使用本地化实景视觉，避免页面素材加载失效。",
+    tags: ["社区互助", "移动端 UI", "前端实现"],
     mode: "phones",
     uiImages: [...uiDesignImages]
   },
   {
+    title: "绿能管家",
+    titleEn: "Smart Energy Manager",
+    eyebrow: "02 / 06",
+    description: "面向社区的绿色能源管理应用，通过真实小区、光伏设备与储能柜场景，把能耗状态、环境数据、异常告警和储能调度整合在同一移动端体验中。",
+    image: practiceCardImages.green,
+    detail: "五台手机覆盖能耗总览、环境监测、告警中心、储能调控与个人设置；以实景照片承托数据判断，形成可读、可操作的能源运维流程。",
+    tags: ["储能管理", "移动端 UI", "绿色社区"],
+    mode: "phones",
+    uiImages: [...energyManagementImages]
+  },
+  {
     title: "数据科研",
     titleEn: "Research Papers",
-    eyebrow: "02 / 05",
+    eyebrow: "03 / 06",
     description: "围绕数据整理、研究分析与成果表达，完成三篇论文的内容组织、图表整理与研究输出。",
     image: practiceCardImages.research,
     detail: "重点体现数据处理、研究判断、论文写作与结果可视化之间的完整链路。",
@@ -236,7 +254,7 @@ const practices: PracticeCard[] = [
   {
     title: "数学建模",
     titleEn: "Modeling Paper",
-    eyebrow: "03 / 05",
+    eyebrow: "04 / 06",
     description: "从问题抽象、模型建立到结果验证和成文表达，形成完整的数学建模论文工作流。",
     image: practiceCardImages.modeling,
     detail: "重点体现建模分析、参数推导、结果解释以及数模论文的结构化表达。",
@@ -246,7 +264,7 @@ const practices: PracticeCard[] = [
   {
     title: "绿色性能",
     titleEn: "Simulation & Energy",
-    eyebrow: "04 / 05",
+    eyebrow: "05 / 06",
     description: "结合动画模拟、性能分析与节能大创实践，把绿色策略与技术路径转化为可读的成果展示。",
     image: practiceCardImages.green,
     detail: "重点体现模拟过程、节能研究、方案验证与项目成果之间的关联。",
@@ -259,7 +277,7 @@ const practices: PracticeCard[] = [
   {
     title: "实习项目",
     titleEn: "Working Drawings",
-    eyebrow: "05 / 05",
+    eyebrow: "06 / 06",
     description: "在实习中参与施工图设计与表达，关注制图规范、节点细化和设计成果的工程落地。",
     image: practiceCardImages.drawings,
     detail: "重点体现施工图设计、图纸表达标准、协作流程与项目执行能力。",
@@ -1187,7 +1205,7 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
       <section className="other-heading">
         <span>SELECTED DIRECTIONS</span>
         <h1>跨学科实践与<br />项目表达</h1>
-        <p>把前端界面、科研写作、数学建模、绿色性能与实习项目整理成五个可被快速理解的主题。</p>
+        <p>把社区产品、能源界面、科研写作、数学建模、绿色性能与实习项目整理成六个可被快速理解的主题。</p>
       </section>
       <section className="practice-stage" aria-label="Cross-disciplinary practice cards">
         <div className="practice-deck">
