@@ -201,38 +201,48 @@ type PracticeCard = {
   detail: string;
   tags?: string[];
   mode?: "text" | "phones";
-  uiProject?: "community" | "energy";
+  uiProjects?: {
+    project: "community" | "energy";
+    title: string;
+    titleEn: string;
+    description: string;
+    tags: string[];
+  }[];
   videos?: { label: string; src: string }[];
   papers?: ResearchPaper[];
 };
 
 const practices: PracticeCard[] = [
   {
-    title: "邻里帮",
-    titleEn: "Neighborhood Helper",
-    eyebrow: "01 / 06",
-    description: "以真实社区地图与生活场景为入口，搭建围绕快递代取、物品互借和顺路拼车的邻里互助需求平台。",
+    title: "UI设计",
+    titleEn: "Mobile UI Design",
+    eyebrow: "01 / 05",
+    description: "围绕社区互助与绿色能源管理，完成两套面向真实生活场景的移动端界面设计与前端实现。",
     image: practiceCardImages.frontend,
-    detail: "五台手机以地图、快递、借物、拼车和个人中心串联完整互助流程；所有场景均使用本地化实景视觉，避免页面素材加载失效。",
-    tags: ["社区互助", "移动端 UI", "前端实现"],
+    detail: "十个页面均由 React 与 CSS 构建，以真实场景照片承托信息判断，并按两个完整产品案例纵向展开。",
+    tags: ["社区互助", "储能管理", "移动端 UI", "前端实现"],
     mode: "phones",
-    uiProject: "community"
-  },
-  {
-    title: "绿能管家",
-    titleEn: "Smart Energy Manager",
-    eyebrow: "02 / 06",
-    description: "面向社区的绿色能源管理应用，通过真实小区、光伏设备与储能柜场景，把能耗状态、环境数据、异常告警和储能调度整合在同一移动端体验中。",
-    image: practiceCardImages.green,
-    detail: "五台手机覆盖能耗总览、环境监测、告警中心、储能调控与个人设置；以实景照片承托数据判断，形成可读、可操作的能源运维流程。",
-    tags: ["储能管理", "移动端 UI", "绿色社区"],
-    mode: "phones",
-    uiProject: "energy"
+    uiProjects: [
+      {
+        project: "community",
+        title: "邻里帮",
+        titleEn: "Neighborhood Helper",
+        description: "以真实社区地图与生活场景为入口，串联快递代取、物品互借、顺路拼车与个人信用的完整邻里互助流程。",
+        tags: ["社区互助", "地图任务", "邻里信用"]
+      },
+      {
+        project: "energy",
+        title: "绿能管家",
+        titleEn: "Smart Energy Manager",
+        description: "将能耗总览、环境监测、异常告警、储能调控与个人设置整合为可读、可操作的社区能源运维体验。",
+        tags: ["储能管理", "设备告警", "绿色社区"]
+      }
+    ]
   },
   {
     title: "数据科研",
     titleEn: "Research Papers",
-    eyebrow: "03 / 06",
+    eyebrow: "02 / 05",
     description: "围绕数据整理、研究分析与成果表达，完成三篇论文的内容组织、图表整理与研究输出。",
     image: practiceCardImages.research,
     detail: "重点体现数据处理、研究判断、论文写作与结果可视化之间的完整链路。",
@@ -242,7 +252,7 @@ const practices: PracticeCard[] = [
   {
     title: "数学建模",
     titleEn: "Modeling Paper",
-    eyebrow: "04 / 06",
+    eyebrow: "03 / 05",
     description: "从问题抽象、模型建立到结果验证和成文表达，形成完整的数学建模论文工作流。",
     image: practiceCardImages.modeling,
     detail: "重点体现建模分析、参数推导、结果解释以及数模论文的结构化表达。",
@@ -252,7 +262,7 @@ const practices: PracticeCard[] = [
   {
     title: "绿色性能",
     titleEn: "Simulation & Energy",
-    eyebrow: "05 / 06",
+    eyebrow: "04 / 05",
     description: "结合动画模拟、性能分析与节能大创实践，把绿色策略与技术路径转化为可读的成果展示。",
     image: practiceCardImages.green,
     detail: "重点体现模拟过程、节能研究、方案验证与项目成果之间的关联。",
@@ -265,7 +275,7 @@ const practices: PracticeCard[] = [
   {
     title: "实习项目",
     titleEn: "Working Drawings",
-    eyebrow: "06 / 06",
+    eyebrow: "05 / 05",
     description: "在实习中参与施工图设计与表达，关注制图规范、节点细化和设计成果的工程落地。",
     image: practiceCardImages.drawings,
     detail: "重点体现施工图设计、图纸表达标准、协作流程与项目执行能力。",
@@ -318,6 +328,27 @@ function EnergyAppScreen({ view }: { view: number }) {
 
 function PhoneShowcase({ project }: { project: "community" | "energy" }) {
   return <div className="phone-showcase code-phone-showcase" aria-label="代码实现的 APP 页面展示">{Array.from({ length: 5 }, (_, index) => project === "community" ? <CommunityAppScreen key={index} view={index}/> : <EnergyAppScreen key={index} view={index}/>)}</div>;
+}
+
+function UiProjectStack({ projects }: { projects: NonNullable<PracticeCard["uiProjects"]> }) {
+  return (
+    <div className="ui-project-stack" aria-label="UI 设计案例">
+      {projects.map((item, index) => (
+        <section className="ui-project-section" key={item.project} aria-labelledby={`ui-project-${item.project}`}>
+          <div className="ui-project-heading">
+            <span>{String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</span>
+            <small>{item.titleEn}</small>
+            <h3 id={`ui-project-${item.project}`}>{item.title}</h3>
+            <p>{item.description}</p>
+            <div className="ui-project-tags" aria-label={`${item.title}标签`}>
+              {item.tags.map((tag) => <i key={tag}>{tag}</i>)}
+            </div>
+          </div>
+          <PhoneShowcase project={item.project} />
+        </section>
+      ))}
+    </div>
+  );
 }
 
 function PracticeVideoShowcase({ videos }: { videos: { label: string; src: string }[] }) {
@@ -1169,7 +1200,7 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
       <section className="other-heading">
         <span>SELECTED DIRECTIONS</span>
         <h1>跨学科实践与<br />项目表达</h1>
-        <p>把社区产品、能源界面、科研写作、数学建模、绿色性能与实习项目整理成六个可被快速理解的主题。</p>
+        <p>把 UI 设计、科研写作、数学建模、绿色性能与实习项目整理成五个可被快速理解的主题。</p>
       </section>
       <section className="practice-stage" aria-label="Cross-disciplinary practice cards">
         <div className="practice-deck">
@@ -1224,7 +1255,7 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
             </div>
           ) : null}
           {practice.papers?.length ? <ResearchPaperArchive papers={practice.papers} /> : null}
-          {practice.mode === "phones" && practice.uiProject ? <PhoneShowcase project={practice.uiProject} /> : null}
+          {practice.mode === "phones" && practice.uiProjects?.length ? <UiProjectStack projects={practice.uiProjects} /> : null}
           {practice.videos?.length ? <PracticeVideoShowcase videos={practice.videos} /> : null}
           <div className="practice-switcher" aria-label="切换主题卡片">
             <button type="button" onClick={() => movePractice(-1)} aria-label="上一张主题卡片"><ChevronLeft size={18} /></button>

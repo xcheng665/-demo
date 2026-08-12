@@ -1588,12 +1588,97 @@ img {
   outline: none;
 }
 
+.ui-project-stack {
+  display: grid;
+  gap: clamp(54px, 7vw, 82px);
+  width: 100%;
+  margin-top: clamp(38px, 5vw, 58px);
+}
+
+.ui-project-section {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  padding-top: clamp(48px, 6vw, 70px);
+  border-top: 1px solid rgba(55, 75, 62, 0.18);
+}
+
+.ui-project-section:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.ui-project-heading {
+  display: grid;
+  justify-items: center;
+  width: min(680px, 100%);
+  text-align: center;
+}
+
+.ui-project-heading > span,
+.ui-project-heading > small {
+  color: var(--accent-deep);
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ui-project-heading > small {
+  margin-top: 12px;
+  color: var(--faint);
+  letter-spacing: 0.14em;
+}
+
+.ui-project-heading h3 {
+  margin: 5px 0 0;
+  color: var(--ink);
+  font-family: var(--font-zh);
+  font-size: clamp(27px, 3vw, 40px);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.ui-project-heading p {
+  max-width: 620px;
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.ui-project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.ui-project-tags i {
+  padding: 6px 10px;
+  border: 1px solid rgba(55, 75, 62, 0.18);
+  border-radius: 999px;
+  color: var(--accent-deep);
+  background: rgba(236, 241, 230, 0.72);
+  font-family: var(--font-zh);
+  font-size: 10px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
 .phone-showcase {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(10px, 1.4vw, 16px);
   width: min(1120px, 100%);
   margin-top: 28px;
+}
+
+.ui-project-section .phone-showcase {
+  margin-top: 26px;
 }
 
 .practice-video-showcase {
@@ -2970,6 +3055,23 @@ img {
     width: 100%;
     overflow-x: auto;
     padding-bottom: 6px;
+  }
+
+  .ui-project-stack {
+    gap: 48px;
+    margin-top: 36px;
+  }
+
+  .ui-project-section {
+    padding-top: 44px;
+  }
+
+  .ui-project-heading {
+    padding-inline: 8px;
+  }
+
+  .ui-project-heading p {
+    font-size: 13px;
   }
 
   .phone-mockup {
