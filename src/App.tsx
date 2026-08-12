@@ -24,7 +24,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import type { AnchorHTMLAttributes, CSSProperties, KeyboardEvent as ReactKeyboardEvent, SyntheticEvent, TouchEvent, WheelEvent as ReactWheelEvent } from "react";
+import type { AnchorHTMLAttributes, CSSProperties, KeyboardEvent as ReactKeyboardEvent, ReactNode, TouchEvent, WheelEvent as ReactWheelEvent } from "react";
 import { AiChat } from "./components/AiChat";
 import BorderGlow from "./components/BorderGlow";
 import { RagOverview } from "./components/RagOverview";
@@ -63,20 +63,8 @@ const practiceCardImages = {
   green: publicPath("assets/practice-cards/green-performance-male-card.png"),
   drawings: publicPath("assets/practice-cards/working-drawings-male-card.png")
 } as const;
-const uiDesignImages = [
-  { label: "附近地图", src: publicPath("assets/community-helper/nearby-map.png") },
-  { label: "快递代取", src: publicPath("assets/community-helper/parcel-pickup.png") },
-  { label: "物品互借", src: publicPath("assets/community-helper/item-borrowing.png") },
-  { label: "顺路拼车", src: publicPath("assets/community-helper/carpool.png") },
-  { label: "我的邻里", src: publicPath("assets/community-helper/my-neighborhood.png") }
-] as const;
-const energyManagementImages = [
-  { label: "能耗总览", src: publicPath("assets/energy-manager/overview.png") },
-  { label: "环境监测", src: publicPath("assets/energy-manager/environment.png") },
-  { label: "告警中心", src: publicPath("assets/energy-manager/alerts.png") },
-  { label: "储能调控", src: publicPath("assets/energy-manager/storage.png") },
-  { label: "个人设置", src: publicPath("assets/energy-manager/settings.png") }
-] as const;
+const communitySceneUrl = publicPath("assets/community-helper/community-scene.png");
+const energySceneUrl = publicPath("assets/energy-manager/energy-scene.png");
 const homeProjectPreviewColumns = [0, 1, 2].map((columnIndex) =>
   projects
     .flatMap((project) => project.images.map((src) => ({ project, src })))
@@ -213,7 +201,7 @@ type PracticeCard = {
   detail: string;
   tags?: string[];
   mode?: "text" | "phones";
-  uiImages?: { label: string; src: string }[];
+  uiProject?: "community" | "energy";
   videos?: { label: string; src: string }[];
   papers?: ResearchPaper[];
 };
@@ -228,7 +216,7 @@ const practices: PracticeCard[] = [
     detail: "五台手机以地图、快递、借物、拼车和个人中心串联完整互助流程；所有场景均使用本地化实景视觉，避免页面素材加载失效。",
     tags: ["社区互助", "移动端 UI", "前端实现"],
     mode: "phones",
-    uiImages: [...uiDesignImages]
+    uiProject: "community"
   },
   {
     title: "绿能管家",
@@ -239,7 +227,7 @@ const practices: PracticeCard[] = [
     detail: "五台手机覆盖能耗总览、环境监测、告警中心、储能调控与个人设置；以实景照片承托数据判断，形成可读、可操作的能源运维流程。",
     tags: ["储能管理", "移动端 UI", "绿色社区"],
     mode: "phones",
-    uiImages: [...energyManagementImages]
+    uiProject: "energy"
   },
   {
     title: "数据科研",
@@ -285,75 +273,51 @@ const practices: PracticeCard[] = [
   }
 ];
 
-function PhoneMockup({
-  src,
-  label,
-  index
-}: {
-  src: string;
-  label: string;
-  index: number;
-}) {
-  const screenRef = useRef<HTMLDivElement | null>(null);
-  const [travel, setTravel] = useState(0);
-  const [duration, setDuration] = useState(14);
+type CodePhoneProps = { label: string; index: number; children: ReactNode };
 
-  const updateMotion = (imgEl: HTMLImageElement) => {
-    const screen = screenRef.current;
-    if (!screen || !imgEl.naturalWidth || !imgEl.naturalHeight) return;
-    const renderedHeight = screen.clientWidth * (imgEl.naturalHeight / imgEl.naturalWidth);
-    const nextTravel = Math.max(renderedHeight - screen.clientHeight, 0);
-    setTravel(nextTravel);
-    setDuration(Math.max(12, Math.round(nextTravel / 18)));
-  };
-
-  const onLoad = (event: SyntheticEvent<HTMLImageElement>) => {
-    updateMotion(event.currentTarget);
-  };
-
-  useEffect(() => {
-    const handleResize = () => {
-      const imgEl = screenRef.current?.querySelector("img");
-      if (imgEl instanceof HTMLImageElement && imgEl.complete) updateMotion(imgEl);
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, [src]);
-
-  return (
-    <article className="phone-mockup" style={{ "--phone-delay": `${index * 1.25}s` } as CSSProperties}>
-      <div className="phone-mockup-top">
-        <span className="phone-mockup-camera" />
-      </div>
-      <div className="phone-screen" ref={screenRef}>
-        <img
-          src={src}
-          alt={`${label}页面界面展示`}
-          onLoad={onLoad}
-          style={
-            {
-              "--scroll-distance": `${travel}px`,
-              "--scroll-duration": `${duration}s`
-            } as CSSProperties
-          }
-        />
-      </div>
-      <div className="phone-mockup-label">{label}</div>
-    </article>
-  );
+function CodePhone({ label, index, children }: CodePhoneProps) {
+  return <article className="phone-mockup code-phone" style={{ "--phone-delay": `${index * 0.12}s` } as CSSProperties}>
+    <div className="phone-mockup-top"><span className="phone-mockup-camera" /></div>
+    <div className="phone-screen code-phone-screen">{children}</div>
+    <div className="phone-mockup-label">{label}</div>
+  </article>;
 }
 
-function PhoneShowcase({ images }: { images: { label: string; src: string }[] }) {
-  return (
-    <div className="phone-showcase" aria-label="APP 页面手机展示">
-      {images.map((item, index) => (
-        <PhoneMockup key={item.src} src={item.src} label={item.label} index={index} />
-      ))}
-    </div>
-  );
+function AppNav({ active, insight }: { active: string; insight: string }) {
+  return <><div className="app-presence"><span>●</span>{insight}<b>›</b></div><nav className="app-bottom-nav" aria-label="应用导航">{["附近", "互助", "发布", "消息", "我的"].map((item) => <span className={active === item ? "is-active" : ""} key={item}><b>{item === "发布" ? "+" : item === "附近" ? "⌂" : item === "互助" ? "♧" : item === "消息" ? "◌" : "◉"}</b>{item}</span>)}</nav></>;
+}
+
+function AppPhoto({ src, className = "" }: { src: string; className?: string }) {
+  return <img className={`app-photo ${className}`} src={src} alt="社区实景" />;
+}
+
+function CommunityAppScreen({ view }: { view: number }) {
+  const labels = ["附近地图", "快递代取", "物品互借", "顺路拼车", "我的邻里"];
+  const card = (title: string, text: string, tone = "") => <div className={`code-task-card ${tone}`}><small>翠湖花园 · 260m</small><b>{title}</b><p>{text}</p><i>顺路可帮</i></div>;
+  return <CodePhone label={labels[view]} index={view}><div className="app-code community-code">
+    {view === 0 && <><header><strong>附近的互助</strong><span>程</span></header><div className="app-search">⌕ 搜索快递、借物、拼车</div><div className="app-chip-row"><i>距我最近</i><i>紧急</i><i>新发布</i></div><div className="code-map"><em className="map-road r1"/><em className="map-road r2"/><em className="map-road r3"/><AppPhoto src={communitySceneUrl} className="map-scene"/><b className="map-pin p1">取</b><b className="map-pin p2">车</b><b className="map-pin p3">借</b><small>翠湖花园</small></div>{card("帮忙取一下驿站快递", "今晚加班，取件码已备好。")}</>}
+    {view === 1 && <><header><strong>快递代取</strong><span>筛选</span></header><div className="app-tabs"><b>待取件 2</b><span>已取件</span><span>代收中</span></div><div className="code-photo-card"><AppPhoto src={communitySceneUrl} className="parcel-photo"/><div><b>2号驿站 · 取件码 6682</b><p>丰巢智能柜 · 北门隔壁</p><button>我已取件</button></div></div>{card("再带一件 1 栋的快递", "同一路线，还差 1 位邻居。", "compact")}</>}
+    {view === 2 && <><header><strong>物品互借</strong><span>分类</span></header><div className="app-chip-row"><i>全部</i><i>工具</i><i>家居</i><i>运动</i></div>{[["电钻（含钻头）", "9成新 · 3人借过"], ["折叠梯", "可借 2 小时"], ["工具箱套装", "周末可取"]].map(([title, meta], item) => <div className="borrow-row" key={title}><AppPhoto src={communitySceneUrl} className={`borrow-photo photo-${item}`}/><div><b>{title}</b><p>{meta}</p><span>查看详情 ›</span></div></div>)}</>}
+    {view === 3 && <><header><strong>顺路出行</strong><span>发布</span></header><div className="carpool-hero"><AppPhoto src={communitySceneUrl}/><div><small>明天 08:30</small><b>翠湖花园 → 交管路地铁站</b><p>还剩 2 个座位 · 车主已认证</p></div></div><div className="app-chip-row"><i>今天 16:30</i><i>明天 08:30</i></div>{["李师傅 · 5.0分", "王女士 · 4.9分"].map((driver) => <div className="driver-row" key={driver}><span>李</span><div><b>{driver}</b><p>翠湖花园出发 · 准点</p></div><i>加入</i></div>)}</>}
+    {view === 4 && <><header><strong>我的</strong><span>⚙</span></header><div className="profile-cover"><AppPhoto src={communitySceneUrl}/><div><b>程知远</b><small>翠湖花园 · 已认证居民</small></div></div><div className="app-stats"><span><b>18</b>帮助邻居</span><span><b>96</b>邻里信用</span><span><b>7</b>收到感谢</span></div><p className="app-section-title">MY NEIGHBORHOOD</p>{["我发布的需求", "我响应的请求", "我的借用记录", "常用地点"].map((item, idx) => <div className="code-menu" key={item}>{item}<span>{idx < 3 ? [2, 1, 3][idx] : ""}　›</span></div>)}</>}
+    <AppNav active={view === 0 ? "附近" : view === 4 ? "我的" : "互助"} insight={["附近还有 3 个需求等待回应", "今日已有 6 件快递被顺路带回", "你的物品借用守约率 100%", "同路线还有 2 位邻居准备出发", "本周收到 2 句邻里感谢"][view]}/>
+  </div></CodePhone>;
+}
+
+function EnergyAppScreen({ view }: { view: number }) {
+  const labels = ["能耗总览", "环境监测", "告警中心", "储能调控", "个人设置"];
+  return <CodePhone label={labels[view]} index={view}><div className="app-code energy-code">
+    {view === 0 && <><header><strong>绿能管家</strong><span>⌁</span></header><div className="energy-aerial"><AppPhoto src={energySceneUrl}/><b className="energy-marker m1">☀</b><b className="energy-marker m2">⌁</b><b className="energy-marker m3">⚡</b></div><div className="energy-kpi"><span><b>286</b>今日发电 kWh</span><span><b>72%</b>电池 SOC</span></div><div className="bar-chart">{[35, 42, 58, 49, 74, 85, 68].map((n) => <i style={{ height: `${n}%` }} key={n}/>)}</div></>}
+    {view === 1 && <><header><strong>环境监测</strong><span>☘</span></header><div className="energy-photo"><AppPhoto src={energySceneUrl}/></div><div className="energy-grid"><div><small>日照强度</small><b>92</b><em>舒适</em></div><div><small>实时温度</small><b>26°</b><em>正常</em></div><div><small>空气质量</small><b>42</b><em>优</em></div><div><small>光伏效率</small><b>81%</b><em>稳定</em></div></div><div className="curve-line"><span/></div></>}
+    {view === 2 && <><header><strong>告警中心</strong><span>···</span></header><div className="alert-strip">▲ 1 项异常待处理 <b>›</b></div><div className="alert-photo"><AppPhoto src={energySceneUrl}/><span>设备现场照片</span></div><div className="severity"><b>高优先级</b><p>储能柜温度持续偏高，请在 2 小时内检查。</p></div><div className="thumb-row">{[1,2,3,4].map((x) => <AppPhoto src={energySceneUrl} key={x}/>)}</div><button className="app-main-button">派发工单</button></>}
+    {view === 3 && <><header><strong>储能调控</strong><span>⌁</span></header><div className="energy-flow"><span>☀</span><i/> <b>⚡</b><i/> <span>▯</span></div><div className="energy-kpi triple"><span><b>3.21</b>光伏输入</span><span><b>2.48</b>储能功率</span><span><b>0.73</b>负载</span></div><div className="storage-photo"><AppPhoto src={energySceneUrl}/><b>储能柜运行中</b></div><div className="blue-chart"><span/></div></>}
+    {view === 4 && <><header><strong>系统设置</strong><span>⚙</span></header><div className="energy-profile"><AppPhoto src={energySceneUrl}/><div><b>绿能管家</b><p>翠湖花园 A 区</p></div></div><div className="goal-card"><b>68%</b><span/><p>本月绿色用能目标</p></div>{["告警通知", "节能建议", "设备巡检", "隐私与权限"].map((item, idx) => <div className="code-menu" key={item}>{item}<span>{idx === 0 ? "●" : "›"}</span></div>)}</>}
+    <AppNav active={view === 3 ? "发布" : view === 4 ? "我的" : "附近"} insight={["当前社区绿色用能率 72%", "环境舒适，适合开启自然通风", "1 项异常已进入优先处理队列", "预计今晚可释放 5.7h 储能空间", "通知设置已同步至社区运维中心"][view]}/>
+  </div></CodePhone>;
+}
+
+function PhoneShowcase({ project }: { project: "community" | "energy" }) {
+  return <div className="phone-showcase code-phone-showcase" aria-label="代码实现的 APP 页面展示">{Array.from({ length: 5 }, (_, index) => project === "community" ? <CommunityAppScreen key={index} view={index}/> : <EnergyAppScreen key={index} view={index}/>)}</div>;
 }
 
 function PracticeVideoShowcase({ videos }: { videos: { label: string; src: string }[] }) {
@@ -1260,7 +1224,7 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
             </div>
           ) : null}
           {practice.papers?.length ? <ResearchPaperArchive papers={practice.papers} /> : null}
-          {practice.mode === "phones" && practice.uiImages ? <PhoneShowcase images={practice.uiImages} /> : null}
+          {practice.mode === "phones" && practice.uiProject ? <PhoneShowcase project={practice.uiProject} /> : null}
           {practice.videos?.length ? <PracticeVideoShowcase videos={practice.videos} /> : null}
           <div className="practice-switcher" aria-label="切换主题卡片">
             <button type="button" onClick={() => movePractice(-1)} aria-label="上一张主题卡片"><ChevronLeft size={18} /></button>
