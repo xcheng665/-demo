@@ -959,14 +959,20 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           </RouteLink>
           <div className="project-wordmark">Project</div>
           <div className="project-cover-content">
-            <span className="project-cover-index">{project.number}</span>
-            <h1>{project.title}</h1>
-            <p className="project-cover-title-en">{project.titleEn}</p>
+            <div className="project-cover-heading">
+              <span className="project-cover-index">{project.number} / PROJECT</span>
+              <h1>{project.title}</h1>
+              <p className="project-cover-title-en">{project.titleEn}</p>
+            </div>
             <div className="project-cover-meta">
-              <span>{project.category}</span>
-              <span>{project.categoryEn}</span>
-              <span>{project.year}</span>
-              <span>程志远</span>
+              <span className="project-cover-meta-category">{project.category}</span>
+              <span className="project-cover-meta-category-en">{project.categoryEn}</span>
+              <span className="project-cover-meta-year">{project.year}</span>
+              {(project.credits ?? [{ label: "AUTHOR", value: "程志远" }]).map((credit) => (
+                <span className="project-cover-credit" key={credit.label}>
+                  <small>{credit.label}</small>{credit.value}
+                </span>
+              ))}
             </div>
             <div className="project-cover-description">
               <p className="project-cover-summary">{project.description}</p>

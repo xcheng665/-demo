@@ -13,6 +13,11 @@ export type CoverMedia = {
   label: string;
 };
 
+export type ProjectCredit = {
+  label: string;
+  value: string;
+};
+
 export type Project = {
   number: string;
   title: string;
@@ -27,6 +32,7 @@ export type Project = {
   coverMedia?: CoverMedia[];
   preludeMedia?: CoverMedia[];
   closingMedia?: CoverMedia[];
+  credits?: ProjectCredit[];
   squares: SquareSpec[];
 };
 
@@ -109,8 +115,8 @@ export const projects: Project[] = [
     category: "高品质度假酒店设计",
     categoryEn: "Resort Hotel Design",
     year: "2024",
-    description: "项目回应三亚热带滨海气候与度假生活需求，以面向海景的公共轴线串联入口、庭院、客房与滨水活动空间。错动体量形成遮阳与通风界面，并通过灰空间和连续景观弱化建筑与自然之间的边界。",
-    descriptionEn: "A climate-responsive resort organized by a public axis that links arrival, courtyards, guest rooms and the waterfront landscape.",
+    description: "本项目坐落于三亚大东海国家旅游度假区，这里拥有“水暖沙白滩平”的绝佳自然禀赋，是三亚起步最早、最具活力的开放式滨海街区。设计意图旨在打破传统酒店与城市的边界，打造一座“离生不离城”的国际化滨海度假聚点。在总体布局上，顺应场地与山面海的独特地貌，建筑采用沿海底层架空布局，最大化保障每一层客房的无遮挡海景视野。",
+    descriptionEn: "Located in Sanya’s Dadonghai National Tourist Resort, the project responds to a coastal district known for warm waters, white sand and a flat beach. It breaks the boundary between a conventional hotel and the city to create an international seaside resort that remains connected to urban life. The overall layout follows the site’s mountain-and-sea terrain, lifting the lower level above the coast to preserve unobstructed sea views for every guest room.",
     thumbnail: projectCover("项目1.jpg"),
     images: [
       publicPath("assets/project-pages/page-04.jpg"),
@@ -120,9 +126,9 @@ export const projects: Project[] = [
       publicPath("assets/project-pages/page-08.jpg")
     ],
     coverMedia: [
-      { src: projectCover("项目1_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.79, label: "项目 1 - 0" },
-      { src: projectCover("项目1_1.jpg"), type: "image", size: "portrait", aspectRatio: 1.32, label: "项目 1 - 1" },
-      { src: projectCover("项目1_2.jpg"), type: "image", size: "landscape", aspectRatio: 2.14, label: "项目 1 - 2" }
+      { src: projectCover("项目1_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 1 - 0" },
+      { src: projectCover("项目1_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 1 - 2" },
+      { src: projectCover("项目1_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 1 - 1" }
     ],
     squares: [
       { x: 5, y: 30, size: 16 },
@@ -139,9 +145,9 @@ export const projects: Project[] = [
     titleEn: "Urban Oasis Neighborhood Center",
     category: "可持续社区空间设计",
     categoryEn: "Sustainable Community Space",
-    year: "2024",
-    description: "设计以社区共享和步行可达为核心，将邻里服务、休闲活动与绿色庭院叠合为开放的公共客厅。建筑首层保持通透，屋顶与退台转化为可使用的立体花园，建立全天候的社区交往网络。",
-    descriptionEn: "A walkable neighborhood hub that layers community services, shared rooms and accessible green terraces.",
+    year: "2025—2026",
+    description: "以海南黎锦船形屋为文化内核，将其抽象转译后融入场地、建筑、铺装与能源设施，使符号成为空间叙事的载体。摒弃堆砌，遵循“文化即生态”逻辑，实现地域文化与绿色技术融合。布局采用“观赏—过渡—娱乐”三段序列，搭配乡土树种营造遮阴廊道。项目旨在打造活态文化展场与可持续实验室，让传统建筑形式实现现代转译，融入日常，在开放共享中提升文化认同、社区凝聚与生态韧性。",
+    descriptionEn: "Rooted in Hainan’s Li brocade boat-shaped houses, the project abstracts and translates their forms into the site, architecture, paving and energy systems, turning cultural symbols into carriers of spatial narrative. It avoids superficial accumulation and follows the idea that culture is ecology, bringing regional identity together with green technology. A three-part sequence—viewing, transition and recreation—is paired with shaded corridors planted with native species. The project is conceived as a living cultural exhibition and a sustainable laboratory, translating traditional forms into contemporary life and strengthening cultural belonging, community cohesion and ecological resilience through open sharing.",
     thumbnail: projectCover("项目2.jpg"),
     images: [
       publicPath("assets/project-pages/page-09.jpg"),
@@ -153,8 +159,14 @@ export const projects: Project[] = [
     ],
     coverMedia: [
       { src: projectCover("项目2_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 2 - 0" },
-      { src: projectCover("项目2_1.png"), type: "image", size: "portrait", aspectRatio: 1.33, label: "项目 2 - 1" },
-      { src: projectCover("项目2_2.jpg"), type: "image", size: "landscape", aspectRatio: 1.52, label: "项目 2 - 2" }
+      { src: projectCover("项目2_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 2 - 2" },
+      { src: projectCover("项目2_1.png"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 2 - 1" }
+    ],
+    credits: [
+      { label: "ROLE", value: "团队设计 · 主创 / 队长 · 程志远" },
+      { label: "ADVISORS", value: "易法珠 · 张忆先" },
+      { label: "SITE", value: "海口市琼山区历史街区附近" },
+      { label: "TEAM", value: "程志远 · 岑伊林 · 林倩 · 陈华琳 · 崔溪源" }
     ],
     preludeMedia: [
       { src: projectCover("项目2_生长动画.mp4"), type: "video", size: "landscape", clipEndSeconds: 15, label: "生长动画" }
@@ -177,8 +189,8 @@ export const projects: Project[] = [
     category: "城市友好型博物馆设计",
     categoryEn: "Urban-Friendly Museum",
     year: "2023",
-    description: "项目从海南黎锦纹样与在地聚落中提取空间秩序，将展览、教育和城市公共活动编织进连续的参观路径。首层向城市开放，层层递进的庭院与天光空间营造具有地域记忆的博物馆体验。",
-    descriptionEn: "A civic museum shaped by Li brocade patterns, layered courtyards and a continuous public exhibition route.",
+    description: "以黎锦纹样的空间转译为概念，建筑上部悬浮，下部开放，呈现轻盈的仪式感。几何母题化作采光庭院与屋顶花园，木色立面模拟经纬交织，形成织物般的表皮肌理。底部架空与坡地台基相连，结合下沉庭院与台阶广场，引导人流从城市道路逐步上行或下行进入展陈空间，形成台地与下沉交织、由地景走向文化的立体参观路径。",
+    descriptionEn: "The project translates Li brocade patterns into spatial form: the upper volume floats above an open base, creating a light ceremonial presence. Geometric motifs become daylight courtyards and roof gardens, while timber-toned façades simulate interwoven warp and weft to form a textile-like skin. The raised lower level connects to the sloping plinth, sunken courtyard and stepped plaza, guiding visitors gradually up or down from the city street into the exhibition spaces. Terraces and excavations overlap to create a three-dimensional route from landscape to culture.",
     thumbnail: projectCover("项目3.jpg"),
     images: [
       publicPath("assets/project-pages/page-15.jpg"),
@@ -187,9 +199,9 @@ export const projects: Project[] = [
       publicPath("assets/project-pages/page-18.jpg")
     ],
     coverMedia: [
-      { src: projectCover("项目3_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.55, label: "项目 3 - 0" },
-      { src: projectCover("项目3_1.jpg"), type: "image", size: "landscape", aspectRatio: 1.79, label: "项目 3 - 1" },
-      { src: projectCover("项目3_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.75, label: "项目 3 - 2" }
+      { src: projectCover("项目3_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 3 - 0" },
+      { src: projectCover("项目3_1.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 3 - 1" },
+      { src: projectCover("项目3_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 3 - 2" }
     ],
     squares: [
       { x: 4, y: 24, size: 16 },
@@ -206,8 +218,8 @@ export const projects: Project[] = [
     category: "公园型综合体城市设计",
     categoryEn: "Park-Oriented Urban Design",
     year: "2023",
-    description: "方案以“绿脉生长”为城市结构，将生态廊道、慢行系统和复合功能组织为可持续扩展的公园型综合体。建筑体量顺应公共绿轴展开，在不同标高连接商业、文化、办公与社区生活。",
-    descriptionEn: "A park-oriented mixed-use district where ecological corridors and pedestrian networks guide phased urban growth.",
+    description: "脉：取城市脉搏与生态脉络双重意象。设计捕捉城市的活力与动感，以红色景观廊道串联建筑与场地，使其如大地脉络般自然生长、交融。体育、文化、旅游、商业、酒店等功能在此有机聚合，形成吸引人流与机遇的强力磁极。同时紧扣“生态型”核心，将整个建筑群视为有生命力的有机体，预留弹性空间，使其随城市发展与需求变化而自我更新、持续生长。",
+    descriptionEn: "Pulse: drawing on the dual imagery of the city’s pulse and ecological veins. The design captures the city’s vitality and movement, linking buildings and site with red landscape corridors so the district grows and interweaves like the veins of the earth. Sports, culture, tourism, commerce and hospitality cluster into a powerful attractor for people and opportunity. At the same time, the proposal holds to an ecological core, treating the building group as a living organism with flexible space that can renew itself as the city and its needs change.",
     thumbnail: projectCover("项目4.jpg"),
     images: [
       publicPath("assets/project-pages/page-19.jpg"),
@@ -216,9 +228,9 @@ export const projects: Project[] = [
       publicPath("assets/project-pages/page-22.jpg")
     ],
     coverMedia: [
-      { src: projectCover("项目4_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.53, label: "项目 4 - 0" },
-      { src: projectCover("项目4_1.jpg"), type: "image", size: "portrait", aspectRatio: 1.1, label: "项目 4 - 1" },
-      { src: projectCover("项目4_2.jpg"), type: "image", size: "landscape", aspectRatio: 1.87, label: "项目 4 - 2" }
+      { src: projectCover("项目4_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 4 - 0" },
+      { src: projectCover("项目4_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 4 - 2" },
+      { src: projectCover("项目4_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 4 - 1" }
     ],
     squares: [
       { x: 82, y: 26, size: 14 },
@@ -235,8 +247,8 @@ export const projects: Project[] = [
     category: "技术与艺术 / 综合作品",
     categoryEn: "Technology, Art and Mixed Works",
     year: "2022",
-    description: "本组收录建筑技术、数字建模、视觉表达与艺术实践，呈现从手工观察到计算工具的多种工作方式。不同媒介共同服务于空间理解、构造研究和设计沟通。",
-    descriptionEn: "A collection of technical studies, digital models and visual experiments spanning handcraft and computation.",
+    description: "本页以“建筑片段的连续叙事”为线索，将作品集中不同类型的表达——城市想象、传统空间、构造图纸、现代立面、历史细部与场景摄影——重新整合为六等分的插画序列。通过统一的低饱和水彩肌理、细腻线稿与温和色调，原本风格各异的图像被转译为同一视觉语言，形成从概念、场所、构造到空间体验的连续阅读。",
+    descriptionEn: "This page uses a continuous narrative of architectural fragments to integrate different modes of representation from the portfolio, including urban imagination, traditional space, construction drawings, modern façades, historical details, and architectural photography. Through a unified low-saturation watercolor texture, delicate linework and a gentle palette, images with different styles are translated into one visual language, creating a continuous reading from concept and place to construction and spatial experience.",
     thumbnail: projectCover("项目5-首页封面.png"),
     images: [
       publicPath("assets/project-pages/page-23.jpg"),
@@ -249,8 +261,8 @@ export const projects: Project[] = [
     ],
     coverMedia: [
       { src: projectCover("项目5_1.jpg"), type: "image", size: "landscape", aspectRatio: 1.69, label: "项目 5 - 1" },
-      { src: projectCover("项目5_2.jpg"), type: "image", size: "portrait", aspectRatio: 1.41, label: "项目 5 - 2" },
-      { src: projectCover("项目5_3.jpg"), type: "image", size: "landscape", aspectRatio: 1.77, label: "项目 5 - 3" }
+      { src: projectCover("项目5_3.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 5 - 3" },
+      { src: projectCover("项目5_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 5 - 2" }
     ],
     squares: [
       { x: 6, y: 20, size: 14 },
