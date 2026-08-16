@@ -11,6 +11,7 @@ export type CoverMedia = {
   aspectRatio?: number;
   clipEndSeconds?: number;
   label: string;
+  caption?: string;
 };
 
 export type ProjectCredit = {
@@ -28,6 +29,7 @@ export type Project = {
   description: string;
   descriptionEn: string;
   thumbnail: string;
+  splashImage?: string;
   images: string[];
   coverMedia?: CoverMedia[];
   preludeMedia?: CoverMedia[];
@@ -110,8 +112,8 @@ export const portfolioPages = [
 export const projects: Project[] = [
   {
     number: "01",
-    title: "山海 · 绿境",
-    titleEn: "Mountain, Sea and Green Realm",
+    title: "遮阳的十二时辰",
+    titleEn: "The Twelve Hours of Shade",
     category: "高品质度假酒店设计",
     categoryEn: "Resort Hotel Design",
     year: "2024",
@@ -126,9 +128,9 @@ export const projects: Project[] = [
       publicPath("assets/project-pages/page-08.jpg")
     ],
     coverMedia: [
-      { src: projectCover("项目1_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 1 - 0" },
-      { src: projectCover("项目1_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 1 - 2" },
-      { src: projectCover("项目1_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 1 - 1" }
+      { src: projectCover("项目1_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 1 - 0", caption: "海滨度假酒店整体效果图，展示架空体量、层叠平台与海岸景观的关系。" },
+      { src: projectCover("项目1_剖面图.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 1 - 2", caption: "建筑剖面图，展示客房、架空层与公共空间的竖向组织及通风采光策略。" },
+      { src: projectCover("项目1_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 1 - 1", caption: "体量模型图，呈现错落楼层、庭院节点与滨海步行空间的组合关系。" }
     ],
     squares: [
       { x: 5, y: 30, size: 16 },
@@ -158,9 +160,9 @@ export const projects: Project[] = [
       publicPath("assets/project-pages/page-14.jpg")
     ],
     coverMedia: [
-      { src: projectCover("项目2_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 2 - 0" },
-      { src: projectCover("项目2_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 2 - 2" },
-      { src: projectCover("项目2_1.png"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 2 - 1" }
+      { src: projectCover("项目2_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 2 - 0", caption: "城市绿洲邻里中心整体表达图，展示建筑与绿地、廊道的融合关系。" },
+      { src: projectCover("项目2_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 2 - 2", caption: "建筑空间细节图，展示黎锦形态转译后的屋面、庭院与公共界面。" },
+      { src: projectCover("项目2_1.png"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 2 - 1", caption: "剖面表达图，展示传统船形屋意向与现代社区功能的叠合方式。" }
     ],
     credits: [
       { label: "ROLE", value: "团队设计 · 主创 / 队长 · 程志远" },
@@ -199,9 +201,9 @@ export const projects: Project[] = [
       publicPath("assets/project-pages/page-18.jpg")
     ],
     coverMedia: [
-      { src: projectCover("项目3_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 3 - 0" },
-      { src: projectCover("项目3_1.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 3 - 1" },
-      { src: projectCover("项目3_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 3 - 2" }
+      { src: projectCover("项目3_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 3 - 0", caption: "博物馆总体效果图，展示悬浮体量、开放基座与城市界面的关系。" },
+      { src: projectCover("项目3_1.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 3 - 1", caption: "建筑空间透视图，呈现黎锦纹样转译出的庭院、屋顶花园与木质表皮。" },
+      { src: projectCover("项目3_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 3 - 2", caption: "构造与立面表达图，展示经纬交织的表皮肌理与台地式参观路径。" }
     ],
     squares: [
       { x: 4, y: 24, size: 16 },
@@ -228,9 +230,9 @@ export const projects: Project[] = [
       publicPath("assets/project-pages/page-22.jpg")
     ],
     coverMedia: [
-      { src: projectCover("项目4_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 4 - 0" },
-      { src: projectCover("项目4_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 4 - 2" },
-      { src: projectCover("项目4_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 4 - 1" }
+      { src: projectCover("项目4_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 4 - 0", caption: "综合体总体鸟瞰图，展示红色生态廊道串联多功能建筑群的城市结构。" },
+      { src: projectCover("项目4_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 4 - 2", caption: "城市设计关系图，呈现公园、公共空间与商业文化功能的复合布局。" },
+      { src: projectCover("项目4_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 4 - 1", caption: "建筑细部表达图，展示绿脉生长理念在立面、景观与步行界面中的延展。" }
     ],
     squares: [
       { x: 82, y: 26, size: 14 },
@@ -250,6 +252,7 @@ export const projects: Project[] = [
     description: "本页以“建筑片段的连续叙事”为线索，将作品集中不同类型的表达——城市想象、传统空间、构造图纸、现代立面、历史细部与场景摄影——重新整合为六等分的插画序列。通过统一的低饱和水彩肌理、细腻线稿与温和色调，原本风格各异的图像被转译为同一视觉语言，形成从概念、场所、构造到空间体验的连续阅读。",
     descriptionEn: "This page uses a continuous narrative of architectural fragments to integrate different modes of representation from the portfolio, including urban imagination, traditional space, construction drawings, modern façades, historical details, and architectural photography. Through a unified low-saturation watercolor texture, delicate linework and a gentle palette, images with different styles are translated into one visual language, creating a continuous reading from concept and place to construction and spatial experience.",
     thumbnail: projectCover("项目5-首页封面.png"),
+    splashImage: projectCover("项目5-首页封面.png"),
     images: [
       publicPath("assets/project-pages/page-23.jpg"),
       publicPath("assets/project-pages/page-24.jpg"),
@@ -260,9 +263,9 @@ export const projects: Project[] = [
       publicPath("assets/project-pages/page-29.jpg")
     ],
     coverMedia: [
-      { src: projectCover("项目5_1.jpg"), type: "image", size: "landscape", aspectRatio: 1.69, label: "项目 5 - 1" },
-      { src: projectCover("项目5_3.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 5 - 3" },
-      { src: projectCover("项目5_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 5 - 2" }
+      { src: projectCover("项目5_剖面816.png"), type: "image", size: "landscape", aspectRatio: 1.69, label: "项目 5 - 1", caption: "建筑剖面图，展示空间层次、结构节点与建筑内部的连续动线。" },
+      { src: projectCover("项目5_3.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 5 - 3", caption: "现代建筑立面图，展示光影、材料与尺度在连续叙事中的转译。" },
+      { src: projectCover("项目5_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 5 - 2", caption: "传统建筑剖面图，呈现历史细部与空间构造之间的对应关系。" }
     ],
     squares: [
       { x: 6, y: 20, size: 14 },

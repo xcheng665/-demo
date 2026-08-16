@@ -750,7 +750,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     ...closingMedia.map((media, index) => ({ label: media.label || `结尾 ${index + 1}` }))
   ];
   const usesLandscapeTriptych = coverCards.length === 3 && coverCards.every((card) => card.size === "landscape");
-  const projectSplashImage = coverCards.find((card) => card.type === "image" && card.src)?.src ?? project.thumbnail;
+  const projectSplashImage = project.splashImage ?? coverCards.find((card) => card.type === "image" && card.src)?.src ?? project.thumbnail;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
   const detailScrollRef = useRef<HTMLDivElement>(null);
   const projectPageRef = useRef<HTMLElement>(null);
@@ -979,24 +979,27 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               <p className="project-cover-summary-en">{project.descriptionEn}</p>
             </div>
             <div className={`project-cover-media project-cover-media-${project.number}${usesLandscapeTriptych ? " is-landscape-triptych" : ""}`} aria-label={`${project.title}项目媒体`}>
-              {coverCards.map((card, index) =>
-                !card.src ? (
-                  <div className={`project-cover-card project-cover-card-${card.size} is-placeholder`} aria-label={`${project.title}${card.label}占位`} key={card.label}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                  </div>
-                ) : card.type === "video" ? (
-                  <div className={`project-cover-card project-cover-card-${card.size} project-cover-card-video`} style={{ aspectRatio: card.aspectRatio }} aria-label={`${project.title}${card.label}`} key={card.label}>
-                    <video autoPlay loop muted playsInline preload="metadata" aria-label={`${project.title}${card.label}`}>
-                      <source src={card.src} type="video/mp4" />
-                    </video>
-                    <span className="project-cover-video-label">{card.label}</span>
-                  </div>
-                ) : (
-                  <a className={`project-cover-card project-cover-card-${card.size}`} style={{ aspectRatio: card.aspectRatio }} href={card.src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}${card.label}`} key={card.label}>
-                    <img src={card.src} alt={`${project.title}${card.label}`} />
-                  </a>
-                )
-              )}
+              {coverCards.map((card, index) => (
+                <figure className="project-cover-media-item" key={card.label}>
+                  {card.caption ? <figcaption className="project-cover-media-caption">{card.caption}</figcaption> : null}
+                  {!card.src ? (
+                    <div className={`project-cover-card project-cover-card-${card.size} is-placeholder`} aria-label={`${project.title}${card.label}占位`}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                    </div>
+                  ) : card.type === "video" ? (
+                    <div className={`project-cover-card project-cover-card-${card.size} project-cover-card-video`} style={{ aspectRatio: card.aspectRatio }} aria-label={`${project.title}${card.label}`}>
+                      <video autoPlay loop muted playsInline preload="metadata" aria-label={`${project.title}${card.label}`}>
+                        <source src={card.src} type="video/mp4" />
+                      </video>
+                      <span className="project-cover-video-label">{card.label}</span>
+                    </div>
+                  ) : (
+                    <a className={`project-cover-card project-cover-card-${card.size}`} style={{ aspectRatio: card.aspectRatio }} href={card.src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}${card.label}`}>
+                      <img src={card.src} alt={`${project.title}${card.label}`} />
+                    </a>
+                  )}
+                </figure>
+              ))}
             </div>
           </div>
           <span className="project-scroll-hint">SCROLL FOR DRAWINGS</span>

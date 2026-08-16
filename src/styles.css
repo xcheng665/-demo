@@ -3938,15 +3938,16 @@ img {
 .project-cover-meta-category {
   color: var(--ink);
   font-family: var(--font-zh);
-  font-size: 13px;
+  font-size: clamp(20px, 1.8vw, 28px);
   font-weight: 600;
+  line-height: 1.2;
 }
 
 .project-cover-meta-category-en,
 .project-cover-meta-year {
   color: var(--faint);
   font-family: var(--font-en);
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.08em;
 }
 
@@ -3956,13 +3957,13 @@ img {
   margin-top: 3px;
   color: var(--muted);
   font-family: var(--font-zh);
-  font-size: 10px;
+  font-size: 13px;
 }
 
 .project-cover-credit small {
   color: var(--faint);
   font-family: var(--font-en);
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
@@ -3999,6 +4000,23 @@ img {
   gap: clamp(20px, 2vw, 36px);
   width: 100%;
   margin-top: clamp(28px, 4vh, 54px);
+}
+
+.project-cover-media-item {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-self: end;
+  gap: 10px;
+  margin: 0;
+}
+
+.project-cover-media-caption {
+  min-height: 3.1em;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(12px, 0.95vw, 15px);
+  line-height: 1.55;
 }
 
 .project-cover-card {
