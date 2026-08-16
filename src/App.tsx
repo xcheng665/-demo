@@ -957,8 +957,8 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
             <ChevronLeft size={18} />
             <span><strong>全部项目</strong><small>ALL PROJECTS</small></span>
           </RouteLink>
-          <div className="project-wordmark">Project</div>
-          <div className="project-cover-content">
+          <div className={`project-wordmark project-wordmark-${project.number}`}>Project</div>
+          <div className={`project-cover-content project-cover-content-${project.number}`}>
             <div className="project-cover-heading">
               <span className="project-cover-index">{project.number} / PROJECT</span>
               <h1>{project.title}</h1>
@@ -975,13 +975,14 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               ))}
             </div>
             <div className="project-cover-description">
+              <h2 className="project-cover-description-title">Project</h2>
               <p className="project-cover-summary">{project.description}</p>
               <p className="project-cover-summary-en">{project.descriptionEn}</p>
             </div>
             <div className={`project-cover-media project-cover-media-${project.number}${usesLandscapeTriptych ? " is-landscape-triptych" : ""}`} aria-label={`${project.title}项目媒体`}>
               {coverCards.map((card, index) => (
                 <figure className="project-cover-media-item" key={card.label}>
-                  {card.caption ? <figcaption className="project-cover-media-caption">{card.caption}</figcaption> : null}
+                  {card.caption ? <figcaption className="project-cover-media-caption">{card.caption}{card.captionEn ? <span>{card.captionEn}</span> : null}</figcaption> : null}
                   {!card.src ? (
                     <div className={`project-cover-card project-cover-card-${card.size} is-placeholder`} aria-label={`${project.title}${card.label}占位`}>
                       <span>{String(index + 1).padStart(2, "0")}</span>

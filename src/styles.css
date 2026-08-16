@@ -3779,7 +3779,7 @@ img {
 }
 
 .project-cover-slide {
-  padding: 38px 9vw 34px;
+  padding: 38px 2.3vw 34px;
 }
 
 .project-detail-scroll .project-cover-content {
@@ -3888,6 +3888,29 @@ img {
   padding: 11vh 0 max(10vh, 108px);
 }
 
+.project-cover-content-01 {
+  width: min(1600px, calc(100vw - 76px));
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  column-gap: clamp(48px, 5vw, 84px);
+  row-gap: 24px;
+  align-content: start;
+  padding-top: 5vh;
+  padding-bottom: 0;
+}
+
+/* Project 2 follows the same editorial cover grid as the approved reference:
+   metadata and title on the left, description on the right, and three aligned
+   captioned media columns below. */
+.project-cover-content-02 {
+  width: min(1600px, calc(100vw - 76px));
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  column-gap: clamp(48px, 5vw, 84px);
+  row-gap: 24px;
+  align-content: start;
+  padding-top: 5vh;
+  padding-bottom: 0;
+}
+
 .project-cover-heading {
   grid-column: 1;
   grid-row: 1;
@@ -3922,6 +3945,51 @@ img {
   line-height: 1.4;
 }
 
+.project-wordmark-01 {
+  display: none;
+}
+
+.project-wordmark-02,
+.project-wordmark-03,
+.project-wordmark-04,
+.project-wordmark-05 {
+  display: none;
+}
+
+.project-cover-content-01 .project-cover-heading {
+  align-self: start;
+}
+
+.project-cover-content-02 .project-cover-heading {
+  align-self: start;
+}
+
+.project-cover-content-01 .project-cover-content h1,
+.project-cover-content-01 h1 {
+  max-width: 560px;
+  font-size: clamp(54px, 5.4vw, 88px);
+  line-height: 0.98;
+}
+
+.project-cover-content-02 .project-cover-content h1,
+.project-cover-content-02 h1 {
+  max-width: 560px;
+  font-size: clamp(54px, 5.4vw, 88px);
+  line-height: 0.98;
+}
+
+.project-cover-content-01 .project-cover-title-en {
+  margin-top: 16px;
+  color: var(--accent);
+  font-size: clamp(16px, 1.35vw, 24px);
+}
+
+.project-cover-content-02 .project-cover-title-en {
+  margin-top: 16px;
+  color: var(--accent);
+  font-size: clamp(16px, 1.35vw, 24px);
+}
+
 .project-cover-meta {
   display: grid;
   grid-column: 1;
@@ -3933,6 +4001,48 @@ img {
   color: var(--muted);
   font-size: 10px;
   line-height: 1.5;
+}
+
+.project-cover-content-01 .project-cover-meta {
+  min-height: 250px;
+  padding-top: 26px;
+}
+
+.project-cover-content-02 .project-cover-meta {
+  min-height: 250px;
+  padding-top: 26px;
+}
+
+.project-cover-content-01 .project-cover-credit {
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0 14px;
+  margin-top: 12px;
+}
+
+.project-cover-content-02 .project-cover-credit {
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0 14px;
+  margin-top: 12px;
+}
+
+.project-cover-content-01 .project-cover-credit small {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.project-cover-content-02 .project-cover-credit small {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.project-cover-content-01 .project-cover-credit:not(small) {
+  line-height: 1.45;
+}
+
+.project-cover-content-02 .project-cover-credit:not(small) {
+  line-height: 1.45;
 }
 
 .project-cover-meta-category {
@@ -3977,6 +4087,29 @@ img {
   border-left: 1px solid var(--line);
 }
 
+.project-cover-content-01 .project-cover-description {
+  grid-row: 1 / span 2;
+  align-self: start;
+  min-height: 360px;
+  padding: 18px 0 28px clamp(32px, 4vw, 72px);
+}
+
+.project-cover-content-02 .project-cover-description {
+  grid-row: 1 / span 2;
+  align-self: start;
+  min-height: 360px;
+  padding: 18px 0 28px clamp(32px, 4vw, 72px);
+}
+
+.project-cover-description-title {
+  margin: 0 0 18px;
+  color: var(--accent);
+  font-family: var(--font-en);
+  font-size: clamp(28px, 2.5vw, 42px);
+  font-weight: 500;
+  line-height: 1;
+}
+
 .project-cover-summary {
   margin: 0;
   color: var(--ink);
@@ -3992,6 +4125,21 @@ img {
   line-height: 1.55;
 }
 
+.project-cover-content-01 .project-cover-summary,
+.project-cover-content-02 .project-cover-summary,
+.project-cover-content-03 .project-cover-summary {
+  font-size: clamp(16px, 1.15vw, 20px);
+  line-height: 1.72;
+}
+
+.project-cover-content-01 .project-cover-summary-en,
+.project-cover-content-02 .project-cover-summary-en,
+.project-cover-content-03 .project-cover-summary-en {
+  margin-top: 16px;
+  font-size: clamp(11px, 0.82vw, 14px);
+  line-height: 1.58;
+}
+
 .project-cover-media {
   grid-column: 1 / -1;
   display: grid;
@@ -4000,6 +4148,24 @@ img {
   gap: clamp(20px, 2vw, 36px);
   width: 100%;
   margin-top: clamp(28px, 4vh, 54px);
+}
+
+.project-cover-content-01 .project-cover-media {
+  grid-row: 3;
+  align-items: stretch;
+  gap: clamp(20px, 2.4vw, 40px);
+  margin-top: 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.project-cover-content-02 .project-cover-media {
+  grid-row: 3;
+  align-items: stretch;
+  gap: clamp(20px, 2.4vw, 40px);
+  margin-top: 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
 }
 
 .project-cover-media-item {
@@ -4017,6 +4183,300 @@ img {
   color: var(--muted);
   font-size: clamp(12px, 0.95vw, 15px);
   line-height: 1.55;
+}
+
+.project-cover-media-caption span {
+  display: block;
+  margin-top: 4px;
+  color: var(--faint);
+  font-family: var(--font-en);
+  font-size: 0.88em;
+  line-height: 1.42;
+}
+
+.project-cover-content-01 .project-cover-media-caption {
+  height: auto;
+  min-height: 82px;
+  padding-left: 14px;
+  border-left: 4px solid var(--accent);
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.5;
+}
+
+.project-cover-content-02 .project-cover-media-caption {
+  height: auto;
+  min-height: 82px;
+  padding-left: 14px;
+  border-left: 4px solid var(--accent);
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.5;
+}
+
+.project-cover-content-01 .project-cover-media-item {
+  align-self: start;
+  gap: 12px;
+}
+
+.project-cover-content-02 .project-cover-media-item {
+  align-self: start;
+  gap: 12px;
+}
+
+.project-cover-content-01 .project-cover-card {
+  height: clamp(280px, 29vh, 390px);
+  aspect-ratio: auto !important;
+}
+
+.project-cover-content-02 .project-cover-card {
+  height: clamp(280px, 29vh, 390px);
+  aspect-ratio: auto !important;
+}
+
+/* Keep project 3 on the same approved cover system. */
+.project-cover-content-03 {
+  width: min(1600px, calc(100vw - 76px));
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  column-gap: clamp(48px, 5vw, 84px);
+  row-gap: 24px;
+  align-content: start;
+  padding-top: 5vh;
+  padding-bottom: 0;
+}
+
+.project-cover-content-03 .project-cover-heading {
+  align-self: start;
+}
+
+.project-cover-content-03 h1 {
+  max-width: 560px;
+  font-size: clamp(54px, 5.4vw, 88px);
+  line-height: 0.98;
+}
+
+.project-cover-content-03 .project-cover-title-en {
+  margin-top: 16px;
+  color: var(--accent);
+  font-size: clamp(16px, 1.35vw, 24px);
+}
+
+.project-cover-content-03 .project-cover-meta {
+  min-height: 250px;
+  padding-top: 26px;
+}
+
+.project-cover-content-03 .project-cover-credit {
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0 14px;
+  margin-top: 12px;
+}
+
+.project-cover-content-03 .project-cover-credit small {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.project-cover-content-03 .project-cover-credit:not(small) {
+  line-height: 1.45;
+}
+
+.project-cover-content-03 .project-cover-description {
+  grid-row: 1 / span 2;
+  align-self: start;
+  min-height: 360px;
+  padding: 18px 0 28px clamp(32px, 4vw, 72px);
+}
+
+.project-cover-content-03 .project-cover-summary {
+  font-size: clamp(16px, 1.15vw, 20px);
+  line-height: 1.72;
+}
+
+.project-cover-content-03 .project-cover-summary-en {
+  margin-top: 16px;
+  font-size: clamp(11px, 0.82vw, 14px);
+  line-height: 1.58;
+}
+
+.project-cover-content-03 .project-cover-media {
+  grid-row: 3;
+  align-items: stretch;
+  gap: clamp(20px, 2.4vw, 40px);
+  margin-top: 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.project-cover-content-03 .project-cover-media-caption {
+  height: auto;
+  min-height: 82px;
+  padding-left: 14px;
+  border-left: 4px solid var(--accent);
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.5;
+}
+
+.project-cover-content-03 .project-cover-media-item {
+  align-self: start;
+  gap: 12px;
+}
+
+.project-cover-content-03 .project-cover-card {
+  height: clamp(280px, 29vh, 390px);
+  aspect-ratio: auto !important;
+}
+
+.project-cover-content-04,
+.project-cover-content-05 {
+  width: min(1600px, calc(100vw - 76px));
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  column-gap: clamp(48px, 5vw, 84px);
+  row-gap: 24px;
+  align-content: start;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.project-cover-content-04 .project-cover-heading,
+.project-cover-content-05 .project-cover-heading {
+  align-self: start;
+}
+
+.project-cover-content-04 h1,
+.project-cover-content-05 h1 {
+  max-width: 560px;
+  font-size: clamp(54px, 5.4vw, 88px);
+  line-height: 0.98;
+}
+
+.project-cover-content-04 .project-cover-title-en,
+.project-cover-content-05 .project-cover-title-en {
+  margin-top: 16px;
+  color: var(--accent);
+  font-size: clamp(16px, 1.35vw, 24px);
+}
+
+.project-cover-content-04 .project-cover-meta,
+.project-cover-content-05 .project-cover-meta {
+  min-height: 0;
+  padding-top: 26px;
+}
+
+.project-cover-content-04 .project-cover-credit,
+.project-cover-content-05 .project-cover-credit {
+  grid-template-columns: 92px minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0 14px;
+  margin-top: 12px;
+}
+
+.project-cover-content-04 .project-cover-credit small,
+.project-cover-content-05 .project-cover-credit small {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.project-cover-content-04 .project-cover-description,
+.project-cover-content-05 .project-cover-description {
+  grid-row: 1 / span 2;
+  align-self: start;
+  min-height: 0;
+  padding: 18px 0 28px clamp(32px, 4vw, 72px);
+}
+
+.project-cover-content-04 .project-cover-summary,
+.project-cover-content-05 .project-cover-summary {
+  font-size: clamp(16px, 1.15vw, 20px);
+  line-height: 1.72;
+}
+
+.project-cover-content-04 .project-cover-summary-en,
+.project-cover-content-05 .project-cover-summary-en {
+  margin-top: 16px;
+  font-size: clamp(11px, 0.82vw, 14px);
+  line-height: 1.58;
+}
+
+.project-cover-content-04 .project-cover-media,
+.project-cover-content-05 .project-cover-media {
+  grid-row: 3;
+  align-items: stretch;
+  gap: clamp(20px, 2.4vw, 40px);
+  width: 100%;
+  margin-top: 0;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  justify-self: stretch;
+}
+
+.project-cover-content-04 .project-cover-media-caption,
+.project-cover-content-05 .project-cover-media-caption {
+  height: 88px;
+  min-height: 88px;
+  padding-left: 14px;
+  border-left: 4px solid var(--accent);
+  overflow: hidden;
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.5;
+}
+
+.project-cover-content-04 .project-cover-media-item,
+.project-cover-content-05 .project-cover-media-item {
+  align-self: start;
+  gap: 12px;
+}
+
+.project-cover-content-04 .project-cover-card,
+.project-cover-content-05 .project-cover-card {
+  height: clamp(280px, 29vh, 390px);
+  aspect-ratio: auto !important;
+}
+
+/* Final alignment pass for the reference cover compositions. */
+.project-cover-content-01,
+.project-cover-content-02,
+.project-cover-content-03,
+.project-cover-content-04,
+.project-cover-content-05 {
+  padding-top: 0;
+}
+
+.project-cover-content-01 .project-cover-meta,
+.project-cover-content-02 .project-cover-meta,
+.project-cover-content-03 .project-cover-meta,
+.project-cover-content-04 .project-cover-meta,
+.project-cover-content-05 .project-cover-meta,
+.project-cover-content-01 .project-cover-description,
+.project-cover-content-02 .project-cover-description,
+.project-cover-content-03 .project-cover-description,
+.project-cover-content-04 .project-cover-description,
+.project-cover-content-05 .project-cover-description {
+  min-height: 0;
+}
+
+.project-cover-content-01 .project-cover-media-caption,
+.project-cover-content-02 .project-cover-media-caption,
+.project-cover-content-03 .project-cover-media-caption,
+.project-cover-content-04 .project-cover-media-caption,
+.project-cover-content-05 .project-cover-media-caption {
+  height: 88px;
+  min-height: 88px;
+  overflow: hidden;
+}
+
+.project-cover-content-01 .project-cover-media,
+.project-cover-content-02 .project-cover-media,
+.project-cover-content-03 .project-cover-media {
+  width: 100%;
+  justify-self: stretch;
+}
+
+.project-cover-content-01 .project-cover-media,
+.project-cover-content-02 .project-cover-media,
+.project-cover-content-03 .project-cover-media,
+.project-cover-content-04 .project-cover-media,
+.project-cover-content-05 .project-cover-media {
+  grid-template-columns: 1.7fr 1fr 0.95fr;
 }
 
 .project-cover-card {
@@ -4597,6 +5057,17 @@ img {
     padding: 92px 10vw 94px;
   }
 
+  .project-cover-content-01,
+  .project-cover-content-02,
+  .project-cover-content-03,
+  .project-cover-content-04,
+  .project-cover-content-05 {
+    grid-template-columns: 1fr;
+    width: min(100%, 560px);
+    gap: 16px;
+    padding: 92px 10vw 94px;
+  }
+
   .project-cover-heading,
   .project-cover-meta,
   .project-cover-description {
@@ -4621,6 +5092,14 @@ img {
     font-size: clamp(38px, 11vw, 56px);
   }
 
+  .project-cover-content-01 h1,
+  .project-cover-content-02 h1,
+  .project-cover-content-03 h1,
+  .project-cover-content-04 h1,
+  .project-cover-content-05 h1 {
+    font-size: clamp(38px, 11vw, 56px);
+  }
+
   .project-cover-summary {
     font-size: 14px;
   }
@@ -4630,6 +5109,48 @@ img {
     gap: 18px;
     width: min(100%, 360px);
     margin-top: 18px;
+  }
+
+  .project-cover-content-01 .project-cover-media,
+  .project-cover-content-02 .project-cover-media,
+  .project-cover-content-03 .project-cover-media,
+  .project-cover-content-04 .project-cover-media,
+  .project-cover-content-05 .project-cover-media {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    width: min(100%, 360px);
+    margin-top: 18px;
+    padding-top: 18px;
+  }
+
+  .project-cover-content-01 .project-cover-description,
+  .project-cover-content-02 .project-cover-description,
+  .project-cover-content-03 .project-cover-description,
+  .project-cover-content-04 .project-cover-description,
+  .project-cover-content-05 .project-cover-description {
+    grid-row: auto;
+    min-height: 0;
+    padding: 6px 0 2px;
+    border-left: 0;
+  }
+
+  .project-cover-content-01 .project-cover-media-caption,
+  .project-cover-content-02 .project-cover-media-caption,
+  .project-cover-content-03 .project-cover-media-caption,
+  .project-cover-content-04 .project-cover-media-caption,
+  .project-cover-content-05 .project-cover-media-caption {
+    height: auto;
+    min-height: 0;
+    font-size: 13px;
+  }
+
+  .project-cover-content-01 .project-cover-card,
+  .project-cover-content-02 .project-cover-card,
+  .project-cover-content-03 .project-cover-card,
+  .project-cover-content-04 .project-cover-card,
+  .project-cover-content-05 .project-cover-card {
+    height: auto;
+    aspect-ratio: 1.62 / 1 !important;
   }
 
   .project-cover-media.is-landscape-triptych {
