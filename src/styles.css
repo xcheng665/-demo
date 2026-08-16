@@ -4003,6 +4003,12 @@ img {
   line-height: 1.5;
 }
 
+.project-cover-meta,
+.project-cover-credit,
+.project-cover-credit-value {
+  min-width: 0;
+}
+
 .project-cover-content-01 .project-cover-meta {
   min-height: 250px;
   padding-top: 26px;
@@ -4076,6 +4082,12 @@ img {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.12em;
+}
+
+.project-cover-credit-value {
+  display: block;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .project-cover-description {

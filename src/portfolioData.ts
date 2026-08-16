@@ -118,8 +118,8 @@ export const projects: Project[] = [
     category: "高品质度假酒店设计",
     categoryEn: "Resort Hotel Design",
     year: "2024",
-    description: "项目坐落于三亚大东海国家旅游度假区。设计以滨海场地为线索，打破传统酒店与城市的边界，形成与山海环境相连的度假空间。",
-    descriptionEn: "Located in Sanya’s Dadonghai National Tourist Resort, the project connects a lifted coastal hotel with the city and preserves unobstructed sea views through a layered, open spatial strategy.",
+    description: "本项目坐落于三亚大东海国家旅游度假区，这里拥有“水暖沙白滩平”的绝佳自然禀赋，是三亚起步最早、最具活力的开放式滨海街区。设计意图旨在打破传统酒店与城市的边界，打造一座“离生不离城”的国际化滨海度假聚点。在总体布局上，顺应场地与山面海的独特地貌，建筑采用沿海底层架空布局，最大化保障每一层客房的无遮挡海景视野。",
+    descriptionEn: "Located in Sanya’s Dadonghai National Tourist Resort, the project responds to a coastal district known for warm waters, white sand and a flat beach. It breaks the boundary between a conventional hotel and the city to create an international seaside resort that remains connected to urban life. The overall layout follows the site’s mountain-and-sea terrain, lifting the lower level above the coast to preserve unobstructed sea views for every guest room.",
     thumbnail: projectCover("项目1.jpg"),
     images: [
       publicPath("assets/project-pages/page-04.jpg"),
@@ -129,13 +129,12 @@ export const projects: Project[] = [
       publicPath("assets/project-pages/page-08.jpg")
     ],
     coverMedia: [
-      { src: projectCover("项目1_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 1 - 0", caption: "海滨度假酒店整体效果图，展示架空体量、层叠平台与海岸景观的关系。", captionEn: "Overall expression, showing the relationship between architecture, site and coast." },
-      { src: projectCover("项目1_剖面图.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 1 - 2", caption: "建筑剖面图，展示客房、架空层与公共空间的竖向组织及通风采光策略。", captionEn: "Sectional expression, showing the vertical organization of rooms and shared spaces." },
-      { src: projectCover("项目1_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 1 - 1", caption: "体量模型图，呈现错落楼层、庭院节点与滨海步行空间的组合关系。", captionEn: "Spatial detail, showing the lifted volume, courtyard and public edge." }
+      { src: projectCover("项目1_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 1 - 0", caption: "海滨度假酒店整体效果图，展示架空体量、层叠平台与海岸景观的关系。", captionEn: "Overall perspective showing elevated volume, terraced platforms and the coastal landscape." },
+      { src: projectCover("项目1_剖面图.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 1 - 2", caption: "建筑剖面图，展示客房、架空层与公共空间的竖向组织及通风采光策略。", captionEn: "Building section showing vertical organization of guest rooms, elevated level and public spaces, and daylight & ventilation strategy." },
+      { src: projectCover("项目1_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 1 - 1", caption: "体量模型图，呈现错落楼层、庭院节点与滨海步行空间的组合关系。", captionEn: "Mass model showing staggered floors, courtyard nodes and coastal pedestrian spaces." }
     ],
     credits: [
-      { label: "AUTHOR", value: "程志远" },
-      { label: "SITE", value: "三亚大东海国家旅游度假区" }
+      { label: "AUTHOR", value: "程志远" }
     ],
     squares: [
       { x: 5, y: 30, size: 16 },

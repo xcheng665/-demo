@@ -970,7 +970,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               <span className="project-cover-meta-year">{project.year}</span>
               {(project.credits ?? [{ label: "AUTHOR", value: "程志远" }]).map((credit) => (
                 <span className="project-cover-credit" key={credit.label}>
-                  <small>{credit.label}</small>{credit.value}
+                  <small>{credit.label}</small><span className="project-cover-credit-value">{credit.value}</span>
                 </span>
               ))}
             </div>
