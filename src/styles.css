@@ -3973,9 +3973,9 @@ img {
 
 .project-cover-content-02 .project-cover-content h1,
 .project-cover-content-02 h1 {
-  max-width: 560px;
-  font-size: clamp(54px, 5.4vw, 88px);
-  line-height: 0.98;
+  max-width: 520px;
+  font-size: clamp(52px, 4.3vw, 72px);
+  line-height: 1.04;
 }
 
 .project-cover-content-01 .project-cover-title-en {
@@ -3985,9 +3985,9 @@ img {
 }
 
 .project-cover-content-02 .project-cover-title-en {
-  margin-top: 16px;
+  margin-top: 14px;
   color: var(--accent);
-  font-size: clamp(16px, 1.35vw, 24px);
+  font-size: clamp(14px, 1.05vw, 18px);
 }
 
 .project-cover-meta {
@@ -4015,8 +4015,8 @@ img {
 }
 
 .project-cover-content-02 .project-cover-meta {
-  min-height: 250px;
-  padding-top: 26px;
+  min-height: 280px;
+  padding-top: 20px;
 }
 
 .project-cover-content-01 .project-cover-credit {
@@ -4464,6 +4464,16 @@ img {
 .project-cover-content-04 .project-cover-description,
 .project-cover-content-05 .project-cover-description {
   min-height: 0;
+}
+
+/* Project 2 has four credit rows. Reserve its full information column before
+   the shared media row begins so captions never enter the same vertical space. */
+.project-cover-content-02 {
+  grid-template-rows: auto minmax(360px, auto) auto;
+}
+
+.project-cover-content-02 .project-cover-meta {
+  min-height: 360px;
 }
 
 .project-cover-content-01 .project-cover-media-caption,
@@ -5144,6 +5154,14 @@ img {
     min-height: 0;
     padding: 6px 0 2px;
     border-left: 0;
+  }
+
+  .project-cover-content-02 {
+    grid-template-rows: auto;
+  }
+
+  .project-cover-content-02 .project-cover-meta {
+    min-height: 0;
   }
 
   .project-cover-content-01 .project-cover-media-caption,
