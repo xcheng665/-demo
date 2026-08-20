@@ -20,6 +20,14 @@ export type ProjectCredit = {
   value: string;
 };
 
+export type ProjectSummary = {
+  problem: string;
+  strategy: string;
+  outcome: string;
+  role: string;
+  tools: string;
+};
+
 export type Project = {
   number: string;
   title: string;
@@ -36,6 +44,7 @@ export type Project = {
   preludeMedia?: CoverMedia[];
   closingMedia?: CoverMedia[];
   credits?: ProjectCredit[];
+  summary?: ProjectSummary;
   squares: SquareSpec[];
 };
 
@@ -136,6 +145,13 @@ export const projects: Project[] = [
     credits: [
       { label: "AUTHOR", value: "程志远" }
     ],
+    summary: {
+      problem: "在滨海度假区中处理酒店私密性、城市开放性与连续海景之间的关系。",
+      strategy: "顺应山海地貌，以沿海架空与层叠平台组织客房、公共空间和滨海步行界面。",
+      outcome: "形成一座兼具度假氛围与城市连接性的滨海酒店方案，并通过成套图纸和空间表达呈现设计逻辑。",
+      role: "个人方案设计与表达",
+      tools: "场地研究 · 空间推演 · 图纸表达"
+    },
     squares: [
       { x: 5, y: 30, size: 16 },
       { x: 10, y: 42, size: 10 },
@@ -180,6 +196,13 @@ export const projects: Project[] = [
     closingMedia: [
       { src: projectCover("项目2_漫游动画.mp4"), type: "video", size: "landscape", label: "空间漫游" }
     ],
+    summary: {
+      problem: "让黎锦船形屋文化意象摆脱符号堆砌，并回应社区公共空间、遮阴与生态韧性的日常需求。",
+      strategy: "把文化形态转译到场地、建筑、铺装与能源设施，以观赏、过渡、娱乐的序列串联乡土绿荫廊道。",
+      outcome: "形成兼具活态文化展示、共享活动与绿色实验属性的邻里中心方案，并完成生长与漫游表达。",
+      role: "团队主创 / 队长",
+      tools: "场地分析 · 城市设计 · 绿色策略"
+    },
     squares: [
       { x: 82, y: 55, size: 16 },
       { x: 88, y: 68, size: 10 },
@@ -212,6 +235,13 @@ export const projects: Project[] = [
     credits: [
       { label: "AUTHOR", value: "程志远" }
     ],
+    summary: {
+      problem: "在城市界面中为博物馆建立可亲近的公共入口，同时把黎锦纹样转化为真实的空间体验。",
+      strategy: "以悬浮体量和开放基座回应街道，以采光庭院、屋顶花园和织物感表皮组织展陈路径。",
+      outcome: "形成由城市道路、台地、下沉庭院到展陈空间连续展开的城市友好型博物馆方案。",
+      role: "个人方案设计与表达",
+      tools: "概念转译 · 空间组织 · 建筑表达"
+    },
     squares: [
       { x: 4, y: 24, size: 16 },
       { x: 10, y: 36, size: 10 },
@@ -241,6 +271,13 @@ export const projects: Project[] = [
       { src: projectCover("项目4_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 4 - 2", caption: "城市设计关系图，呈现公园、公共空间与商业文化功能的复合布局。", captionEn: "Urban design diagram, showing the composite layout of park, public, commercial and cultural programs." },
       { src: projectCover("项目4_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 4 - 1", caption: "建筑细部表达图，展示绿脉生长理念在立面、景观与步行界面中的延展。", captionEn: "Architectural detail, extending the green-vein concept through façade, landscape and pedestrian edges." }
     ],
+    summary: {
+      problem: "在多功能城市片区中建立公共活力、生态连续性与未来弹性之间的协同关系。",
+      strategy: "以红色景观廊道串联体育、文化、商业与酒店功能，将建筑群视作可持续生长的城市有机体。",
+      outcome: "形成公园型综合体城市设计方案，明确生态脉络、公共空间与复合功能的组织方式。",
+      role: "城市设计与空间表达",
+      tools: "功能整合 · 景观廊道 · 城市设计"
+    },
     squares: [
       { x: 82, y: 26, size: 14 },
       { x: 88, y: 38, size: 10 },
@@ -274,6 +311,13 @@ export const projects: Project[] = [
       { src: projectCover("项目5_3.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 5 - 3", caption: "现代建筑立面图，展示光影、材料与尺度在连续叙事中的转译。", captionEn: "Modern façade study, translating light, material and scale into a continuous narrative." },
       { src: projectCover("项目5_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 5 - 2", caption: "传统建筑剖面图，呈现历史细部与空间构造之间的对应关系。", captionEn: "Traditional section, showing the relationship between historic detail and spatial construction." }
     ],
+    summary: {
+      problem: "让不同题材、媒介与完成时间的建筑表达拥有统一而连续的阅读线索。",
+      strategy: "以建筑片段的连续叙事为框架，用低饱和水彩肌理、线稿与版式关系统一图像语言。",
+      outcome: "形成从概念、场所、构造到空间体验递进展开的综合作品叙事页面。",
+      role: "视觉整合与版面叙事",
+      tools: "图像整理 · 视觉转译 · 版面编排"
+    },
     squares: [
       { x: 6, y: 20, size: 14 },
       { x: 12, y: 34, size: 9 },

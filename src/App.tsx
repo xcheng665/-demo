@@ -4,10 +4,12 @@ import {
   ArrowUp,
   ChevronLeft,
   ChevronRight,
+  Check,
   Circle,
   Clock3,
   Code2,
   Compass,
+  Copy,
   Download,
   DraftingCompass,
   ExternalLink,
@@ -48,6 +50,7 @@ type SkillItem = {
   level: "熟练" | "能运用" | "研究中";
   summary: string;
   experience: string;
+  evidenceLinks: { label: string; labelEn: string; to: RoutePath }[];
 };
 
 type SkillGroup = {
@@ -107,19 +110,22 @@ const skillGroups: SkillGroup[] = [
         title: "建筑设计",
         level: "熟练",
         summary: "公共建筑 / 居住原理 / 城市设计 / 空间叙事",
-        experience: services[0].experience
+        experience: services[0].experience,
+        evidenceLinks: [{ label: projects[0].title, labelEn: "PROJECT 01", to: projectRoute(projects[0]) }]
       },
       {
         title: "场地与策略",
         level: "熟练",
         summary: "场地研究 / 人群与流线 / 气候适应 / 功能组织",
-        experience: "从三亚滨海度假酒店到海口新区综合体，持续用场地条件建立方案逻辑，并通过轴线、节点与公共空间组织设计。"
+        experience: "从三亚滨海度假酒店到海口新区综合体，持续用场地条件建立方案逻辑，并通过轴线、节点与公共空间组织设计。",
+        evidenceLinks: [{ label: projects[1].title, labelEn: "PROJECT 02", to: projectRoute(projects[1]) }]
       },
       {
         title: "图纸与汇报",
         level: "熟练",
         summary: "总图 / 平立剖 / 分析图 / 竞赛级版式",
-        experience: "能够独立完成从设计推演到成套图纸、渲染图与汇报文本的整合表达。"
+        experience: "能够独立完成从设计推演到成套图纸、渲染图与汇报文本的整合表达。",
+        evidenceLinks: [{ label: projects[2].title, labelEn: "PROJECT 03", to: projectRoute(projects[2]) }]
       }
     ]
   },
@@ -132,19 +138,22 @@ const skillGroups: SkillGroup[] = [
         title: "建筑物理",
         level: "熟练",
         summary: "热工 / 声环境 / 光环境 / 气候响应",
-        experience: services[1].experience
+        experience: services[1].experience,
+        evidenceLinks: [{ label: projects[0].title, labelEn: "CLIMATE RESPONSE", to: projectRoute(projects[0]) }]
       },
       {
         title: "性能分析",
         level: "能运用",
         summary: "日照时数 / 通风模拟 / 能耗判断 / 数据可视化",
-        experience: "在城市综合体与绿色建筑竞赛中，将日照和通风结果用于建筑朝向、体量与景观空间的调整。"
+        experience: "在城市综合体与绿色建筑竞赛中，将日照和通风结果用于建筑朝向、体量与景观空间的调整。",
+        evidenceLinks: [{ label: projects[3].title, labelEn: "PROJECT 04", to: projectRoute(projects[3]) }]
       },
       {
         title: "低能耗研究",
         level: "研究中",
         summary: "围护结构 / 椰壳材料 / 绿色策略验证",
-        experience: "参与椰壳围护结构能耗研究，关注材料、构造与建筑性能之间的量化关系。"
+        experience: "参与椰壳围护结构能耗研究，关注材料、构造与建筑性能之间的量化关系。",
+        evidenceLinks: [{ label: "科研与论文成果", labelEn: "RESEARCH ARCHIVE", to: "/other" }]
       }
     ]
   },
@@ -157,19 +166,22 @@ const skillGroups: SkillGroup[] = [
         title: "BIM 建模",
         level: "熟练",
         summary: "Revit / 协同建模 / 构件信息 / 施工模拟",
-        experience: services[2].experience
+        experience: services[2].experience,
+        evidenceLinks: [{ label: "竞赛与技术实践", labelEn: "SELECTED PRACTICE", to: "/other" }]
       },
       {
         title: "三维表达",
         level: "熟练",
         summary: "SketchUp / Rhino / 建筑动画 / 漫游",
-        experience: "使用 SketchUp 与 Rhino 快速完成体量推演、精细建模，并衔接渲染与漫游动画流程。"
+        experience: "使用 SketchUp 与 Rhino 快速完成体量推演、精细建模，并衔接渲染与漫游动画流程。",
+        evidenceLinks: [{ label: projects[1].title, labelEn: "ANIMATION & WALKTHROUGH", to: projectRoute(projects[1]) }]
       },
       {
         title: "渲染与后期",
         level: "熟练",
         summary: "效果图 / Photoshop / Illustrator / 版面整合",
-        experience: "能够独立控制建筑效果图、分析图和版面视觉的一致性，形成可直接汇报的成果。"
+        experience: "能够独立控制建筑效果图、分析图和版面视觉的一致性，形成可直接汇报的成果。",
+        evidenceLinks: [{ label: projects[2].title, labelEn: "VISUAL NARRATIVE", to: projectRoute(projects[2]) }]
       }
     ]
   },
@@ -182,19 +194,22 @@ const skillGroups: SkillGroup[] = [
         title: "参数化设计",
         level: "能运用",
         summary: "Grasshopper / 几何推演 / 参数控制 / 方案比较",
-        experience: services[3].experience
+        experience: services[3].experience,
+        evidenceLinks: [{ label: projects[3].title, labelEn: "COMPUTATIONAL DESIGN", to: projectRoute(projects[3]) }]
       },
       {
         title: "Python 数据处理",
         level: "熟练",
         summary: "Python / NumPy / Pandas / 图表与研究建模",
-        experience: "使用 Python 完成数据整理、指标计算与研究建模，并把结果转化为可读图表和设计判断。"
+        experience: "使用 Python 完成数据整理、指标计算与研究建模，并把结果转化为可读图表和设计判断。",
+        evidenceLinks: [{ label: "数据与科研实践", labelEn: "DATA RESEARCH", to: "/other" }]
       },
       {
         title: "科研与系统开发",
         level: "研究中",
         summary: "多智能体流程 / 规范校验 / Git / GitHub",
-        experience: services[4].experience
+        experience: services[4].experience,
+        evidenceLinks: [{ label: "论文与系统成果", labelEn: "RESEARCH & SYSTEMS", to: "/other" }]
       }
     ]
   }
@@ -550,14 +565,6 @@ function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
           transition={{ duration: 0.72, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="home-depth-carousel" aria-label="作品封面轮播">
-            <div className="home-carousel-caption" aria-live="polite">
-              <div>
-                <small>FEATURED PROJECT / {activeHomeProject.number}</small>
-                <strong>{activeHomeProject.title}</strong>
-                <span>{activeHomeProject.titleEn}</span>
-              </div>
-              <RouteLink to={projectRoute(activeHomeProject)} navigate={navigate}>查看项目 <ArrowRight size={14} /></RouteLink>
-            </div>
             <DepthCarousel
               items={homeCarouselItems}
               cardWidth={280}
@@ -578,6 +585,25 @@ function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
               onChange={(index: number) => setActiveHomeProjectIndex(index)}
               onItemActivate={(_: number, item: (typeof homeCarouselItems)[number]) => navigate(projectRoute(item.project))}
             />
+          </div>
+          <div className="home-carousel-caption" aria-live="polite">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={activeHomeProject.number}
+                className="home-carousel-caption-content"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div>
+                  <small>FEATURED PROJECT / {activeHomeProject.number}</small>
+                  <strong>{activeHomeProject.title}</strong>
+                  <span>{activeHomeProject.titleEn}</span>
+                </div>
+                <RouteLink to={projectRoute(activeHomeProject)} navigate={navigate}>查看项目 <ArrowRight size={14} /></RouteLink>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </motion.aside>
         <div className="home-discipline-strip">
@@ -625,7 +651,7 @@ function AbilitiesPage({ navigate }: { navigate: (to: RoutePath) => void }) {
         <p>BUILT THROUGH DESIGN STUDIOS, COMPETITIONS AND RESEARCH</p>
         <h1>已掌握的硬技能</h1>
         <div>
-          按真实项目经验分为熟练、能运用与研究中。<br />点击每一项可查看对应的个人经历。
+          按真实项目经验分为熟练、能运用与研究中。<br />展开能力，可继续查看对应项目与成果证据。
         </div>
       </section>
       <section className="skill-grid" aria-label="Professional abilities">
@@ -644,35 +670,47 @@ function AbilitiesPage({ navigate }: { navigate: (to: RoutePath) => void }) {
                 <div><h2>{group.title}</h2><p>{group.titleEn}</p></div>
               </header>
               <div className="skill-items">
-                {group.items.map((item) => {
+                {group.items.map((item, itemIndex) => {
                   const key = `${group.title}-${item.title}`;
                   const isOpen = openSkill === key;
+                  const panelId = `skill-evidence-${groupIndex}-${itemIndex}`;
                   return (
-                    <button
-                      className={`skill-item ${isOpen ? "is-open" : ""}`}
-                      type="button"
-                      key={key}
-                      onClick={() => setOpenSkill(isOpen ? null : key)}
-                      aria-expanded={isOpen}
-                    >
-                      <span className="skill-item-title">
-                        <strong>{item.title}</strong>
-                        <em>{item.level}</em>
-                      </span>
-                      <span className="skill-summary">{item.summary}</span>
+                    <div className={`skill-item-shell ${isOpen ? "is-open" : ""}`} key={key}>
+                      <button
+                        className={`skill-item ${isOpen ? "is-open" : ""}`}
+                        type="button"
+                        onClick={() => setOpenSkill(isOpen ? null : key)}
+                        aria-expanded={isOpen}
+                        aria-controls={panelId}
+                      >
+                        <span className="skill-item-title">
+                          <strong>{item.title}</strong>
+                          <em>{item.level}</em>
+                        </span>
+                        <span className="skill-summary">{item.summary}</span>
+                      </button>
                       <AnimatePresence initial={false}>
                         {isOpen ? (
-                          <motion.span
-                            className="skill-experience"
+                          <motion.div
+                            className="skill-evidence-panel"
+                            id={panelId}
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
                           >
-                            {item.experience}
-                          </motion.span>
+                            <p className="skill-experience">{item.experience}</p>
+                            <div className="skill-evidence-links" aria-label={`${item.title}关联成果`}>
+                              {item.evidenceLinks.map((link) => (
+                                <RouteLink key={`${link.to}-${link.label}`} to={link.to} navigate={navigate}>
+                                  <span><small>{link.labelEn}</small><strong>{link.label}</strong></span>
+                                  <ArrowRight size={15} aria-hidden="true" />
+                                </RouteLink>
+                              ))}
+                            </div>
+                          </motion.div>
                         ) : null}
                       </AnimatePresence>
-                    </button>
+                    </div>
                   );
                 })}
               </div>
@@ -798,7 +836,15 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   ];
   const galleryImages = project.images.filter((src) => !coverCards.some((card) => card.src === src));
   const closingMedia = project.closingMedia ?? [];
+  const projectSummary = project.summary ?? {
+    problem: project.description,
+    strategy: "以场地研究、空间组织与建筑表达建立项目回应。",
+    outcome: "形成可阅读的设计成果，并通过图纸与媒体呈现设计过程。",
+    role: project.credits?.[0]?.value ?? "项目设计与表达",
+    tools: "场地研究 · 空间推演 · 图纸表达"
+  };
   const detailPages = [
+    { label: "摘要" },
     { label: "概览" },
     ...project.preludeMedia?.map((media, index) => ({ label: media.label || `视频 ${index + 1}` })) ?? [],
     ...galleryImages.map((_, index) => ({ label: `图纸 ${String(index + 1).padStart(2, "0")}` })),
@@ -982,9 +1028,9 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <span>{project.number} / SELECTED WORK</span>
           <h1>{project.title}</h1>
           <p>{project.titleEn}</p>
-          <a className="project-splash-enter" href="#project-profile">
-            <span>浏览项目</span>
-            <span>EXPLORE PROJECT</span>
+          <a className="project-splash-enter" href="#project-summary">
+            <span>浏览摘要</span>
+            <span>PROJECT SUMMARY</span>
             <ArrowDown size={18} />
           </a>
         </div>
@@ -1001,9 +1047,44 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
         onTouchEnd={handleTouchEnd}
       >
         <motion.section
+          id="project-summary"
+          className="project-slide project-summary-slide"
+          data-detail-page="0"
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <ProjectReturnControl navigate={navigate} />
+          <div className="project-summary-shell">
+            <header className="project-summary-header">
+              <span>PROJECT SUMMARY</span>
+              <span>{project.number} / SELECTED WORK</span>
+            </header>
+            <div className="project-summary-main">
+              <div className="project-summary-intro">
+                <span>CASE AT A GLANCE</span>
+                <h2>{project.title}</h2>
+                <p>{project.titleEn}</p>
+                <div><small>项目判断</small><strong>{projectSummary.problem}</strong></div>
+              </div>
+              <ol className="project-summary-stories">
+                <li><span>01</span><div><small>问题</small><p>{projectSummary.problem}</p></div></li>
+                <li><span>02</span><div><small>策略</small><p>{projectSummary.strategy}</p></div></li>
+                <li><span>03</span><div><small>成果</small><p>{projectSummary.outcome}</p></div></li>
+              </ol>
+            </div>
+            <footer className="project-summary-facts" aria-label={`${project.title}项目摘要信息`}>
+              <span><small>TYPE</small><strong>{project.category}</strong></span>
+              <span><small>ROLE</small><strong>{projectSummary.role}</strong></span>
+              <span><small>YEAR</small><strong>{project.year}</strong></span>
+              <span><small>TOOLS</small><strong>{projectSummary.tools}</strong></span>
+            </footer>
+          </div>
+        </motion.section>
+        <motion.section
           id="project-profile"
           className="project-slide project-cover-slide"
-          data-detail-page="0"
+          data-detail-page="1"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
@@ -1064,7 +1145,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <motion.section
             className="project-slide project-video-slide"
             key={media.src}
-            data-detail-page={index + 1}
+            data-detail-page={index + 2}
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.58, once: true }}
@@ -1097,7 +1178,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <motion.section
             className="project-slide project-drawing-slide"
             key={src}
-            data-detail-page={1 + (project.preludeMedia?.length ?? 0) + index}
+            data-detail-page={2 + (project.preludeMedia?.length ?? 0) + index}
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.58, once: true }}
@@ -1115,7 +1196,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <motion.section
             className="project-slide project-closing-slide"
             key={media.src ?? media.label}
-            data-detail-page={1 + (project.preludeMedia?.length ?? 0) + galleryImages.length + index}
+            data-detail-page={2 + (project.preludeMedia?.length ?? 0) + galleryImages.length + index}
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.58, once: true }}
@@ -1336,6 +1417,33 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
 }
 
 function ContactPage({ navigate, onPreviewPortfolio }: { navigate: (to: RoutePath) => void; onPreviewPortfolio: () => void }) {
+  const contactEmail = "18879819661@163.com";
+  const [emailCopyStatus, setEmailCopyStatus] = useState<"idle" | "copied" | "error">("idle");
+  const copyResetTimer = useRef<number | null>(null);
+
+  useEffect(() => () => {
+    if (copyResetTimer.current !== null) window.clearTimeout(copyResetTimer.current);
+  }, []);
+
+  const copyEmail = async () => {
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error("Clipboard API unavailable");
+      await navigator.clipboard.writeText(contactEmail);
+      setEmailCopyStatus("copied");
+    } catch {
+      setEmailCopyStatus("error");
+    }
+
+    if (copyResetTimer.current !== null) window.clearTimeout(copyResetTimer.current);
+    copyResetTimer.current = window.setTimeout(() => setEmailCopyStatus("idle"), 2600);
+  };
+
+  const copyLabel = emailCopyStatus === "copied"
+    ? "邮箱已复制"
+    : emailCopyStatus === "error"
+      ? "复制失败，请使用上方邮箱"
+      : "一键复制邮箱";
+
   return (
     <main className="editorial-page contact-page-new page-screen">
       <SiteHeader current="/contact" navigate={navigate} />
@@ -1349,9 +1457,19 @@ function ContactPage({ navigate, onPreviewPortfolio }: { navigate: (to: RoutePat
         </motion.div>
         <div className="contact-links">
           <a href="tel:18879819661"><Phone size={22} /><span><small>PHONE</small>18879819661</span><ArrowUpRightIcon /></a>
-          <a href="mailto:18879819661@163.com"><Mail size={22} /><span><small>EMAIL</small>18879819661@163.com</span><ArrowUpRightIcon /></a>
+          <a href={`mailto:${contactEmail}`}><Mail size={22} /><span><small>EMAIL</small>{contactEmail}</span><ArrowUpRightIcon /></a>
+          <button className={`contact-copy-action is-${emailCopyStatus}`} type="button" onClick={copyEmail}>
+            {emailCopyStatus === "copied" ? <Check size={22} /> : <Copy size={22} />}
+            <span aria-live="polite"><small>QUICK ACTION</small>{copyLabel}</span>
+            <span className="contact-copy-hint">{emailCopyStatus === "idle" ? "COPY" : emailCopyStatus === "copied" ? "DONE" : "RETRY"}</span>
+          </button>
           <a href={resumePdfUrl} target="_blank" rel="noreferrer"><Download size={22} /><span><small>DOCUMENT</small>下载个人简历</span><ArrowUpRightIcon /></a>
           <button type="button" onClick={onPreviewPortfolio}><FileText size={22} /><span><small>PORTFOLIO</small>站内预览作品集</span><ArrowUpRightIcon /></button>
+          <div className="contact-response-note">
+            <Clock3 size={20} aria-hidden="true" />
+            <span><small>RESPONSE TIME</small>通常在 24 小时内回复</span>
+            <em>HAIKOU · CST</em>
+          </div>
         </div>
       </section>
       <div className="contact-footer">© 2026 CHENG ZHIYUAN · ARCHITECTURE PORTFOLIO</div>
