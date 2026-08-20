@@ -534,6 +534,21 @@ function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
             <span>= SPATIAL PRACTICE</span>
           </p>
           <p className="home-identity">CHENG ZHIYUAN <i /> 海南 · HAINAN</p>
+          <div className="home-actions">
+            <RouteLink className="primary-action" to="/projects" navigate={navigate}>
+              查看作品集 <ArrowRight size={18} />
+            </RouteLink>
+            <RouteLink className="text-action" to="/contact" navigate={navigate}>
+              联系方式 <ChevronRight size={17} />
+            </RouteLink>
+          </div>
+        </motion.section>
+        <motion.aside
+          className="home-showcase"
+          initial={{ opacity: 0, x: 28 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.72, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="home-depth-carousel" aria-label="作品封面轮播">
             <div className="home-carousel-caption" aria-live="polite">
               <div>
@@ -545,30 +560,26 @@ function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
             </div>
             <DepthCarousel
               items={homeCarouselItems}
-              depth={220}
-              spread={90}
-              tilt={22}
+              cardWidth={280}
+              cardHeight={354}
+              depth={150}
+              spread={54}
+              tilt={18}
               tiltDirection="right"
               perspective={1400}
-              visibleCards={4}
+              visibleCards={3}
               falloff={0.2}
               blur={6}
               autoplay
               loop
+              showControls={false}
+              showAutoplayToggle={false}
               ariaLabel="作品封面轮播"
               onChange={(index: number) => setActiveHomeProjectIndex(index)}
               onItemActivate={(_: number, item: (typeof homeCarouselItems)[number]) => navigate(projectRoute(item.project))}
             />
           </div>
-          <div className="home-actions">
-            <RouteLink className="primary-action" to="/projects" navigate={navigate}>
-              查看作品集 <ArrowRight size={18} />
-            </RouteLink>
-            <RouteLink className="text-action" to="/contact" navigate={navigate}>
-              联系方式 <ChevronRight size={17} />
-            </RouteLink>
-          </div>
-        </motion.section>
+        </motion.aside>
         <div className="home-discipline-strip">
           建筑设计 <i /> 绿色模拟 <i /> BIM 可视化 <i /> 参数化设计 <i /> Python 研究
         </div>
