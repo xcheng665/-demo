@@ -343,11 +343,9 @@ img {
   position: absolute;
   z-index: 3;
   top: 28%;
-  right: 0;
-  left: 0;
-  width: min(860px, 78vw);
-  margin: 0 auto;
-  text-align: center;
+  left: clamp(40px, 8vw, 140px);
+  width: min(500px, 40vw);
+  text-align: left;
   transform: none;
 }
 
@@ -370,26 +368,31 @@ img {
 .home-intro h1 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(76px, 9.8vw, 168px);
+  font-size: clamp(72px, 8vw, 136px);
   font-weight: 900;
   line-height: 0.92;
 }
 
 .home-formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.24em;
   margin: 36px 0 18px;
   font-size: clamp(22px, 3.3vw, 52px);
   font-weight: 900;
   line-height: 1.05;
 }
 
-.home-formula span {
+.home-formula > span:first-child,
+.home-formula-rotating {
   color: var(--accent);
 }
 
 .home-identity {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 11px;
   margin: 0;
   color: var(--muted);
@@ -408,7 +411,7 @@ img {
 .inline-actions {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 28px;
   margin-top: 42px;
 }
@@ -447,6 +450,97 @@ img {
 
 .text-action:hover {
   border-bottom-color: var(--accent);
+}
+
+.home-depth-carousel {
+  position: absolute;
+  top: clamp(-56px, -3vw, -18px);
+  left: calc(100% + clamp(28px, 4vw, 76px));
+  width: min(43vw, 590px);
+  height: min(500px, 62vh);
+}
+
+.home-depth-carousel .depth-carousel__card {
+  border: 1px solid rgba(247, 241, 229, 0.8);
+  box-shadow:
+    0 30px 60px -20px rgba(17, 25, 18, 0.62),
+    0 8px 20px -10px rgba(17, 25, 18, 0.5);
+}
+
+.home-depth-carousel .depth-carousel__arrow,
+.home-depth-carousel .depth-carousel__dots {
+  background: rgba(24, 34, 26, 0.58);
+}
+
+.home-depth-carousel .depth-carousel__dot.is-active {
+  background: transparent;
+}
+
+.home-depth-carousel .depth-carousel__dot.is-active::after {
+  background: var(--accent-soft);
+}
+
+.home-carousel-caption {
+  position: absolute;
+  z-index: 3200;
+  top: 14px;
+  right: 16px;
+  left: 16px;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 14px;
+  color: var(--paper-strong);
+  pointer-events: none;
+}
+
+.home-carousel-caption small,
+.home-carousel-caption span {
+  display: block;
+  font-family: var(--font-en);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.home-carousel-caption small {
+  color: rgba(247, 241, 229, 0.72);
+}
+
+.home-carousel-caption strong {
+  display: block;
+  margin: 4px 0 2px;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.65vw, 26px);
+  line-height: 1;
+}
+
+.home-carousel-caption span {
+  color: rgba(247, 241, 229, 0.76);
+  letter-spacing: 0.04em;
+}
+
+.home-carousel-caption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 3px;
+  padding: 7px 9px;
+  border: 1px solid rgba(247, 241, 229, 0.56);
+  color: var(--paper-strong);
+  background: rgba(24, 34, 26, 0.5);
+  font-family: var(--font-en);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  pointer-events: auto;
+}
+
+.home-carousel-caption a:hover,
+.home-carousel-caption a:focus-visible {
+  border-color: var(--accent-soft);
+  color: var(--ink);
+  background: var(--accent-soft);
 }
 
 .home-discipline-strip {
@@ -2704,7 +2798,14 @@ img {
   }
 
   .home-intro {
-    width: 88vw;
+    left: clamp(30px, 5vw, 52px);
+    width: min(430px, 48vw);
+  }
+
+  .home-depth-carousel {
+    left: calc(100% + 24px);
+    width: min(44vw, 440px);
+    height: min(440px, 56vh);
   }
 
   .home-discipline-strip {
@@ -2780,8 +2881,12 @@ img {
   }
 
   .home-intro {
-    top: 30%;
+    top: 13%;
+    right: 0;
+    left: 0;
     width: calc(100% - 32px);
+    margin: 0 auto;
+    text-align: center;
   }
 
   .home-project-preview {
@@ -2823,17 +2928,29 @@ img {
   }
 
   .home-formula {
+    justify-content: center;
     margin-top: 26px;
     font-size: clamp(20px, 6.2vw, 29px);
   }
 
   .home-identity {
+    justify-content: center;
     font-size: 10px;
+  }
+
+  .home-depth-carousel {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(100%, 340px);
+    height: 252px;
+    margin: 22px auto 0;
   }
 
   .home-actions {
     gap: 18px;
     margin-top: 32px;
+    justify-content: center;
   }
 
   .primary-action,

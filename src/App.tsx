@@ -27,7 +27,10 @@ import { useEffect, useRef, useState } from "react";
 import type { AnchorHTMLAttributes, CSSProperties, KeyboardEvent as ReactKeyboardEvent, ReactNode, TouchEvent, WheelEvent as ReactWheelEvent } from "react";
 import { AiChat } from "./components/AiChat";
 import BorderGlow from "./components/BorderGlow";
+// @ts-expect-error The official React Bits JS-CSS registry component is intentionally JavaScript-only.
+import DepthCarousel from "./components/DepthCarousel/DepthCarousel";
 import { RagOverview } from "./components/RagOverview";
+import { RotatingText } from "./components/RotatingText/RotatingText";
 import { modelingPapers, projects, publicPath, researchPapers, services } from "./portfolioData";
 import type { Project, ResearchPaper } from "./portfolioData";
 
@@ -70,6 +73,11 @@ const homeProjectPreviewColumns = [0, 1, 2].map((columnIndex) =>
     .flatMap((project) => project.images.map((src) => ({ project, src })))
     .filter((_, itemIndex) => itemIndex % 3 === columnIndex)
 );
+const homeCarouselItems = projects.slice(0, 5).map((project) => ({
+  image: project.thumbnail,
+  alt: `${project.title} · ${project.titleEn}`,
+  project
+}));
 
 const routes: { path: MainRoutePath; label: string; labelEn: string }[] = [
   { path: "/", label: "首页", labelEn: "Home" },
@@ -500,10 +508,13 @@ function PageControls({
 }
 
 function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
+  const [activeHomeProjectIndex, setActiveHomeProjectIndex] = useState(0);
+  const activeHomeProject = homeCarouselItems[activeHomeProjectIndex]?.project ?? projects[0];
+
   return (
     <main className="home-page">
       <section className="home-hero page-screen">
-        <img className="home-background" src={publicPath("assets/home-architecture-collage.png")} alt="建筑设计与表达拼贴" />
+        <img className="home-background" src={publicPath("assets/home-architecture-collage.png")} alt="建筑设计与表达拼贴" fetchPriority="high" />
         <div className="home-perimeter-glow" aria-hidden="true" />
         <SiteHeader current="/" navigate={navigate} />
         <motion.section
@@ -514,8 +525,41 @@ function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
         >
           <span className="home-kicker">ARCHITECTURE · COMPUTATION · RESEARCH</span>
           <h1>程志远</h1>
-          <p className="home-formula"><span>ARCHITECTURE</span> + DATA = SPATIAL PRACTICE</p>
+          <p className="home-formula">
+            <span>ARCHITECTURE +</span>
+            <RotatingText
+              texts={["DATA", "CLIMATE", "BIM", "PARAMETRIC", "PYTHON"]}
+              className="home-formula-rotating"
+            />
+            <span>= SPATIAL PRACTICE</span>
+          </p>
           <p className="home-identity">CHENG ZHIYUAN <i /> 海南 · HAINAN</p>
+          <div className="home-depth-carousel" aria-label="作品封面轮播">
+            <div className="home-carousel-caption" aria-live="polite">
+              <div>
+                <small>FEATURED PROJECT / {activeHomeProject.number}</small>
+                <strong>{activeHomeProject.title}</strong>
+                <span>{activeHomeProject.titleEn}</span>
+              </div>
+              <RouteLink to={projectRoute(activeHomeProject)} navigate={navigate}>查看项目 <ArrowRight size={14} /></RouteLink>
+            </div>
+            <DepthCarousel
+              items={homeCarouselItems}
+              depth={220}
+              spread={90}
+              tilt={22}
+              tiltDirection="right"
+              perspective={1400}
+              visibleCards={4}
+              falloff={0.2}
+              blur={6}
+              autoplay
+              loop
+              ariaLabel="作品封面轮播"
+              onChange={(index: number) => setActiveHomeProjectIndex(index)}
+              onItemActivate={(_: number, item: (typeof homeCarouselItems)[number]) => navigate(projectRoute(item.project))}
+            />
+          </div>
           <div className="home-actions">
             <RouteLink className="primary-action" to="/projects" navigate={navigate}>
               查看作品集 <ArrowRight size={18} />
