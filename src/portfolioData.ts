@@ -20,12 +20,10 @@ export type ProjectCredit = {
   value: string;
 };
 
-export type ProjectSummary = {
+export type ProjectStatement = {
   problem: string;
   strategy: string;
   outcome: string;
-  role: string;
-  tools: string;
 };
 
 export type Project = {
@@ -44,7 +42,7 @@ export type Project = {
   preludeMedia?: CoverMedia[];
   closingMedia?: CoverMedia[];
   credits?: ProjectCredit[];
-  summary?: ProjectSummary;
+  statement: ProjectStatement;
   squares: SquareSpec[];
 };
 
@@ -127,8 +125,8 @@ export const projects: Project[] = [
     category: "高品质度假酒店设计",
     categoryEn: "Resort Hotel Design",
     year: "2024",
-    description: "本项目坐落于三亚大东海国家旅游度假区，这里拥有“水暖沙白滩平”的绝佳自然禀赋，是三亚起步最早、最具活力的开放式滨海街区。设计意图旨在打破传统酒店与城市的边界，打造一座“离生不离城”的国际化滨海度假聚点。在总体布局上，顺应场地与山面海的独特地貌，建筑采用沿海底层架空布局，最大化保障每一层客房的无遮挡海景视野。",
-    descriptionEn: "Located in Sanya’s Dadonghai National Tourist Resort, the project responds to a coastal district known for warm waters, white sand and a flat beach. It breaks the boundary between a conventional hotel and the city to create an international seaside resort that remains connected to urban life. The overall layout follows the site’s mountain-and-sea terrain, lifting the lower level above the coast to preserve unobstructed sea views for every guest room.",
+    description: "顺应山海地貌，以架空基座与层叠客房平台组织滨海界面，在开放城市生活与私密度假体验之间保留连续海景。",
+    descriptionEn: "An elevated coastal resort balancing private stays, public life and uninterrupted sea views through terraced rooms and an open ground plane.",
     thumbnail: projectCover("项目1.jpg"),
     images: [
       publicPath("assets/project-pages/page-04.jpg"),
@@ -145,12 +143,10 @@ export const projects: Project[] = [
     credits: [
       { label: "AUTHOR", value: "程志远" }
     ],
-    summary: {
-      problem: "在滨海度假区中处理酒店私密性、城市开放性与连续海景之间的关系。",
-      strategy: "顺应山海地貌，以沿海架空与层叠平台组织客房、公共空间和滨海步行界面。",
-      outcome: "形成一座兼具度假氛围与城市连接性的滨海酒店方案，并通过成套图纸和空间表达呈现设计逻辑。",
-      role: "个人方案设计与表达",
-      tools: "场地研究 · 空间推演 · 图纸表达"
+    statement: {
+      problem: "滨海酒店需要同时保障客房私密、公共空间开放与连续海景，三者容易彼此冲突。",
+      strategy: "顺应山海地貌抬高建筑基座，以层叠客房平台串联庭院、步道与共享空间。",
+      outcome: "建立由城市走向海岸的渐进空间，让度假体验、自然通风与公共活力相互兼容。"
     },
     squares: [
       { x: 5, y: 30, size: 16 },
@@ -168,8 +164,8 @@ export const projects: Project[] = [
     category: "可持续社区空间设计",
     categoryEn: "Sustainable Community Space",
     year: "2025—2026",
-    description: "以海南黎锦船形屋为文化内核，将其抽象转译后融入场地、建筑、铺装与能源设施，使符号成为空间叙事的载体。摒弃堆砌，遵循“文化即生态”逻辑，实现地域文化与绿色技术融合。布局采用“观赏—过渡—娱乐”三段序列，搭配乡土树种营造遮阴廊道。项目旨在打造活态文化展场与可持续实验室，让传统建筑形式实现现代转译，融入日常，在开放共享中提升文化认同、社区凝聚与生态韧性。",
-    descriptionEn: "Rooted in Hainan’s Li brocade boat-shaped houses, the project abstracts and translates their forms into the site, architecture, paving and energy systems, turning cultural symbols into carriers of spatial narrative. It avoids superficial accumulation and follows the idea that culture is ecology, bringing regional identity together with green technology. A three-part sequence—viewing, transition and recreation—is paired with shaded corridors planted with native species. The project is conceived as a living cultural exhibition and a sustainable laboratory, translating traditional forms into contemporary life and strengthening cultural belonging, community cohesion and ecological resilience through open sharing.",
+    description: "以黎锦船形屋的形态逻辑组织场地、建筑与遮阴廊道，让文化意象转化为兼具共享活动与生态韧性的社区日常。",
+    descriptionEn: "A neighborhood center translating Li brocade boat-house logic into shaded public space, cultural activity and ecological resilience.",
     thumbnail: projectCover("项目2.jpg"),
     images: [
       publicPath("assets/project-pages/page-09.jpg"),
@@ -196,12 +192,10 @@ export const projects: Project[] = [
     closingMedia: [
       { src: projectCover("项目2_漫游动画.mp4"), type: "video", size: "landscape", label: "空间漫游" }
     ],
-    summary: {
-      problem: "让黎锦船形屋文化意象摆脱符号堆砌，并回应社区公共空间、遮阴与生态韧性的日常需求。",
-      strategy: "把文化形态转译到场地、建筑、铺装与能源设施，以观赏、过渡、娱乐的序列串联乡土绿荫廊道。",
-      outcome: "形成兼具活态文化展示、共享活动与绿色实验属性的邻里中心方案，并完成生长与漫游表达。",
-      role: "团队主创 / 队长",
-      tools: "场地分析 · 城市设计 · 绿色策略"
+    statement: {
+      problem: "黎锦与船形屋意象容易停留在符号表面，难以回应社区遮阴、交往与日常使用。",
+      strategy: "提取船形屋的屋面逻辑，以乡土绿荫和连续廊道串联庭院、展陈与共享活动。",
+      outcome: "将地域文化转化为可参与的生活场景，形成兼具共享活力与生态韧性的邻里中心。"
     },
     squares: [
       { x: 82, y: 55, size: 16 },
@@ -218,8 +212,8 @@ export const projects: Project[] = [
     category: "城市友好型博物馆设计",
     categoryEn: "Urban-Friendly Museum",
     year: "2023",
-    description: "以黎锦纹样的空间转译为概念，建筑上部悬浮，下部开放，呈现轻盈的仪式感。几何母题化作采光庭院与屋顶花园，木色立面模拟经纬交织，形成织物般的表皮肌理。底部架空与坡地台基相连，结合下沉庭院与台阶广场，引导人流从城市道路逐步上行或下行进入展陈空间，形成台地与下沉交织、由地景走向文化的立体参观路径。",
-    descriptionEn: "The project translates Li brocade patterns into spatial form: the upper volume floats above an open base, creating a light ceremonial presence. Geometric motifs become daylight courtyards and roof gardens, while timber-toned façades simulate interwoven warp and weft to form a textile-like skin. The raised lower level connects to the sloping plinth, sunken courtyard and stepped plaza, guiding visitors gradually up or down from the city street into the exhibition spaces. Terraces and excavations overlap to create a three-dimensional route from landscape to culture.",
+    description: "将黎锦纹样转化为悬浮体量、采光庭院与织物感表皮，串联城市街道、台地与展陈空间的立体参观路径。",
+    descriptionEn: "Li brocade patterns become a floating volume, daylight courts and a woven façade along a layered public route from street to gallery.",
     thumbnail: projectCover("项目3.jpg"),
     images: [
       publicPath("assets/project-pages/page-15.jpg"),
@@ -235,12 +229,10 @@ export const projects: Project[] = [
     credits: [
       { label: "AUTHOR", value: "程志远" }
     ],
-    summary: {
-      problem: "在城市界面中为博物馆建立可亲近的公共入口，同时把黎锦纹样转化为真实的空间体验。",
-      strategy: "以悬浮体量和开放基座回应街道，以采光庭院、屋顶花园和织物感表皮组织展陈路径。",
-      outcome: "形成由城市道路、台地、下沉庭院到展陈空间连续展开的城市友好型博物馆方案。",
-      role: "个人方案设计与表达",
-      tools: "概念转译 · 空间组织 · 建筑表达"
+    statement: {
+      problem: "博物馆体量容易与城市街道疏离，黎锦文化也需要转化为可感知的空间体验。",
+      strategy: "将经纬纹样转译为悬浮体量、采光庭院与织物感表皮，组织立体参观路径。",
+      outcome: "建立从街道、台地到展厅连续展开的公共路径，使文化展示与城市日常自然衔接。"
     },
     squares: [
       { x: 4, y: 24, size: 16 },
@@ -257,8 +249,8 @@ export const projects: Project[] = [
     category: "公园型综合体城市设计",
     categoryEn: "Park-Oriented Urban Design",
     year: "2023",
-    description: "脉：取城市脉搏与生态脉络双重意象。设计捕捉城市的活力与动感，以红色景观廊道串联建筑与场地，使其如大地脉络般自然生长、交融。体育、文化、旅游、商业、酒店等功能在此有机聚合，形成吸引人流与机遇的强力磁极。同时紧扣“生态型”核心，将整个建筑群视为有生命力的有机体，预留弹性空间，使其随城市发展与需求变化而自我更新、持续生长。",
-    descriptionEn: "Pulse: drawing on the dual imagery of the city’s pulse and ecological veins. The design captures the city’s vitality and movement, linking buildings and site with red landscape corridors so the district grows and interweaves like the veins of the earth. Sports, culture, tourism, commerce and hospitality cluster into a powerful attractor for people and opportunity. At the same time, the proposal holds to an ecological core, treating the building group as a living organism with flexible space that can renew itself as the city and its needs change.",
+    description: "以红色生态廊道串联多元功能与公共空间，让公园、文化、商业和酒店共同构成可持续生长的城市片区。",
+    descriptionEn: "Red ecological corridors connect park, culture, commerce and hospitality into a district designed to grow with the city.",
     thumbnail: projectCover("项目4.jpg"),
     images: [
       publicPath("assets/project-pages/page-19.jpg"),
@@ -271,12 +263,10 @@ export const projects: Project[] = [
       { src: projectCover("项目4_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 4 - 2", caption: "城市设计关系图，呈现公园、公共空间与商业文化功能的复合布局。", captionEn: "Urban design diagram, showing the composite layout of park, public, commercial and cultural programs." },
       { src: projectCover("项目4_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 4 - 1", caption: "建筑细部表达图，展示绿脉生长理念在立面、景观与步行界面中的延展。", captionEn: "Architectural detail, extending the green-vein concept through façade, landscape and pedestrian edges." }
     ],
-    summary: {
-      problem: "在多功能城市片区中建立公共活力、生态连续性与未来弹性之间的协同关系。",
-      strategy: "以红色景观廊道串联体育、文化、商业与酒店功能，将建筑群视作可持续生长的城市有机体。",
-      outcome: "形成公园型综合体城市设计方案，明确生态脉络、公共空间与复合功能的组织方式。",
-      role: "城市设计与空间表达",
-      tools: "功能整合 · 景观廊道 · 城市设计"
+    statement: {
+      problem: "大型综合体功能复杂且边界分散，公共活力、生态连续与未来弹性难以同时满足。",
+      strategy: "以红色生态廊道串联公园、文化、商业与酒店，重组步行网络和开放空间。",
+      outcome: "形成公园与建筑相互渗透的城市片区，为多元活动和持续生长预留空间。"
     },
     squares: [
       { x: 82, y: 26, size: 14 },
@@ -293,8 +283,8 @@ export const projects: Project[] = [
     category: "技术与艺术 / 综合作品",
     categoryEn: "Technology, Art and Mixed Works",
     year: "2022",
-    description: "本页以“建筑片段的连续叙事”为线索，将作品集中不同类型的表达——城市想象、传统空间、构造图纸、现代立面、历史细部与场景摄影——重新整合为六等分的插画序列。通过统一的低饱和水彩肌理、细腻线稿与温和色调，原本风格各异的图像被转译为同一视觉语言，形成从概念、场所、构造到空间体验的连续阅读。",
-    descriptionEn: "This page uses a continuous narrative of architectural fragments to integrate different modes of representation from the portfolio, including urban imagination, traditional space, construction drawings, modern façades, historical details, and architectural photography. Through a unified low-saturation watercolor texture, delicate linework and a gentle palette, images with different styles are translated into one visual language, creating a continuous reading from concept and place to construction and spatial experience.",
+    description: "以低饱和水彩、线稿与统一版式串联不同媒介的建筑片段，形成从概念、场所到空间体验的连续叙事。",
+    descriptionEn: "Watercolor texture, linework and a shared layout connect architectural fragments into one continuous spatial narrative.",
     thumbnail: projectCover("项目5-首页封面.png"),
     splashImage: projectCover("项目5-首页封面.png"),
     images: [
@@ -311,12 +301,10 @@ export const projects: Project[] = [
       { src: projectCover("项目5_3.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 5 - 3", caption: "现代建筑立面图，展示光影、材料与尺度在连续叙事中的转译。", captionEn: "Modern façade study, translating light, material and scale into a continuous narrative." },
       { src: projectCover("项目5_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 5 - 2", caption: "传统建筑剖面图，呈现历史细部与空间构造之间的对应关系。", captionEn: "Traditional section, showing the relationship between historic detail and spatial construction." }
     ],
-    summary: {
-      problem: "让不同题材、媒介与完成时间的建筑表达拥有统一而连续的阅读线索。",
-      strategy: "以建筑片段的连续叙事为框架，用低饱和水彩肌理、线稿与版式关系统一图像语言。",
-      outcome: "形成从概念、场所、构造到空间体验递进展开的综合作品叙事页面。",
-      role: "视觉整合与版面叙事",
-      tools: "图像整理 · 视觉转译 · 版面编排"
+    statement: {
+      problem: "不同题材、媒介与完成时间的作品彼此分散，需要建立清晰而连续的阅读关系。",
+      strategy: "以低饱和水彩、建筑线稿和统一版式协调尺度、色彩与图像叙事。",
+      outcome: "将零散的建筑片段组织为从概念、场所到空间体验递进展开的综合作品集。"
     },
     squares: [
       { x: 6, y: 20, size: 14 },

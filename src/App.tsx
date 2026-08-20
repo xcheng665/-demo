@@ -836,15 +836,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   ];
   const galleryImages = project.images.filter((src) => !coverCards.some((card) => card.src === src));
   const closingMedia = project.closingMedia ?? [];
-  const projectSummary = project.summary ?? {
-    problem: project.description,
-    strategy: "以场地研究、空间组织与建筑表达建立项目回应。",
-    outcome: "形成可阅读的设计成果，并通过图纸与媒体呈现设计过程。",
-    role: project.credits?.[0]?.value ?? "项目设计与表达",
-    tools: "场地研究 · 空间推演 · 图纸表达"
-  };
   const detailPages = [
-    { label: "摘要" },
     { label: "概览" },
     ...project.preludeMedia?.map((media, index) => ({ label: media.label || `视频 ${index + 1}` })) ?? [],
     ...galleryImages.map((_, index) => ({ label: `图纸 ${String(index + 1).padStart(2, "0")}` })),
@@ -1028,9 +1020,9 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <span>{project.number} / SELECTED WORK</span>
           <h1>{project.title}</h1>
           <p>{project.titleEn}</p>
-          <a className="project-splash-enter" href="#project-summary">
-            <span>浏览摘要</span>
-            <span>PROJECT SUMMARY</span>
+          <a className="project-splash-enter" href="#project-profile">
+            <span>浏览项目</span>
+            <span>EXPLORE PROJECT</span>
             <ArrowDown size={18} />
           </a>
         </div>
@@ -1047,44 +1039,9 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
         onTouchEnd={handleTouchEnd}
       >
         <motion.section
-          id="project-summary"
-          className="project-slide project-summary-slide"
-          data-detail-page="0"
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <ProjectReturnControl navigate={navigate} />
-          <div className="project-summary-shell">
-            <header className="project-summary-header">
-              <span>PROJECT SUMMARY</span>
-              <span>{project.number} / SELECTED WORK</span>
-            </header>
-            <div className="project-summary-main">
-              <div className="project-summary-intro">
-                <span>CASE AT A GLANCE</span>
-                <h2>{project.title}</h2>
-                <p>{project.titleEn}</p>
-                <div><small>项目判断</small><strong>{projectSummary.problem}</strong></div>
-              </div>
-              <ol className="project-summary-stories">
-                <li><span>01</span><div><small>问题</small><p>{projectSummary.problem}</p></div></li>
-                <li><span>02</span><div><small>策略</small><p>{projectSummary.strategy}</p></div></li>
-                <li><span>03</span><div><small>成果</small><p>{projectSummary.outcome}</p></div></li>
-              </ol>
-            </div>
-            <footer className="project-summary-facts" aria-label={`${project.title}项目摘要信息`}>
-              <span><small>TYPE</small><strong>{project.category}</strong></span>
-              <span><small>ROLE</small><strong>{projectSummary.role}</strong></span>
-              <span><small>YEAR</small><strong>{project.year}</strong></span>
-              <span><small>TOOLS</small><strong>{projectSummary.tools}</strong></span>
-            </footer>
-          </div>
-        </motion.section>
-        <motion.section
           id="project-profile"
           className="project-slide project-cover-slide"
-          data-detail-page="1"
+          data-detail-page="0"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.48, ease: [0.22, 1, 0.36, 1] }}
@@ -1111,9 +1068,12 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               ))}
             </div>
             <div className="project-cover-description">
-              <h2 className="project-cover-description-title">Project</h2>
-              <p className="project-cover-summary">{project.description}</p>
-              <p className="project-cover-summary-en">{project.descriptionEn}</p>
+              <p className="project-cover-description-label">PROJECT STATEMENT</p>
+              <div className="project-cover-statement" aria-label={`${project.title}项目说明`}>
+                <div><span>01</span><p><small>问题</small><span className="project-cover-statement-copy">{project.statement.problem}</span></p></div>
+                <div><span>02</span><p><small>策略</small><span className="project-cover-statement-copy">{project.statement.strategy}</span></p></div>
+                <div><span>03</span><p><small>成果</small><span className="project-cover-statement-copy">{project.statement.outcome}</span></p></div>
+              </div>
             </div>
             <div className={`project-cover-media project-cover-media-${project.number}${usesLandscapeTriptych ? " is-landscape-triptych" : ""}`} aria-label={`${project.title}项目媒体`}>
               {coverCards.map((card, index) => (
@@ -1145,7 +1105,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <motion.section
             className="project-slide project-video-slide"
             key={media.src}
-            data-detail-page={index + 2}
+            data-detail-page={index + 1}
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.58, once: true }}
@@ -1178,7 +1138,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <motion.section
             className="project-slide project-drawing-slide"
             key={src}
-            data-detail-page={2 + (project.preludeMedia?.length ?? 0) + index}
+            data-detail-page={1 + (project.preludeMedia?.length ?? 0) + index}
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.58, once: true }}
@@ -1196,7 +1156,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           <motion.section
             className="project-slide project-closing-slide"
             key={media.src ?? media.label}
-            data-detail-page={2 + (project.preludeMedia?.length ?? 0) + galleryImages.length + index}
+            data-detail-page={1 + (project.preludeMedia?.length ?? 0) + galleryImages.length + index}
             initial={{ opacity: 0, scale: 0.985 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ amount: 0.58, once: true }}
