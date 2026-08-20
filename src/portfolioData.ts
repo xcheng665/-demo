@@ -42,6 +42,7 @@ export type Project = {
   preludeMedia?: CoverMedia[];
   closingMedia?: CoverMedia[];
   credits?: ProjectCredit[];
+  personalInfo?: Array<{ label: string; value: string }>;
   statement: ProjectStatement;
   squares: SquareSpec[];
 };
@@ -143,6 +144,12 @@ export const projects: Project[] = [
     credits: [
       { label: "AUTHOR", value: "程志远" }
     ],
+    personalInfo: [
+      { label: "个人设计", value: "大三学年" },
+      { label: "指导老师", value: "罗致、吴旭东" },
+      { label: "设计区位", value: "三亚市吉阳区大东海景区海岸" },
+      { label: "完成时间", value: "2024年2月—2024年4月" }
+    ],
     statement: {
       problem: "滨海酒店需要同时保障客房私密、公共空间开放与连续海景，三者容易彼此冲突。",
       strategy: "顺应山海地貌抬高建筑基座，以层叠客房平台串联庭院、步道与共享空间。",
@@ -159,7 +166,7 @@ export const projects: Project[] = [
   },
   {
     number: "02",
-    title: "城市绿洲 · 邻里中心",
+    title: "城市绿洲邻里中心",
     titleEn: "Urban Oasis Neighborhood Center",
     category: "可持续社区空间设计",
     categoryEn: "Sustainable Community Space",
@@ -207,7 +214,7 @@ export const projects: Project[] = [
   },
   {
     number: "03",
-    title: "大地 · 黎纹",
+    title: "大地黎纹",
     titleEn: "Earth and Li Brocade",
     category: "城市友好型博物馆设计",
     categoryEn: "Urban-Friendly Museum",
@@ -229,6 +236,12 @@ export const projects: Project[] = [
     credits: [
       { label: "AUTHOR", value: "程志远" }
     ],
+    personalInfo: [
+      { label: "个人设计", value: "大三学年" },
+      { label: "指导老师", value: "蔡家庆、吉伟" },
+      { label: "设计区位", value: "海口市琼山区红城湖南侧历史保护街区" },
+      { label: "完成时间", value: "2024年9月—2024年11月" }
+    ],
     statement: {
       problem: "博物馆体量容易与城市街道疏离，黎锦文化也需要转化为可感知的空间体验。",
       strategy: "将经纬纹样转译为悬浮体量、采光庭院与织物感表皮，组织立体参观路径。",
@@ -244,7 +257,7 @@ export const projects: Project[] = [
   },
   {
     number: "04",
-    title: "生生不息 · 绿脉生长",
+    title: "生生不息绿脉生长",
     titleEn: "Endless Renewal",
     category: "公园型综合体城市设计",
     categoryEn: "Park-Oriented Urban Design",
@@ -262,6 +275,12 @@ export const projects: Project[] = [
       { src: projectCover("项目4_0.jpg"), type: "image", size: "landscape", aspectRatio: 1.74, label: "项目 4 - 0", caption: "综合体总体鸟瞰图，展示红色生态廊道串联多功能建筑群的城市结构。", captionEn: "Overall aerial view, showing the urban structure linked by red ecological corridors." },
       { src: projectCover("项目4_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 4 - 2", caption: "城市设计关系图，呈现公园、公共空间与商业文化功能的复合布局。", captionEn: "Urban design diagram, showing the composite layout of park, public, commercial and cultural programs." },
       { src: projectCover("项目4_1.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 4 - 1", caption: "建筑细部表达图，展示绿脉生长理念在立面、景观与步行界面中的延展。", captionEn: "Architectural detail, extending the green-vein concept through façade, landscape and pedestrian edges." }
+    ],
+    personalInfo: [
+      { label: "团队设计", value: "程志远、岑伊林" },
+      { label: "指导老师", value: "张慕馨、黎志才" },
+      { label: "设计区位", value: "海口市海岸片区免税城旁" },
+      { label: "完成时间", value: "2025年9月—2025年11月" }
     ],
     statement: {
       problem: "大型综合体功能复杂且边界分散，公共活力、生态连续与未来弹性难以同时满足。",

@@ -1,0 +1,233 @@
+/* Dedicated final layer for project-cover typography and geometry.
+   Kept in a separate import so historic page-specific rules cannot override it. */
+@media (min-width: 761px) {
+  .project-cover-content,
+  .project-cover-content-01,
+  .project-cover-content-02,
+  .project-cover-content-03,
+  .project-cover-content-04,
+  .project-cover-content-05 {
+    --project-cover-top: clamp(52px, 7vh, 76px);
+    grid-template-rows: calc(40svh - var(--project-cover-top)) 60svh !important;
+    align-content: start !important;
+    min-height: 100svh !important;
+    height: 100svh !important;
+    padding: var(--project-cover-top) 0 0 !important;
+  }
+
+  .project-cover-left { height: calc(40svh - var(--project-cover-top)); overflow: hidden; }
+
+  .project-cover-content h1,
+  .project-cover-content-01 h1,
+  .project-cover-content-02 h1,
+  .project-cover-content-03 h1,
+  .project-cover-content-04 h1,
+  .project-cover-content-05 h1 {
+    max-width: none !important;
+    font-size: clamp(28px, 2.8vw, 46px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.055em !important;
+    white-space: nowrap;
+  }
+
+  .project-cover-title-en { margin-top: 8px !important; font-size: clamp(13px, 1vw, 16px) !important; line-height: 1.35 !important; }
+
+  .project-cover-meta,
+  .project-cover-content-01 .project-cover-meta,
+  .project-cover-content-02 .project-cover-meta,
+  .project-cover-content-03 .project-cover-meta,
+  .project-cover-content-04 .project-cover-meta,
+  .project-cover-content-05 .project-cover-meta {
+    min-height: 0 !important;
+    gap: 3px 10px !important;
+    padding-top: 10px !important;
+    font-size: clamp(12px, 0.92vw, 15px) !important;
+    line-height: 1.35 !important;
+  }
+
+  .project-cover-meta-category { font-size: clamp(15px, 1.18vw, 19px) !important; line-height: 1.25 !important; }
+  .project-cover-meta-category-en,
+  .project-cover-meta-year,
+  .project-cover-credit,
+  .project-cover-personal-info { font-size: clamp(12px, 0.9vw, 15px) !important; line-height: 1.35 !important; }
+
+  .project-cover-credit,
+  .project-cover-content-01 .project-cover-credit,
+  .project-cover-content-02 .project-cover-credit,
+  .project-cover-content-03 .project-cover-credit,
+  .project-cover-content-04 .project-cover-credit,
+  .project-cover-content-05 .project-cover-credit {
+    grid-template-columns: 74px minmax(0, 1fr) !important;
+    gap: 0 10px !important;
+    margin-top: 2px !important;
+  }
+
+  .project-cover-credit small { font-size: 10px !important; }
+  .project-cover-personal-info { gap: 0 !important; margin-top: 4px !important; padding-top: 5px !important; }
+
+  .project-cover-description,
+  .project-cover-content-01 .project-cover-description,
+  .project-cover-content-02 .project-cover-description,
+  .project-cover-content-03 .project-cover-description,
+  .project-cover-content-04 .project-cover-description,
+  .project-cover-content-05 .project-cover-description {
+    min-height: 0 !important;
+    height: calc(40svh - var(--project-cover-top)) !important;
+    padding: 0 0 0 clamp(28px, 3.4vw, 56px) !important;
+  }
+
+  .project-cover-description-label { margin-bottom: 8px !important; font-size: clamp(15px, 1.1vw, 18px) !important; }
+  .project-cover-statement { height: calc(100% - 30px) !important; gap: 0 !important; grid-template-rows: repeat(3, minmax(0, 1fr)) !important; }
+  .project-cover-statement > div,
+  .project-cover-statement > div + div { height: auto !important; min-height: 0 !important; padding: 8px 0 !important; }
+  .project-cover-statement > div > span { font-size: clamp(15px, 1.1vw, 18px) !important; }
+  .project-cover-statement p { grid-template-columns: clamp(54px, 4.6vw, 76px) minmax(0, 1fr) !important; gap: clamp(10px, 1.25vw, 18px) !important; }
+  .project-cover-statement small { font-size: clamp(17px, 1.3vw, 21px) !important; line-height: 1.25 !important; }
+  .project-cover-statement-copy { width: min(100%, 34em) !important; font-size: clamp(17px, 1.25vw, 20px) !important; line-height: 1.48 !important; }
+
+  .project-cover-media,
+  .project-cover-content-01 .project-cover-media,
+  .project-cover-content-02 .project-cover-media,
+  .project-cover-content-03 .project-cover-media,
+  .project-cover-content-04 .project-cover-media,
+  .project-cover-content-05 .project-cover-media {
+    grid-row: 2 !important;
+    align-items: start !important;
+    min-height: 0 !important;
+    height: 60svh !important;
+    margin-top: 0 !important;
+    padding-top: 12px !important;
+  }
+
+  .project-cover-media-caption,
+  .project-cover-content-01 .project-cover-media-caption,
+  .project-cover-content-02 .project-cover-media-caption,
+  .project-cover-content-03 .project-cover-media-caption,
+  .project-cover-content-04 .project-cover-media-caption,
+  .project-cover-content-05 .project-cover-media-caption {
+    min-height: 64px !important;
+    height: 64px !important;
+    font-size: 14px !important;
+    line-height: 1.42 !important;
+  }
+
+  .project-cover-media-caption span { font-size: 13px !important; line-height: 1.35 !important; }
+  .project-cover-card,
+  .project-cover-content-01 .project-cover-card,
+  .project-cover-content-02 .project-cover-card,
+  .project-cover-content-03 .project-cover-card,
+  .project-cover-content-04 .project-cover-card,
+  .project-cover-content-05 .project-cover-card { height: calc(60svh - 94px) !important; min-height: 0 !important; max-height: none !important; }
+}
+
+@media (min-width: 761px) and (max-height: 760px) {
+  .project-cover-content,
+  .project-cover-content-01,
+  .project-cover-content-02,
+  .project-cover-content-03,
+  .project-cover-content-04,
+  .project-cover-content-05 { --project-cover-top: 48px; grid-template-rows: calc(44svh - var(--project-cover-top)) 56svh !important; }
+
+  .project-cover-left,
+  .project-cover-description,
+  .project-cover-content-01 .project-cover-description,
+  .project-cover-content-02 .project-cover-description,
+  .project-cover-content-03 .project-cover-description,
+  .project-cover-content-04 .project-cover-description,
+  .project-cover-content-05 .project-cover-description { height: calc(44svh - var(--project-cover-top)) !important; }
+
+  .project-cover-content h1,
+  .project-cover-content-01 h1,
+  .project-cover-content-02 h1,
+  .project-cover-content-03 h1,
+  .project-cover-content-04 h1,
+  .project-cover-content-05 h1 { font-size: clamp(27px, 2.45vw, 38px) !important; }
+
+  .project-cover-statement-copy { font-size: clamp(15px, 1.15vw, 18px) !important; line-height: 1.38 !important; }
+  .project-cover-statement small { font-size: clamp(16px, 1.2vw, 19px) !important; }
+
+  .project-cover-media,
+  .project-cover-content-01 .project-cover-media,
+  .project-cover-content-02 .project-cover-media,
+  .project-cover-content-03 .project-cover-media,
+  .project-cover-content-04 .project-cover-media,
+  .project-cover-content-05 .project-cover-media { height: 56svh !important; }
+
+  .project-cover-card,
+  .project-cover-content-01 .project-cover-card,
+  .project-cover-content-02 .project-cover-card,
+  .project-cover-content-03 .project-cover-card,
+  .project-cover-content-04 .project-cover-card,
+  .project-cover-content-05 .project-cover-card { height: calc(56svh - 82px) !important; }
+}
+
+/* Match the specificity of the earlier per-project rules without reintroducing
+   their oversized type. */
+@media (min-width: 761px) {
+  html body .project-cover-content.project-cover-content-01 h1,
+  html body .project-cover-content.project-cover-content-02 h1,
+  html body .project-cover-content.project-cover-content-03 h1,
+  html body .project-cover-content.project-cover-content-04 h1,
+  html body .project-cover-content.project-cover-content-05 h1 {
+    font-size: clamp(30px, 2.7vw, 44px) !important;
+  }
+
+  html body .project-cover-content .project-cover-statement-copy {
+    font-size: clamp(17px, 1.25vw, 20px) !important;
+    line-height: 1.48 !important;
+  }
+
+  html body .project-cover-content .project-cover-statement small {
+    font-size: clamp(17px, 1.3vw, 21px) !important;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 760px) {
+  html body .project-cover-content.project-cover-content-01 h1,
+  html body .project-cover-content.project-cover-content-02 h1,
+  html body .project-cover-content.project-cover-content-03 h1,
+  html body .project-cover-content.project-cover-content-04 h1,
+  html body .project-cover-content.project-cover-content-05 h1 {
+    font-size: clamp(27px, 2.45vw, 38px) !important;
+  }
+
+  html body .project-cover-content .project-cover-statement-copy {
+    font-size: clamp(15px, 1.15vw, 18px) !important;
+    line-height: 1.38 !important;
+  }
+
+  html body .project-cover-content .project-cover-statement small {
+    font-size: clamp(16px, 1.2vw, 19px) !important;
+  }
+
+  html body .project-cover-content .project-cover-personal-info {
+    font-size: 11px !important;
+    line-height: 1.22 !important;
+  }
+}
+
+/* Left-side supporting type: raised consistently for every project cover. */
+@media (min-width: 761px) {
+  html body .project-cover-content .project-cover-title-en {
+    font-size: clamp(16px, 1.18vw, 19px) !important;
+    line-height: 1.35 !important;
+  }
+
+  html body .project-cover-content .project-cover-meta-category {
+    font-size: clamp(18px, 1.35vw, 22px) !important;
+    line-height: 1.24 !important;
+  }
+
+  html body .project-cover-content .project-cover-meta-category-en {
+    font-size: clamp(15px, 1.08vw, 18px) !important;
+    line-height: 1.34 !important;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 760px) {
+  html body .project-cover-content .project-cover-title-en { font-size: 15px !important; }
+  html body .project-cover-content .project-cover-meta-category { font-size: 17px !important; }
+  html body .project-cover-content .project-cover-meta-category-en { font-size: 14px !important; }
+  html body .project-cover-content.project-cover-content-03 .project-cover-personal-info,
+  html body .project-cover-content.project-cover-content-04 .project-cover-personal-info { font-size: 10px !important; }
+}

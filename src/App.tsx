@@ -1052,20 +1052,29 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           </RouteLink>
           <div className={`project-wordmark project-wordmark-${project.number}`}>Project</div>
           <div className={`project-cover-content project-cover-content-${project.number}`}>
-            <div className="project-cover-heading">
-              <span className="project-cover-index">{project.number} / PROJECT</span>
-              <h1>{project.title}</h1>
-              <p className="project-cover-title-en">{project.titleEn}</p>
-            </div>
-            <div className="project-cover-meta">
-              <span className="project-cover-meta-category">{project.category}</span>
-              <span className="project-cover-meta-category-en">{project.categoryEn}</span>
-              <span className="project-cover-meta-year">{project.year}</span>
-              {(project.credits ?? [{ label: "AUTHOR", value: "程志远" }]).map((credit) => (
-                <span className="project-cover-credit" key={credit.label}>
-                  <small>{credit.label}</small><span className="project-cover-credit-value">{credit.value}</span>
-                </span>
-              ))}
+            <div className="project-cover-left">
+              <div className="project-cover-heading">
+                <span className="project-cover-index">{project.number} / PROJECT</span>
+                <h1>{project.title}</h1>
+                <p className="project-cover-title-en">{project.titleEn}</p>
+              </div>
+              <div className="project-cover-meta">
+                <span className="project-cover-meta-category">{project.category}</span>
+                <span className="project-cover-meta-category-en">{project.categoryEn}</span>
+                <span className="project-cover-meta-year">{project.year}</span>
+                {(project.credits ?? [{ label: "AUTHOR", value: "程志远" }]).map((credit) => (
+                  <span className="project-cover-credit" key={credit.label}>
+                    <small>{credit.label}</small><span className="project-cover-credit-value">{credit.value}</span>
+                  </span>
+                ))}
+                {project.personalInfo ? (
+                  <div className="project-cover-personal-info" aria-label="个人项目信息">
+                    {project.personalInfo.map((item) => (
+                      <p key={item.label}><strong>{item.label}：</strong>{item.value}</p>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
             </div>
             <div className="project-cover-description">
               <p className="project-cover-description-label">PROJECT STATEMENT</p>
