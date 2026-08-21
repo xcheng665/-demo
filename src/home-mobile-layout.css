@@ -1,0 +1,123 @@
+/* Mobile homepage: keep the header, introduction and cover carousel in a
+   deliberate reading order instead of relying on desktop absolute offsets. */
+@media (max-width: 620px) {
+  .home-hero.page-screen {
+    min-height: 920px;
+    padding: 0 16px 112px;
+  }
+
+  .home-hero .site-header {
+    gap: 10px;
+    padding: 18px 0 0;
+  }
+
+  .home-hero .site-meta {
+    padding: 10px 14px;
+  }
+
+  .home-hero .top-nav {
+    gap: 6px;
+    padding: 9px 10px;
+  }
+
+  .home-hero .top-nav span {
+    font-size: 10px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  .home-hero .home-intro {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 100%;
+    margin: 26px auto 0;
+    text-align: center;
+  }
+
+  .home-hero .home-kicker {
+    margin-bottom: 8px;
+  }
+
+  .home-hero .home-intro h1 {
+    font-size: clamp(62px, 18.4vw, 76px);
+    line-height: 0.95;
+    white-space: nowrap;
+  }
+
+  .home-hero .home-formula {
+    justify-content: center;
+    gap: 0 0.18em;
+    margin: 18px auto 12px;
+    font-size: clamp(18px, 5.9vw, 24px);
+    line-height: 1.1;
+  }
+
+  .home-hero .home-identity {
+    gap: 8px;
+  }
+
+  .home-hero .home-actions {
+    margin-top: 20px;
+  }
+
+  .home-hero .home-showcase {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    margin: 32px auto 0;
+  }
+
+  .home-hero .home-depth-carousel,
+  .home-hero .home-depth-carousel .depth-carousel {
+    height: 300px;
+    min-height: 300px;
+  }
+
+  .home-hero .home-carousel-caption {
+    margin-top: 6px;
+  }
+
+  .home-hero .home-discipline-strip {
+    right: 16px;
+    bottom: 64px;
+    left: 16px;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-top: 14px;
+    overflow-x: auto;
+    font-size: 9px;
+    white-space: nowrap;
+  }
+
+  .home-hero .availability {
+    right: 0;
+    bottom: 22px;
+    left: 0;
+    justify-content: center;
+    font-size: 8px;
+  }
+
+  .home-hero .page-controls {
+    bottom: 18px;
+  }
+}
+
+@media (max-width: 380px) {
+  .home-hero.page-screen {
+    min-height: 900px;
+  }
+
+  .home-hero .top-nav span {
+    font-size: 9px;
+  }
+
+  .home-hero .home-intro h1 {
+    font-size: clamp(56px, 18vw, 68px);
+  }
+}
