@@ -161,6 +161,82 @@
   .project-cover-content-05 .project-cover-card { height: calc(56svh - 82px) !important; }
 }
 
+/* Physical paper layers for static project images. The artwork remains clean;
+   only the backing sheets carry the paper grain and edge treatment. */
+.project-paper-stack {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  border-color: rgba(91, 89, 80, 0.26);
+  background: #fbfaf5;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.94) inset, 0 13px 25px rgba(54, 49, 39, 0.16), 0 3px 7px rgba(54, 49, 39, 0.1);
+}
+
+.project-paper-stack::before,
+.project-paper-stack::after {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+}
+
+.project-paper-stack::before {
+  inset: 7px -10px -11px 8px;
+  border: 1px solid rgba(94, 90, 78, 0.18);
+  background:
+    radial-gradient(circle at 18% 30%, rgba(90, 83, 67, 0.065) 0 0.55px, transparent 0.75px) 0 0 / 7px 7px,
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(231, 226, 211, 0.5));
+  box-shadow: 0 19px 28px rgba(48, 44, 34, 0.2), 0 4px 8px rgba(48, 44, 34, 0.1);
+}
+
+.project-paper-stack::after {
+  inset: 3px -5px -5px 4px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    repeating-linear-gradient(0deg, rgba(108, 100, 80, 0.024) 0 1px, transparent 1px 4px),
+    #f4f1e7;
+}
+
+.project-paper-stack > img,
+.project-paper-stack > .project-cover-card,
+.project-paper-stack > a,
+.project-paper-stack img {
+  position: relative;
+  z-index: 1;
+}
+
+.project-cover-card.project-paper-stack:hover,
+.project-cover-card.project-paper-stack:focus-visible {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.94) inset, 0 19px 31px rgba(54, 49, 39, 0.2), 0 5px 10px rgba(54, 49, 39, 0.12);
+}
+
+.project-drawing-slide > .project-drawing-stage {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: clamp(8px, 1.5vh, 18px) clamp(6px, 1.2vw, 24px) 12px;
+}
+
+.project-drawing-stage > .project-paper-stack {
+  display: block;
+  max-width: 100%;
+}
+
+.project-drawing-stage > .project-paper-stack > img {
+  display: block;
+}
+
+@media (max-width: 760px) {
+  .project-paper-stack::before { inset: 4px -6px -7px 5px; }
+  .project-paper-stack::after { inset: 2px -3px -3px 2px; }
+  .project-paper-stack { box-shadow: 0 1px 0 rgba(255, 255, 255, 0.94) inset, 0 9px 17px rgba(54, 49, 39, 0.15), 0 2px 5px rgba(54, 49, 39, 0.09); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-paper-stack,
+  .project-paper-stack > img { transition: none; }
+}
+
 /* Match the specificity of the earlier per-project rules without reintroducing
    their oversized type. */
 @media (min-width: 761px) {

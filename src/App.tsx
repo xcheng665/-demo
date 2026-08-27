@@ -60,7 +60,7 @@ type SkillGroup = {
   items: SkillItem[];
 };
 
-const portfolioPdfUrl = publicPath("portfolio-preview.pdf");
+const portfolioPreviewUrl = "https://publuu.com/flip-book/1168841/2600224";
 const resumePdfUrl = publicPath("resume.pdf");
 const practiceCardImages = {
   frontend: publicPath("assets/practice-cards/frontend-ui-tarot-card.png"),
@@ -1155,9 +1155,11 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           >
             <header><span>{String(index + 1).padStart(2, "0")} / {String(galleryImages.length).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
             <ProjectReturnControl navigate={navigate} />
-            <a href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 1}张图纸`}>
-              <img src={src} alt={`${project.title}图纸 ${index + 1}`} loading="lazy" />
-            </a>
+            <div className="project-drawing-stage">
+              <a className="project-paper-stack" href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 1}张图纸`}>
+                <img src={src} alt={`${project.title}图纸 ${index + 1}`} loading="lazy" />
+              </a>
+            </div>
             <span className="project-drawing-page">{String(index + 1).padStart(2, "0")}</span>
             </motion.section>
         ))}
@@ -1500,7 +1502,7 @@ function PdfPreviewModal({ open, onClose }: { open: boolean; onClose: () => void
             className="pdf-modal"
             role="dialog"
             aria-modal="true"
-            aria-label="作品集 PDF 预览"
+            aria-label="作品集在线预览"
             initial={{ opacity: 0, scale: 0.97, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: 16 }}
@@ -1512,7 +1514,7 @@ function PdfPreviewModal({ open, onClose }: { open: boolean; onClose: () => void
                 <button type="button" onClick={onClose} title="关闭"><X size={19} /></button>
               </nav>
             </header>
-            <iframe src={`${portfolioPdfUrl}#toolbar=0&navpanes=0&view=FitH`} title="程志远作品集 PDF" />
+            <iframe src={portfolioPreviewUrl} title="程志远在线作品集" />
           </motion.div>
         </motion.div>
       ) : null}
