@@ -1,0 +1,123 @@
+{"kind":"deck","id":"pr/adjra4","name":"Deck"}
+{"kind":"layout","layoutId":"fb33e4d2-ef8d-414c-9d63-091d24f68e72","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"f4727fe7-09cb-45c2-98b3-ebc52ebf259f","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/cfhtob","slide":1,"title":"LEARNING & RESEARCH MAP","textShapes":44}
+{"kind":"textbox","id":"sh/ylovq90b","slide":1,"name":"title","text":"LEARNING & RESEARCH MAP","textPreview":"LEARNING & RESEARCH MAP","textChars":23,"textLines":1,"bbox":[38,24,820,58]}
+{"kind":"textbox","id":"sh/lofeloj2","slide":1,"name":"subtitle","text":"程志远｜建筑环境 × 数字技术 × 低空工程兴趣图谱","textPreview":"程志远｜建筑环境 × 数字技术 × 低空工程兴趣图谱","textChars":26,"textLines":1,"bbox":[38,82,900,38]}
+{"kind":"textbox","id":"sh/kn6dsjih","slide":1,"name":"personal-core","text":"个人经历与能力\n程志远\n海南大学建筑学 2026届","textPreview":"个人经历与能力 | 程志远 | 海南大学建筑学 2026届","textChars":25,"textLines":3,"bbox":[388,420,260,260]}
+{"kind":"textbox","id":"sh/7qxwny18","slide":1,"name":"future-core","text":"建成环境与\n城市低空安全\n韩梦涛老师方向\n× 低空技术工程","textPreview":"建成环境与 | 城市低空安全 | 韩梦涛老师方向 | × 低空技术工程","textChars":29,"textLines":4,"bbox":[938,415,280,280]}
+{"kind":"textbox","id":"sh/6povut0n","slide":1,"name":"environment-cluster","text":"建筑与\n环境基础","textPreview":"建筑与 | 环境基础","textChars":8,"textLines":2,"bbox":[365,208,126,126]}
+{"kind":"textbox","id":"sh/tszepojy","slide":1,"name":"digital-cluster","text":"数字建模\n与分析","textPreview":"数字建模 | 与分析","textChars":8,"textLines":2,"bbox":[245,610,104,104]}
+{"kind":"textbox","id":"sh/8rqdw3it","slide":1,"name":"research-cluster","text":"科研\n与协同","textPreview":"科研 | 与协同","textChars":6,"textLines":2,"bbox":[325,815,112,112]}
+{"kind":"textbox","id":"sh/nudcbu1o","slide":1,"name":"bridge-data","text":"多尺度\n环境数据","textPreview":"多尺度 | 环境数据","textChars":8,"textLines":2,"bbox":[725,155,120,120]}
+{"kind":"textbox","id":"sh/mt4vipk3","slide":1,"name":"bridge-param","text":"建筑与城市\n形态参数化","textPreview":"建筑与城市 | 形态参数化","textChars":11,"textLines":2,"bbox":[715,330,130,130]}
+{"kind":"textbox","id":"sh/w7alora1","slide":1,"name":"bridge-twin","text":"BIM /\n知识图谱 /\n数字孪生","textPreview":"BIM / | 知识图谱 / | 数字孪生","textChars":17,"textLines":3,"bbox":[720,510,120,120]}
+{"kind":"textbox","id":"sh/x8jmhwbm","slide":1,"name":"bridge-cfd","text":"拟学习：\nCFD 与\nLBM-LES","textPreview":"拟学习： | CFD 与 | LBM-LES","textChars":18,"textLines":3,"bbox":[720,685,120,120]}
+{"kind":"textbox","id":"sh/a5s3mhsv","slide":1,"name":"bridge-agent","text":"多智能体\n任务规划","textPreview":"多智能体 | 任务规划","textChars":9,"textLines":2,"bbox":[725,860,120,120]}
+{"kind":"textbox","id":"sh/v614fmtg","slide":1,"name":"han-research","text":"韩老师\n公开研究","textPreview":"韩老师 | 公开研究","textChars":8,"textLines":2,"bbox":[1245,220,118,118]}
+{"kind":"textbox","id":"sh/kva5sbax","slide":1,"name":"low-altitude-interest","text":"个人拟\n拓展兴趣","textPreview":"个人拟 | 拓展兴趣","textChars":8,"textLines":2,"bbox":[1245,665,118,118]}
+{"kind":"shape","id":"sh/5wjmlgbi","slide":1,"bbox":[428,334,90,86]}
+{"kind":"shape","id":"sh/i9s3q1sr","slide":1,"bbox":[349,550,39,112]}
+{"kind":"shape","id":"sh/ja14j6tc","slide":1,"bbox":[437,680,81,191]}
+{"kind":"shape","id":"sh/0zqlg7ut","slide":1,"bbox":[648,215,77,335]}
+{"kind":"shape","id":"sh/l0zm9cbe","slide":1,"bbox":[845,215,93,340]}
+{"kind":"shape","id":"sh/1wr2d832","slide":1,"bbox":[648,395,67,155]}
+{"kind":"shape","id":"sh/0vi1k3mh","slide":1,"bbox":[845,395,93,160]}
+{"kind":"shape","id":"sh/fu9kbylw","slide":1,"bbox":[648,550,72,20]}
+{"kind":"shape","id":"sh/etgjit4b","slide":1,"bbox":[840,555,98,15]}
+{"kind":"shape","id":"sh/p0r2h83y","slide":1,"bbox":[648,550,72,195]}
+{"kind":"shape","id":"sh/ozi1o3mt","slide":1,"bbox":[840,555,98,190]}
+{"kind":"shape","id":"sh/ny9kfyl8","slide":1,"bbox":[648,550,77,370]}
+{"kind":"shape","id":"sh/2x0jmd4n","slide":1,"bbox":[845,555,93,365]}
+{"kind":"shape","id":"sh/xob2ls3a","slide":1,"bbox":[780,275,5,55]}
+{"kind":"shape","id":"sh/c321snmp","slide":1,"bbox":[780,460,0,50]}
+{"kind":"shape","id":"sh/u9cz6pk7","slide":1,"bbox":[780,630,0,55]}
+{"kind":"shape","id":"sh/valgfu1s","slide":1,"bbox":[780,805,5,55]}
+{"kind":"shape","id":"sh/gbeh8f2d","slide":1,"bbox":[1218,279,27,276]}
+{"kind":"shape","id":"sh/hcnyhkjy","slide":1,"bbox":[1218,555,27,169]}
+{"kind":"textbox","id":"sh/idwzapk3","slide":1,"name":"env-label-1","text":"建筑设计 1—6 均分 90+","textPreview":"建筑设计 1—6 均分 90+","textChars":15,"textLines":1,"bbox":[30,142,280,30]}
+{"kind":"shape","id":"sh/3y5gju1o","slide":1,"name":"env-dot-1","bbox":[328,150,10,10]}
+{"kind":"shape","id":"sh/4zehcz29","slide":1,"bbox":[338,155,27,116]}
+{"kind":"textbox","id":"sh/50nyl4ju","slide":1,"name":"env-label-2","text":"建筑物理：热工、声光、实验","textPreview":"建筑物理：热工、声光、实验","textChars":13,"textLines":1,"bbox":[30,178,280,30]}
+{"kind":"shape","id":"sh/q1wze9kf","slide":1,"name":"env-dot-2","bbox":[328,186,10,10]}
+{"kind":"shape","id":"sh/r2p0ne10","slide":1,"bbox":[338,191,27,80]}
+{"kind":"textbox","id":"sh/fm18baps","slide":1,"name":"env-label-3","text":"绿色建筑与性能分析","textPreview":"绿色建筑与性能分析","textChars":9,"textLines":1,"bbox":[30,214,280,30]}
+{"kind":"shape","id":"sh/els7i587","slide":1,"name":"env-dot-3","bbox":[328,222,10,10]}
+{"kind":"shape","id":"sh/18jqdk7y","slide":1,"bbox":[338,227,27,44]}
+{"kind":"textbox","id":"sh/07apkfqd","slide":1,"name":"env-label-4","text":"椰壳围护结构与建筑能耗","textPreview":"椰壳围护结构与建筑能耗","textChars":11,"textLines":1,"bbox":[30,250,280,30]}
+{"kind":"shape","id":"sh/na18fap4","slide":1,"name":"env-dot-4","bbox":[328,258,10,10]}
+{"kind":"shape","id":"sh/29s7m58j","slide":1,"bbox":[338,263,27,8]}
+{"kind":"textbox","id":"sh/pc3qhk7u","slide":1,"name":"env-label-5","text":"海岛热湿气候与传热传湿","textPreview":"海岛热湿气候与传热传湿","textChars":11,"textLines":1,"bbox":[30,286,280,30]}
+{"kind":"shape","id":"sh/obupof69","slide":1,"name":"env-dot-5","bbox":[328,294,10,10]}
+{"kind":"shape","id":"sh/jeho3qpk","slide":1,"bbox":[338,271,27,28]}
+{"kind":"textbox","id":"sh/id87al8z","slide":1,"name":"env-label-6","text":"垂直绿化光伏一体化外墙","textPreview":"垂直绿化光伏一体化外墙","textChars":11,"textLines":1,"bbox":[30,322,280,30]}
+{"kind":"shape","id":"sh/8jm5kr6x","slide":1,"name":"env-dot-6","bbox":[328,330,10,10]}
+{"kind":"shape","id":"sh/9kvmdwni","slide":1,"bbox":[338,271,27,64]}
+{"kind":"textbox","id":"sh/mx4nihor","slide":1,"name":"env-label-7","text":"绿色建筑竞赛一等奖","textPreview":"绿色建筑竞赛一等奖","textChars":9,"textLines":1,"bbox":[30,358,280,30]}
+{"kind":"shape","id":"sh/7id4bm5c","slide":1,"name":"env-dot-7","bbox":[328,366,10,10]}
+{"kind":"shape","id":"sh/kvm5g761","slide":1,"bbox":[338,271,27,100]}
+{"kind":"textbox","id":"sh/lwvm9cn6","slide":1,"name":"digital-label-1","text":"Revit / BIM / SketchUp","textPreview":"Revit / BIM / SketchUp","textChars":22,"textLines":1,"bbox":[24,582,180,30]}
+{"kind":"shape","id":"sh/yt4nexov","slide":1,"name":"digital-dot-1","bbox":[218,590,10,10]}
+{"kind":"shape","id":"sh/zud4725g","slide":1,"bbox":[228,595,17,67]}
+{"kind":"textbox","id":"sh/4r65sb65","slide":1,"name":"digital-label-2","text":"Rhino / Grasshopper","textPreview":"Rhino / Grasshopper","textChars":19,"textLines":1,"bbox":[24,622,180,30]}
+{"kind":"shape","id":"sh/5sz6lgnq","slide":1,"name":"digital-dot-2","bbox":[218,630,10,10]}
+{"kind":"shape","id":"sh/d8vm5wfu","slide":1,"bbox":[228,635,17,27]}
+{"kind":"textbox","id":"sh/c7m5wbe9","slide":1,"name":"digital-label-3","text":"Python / NumPy / Pandas","textPreview":"Python / NumPy / Pandas","textChars":23,"textLines":1,"bbox":[24,662,180,30]}
+{"kind":"shape","id":"sh/r6t436xo","slide":1,"name":"digital-dot-3","bbox":[218,670,10,10]}
+{"kind":"shape","id":"sh/q5knu1w3","slide":1,"bbox":[228,662,17,13]}
+{"kind":"textbox","id":"sh/54bm1wfy","slide":1,"name":"digital-label-4","text":"数学建模与数据分析","textPreview":"数学建模与数据分析","textChars":9,"textLines":1,"bbox":[24,702,180,30]}
+{"kind":"shape","id":"sh/43258ryd","slide":1,"name":"digital-dot-4","bbox":[218,710,10,10]}
+{"kind":"shape","id":"sh/32t4zmxs","slide":1,"bbox":[228,662,17,53]}
+{"kind":"textbox","id":"sh/ihk36hg7","slide":1,"name":"research-label-1","text":"建筑遗产本体知识图谱","textPreview":"建筑遗产本体知识图谱","textChars":10,"textLines":1,"bbox":[42,812,205,30]}
+{"kind":"shape","id":"sh/hgbmxcfm","slide":1,"name":"research-dot-1","bbox":[265,820,10,10]}
+{"kind":"shape","id":"sh/gfil4ry1","slide":1,"bbox":[275,825,50,46]}
+{"kind":"textbox","id":"sh/6lgjydwz","slide":1,"name":"research-label-2","text":"台风后恢复多智能体协同","textPreview":"台风后恢复多智能体协同","textChars":11,"textLines":1,"bbox":[42,857,205,30]}
+{"kind":"shape","id":"sh/7mpk7idk","slide":1,"name":"research-dot-2","bbox":[265,865,10,10]}
+{"kind":"shape","id":"sh/8ny10nu5","slide":1,"bbox":[275,870,50,1]}
+{"kind":"textbox","id":"sh/t8r29sva","slide":1,"name":"research-label-3","text":"多源证据治理与约束识别","textPreview":"多源证据治理与约束识别","textChars":11,"textLines":1,"bbox":[42,902,205,30]}
+{"kind":"shape","id":"sh/yhgjudwn","slide":1,"name":"research-dot-3","bbox":[265,910,10,10]}
+{"kind":"shape","id":"sh/jipk3id8","slide":1,"bbox":[275,871,50,44]}
+{"kind":"shape","id":"sh/kjy1wnet","slide":1,"name":"han-dot-1","bbox":[1390,165,10,10]}
+{"kind":"shape","id":"sh/lk725sve","slide":1,"bbox":[1363,170,27,109]}
+{"kind":"textbox","id":"sh/adwjqtwr","slide":1,"name":"han-label-1","text":"城市与建筑风环境","textPreview":"城市与建筑风环境","textChars":8,"textLines":1,"bbox":[1408,157,188,34]}
+{"kind":"shape","id":"sh/be50zydc","slide":1,"name":"han-dot-2","bbox":[1390,210,10,10]}
+{"kind":"shape","id":"sh/zi9cn6t4","slide":1,"bbox":[1363,215,27,64]}
+{"kind":"textbox","id":"sh/eh0ve1sj","slide":1,"name":"han-label-2","text":"城市微气候与绿色节能","textPreview":"城市微气候与绿色节能","textChars":10,"textLines":1,"bbox":[1408,202,188,34]}
+{"kind":"shape","id":"sh/14rupgba","slide":1,"name":"han-dot-3","bbox":[1390,255,10,10]}
+{"kind":"shape","id":"sh/03idgbap","slide":1,"bbox":[1363,260,27,19]}
+{"kind":"textbox","id":"sh/repcj6t8","slide":1,"name":"han-label-3","text":"CFD / LBM-LES","textPreview":"CFD / LBM-LES","textChars":13,"textLines":1,"bbox":[1408,247,188,34]}
+{"kind":"shape","id":"sh/qdgba1sn","slide":1,"name":"han-dot-4","bbox":[1390,300,10,10]}
+{"kind":"shape","id":"sh/dg7ulgbe","slide":1,"bbox":[1363,279,27,26]}
+{"kind":"textbox","id":"sh/cfytcbat","slide":1,"name":"han-label-4","text":"室内污染源定位","textPreview":"室内污染源定位","textChars":7,"textLines":1,"bbox":[1408,292,188,34]}
+{"kind":"shape","id":"sh/batcvqtc","slide":1,"name":"han-dot-5","bbox":[1390,345,10,10]}
+{"kind":"shape","id":"sh/a9kvmlsr","slide":1,"bbox":[1363,279,27,71]}
+{"kind":"textbox","id":"sh/sfu9gnq9","slide":1,"name":"han-label-5","text":"气溶胶、飞沫与污染物扩散","textPreview":"气溶胶、飞沫与污染物扩散","textChars":12,"textLines":1,"bbox":[1408,337,188,34]}
+{"kind":"shape","id":"sh/tg3apsru","slide":1,"name":"han-dot-6","bbox":[1390,390,10,10]}
+{"kind":"shape","id":"sh/6dcrex8j","slide":1,"bbox":[1363,279,27,116]}
+{"kind":"textbox","id":"sh/7elsni9o","slide":1,"name":"han-label-6","text":"通风模式与健康风险","textPreview":"通风模式与健康风险","textChars":9,"textLines":1,"bbox":[1408,382,188,34]}
+{"kind":"shape","id":"sh/gje9k7ql","slide":1,"name":"low-dot-1","bbox":[1390,625,10,10]}
+{"kind":"shape","id":"sh/hknatcr6","slide":1,"bbox":[1363,630,27,94]}
+{"kind":"textbox","id":"sh/uhcrix8f","slide":1,"name":"low-label-1","text":"城市低空微气象与三维风场","textPreview":"城市低空微气象与三维风场","textChars":12,"textLines":1,"bbox":[1408,617,188,34]}
+{"kind":"shape","id":"sh/fi5sr290","slide":1,"name":"low-dot-2","bbox":[1390,670,10,10]}
+{"kind":"shape","id":"sh/4ne9o7qh","slide":1,"bbox":[1363,675,27,49]}
+{"kind":"textbox","id":"sh/ponaxcr2","slide":1,"name":"low-label-2","text":"高密度建成环境风扰动安全","textPreview":"高密度建成环境风扰动安全","textChars":12,"textLines":1,"bbox":[1408,662,188,34]}
+{"kind":"shape","id":"sh/edkjyp8b","slide":1,"name":"low-dot-3","bbox":[1390,715,10,10]}
+{"kind":"shape","id":"sh/fet07a9w","slide":1,"bbox":[1363,720,27,4]}
+{"kind":"textbox","id":"sh/0fm10fqh","slide":1,"name":"low-label-3","text":"无人机环境感知与数据融合","textPreview":"无人机环境感知与数据融合","textChars":12,"textLines":1,"bbox":[1408,707,188,34]}
+{"kind":"shape","id":"sh/1gvi9kr2","slide":1,"name":"low-dot-4","bbox":[1390,760,10,10]}
+{"kind":"shape","id":"sh/2h4j2p8n","slide":1,"bbox":[1363,724,27,41]}
+{"kind":"textbox","id":"sh/nid0bu9s","slide":1,"name":"low-label-4","text":"城市低空三维风险地图","textPreview":"城市低空三维风险地图","textChars":10,"textLines":1,"bbox":[1408,752,188,34]}
+{"kind":"shape","id":"sh/o3m14zqd","slide":1,"name":"low-dot-5","bbox":[1390,805,10,10]}
+{"kind":"shape","id":"sh/p4vid4ry","slide":1,"bbox":[1363,724,27,86]}
+{"kind":"textbox","id":"sh/a54j698j","slide":1,"name":"low-label-5","text":"安全航路规划与动态调度","textPreview":"安全航路规划与动态调度","textChars":11,"textLines":1,"bbox":[1408,797,188,34]}
+{"kind":"shape","id":"sh/b6xkfup4","slide":1,"name":"low-dot-6","bbox":[1390,850,10,10]}
+{"kind":"shape","id":"sh/5cjulsfi","slide":1,"bbox":[1363,724,27,131]}
+{"kind":"textbox","id":"sh/kbqdsnex","slide":1,"name":"low-label-6","text":"建筑外墙与灾后应急巡检","textPreview":"建筑外墙与灾后应急巡检","textChars":11,"textLines":1,"bbox":[1408,842,188,34]}
+{"kind":"shape","id":"sh/jahcjixc","slide":1,"name":"low-dot-7","bbox":[1390,895,10,10]}
+{"kind":"shape","id":"sh/i98vqdwr","slide":1,"bbox":[1363,724,27,176]}
+{"kind":"textbox","id":"sh/tgjupcfe","slide":1,"name":"low-label-7","text":"数字孪生城市与多智能体协同","textPreview":"数字孪生城市与多智能体协同","textChars":13,"textLines":1,"bbox":[1408,887,188,34]}
+{"kind":"textbox","id":"sh/sfadw7et","slide":1,"name":"research-question","text":"城市建筑形态如何通过风场、热环境与污染物传播，进一步影响低空飞行安全、环境感知和应急巡检？","textPreview":"城市建筑形态如何通过风场、热环境与污染物传播，进一步影响低空飞行安全、环境感知和应急巡检？","textChars":45,"textLines":1,"bbox":[250,1030,1040,72]}
+{"kind":"shape","id":"sh/7e1cn2xo","slide":1,"name":"legend","bbox":[1320,1008,245,95]}
+{"kind":"textbox","id":"sh/6dsvuxw3","slide":1,"name":"legend-solid","text":"━  实线＝已有经历或公开研究","textPreview":"━  实线＝已有经历或公开研究","textChars":15,"textLines":1,"bbox":[1338,1024,210,28]}
+{"kind":"textbox","id":"sh/h43utcvq","slide":1,"name":"legend-dashed","text":"┄  虚线＝个人拟拓展兴趣","textPreview":"┄  虚线＝个人拟拓展兴趣","textChars":13,"textLines":1,"bbox":[1338,1060,210,28]}
+{"kind":"notes","id":"nt/cfhtob","slide":1,"text":"[Sources]\n- Personal experience: E:/Users/czy/Desktop/作品集网站demo/src/portfolioData.ts\n- Personal experience: E:/Users/czy/Desktop/作品集网站demo/knowledge/index.json\n- Self-recommendation letter: E:/Users/czy/Desktop/东南相关材料/韩梦涛老师自荐信.md\n- Han Mengtao profile: https://www.researchgate.net/profile/Mengtao-Han\n- Han Mengtao official page: http://faculty.hust.edu.cn/hanmengtao/\n- HUST low-altitude technology and engineering discipline: https://news.hust.edu.cn/info/1003/56197.htm\n- Visual style reference: E:/Users/czy/Desktop/作品集网站demo/tmp/learning-roadmap-reference.jpg\n[/Sources]"}

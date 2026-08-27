@@ -1,0 +1,4529 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/cfhtob",
+    "id": "cfhtob",
+    "slide": 1,
+    "layoutId": "f4727fe7-09cb-45c2-98b3-ebc52ebf259f",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "fb33e4d2-ef8d-414c-9d63-091d24f68e72",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FAF7F0",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1600,
+      "height": 1132
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "f4727fe7-09cb-45c2-98b3-ebc52ebf259f",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "fb33e4d2-ef8d-414c-9d63-091d24f68e72",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "fb33e4d2-ef8d-414c-9d63-091d24f68e72",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ylovq90b",
+      "id": "1",
+      "name": "title",
+      "bbox": [
+        38,
+        24,
+        820,
+        58
+      ],
+      "geometry": "rect",
+      "text": "LEARNING & RESEARCH MAP",
+      "textPreview": "LEARNING & RESEARCH MAP",
+      "resolvedFontSize": 42,
+      "resolvedTextStyle": {
+        "fontSize": 42,
+        "typeface": "+mn-lt",
+        "color": "#171A1F",
+        "bold": true,
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "LEARNING & RESEARCH MAP"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "LEARNING & RESEARCH MAP",
+          "resolvedTextStyle": {
+            "fontSize": 42,
+            "color": "#171A1F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "LEARNING & RESEARCH MAP",
+              "fontSize": 42,
+              "color": "#171A1F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lofeloj2",
+      "id": "2",
+      "name": "subtitle",
+      "bbox": [
+        38,
+        82,
+        900,
+        38
+      ],
+      "geometry": "rect",
+      "text": "程志远｜建筑环境 × 数字技术 × 低空工程兴趣图谱",
+      "textPreview": "程志远｜建筑环境 × 数字技术 × 低空工程兴趣图谱",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "程志远｜建筑环境 × 数字技术 × 低空工程兴趣图谱"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "程志远｜建筑环境 × 数字技术 × 低空工程兴趣图谱",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "程志远｜建筑环境 × 数字技术 × 低空工程兴趣图谱",
+              "fontSize": 25,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kn6dsjih",
+      "id": "3",
+      "name": "personal-core",
+      "bbox": [
+        388,
+        420,
+        260,
+        260
+      ],
+      "geometry": "ellipse",
+      "text": "个人经历与能力\n程志远\n海南大学建筑学 2026届",
+      "textPreview": "个人经历与能力 | 程志远 | 海南大学建筑学 2026届",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "fontSize": 21,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "个人经历与能力"
+          },
+          {
+            "index": 2,
+            "text": "程志远"
+          },
+          {
+            "index": 3,
+            "text": "海南大学建筑学"
+          },
+          {
+            "index": 4,
+            "text": "2026届"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "个人经历与能力",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "个人经历与能力",
+              "fontSize": 21,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "程志远",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "程志远",
+              "fontSize": 21,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "海南大学建筑学 2026届",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "海南大学建筑学 2026届",
+              "fontSize": 21,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#416B52",
+      "lineColor": "#416B52",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7qxwny18",
+      "id": "4",
+      "name": "future-core",
+      "bbox": [
+        938,
+        415,
+        280,
+        280
+      ],
+      "geometry": "ellipse",
+      "text": "建成环境与\n城市低空安全\n韩梦涛老师方向\n× 低空技术工程",
+      "textPreview": "建成环境与 | 城市低空安全 | 韩梦涛老师方向 | × 低空技术工程",
+      "resolvedFontSize": 21,
+      "resolvedTextStyle": {
+        "fontSize": 21,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "建成环境与"
+          },
+          {
+            "index": 2,
+            "text": "城市低空安全"
+          },
+          {
+            "index": 3,
+            "text": "韩梦涛老师方向"
+          },
+          {
+            "index": 4,
+            "text": "× 低空技术工程"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "建成环境与",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "建成环境与",
+              "fontSize": 21,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "城市低空安全",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "城市低空安全",
+              "fontSize": 21,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "韩梦涛老师方向",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "韩梦涛老师方向",
+              "fontSize": 21,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 4,
+          "text": "× 低空技术工程",
+          "resolvedTextStyle": {
+            "fontSize": 21,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "× 低空技术工程",
+              "fontSize": 21,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#514B7F",
+      "lineColor": "#514B7F",
+      "lineWidth": 1
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6povut0n",
+      "id": "5",
+      "name": "environment-cluster",
+      "bbox": [
+        365,
+        208,
+        126,
+        126
+      ],
+      "geometry": "ellipse",
+      "text": "建筑与\n环境基础",
+      "textPreview": "建筑与 | 环境基础",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "建筑与"
+          },
+          {
+            "index": 2,
+            "text": "环境基础"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "建筑与",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "建筑与",
+              "fontSize": 16,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "环境基础",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "环境基础",
+              "fontSize": 16,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#708A77",
+      "lineColor": "#708A77",
+      "lineWidth": 1
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tszepojy",
+      "id": "6",
+      "name": "digital-cluster",
+      "bbox": [
+        245,
+        610,
+        104,
+        104
+      ],
+      "geometry": "ellipse",
+      "text": "数字建模\n与分析",
+      "textPreview": "数字建模 | 与分析",
+      "resolvedFontSize": 14.51,
+      "resolvedTextStyle": {
+        "fontSize": 14.51,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "数字建"
+          },
+          {
+            "index": 2,
+            "text": "模"
+          },
+          {
+            "index": 3,
+            "text": "与分析"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "数字建模",
+          "resolvedTextStyle": {
+            "fontSize": 14.51,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "数字建模",
+              "fontSize": 14.51,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "与分析",
+          "resolvedTextStyle": {
+            "fontSize": 14.51,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "与分析",
+              "fontSize": 14.51,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#A78C50",
+      "lineColor": "#A78C50",
+      "lineWidth": 1
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8rqdw3it",
+      "id": "7",
+      "name": "research-cluster",
+      "bbox": [
+        325,
+        815,
+        112,
+        112
+      ],
+      "geometry": "ellipse",
+      "text": "科研\n与协同",
+      "textPreview": "科研 | 与协同",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "科研"
+          },
+          {
+            "index": 2,
+            "text": "与协同"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "科研",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "科研",
+              "fontSize": 16,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "与协同",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "与协同",
+              "fontSize": 16,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#A78C50",
+      "lineColor": "#A78C50",
+      "lineWidth": 1
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nudcbu1o",
+      "id": "8",
+      "name": "bridge-data",
+      "bbox": [
+        725,
+        155,
+        120,
+        120
+      ],
+      "geometry": "ellipse",
+      "text": "多尺度\n环境数据",
+      "textPreview": "多尺度 | 环境数据",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "多尺度"
+          },
+          {
+            "index": 2,
+            "text": "环境数据"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "多尺度",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "多尺度",
+              "fontSize": 16,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "环境数据",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "环境数据",
+              "fontSize": 16,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#6A84A8",
+      "lineColor": "#6A84A8",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mt4vipk3",
+      "id": "9",
+      "name": "bridge-param",
+      "bbox": [
+        715,
+        330,
+        130,
+        130
+      ],
+      "geometry": "ellipse",
+      "text": "建筑与城市\n形态参数化",
+      "textPreview": "建筑与城市 | 形态参数化",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "建筑与城"
+          },
+          {
+            "index": 2,
+            "text": "市"
+          },
+          {
+            "index": 3,
+            "text": "形态参数"
+          },
+          {
+            "index": 4,
+            "text": "化"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "建筑与城市",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "建筑与城市",
+              "fontSize": 15,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "形态参数化",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "形态参数化",
+              "fontSize": 15,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#6A84A8",
+      "lineColor": "#6A84A8",
+      "lineWidth": 1
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/w7alora1",
+      "id": "10",
+      "name": "bridge-twin",
+      "bbox": [
+        720,
+        510,
+        120,
+        120
+      ],
+      "geometry": "ellipse",
+      "text": "BIM /\n知识图谱 /\n数字孪生",
+      "textPreview": "BIM / | 知识图谱 / | 数字孪生",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "BIM /"
+          },
+          {
+            "index": 2,
+            "text": "知识图谱"
+          },
+          {
+            "index": 3,
+            "text": "/"
+          },
+          {
+            "index": 4,
+            "text": "数字孪生"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "BIM /",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "BIM /",
+              "fontSize": 15,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "知识图谱 /",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "知识图谱 /",
+              "fontSize": 15,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "数字孪生",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "数字孪生",
+              "fontSize": 15,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#506C91",
+      "lineColor": "#506C91",
+      "lineWidth": 1
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/x8jmhwbm",
+      "id": "11",
+      "name": "bridge-cfd",
+      "bbox": [
+        720,
+        685,
+        120,
+        120
+      ],
+      "geometry": "ellipse",
+      "text": "拟学习：\nCFD 与\nLBM-LES",
+      "textPreview": "拟学习： | CFD 与 | LBM-LES",
+      "resolvedFontSize": 15,
+      "resolvedTextStyle": {
+        "fontSize": 15,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "拟学习："
+          },
+          {
+            "index": 2,
+            "text": "CFD 与"
+          },
+          {
+            "index": 3,
+            "text": "LBM-LES"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "拟学习：",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "拟学习：",
+              "fontSize": 15,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "CFD 与",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CFD 与",
+              "fontSize": 15,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "LBM-LES",
+          "resolvedTextStyle": {
+            "fontSize": 15,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "LBM-LES",
+              "fontSize": 15,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#6A84A8",
+      "lineColor": "#6A84A8",
+      "lineWidth": 1
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a5s3mhsv",
+      "id": "12",
+      "name": "bridge-agent",
+      "bbox": [
+        725,
+        860,
+        120,
+        120
+      ],
+      "geometry": "ellipse",
+      "text": "多智能体\n任务规划",
+      "textPreview": "多智能体 | 任务规划",
+      "resolvedFontSize": 15.51,
+      "resolvedTextStyle": {
+        "fontSize": 15.51,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "多智能体"
+          },
+          {
+            "index": 2,
+            "text": "任务规划"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "多智能体",
+          "resolvedTextStyle": {
+            "fontSize": 15.51,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "多智能体",
+              "fontSize": 15.51,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "任务规划",
+          "resolvedTextStyle": {
+            "fontSize": 15.51,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "任务规划",
+              "fontSize": 15.51,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#6A84A8",
+      "lineColor": "#6A84A8",
+      "lineWidth": 1
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v614fmtg",
+      "id": "13",
+      "name": "han-research",
+      "bbox": [
+        1245,
+        220,
+        118,
+        118
+      ],
+      "geometry": "ellipse",
+      "text": "韩老师\n公开研究",
+      "textPreview": "韩老师 | 公开研究",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "韩老师"
+          },
+          {
+            "index": 2,
+            "text": "公开研究"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "韩老师",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "韩老师",
+              "fontSize": 16,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "公开研究",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "公开研究",
+              "fontSize": 16,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#69638F",
+      "lineColor": "#69638F",
+      "lineWidth": 1
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kva5sbax",
+      "id": "14",
+      "name": "low-altitude-interest",
+      "bbox": [
+        1245,
+        665,
+        118,
+        118
+      ],
+      "geometry": "ellipse",
+      "text": "个人拟\n拓展兴趣",
+      "textPreview": "个人拟 | 拓展兴趣",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#FFFDF8",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "个人拟"
+          },
+          {
+            "index": 2,
+            "text": "拓展兴趣"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "个人拟",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "个人拟",
+              "fontSize": 16,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "拓展兴趣",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#FFFDF8",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "拓展兴趣",
+              "fontSize": 16,
+              "color": "#FFFDF8",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#A95448",
+      "lineColor": "#A95448",
+      "lineWidth": 1
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5wjmlgbi",
+      "id": "15",
+      "bbox": [
+        428,
+        334,
+        90,
+        86
+      ],
+      "horizontalFlip": true,
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#778882",
+      "lineWidth": 1.6
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/i9s3q1sr",
+      "id": "16",
+      "bbox": [
+        349,
+        550,
+        39,
+        112
+      ],
+      "horizontalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#958662",
+      "lineWidth": 1.5
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ja14j6tc",
+      "id": "17",
+      "bbox": [
+        437,
+        680,
+        81,
+        191
+      ],
+      "horizontalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#958662",
+      "lineWidth": 1.5
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0zqlg7ut",
+      "id": "18",
+      "bbox": [
+        648,
+        215,
+        77,
+        335
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A9AFB5",
+      "lineWidth": 1.35
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/l0zm9cbe",
+      "id": "19",
+      "bbox": [
+        845,
+        215,
+        93,
+        340
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A9AFB5",
+      "lineWidth": 1.35
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1wr2d832",
+      "id": "20",
+      "bbox": [
+        648,
+        395,
+        67,
+        155
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A9AFB5",
+      "lineWidth": 1.35
+    },
+    {
+      "order": 21,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0vi1k3mh",
+      "id": "21",
+      "bbox": [
+        845,
+        395,
+        93,
+        160
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A9AFB5",
+      "lineWidth": 1.35
+    },
+    {
+      "order": 22,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fu9kbylw",
+      "id": "22",
+      "bbox": [
+        648,
+        550,
+        72,
+        20
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A9AFB5",
+      "lineWidth": 1.35
+    },
+    {
+      "order": 23,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/etgjit4b",
+      "id": "23",
+      "bbox": [
+        840,
+        555,
+        98,
+        15
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A9AFB5",
+      "lineWidth": 1.35
+    },
+    {
+      "order": 24,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/p0r2h83y",
+      "id": "24",
+      "bbox": [
+        648,
+        550,
+        72,
+        195
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A9AFB5",
+      "lineWidth": 1.35
+    },
+    {
+      "order": 25,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ozi1o3mt",
+      "id": "25",
+      "bbox": [
+        840,
+        555,
+        98,
+        190
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A9AFB5",
+      "lineWidth": 1.35
+    },
+    {
+      "order": 26,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ny9kfyl8",
+      "id": "26",
+      "bbox": [
+        648,
+        550,
+        77,
+        370
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A9AFB5",
+      "lineWidth": 1.35
+    },
+    {
+      "order": 27,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2x0jmd4n",
+      "id": "27",
+      "bbox": [
+        845,
+        555,
+        93,
+        365
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A9AFB5",
+      "lineWidth": 1.35
+    },
+    {
+      "order": 28,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xob2ls3a",
+      "id": "28",
+      "bbox": [
+        780,
+        275,
+        5,
+        55
+      ],
+      "horizontalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#506C91",
+      "lineWidth": 1.3
+    },
+    {
+      "order": 29,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c321snmp",
+      "id": "29",
+      "bbox": [
+        780,
+        460,
+        0,
+        50
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#506C91",
+      "lineWidth": 1.3
+    },
+    {
+      "order": 30,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u9cz6pk7",
+      "id": "30",
+      "bbox": [
+        780,
+        630,
+        0,
+        55
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#506C91",
+      "lineWidth": 1.3
+    },
+    {
+      "order": 31,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/valgfu1s",
+      "id": "31",
+      "bbox": [
+        780,
+        805,
+        5,
+        55
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#506C91",
+      "lineWidth": 1.3
+    },
+    {
+      "order": 32,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gbeh8f2d",
+      "id": "32",
+      "bbox": [
+        1218,
+        279,
+        27,
+        276
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#69638F",
+      "lineWidth": 1.8
+    },
+    {
+      "order": 33,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hcnyhkjy",
+      "id": "33",
+      "bbox": [
+        1218,
+        555,
+        27,
+        169
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A95448",
+      "lineWidth": 2
+    },
+    {
+      "order": 34,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/idwzapk3",
+      "id": "34",
+      "name": "env-label-1",
+      "bbox": [
+        30,
+        142,
+        280,
+        30
+      ],
+      "geometry": "rect",
+      "text": "建筑设计 1—6 均分 90+",
+      "textPreview": "建筑设计 1—6 均分 90+",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "建筑设计 1—6 均分 90+"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "建筑设计 1—6 均分 90+",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "建筑设计 1—6 均分 90+",
+              "fontSize": 17,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 35,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3y5gju1o",
+      "id": "35",
+      "name": "env-dot-1",
+      "bbox": [
+        328,
+        150,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#708A77",
+      "lineColor": "#708A77",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 36,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4zehcz29",
+      "id": "36",
+      "bbox": [
+        338,
+        155,
+        27,
+        116
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#85978C",
+      "lineWidth": 1
+    },
+    {
+      "order": 37,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/50nyl4ju",
+      "id": "37",
+      "name": "env-label-2",
+      "bbox": [
+        30,
+        178,
+        280,
+        30
+      ],
+      "geometry": "rect",
+      "text": "建筑物理：热工、声光、实验",
+      "textPreview": "建筑物理：热工、声光、实验",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "建筑物理：热工、声光、实验"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "建筑物理：热工、声光、实验",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "建筑物理：热工、声光、实验",
+              "fontSize": 17,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 38,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q1wze9kf",
+      "id": "38",
+      "name": "env-dot-2",
+      "bbox": [
+        328,
+        186,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#708A77",
+      "lineColor": "#708A77",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 39,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r2p0ne10",
+      "id": "39",
+      "bbox": [
+        338,
+        191,
+        27,
+        80
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#85978C",
+      "lineWidth": 1
+    },
+    {
+      "order": 40,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fm18baps",
+      "id": "40",
+      "name": "env-label-3",
+      "bbox": [
+        30,
+        214,
+        280,
+        30
+      ],
+      "geometry": "rect",
+      "text": "绿色建筑与性能分析",
+      "textPreview": "绿色建筑与性能分析",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "绿色建筑与性能分析"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "绿色建筑与性能分析",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "绿色建筑与性能分析",
+              "fontSize": 17,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 41,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/els7i587",
+      "id": "41",
+      "name": "env-dot-3",
+      "bbox": [
+        328,
+        222,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#708A77",
+      "lineColor": "#708A77",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 42,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/18jqdk7y",
+      "id": "42",
+      "bbox": [
+        338,
+        227,
+        27,
+        44
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#85978C",
+      "lineWidth": 1
+    },
+    {
+      "order": 43,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/07apkfqd",
+      "id": "43",
+      "name": "env-label-4",
+      "bbox": [
+        30,
+        250,
+        280,
+        30
+      ],
+      "geometry": "rect",
+      "text": "椰壳围护结构与建筑能耗",
+      "textPreview": "椰壳围护结构与建筑能耗",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "椰壳围护结构与建筑能耗"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "椰壳围护结构与建筑能耗",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "椰壳围护结构与建筑能耗",
+              "fontSize": 17,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 44,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/na18fap4",
+      "id": "44",
+      "name": "env-dot-4",
+      "bbox": [
+        328,
+        258,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#708A77",
+      "lineColor": "#708A77",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 45,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/29s7m58j",
+      "id": "45",
+      "bbox": [
+        338,
+        263,
+        27,
+        8
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#85978C",
+      "lineWidth": 1
+    },
+    {
+      "order": 46,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/pc3qhk7u",
+      "id": "46",
+      "name": "env-label-5",
+      "bbox": [
+        30,
+        286,
+        280,
+        30
+      ],
+      "geometry": "rect",
+      "text": "海岛热湿气候与传热传湿",
+      "textPreview": "海岛热湿气候与传热传湿",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "海岛热湿气候与传热传湿"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "海岛热湿气候与传热传湿",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "海岛热湿气候与传热传湿",
+              "fontSize": 17,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 47,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/obupof69",
+      "id": "47",
+      "name": "env-dot-5",
+      "bbox": [
+        328,
+        294,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#708A77",
+      "lineColor": "#708A77",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 48,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jeho3qpk",
+      "id": "48",
+      "bbox": [
+        338,
+        271,
+        27,
+        28
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#85978C",
+      "lineWidth": 1
+    },
+    {
+      "order": 49,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/id87al8z",
+      "id": "49",
+      "name": "env-label-6",
+      "bbox": [
+        30,
+        322,
+        280,
+        30
+      ],
+      "geometry": "rect",
+      "text": "垂直绿化光伏一体化外墙",
+      "textPreview": "垂直绿化光伏一体化外墙",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "垂直绿化光伏一体化外墙"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "垂直绿化光伏一体化外墙",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "垂直绿化光伏一体化外墙",
+              "fontSize": 17,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 50,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8jm5kr6x",
+      "id": "50",
+      "name": "env-dot-6",
+      "bbox": [
+        328,
+        330,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#708A77",
+      "lineColor": "#708A77",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 51,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9kvmdwni",
+      "id": "51",
+      "bbox": [
+        338,
+        271,
+        27,
+        64
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#85978C",
+      "lineWidth": 1
+    },
+    {
+      "order": 52,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mx4nihor",
+      "id": "52",
+      "name": "env-label-7",
+      "bbox": [
+        30,
+        358,
+        280,
+        30
+      ],
+      "geometry": "rect",
+      "text": "绿色建筑竞赛一等奖",
+      "textPreview": "绿色建筑竞赛一等奖",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "绿色建筑竞赛一等奖"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "绿色建筑竞赛一等奖",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "绿色建筑竞赛一等奖",
+              "fontSize": 17,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 53,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7id4bm5c",
+      "id": "53",
+      "name": "env-dot-7",
+      "bbox": [
+        328,
+        366,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#708A77",
+      "lineColor": "#708A77",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 54,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kvm5g761",
+      "id": "54",
+      "bbox": [
+        338,
+        271,
+        27,
+        100
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#85978C",
+      "lineWidth": 1
+    },
+    {
+      "order": 55,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lwvm9cn6",
+      "id": "55",
+      "name": "digital-label-1",
+      "bbox": [
+        24,
+        582,
+        180,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Revit / BIM / SketchUp",
+      "textPreview": "Revit / BIM / SketchUp",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Revit / BIM / SketchUp"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Revit / BIM / SketchUp",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Revit / BIM / SketchUp",
+              "fontSize": 14,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 56,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yt4nexov",
+      "id": "56",
+      "name": "digital-dot-1",
+      "bbox": [
+        218,
+        590,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#A78C50",
+      "lineColor": "#A78C50",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 57,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zud4725g",
+      "id": "57",
+      "bbox": [
+        228,
+        595,
+        17,
+        67
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A79568",
+      "lineWidth": 1
+    },
+    {
+      "order": 58,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4r65sb65",
+      "id": "58",
+      "name": "digital-label-2",
+      "bbox": [
+        24,
+        622,
+        180,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Rhino / Grasshopper",
+      "textPreview": "Rhino / Grasshopper",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Rhino / Grasshopper"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Rhino / Grasshopper",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Rhino / Grasshopper",
+              "fontSize": 14,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 59,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5sz6lgnq",
+      "id": "59",
+      "name": "digital-dot-2",
+      "bbox": [
+        218,
+        630,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#A78C50",
+      "lineColor": "#A78C50",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 60,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d8vm5wfu",
+      "id": "60",
+      "bbox": [
+        228,
+        635,
+        17,
+        27
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A79568",
+      "lineWidth": 1
+    },
+    {
+      "order": 61,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c7m5wbe9",
+      "id": "61",
+      "name": "digital-label-3",
+      "bbox": [
+        24,
+        662,
+        180,
+        30
+      ],
+      "geometry": "rect",
+      "text": "Python / NumPy / Pandas",
+      "textPreview": "Python / NumPy / Pandas",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Python / NumPy / Pandas"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Python / NumPy / Pandas",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Python / NumPy / Pandas",
+              "fontSize": 14,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 62,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r6t436xo",
+      "id": "62",
+      "name": "digital-dot-3",
+      "bbox": [
+        218,
+        670,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#A78C50",
+      "lineColor": "#A78C50",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 63,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/q5knu1w3",
+      "id": "63",
+      "bbox": [
+        228,
+        662,
+        17,
+        13
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A79568",
+      "lineWidth": 1
+    },
+    {
+      "order": 64,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/54bm1wfy",
+      "id": "64",
+      "name": "digital-label-4",
+      "bbox": [
+        24,
+        702,
+        180,
+        30
+      ],
+      "geometry": "rect",
+      "text": "数学建模与数据分析",
+      "textPreview": "数学建模与数据分析",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "数学建模与数据分析"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "数学建模与数据分析",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "数学建模与数据分析",
+              "fontSize": 14,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 65,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/43258ryd",
+      "id": "65",
+      "name": "digital-dot-4",
+      "bbox": [
+        218,
+        710,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#A78C50",
+      "lineColor": "#A78C50",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 66,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/32t4zmxs",
+      "id": "66",
+      "bbox": [
+        228,
+        662,
+        17,
+        53
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A79568",
+      "lineWidth": 1
+    },
+    {
+      "order": 67,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ihk36hg7",
+      "id": "67",
+      "name": "research-label-1",
+      "bbox": [
+        42,
+        812,
+        205,
+        30
+      ],
+      "geometry": "rect",
+      "text": "建筑遗产本体知识图谱",
+      "textPreview": "建筑遗产本体知识图谱",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "建筑遗产本体知识图谱"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "建筑遗产本体知识图谱",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "建筑遗产本体知识图谱",
+              "fontSize": 16,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 68,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hgbmxcfm",
+      "id": "68",
+      "name": "research-dot-1",
+      "bbox": [
+        265,
+        820,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#A78C50",
+      "lineColor": "#A78C50",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 69,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gfil4ry1",
+      "id": "69",
+      "bbox": [
+        275,
+        825,
+        50,
+        46
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A79568",
+      "lineWidth": 1
+    },
+    {
+      "order": 70,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6lgjydwz",
+      "id": "70",
+      "name": "research-label-2",
+      "bbox": [
+        42,
+        857,
+        205,
+        30
+      ],
+      "geometry": "rect",
+      "text": "台风后恢复多智能体协同",
+      "textPreview": "台风后恢复多智能体协同",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "台风后恢复多智能体协同"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "台风后恢复多智能体协同",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "台风后恢复多智能体协同",
+              "fontSize": 16,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 71,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7mpk7idk",
+      "id": "71",
+      "name": "research-dot-2",
+      "bbox": [
+        265,
+        865,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#A78C50",
+      "lineColor": "#A78C50",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 72,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8ny10nu5",
+      "id": "72",
+      "bbox": [
+        275,
+        870,
+        50,
+        1
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A79568",
+      "lineWidth": 1
+    },
+    {
+      "order": 73,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/t8r29sva",
+      "id": "73",
+      "name": "research-label-3",
+      "bbox": [
+        42,
+        902,
+        205,
+        30
+      ],
+      "geometry": "rect",
+      "text": "多源证据治理与约束识别",
+      "textPreview": "多源证据治理与约束识别",
+      "resolvedFontSize": 16,
+      "resolvedTextStyle": {
+        "fontSize": 16,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "right",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "多源证据治理与约束识别"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "多源证据治理与约束识别",
+          "resolvedTextStyle": {
+            "fontSize": 16,
+            "color": "#22252B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "多源证据治理与约束识别",
+              "fontSize": 16,
+              "color": "#22252B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 74,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yhgjudwn",
+      "id": "74",
+      "name": "research-dot-3",
+      "bbox": [
+        265,
+        910,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#A78C50",
+      "lineColor": "#A78C50",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 75,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jipk3id8",
+      "id": "75",
+      "bbox": [
+        275,
+        871,
+        50,
+        44
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A79568",
+      "lineWidth": 1
+    },
+    {
+      "order": 76,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kjy1wnet",
+      "id": "76",
+      "name": "han-dot-1",
+      "bbox": [
+        1390,
+        165,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#69638F",
+      "lineColor": "#69638F",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 77,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lk725sve",
+      "id": "77",
+      "bbox": [
+        1363,
+        170,
+        27,
+        109
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#69638F",
+      "lineWidth": 1
+    },
+    {
+      "order": 78,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/adwjqtwr",
+      "id": "78",
+      "name": "han-label-1",
+      "bbox": [
+        1408,
+        157,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "城市与建筑风环境",
+      "textPreview": "城市与建筑风环境",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "城市与建筑风环境"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "城市与建筑风环境",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "城市与建筑风环境",
+              "fontSize": 14,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 79,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/be50zydc",
+      "id": "79",
+      "name": "han-dot-2",
+      "bbox": [
+        1390,
+        210,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#69638F",
+      "lineColor": "#69638F",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 80,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/zi9cn6t4",
+      "id": "80",
+      "bbox": [
+        1363,
+        215,
+        27,
+        64
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#69638F",
+      "lineWidth": 1
+    },
+    {
+      "order": 81,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/eh0ve1sj",
+      "id": "81",
+      "name": "han-label-2",
+      "bbox": [
+        1408,
+        202,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "城市微气候与绿色节能",
+      "textPreview": "城市微气候与绿色节能",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "城市微气候与绿色节能"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "城市微气候与绿色节能",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "城市微气候与绿色节能",
+              "fontSize": 14,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 82,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/14rupgba",
+      "id": "82",
+      "name": "han-dot-3",
+      "bbox": [
+        1390,
+        255,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#69638F",
+      "lineColor": "#69638F",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 83,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/03idgbap",
+      "id": "83",
+      "bbox": [
+        1363,
+        260,
+        27,
+        19
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#69638F",
+      "lineWidth": 1
+    },
+    {
+      "order": 84,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/repcj6t8",
+      "id": "84",
+      "name": "han-label-3",
+      "bbox": [
+        1408,
+        247,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "CFD / LBM-LES",
+      "textPreview": "CFD / LBM-LES",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "CFD / LBM-LES"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "CFD / LBM-LES",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "CFD / LBM-LES",
+              "fontSize": 14,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 85,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/qdgba1sn",
+      "id": "85",
+      "name": "han-dot-4",
+      "bbox": [
+        1390,
+        300,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#69638F",
+      "lineColor": "#69638F",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 86,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dg7ulgbe",
+      "id": "86",
+      "bbox": [
+        1363,
+        279,
+        27,
+        26
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#69638F",
+      "lineWidth": 1
+    },
+    {
+      "order": 87,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cfytcbat",
+      "id": "87",
+      "name": "han-label-4",
+      "bbox": [
+        1408,
+        292,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "室内污染源定位",
+      "textPreview": "室内污染源定位",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "室内污染源定位"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "室内污染源定位",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "室内污染源定位",
+              "fontSize": 14,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 88,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/batcvqtc",
+      "id": "88",
+      "name": "han-dot-5",
+      "bbox": [
+        1390,
+        345,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#69638F",
+      "lineColor": "#69638F",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 89,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a9kvmlsr",
+      "id": "89",
+      "bbox": [
+        1363,
+        279,
+        27,
+        71
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#69638F",
+      "lineWidth": 1
+    },
+    {
+      "order": 90,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sfu9gnq9",
+      "id": "90",
+      "name": "han-label-5",
+      "bbox": [
+        1408,
+        337,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "气溶胶、飞沫与污染物扩散",
+      "textPreview": "气溶胶、飞沫与污染物扩散",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "气溶胶、飞沫与污染物扩散"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "气溶胶、飞沫与污染物扩散",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "气溶胶、飞沫与污染物扩散",
+              "fontSize": 14,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 91,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tg3apsru",
+      "id": "91",
+      "name": "han-dot-6",
+      "bbox": [
+        1390,
+        390,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#69638F",
+      "lineColor": "#69638F",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 92,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6dcrex8j",
+      "id": "92",
+      "bbox": [
+        1363,
+        279,
+        27,
+        116
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#69638F",
+      "lineWidth": 1
+    },
+    {
+      "order": 93,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7elsni9o",
+      "id": "93",
+      "name": "han-label-6",
+      "bbox": [
+        1408,
+        382,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "通风模式与健康风险",
+      "textPreview": "通风模式与健康风险",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "通风模式与健康风险"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "通风模式与健康风险",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "通风模式与健康风险",
+              "fontSize": 14,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 94,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gje9k7ql",
+      "id": "94",
+      "name": "low-dot-1",
+      "bbox": [
+        1390,
+        625,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#B06B5D",
+      "lineColor": "#B06B5D",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 95,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/hknatcr6",
+      "id": "95",
+      "bbox": [
+        1363,
+        630,
+        27,
+        94
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A95448",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 96,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/uhcrix8f",
+      "id": "96",
+      "name": "low-label-1",
+      "bbox": [
+        1408,
+        617,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "城市低空微气象与三维风场",
+      "textPreview": "城市低空微气象与三维风场",
+      "resolvedFontSize": 13.51,
+      "resolvedTextStyle": {
+        "fontSize": 13.51,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "城市低空微气象与三维风场"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "城市低空微气象与三维风场",
+          "resolvedTextStyle": {
+            "fontSize": 13.51,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "城市低空微气象与三维风场",
+              "fontSize": 13.51,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 97,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fi5sr290",
+      "id": "97",
+      "name": "low-dot-2",
+      "bbox": [
+        1390,
+        670,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#B06B5D",
+      "lineColor": "#B06B5D",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 98,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/4ne9o7qh",
+      "id": "98",
+      "bbox": [
+        1363,
+        675,
+        27,
+        49
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A95448",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 99,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ponaxcr2",
+      "id": "99",
+      "name": "low-label-2",
+      "bbox": [
+        1408,
+        662,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "高密度建成环境风扰动安全",
+      "textPreview": "高密度建成环境风扰动安全",
+      "resolvedFontSize": 13.51,
+      "resolvedTextStyle": {
+        "fontSize": 13.51,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "高密度建成环境风扰动安全"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "高密度建成环境风扰动安全",
+          "resolvedTextStyle": {
+            "fontSize": 13.51,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "高密度建成环境风扰动安全",
+              "fontSize": 13.51,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 100,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/edkjyp8b",
+      "id": "100",
+      "name": "low-dot-3",
+      "bbox": [
+        1390,
+        715,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#B06B5D",
+      "lineColor": "#B06B5D",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 101,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/fet07a9w",
+      "id": "101",
+      "bbox": [
+        1363,
+        720,
+        27,
+        4
+      ],
+      "verticalFlip": true,
+      "geometry": "straightConnector1",
+      "lineColor": "#A95448",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 102,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/0fm10fqh",
+      "id": "102",
+      "name": "low-label-3",
+      "bbox": [
+        1408,
+        707,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "无人机环境感知与数据融合",
+      "textPreview": "无人机环境感知与数据融合",
+      "resolvedFontSize": 13.51,
+      "resolvedTextStyle": {
+        "fontSize": 13.51,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "无人机环境感知与数据融合"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "无人机环境感知与数据融合",
+          "resolvedTextStyle": {
+            "fontSize": 13.51,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "无人机环境感知与数据融合",
+              "fontSize": 13.51,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 103,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1gvi9kr2",
+      "id": "103",
+      "name": "low-dot-4",
+      "bbox": [
+        1390,
+        760,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#B06B5D",
+      "lineColor": "#B06B5D",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 104,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2h4j2p8n",
+      "id": "104",
+      "bbox": [
+        1363,
+        724,
+        27,
+        41
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A95448",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 105,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/nid0bu9s",
+      "id": "105",
+      "name": "low-label-4",
+      "bbox": [
+        1408,
+        752,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "城市低空三维风险地图",
+      "textPreview": "城市低空三维风险地图",
+      "resolvedFontSize": 13.51,
+      "resolvedTextStyle": {
+        "fontSize": 13.51,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "城市低空三维风险地图"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "城市低空三维风险地图",
+          "resolvedTextStyle": {
+            "fontSize": 13.51,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "城市低空三维风险地图",
+              "fontSize": 13.51,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 106,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/o3m14zqd",
+      "id": "106",
+      "name": "low-dot-5",
+      "bbox": [
+        1390,
+        805,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#B06B5D",
+      "lineColor": "#B06B5D",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 107,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/p4vid4ry",
+      "id": "107",
+      "bbox": [
+        1363,
+        724,
+        27,
+        86
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A95448",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 108,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a54j698j",
+      "id": "108",
+      "name": "low-label-5",
+      "bbox": [
+        1408,
+        797,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "安全航路规划与动态调度",
+      "textPreview": "安全航路规划与动态调度",
+      "resolvedFontSize": 13.51,
+      "resolvedTextStyle": {
+        "fontSize": 13.51,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "安全航路规划与动态调度"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "安全航路规划与动态调度",
+          "resolvedTextStyle": {
+            "fontSize": 13.51,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "安全航路规划与动态调度",
+              "fontSize": 13.51,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 109,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/b6xkfup4",
+      "id": "109",
+      "name": "low-dot-6",
+      "bbox": [
+        1390,
+        850,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#B06B5D",
+      "lineColor": "#B06B5D",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 110,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5cjulsfi",
+      "id": "110",
+      "bbox": [
+        1363,
+        724,
+        27,
+        131
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A95448",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 111,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kbqdsnex",
+      "id": "111",
+      "name": "low-label-6",
+      "bbox": [
+        1408,
+        842,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "建筑外墙与灾后应急巡检",
+      "textPreview": "建筑外墙与灾后应急巡检",
+      "resolvedFontSize": 13.51,
+      "resolvedTextStyle": {
+        "fontSize": 13.51,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "建筑外墙与灾后应急巡检"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "建筑外墙与灾后应急巡检",
+          "resolvedTextStyle": {
+            "fontSize": 13.51,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "建筑外墙与灾后应急巡检",
+              "fontSize": 13.51,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 112,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jahcjixc",
+      "id": "112",
+      "name": "low-dot-7",
+      "bbox": [
+        1390,
+        895,
+        10,
+        10
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#B06B5D",
+      "lineColor": "#B06B5D",
+      "lineWidth": 0.5
+    },
+    {
+      "order": 113,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/i98vqdwr",
+      "id": "113",
+      "bbox": [
+        1363,
+        724,
+        27,
+        176
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#A95448",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 114,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/tgjupcfe",
+      "id": "114",
+      "name": "low-label-7",
+      "bbox": [
+        1408,
+        887,
+        188,
+        34
+      ],
+      "geometry": "rect",
+      "text": "数字孪生城市与多智能体协同",
+      "textPreview": "数字孪生城市与多智能体协同",
+      "resolvedFontSize": 13.51,
+      "resolvedTextStyle": {
+        "fontSize": 13.51,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "数字孪生城市与多智能体协"
+          },
+          {
+            "index": 2,
+            "text": "同"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "数字孪生城市与多智能体协同",
+          "resolvedTextStyle": {
+            "fontSize": 13.51,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "数字孪生城市与多智能体协同",
+              "fontSize": 13.51,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 115,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/sfadw7et",
+      "id": "115",
+      "name": "research-question",
+      "bbox": [
+        250,
+        1030,
+        1040,
+        72
+      ],
+      "geometry": "roundRect",
+      "text": "城市建筑形态如何通过风场、热环境与污染物传播，进一步影响低空飞行安全、环境感知和应急巡检？",
+      "textPreview": "城市建筑形态如何通过风场、热环境与污染物传播，进一步影响低空飞行安全、环境感知和应急巡检？",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "bold": true,
+        "alignment": "center",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "城市建筑形态如何通过风场、热环境与污染物传播，进一步影响低空飞行安全、环境感知和应急巡检？"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "城市建筑形态如何通过风场、热环境与污染物传播，进一步影响低空飞行安全、环境感知和应急巡检？",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#22252B",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "城市建筑形态如何通过风场、热环境与污染物传播，进一步影响低空飞行安全、环境感知和应急巡检？",
+              "fontSize": 19,
+              "color": "#22252B",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "fillColor": "#FFFDF8",
+      "lineColor": "#767C82",
+      "lineWidth": 1.4
+    },
+    {
+      "order": 116,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/7e1cn2xo",
+      "id": "116",
+      "name": "legend",
+      "bbox": [
+        1320,
+        1008,
+        245,
+        95
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFDF8",
+      "lineColor": "#CAC6BC",
+      "lineWidth": 1
+    },
+    {
+      "order": 117,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/6dsvuxw3",
+      "id": "117",
+      "name": "legend-solid",
+      "bbox": [
+        1338,
+        1024,
+        210,
+        28
+      ],
+      "geometry": "rect",
+      "text": "━  实线＝已有经历或公开研究",
+      "textPreview": "━  实线＝已有经历或公开研究",
+      "resolvedFontSize": 14.51,
+      "resolvedTextStyle": {
+        "fontSize": 14.51,
+        "typeface": "+mn-lt",
+        "color": "#22252B",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "━  实线＝已有经历或公开研究"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "━  实线＝已有经历或公开研究",
+          "resolvedTextStyle": {
+            "fontSize": 14.51,
+            "color": "#22252B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "━  实线＝已有经历或公开研究",
+              "fontSize": 14.51,
+              "color": "#22252B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 118,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/h43utcvq",
+      "id": "118",
+      "name": "legend-dashed",
+      "bbox": [
+        1338,
+        1060,
+        210,
+        28
+      ],
+      "geometry": "rect",
+      "text": "┄  虚线＝个人拟拓展兴趣",
+      "textPreview": "┄  虚线＝个人拟拓展兴趣",
+      "resolvedFontSize": 14.51,
+      "resolvedTextStyle": {
+        "fontSize": 14.51,
+        "typeface": "+mn-lt",
+        "color": "#A95448",
+        "alignment": "left",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "┄  虚线＝个人拟拓展兴趣"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "┄  虚线＝个人拟拓展兴趣",
+          "resolvedTextStyle": {
+            "fontSize": 14.51,
+            "color": "#A95448",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "┄  虚线＝个人拟拓展兴趣",
+              "fontSize": 14.51,
+              "color": "#A95448",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}
