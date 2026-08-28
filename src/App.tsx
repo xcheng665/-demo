@@ -844,7 +844,6 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
   ];
   const usesLandscapeTriptych = coverCards.length === 3 && coverCards.every((card) => card.size === "landscape");
   const projectSplashImage = project.splashImage ?? coverCards.find((card) => card.type === "image" && card.src)?.src ?? project.thumbnail;
-  const touchStart = useRef<{ x: number; y: number } | null>(null);
   const detailScrollRef = useRef<HTMLDivElement>(null);
   const projectPageRef = useRef<HTMLElement>(null);
   const wheelLockUntil = useRef(0);
@@ -981,26 +980,6 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     autoAdvanceResumeAt.current = 0;
   }, [project.number]);
 
-  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
-    const touch = event.touches[0];
-    touchStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
-  };
-
-  const handleTouchEnd = (event: TouchEvent<HTMLDivElement>) => {
-    const start = touchStart.current;
-    const touch = event.changedTouches[0];
-    touchStart.current = null;
-    if (!start || !touch) return;
-
-    const deltaX = touch.clientX - start.x;
-    const deltaY = touch.clientY - start.y;
-    const horizontalDistance = Math.abs(deltaX);
-    const verticalDistance = Math.abs(deltaY);
-
-    if (horizontalDistance < 56 || horizontalDistance <= verticalDistance) return;
-    navigate(projectRoute(deltaX > 0 ? previousProject : nextProject));
-  };
-
   return (
     <main className="project-detail-page" ref={projectPageRef} onWheel={handleProjectPageWheel}>
       <motion.section
@@ -1035,8 +1014,6 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
         onWheel={handleDetailWheel}
         onKeyDown={handleDetailKeyDown}
         onScroll={handleDetailScroll}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
       >
         <motion.section
           id="project-profile"
@@ -1155,11 +1132,9 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
           >
             <header><span>{String(index + 1).padStart(2, "0")} / {String(galleryImages.length).padStart(2, "0")}</span><span>{project.titleEn}</span></header>
             <ProjectReturnControl navigate={navigate} />
-            <div className="project-drawing-stage">
-              <a className="project-paper-stack" href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 1}张图纸`}>
-                <img src={src} alt={`${project.title}图纸 ${index + 1}`} loading="lazy" />
-              </a>
-            </div>
+            <a href={src} target="_blank" rel="noreferrer" aria-label={`在新窗口打开${project.title}第${index + 1}张图纸`}>
+              <img src={src} alt={`${project.title}图纸 ${index + 1}`} loading="lazy" />
+            </a>
             <span className="project-drawing-page">{String(index + 1).padStart(2, "0")}</span>
             </motion.section>
         ))}
