@@ -248,7 +248,7 @@ const practices: PracticeCard[] = [
     eyebrow: "01 / 05",
     description: "围绕社区互助与绿色能源管理，完成两套面向真实生活场景的移动端界面设计与前端实现。",
     image: practiceCardImages.frontend,
-    detail: "十个页面均由 React 与 CSS 构建，以真实场景照片承托信息判断，并按两个完整产品案例纵向展开。",
+    detail: "十个页面以地图、任务、物品、路线与信用等模块组织，按两个完整产品案例纵向展开。",
     tags: ["社区互助", "储能管理", "移动端 UI", "前端实现"],
     mode: "phones",
     uiProjects: [
@@ -332,7 +332,7 @@ function AppPhoto({ src, className = "" }: { src: string; className?: string }) 
 
 function CommunityAppScreen({ view }: { view: number }) {
   const labels = ["附近地图", "快递代取", "物品互借", "顺路拼车", "我的邻里"];
-  return <CodePhone label={labels[view]} index={view}><img className="app-photo" src={communityPrototypeScreenImages[view]} alt={`${labels[view]}界面原型`} /></CodePhone>;
+  return <CodePhone label={labels[view]} index={view}><img className="app-photo community-prototype-screen" src={communityPrototypeScreenImages[view]} alt={`${labels[view]}界面原型`} /></CodePhone>;
 }
 
 function EnergyAppScreen({ view }: { view: number }) {
@@ -612,28 +612,6 @@ function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
         <PageRail current="/" navigate={navigate} />
       </section>
 
-      <section className="home-portfolio-reader" aria-labelledby="home-portfolio-reader-title">
-        <div className="home-portfolio-reader-intro">
-          <div>
-            <span className="home-portfolio-reader-kicker">01 / ONLINE PORTFOLIO</span>
-            <h2 id="home-portfolio-reader-title">翻阅完整作品集</h2>
-            <p>从设计策略到图纸表达，在线查看全部作品版面。</p>
-          </div>
-          <a className="home-portfolio-reader-link" href={portfolioPreviewUrl} target="_blank" rel="noreferrer">
-            全屏打开 <ExternalLink size={16} />
-          </a>
-        </div>
-        <div className="home-portfolio-reader-frame">
-          <div className="home-portfolio-reader-frame-label" aria-hidden="true">CHENG ZHIYUAN · SELECTED WORKS</div>
-          <iframe
-            src={portfolioPreviewUrl}
-            title="程志远在线作品集预览"
-            loading="lazy"
-            allowFullScreen
-          />
-        </div>
-      </section>
-
       <section className="home-project-preview" aria-label="项目详情滚动预览">
         <div className="home-project-preview-gallery">
           {homeProjectPreviewColumns.map((column, columnIndex) => (
@@ -654,6 +632,28 @@ function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="home-portfolio-reader" aria-labelledby="home-portfolio-reader-title">
+        <div className="home-portfolio-reader-intro">
+          <div>
+            <span className="home-portfolio-reader-kicker">01 / ONLINE PORTFOLIO</span>
+            <h2 id="home-portfolio-reader-title">翻阅完整作品集</h2>
+            <p>从设计策略到图纸表达，在线查看全部作品版面。</p>
+          </div>
+          <a className="home-portfolio-reader-link" href={portfolioPreviewUrl} target="_blank" rel="noreferrer">
+            全屏打开 <ExternalLink size={16} />
+          </a>
+        </div>
+        <div className="home-portfolio-reader-frame">
+          <div className="home-portfolio-reader-frame-label" aria-hidden="true">CHENG ZHIYUAN · SELECTED WORKS</div>
+          <iframe
+            src={portfolioPreviewUrl}
+            title="程志远在线作品集预览"
+            loading="lazy"
+            allowFullScreen
+          />
         </div>
       </section>
     </main>

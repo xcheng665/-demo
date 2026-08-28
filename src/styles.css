@@ -2568,6 +2568,13 @@ img {
   transform: none;
 }
 
+/* Source prototypes include their own device edge; crop it so only the shared showcase frame remains. */
+.community-prototype-screen {
+  width: 114%;
+  max-width: none;
+  margin-left: -7%;
+}
+
 .app-code {
   --app-ink: #314535;
   --app-green: #789768;
