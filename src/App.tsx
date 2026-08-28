@@ -60,7 +60,7 @@ type SkillGroup = {
   items: SkillItem[];
 };
 
-const portfolioPreviewUrl = "https://publuu.com/flip-book/1168841/2600224";
+const portfolioPreviewUrl = "https://publuu.com/flip-book/1168841/2600272/";
 const resumePdfUrl = publicPath("resume.pdf");
 const practiceCardImages = {
   frontend: publicPath("assets/practice-cards/frontend-ui-tarot-card.png"),
@@ -69,8 +69,14 @@ const practiceCardImages = {
   green: publicPath("assets/practice-cards/green-performance-male-card.png"),
   drawings: publicPath("assets/practice-cards/working-drawings-male-card.png")
 } as const;
-const communitySceneUrl = publicPath("assets/community-helper/community-scene.png");
 const energySceneUrl = publicPath("assets/energy-manager/energy-scene.png");
+const communityPrototypeScreenImages = [
+  publicPath("assets/community-helper/nearby-map.png"),
+  publicPath("assets/community-helper/parcel-pickup.png"),
+  publicPath("assets/community-helper/item-borrowing.png"),
+  publicPath("assets/community-helper/carpool.png"),
+  publicPath("assets/community-helper/my-neighborhood.png")
+] as const;
 const homeProjectPreviewColumns = [0, 1, 2].map((columnIndex) =>
   projects
     .flatMap((project) => project.images.map((src) => ({ project, src })))
@@ -326,15 +332,7 @@ function AppPhoto({ src, className = "" }: { src: string; className?: string }) 
 
 function CommunityAppScreen({ view }: { view: number }) {
   const labels = ["附近地图", "快递代取", "物品互借", "顺路拼车", "我的邻里"];
-  const card = (title: string, text: string, tone = "") => <div className={`code-task-card ${tone}`}><small>翠湖花园 · 260m</small><b>{title}</b><p>{text}</p><i>顺路可帮</i></div>;
-  return <CodePhone label={labels[view]} index={view}><div className="app-code community-code">
-    {view === 0 && <><header><strong>附近的互助</strong><span>程</span></header><div className="app-search">⌕ 搜索快递、借物、拼车</div><div className="app-chip-row"><i>距我最近</i><i>紧急</i><i>新发布</i></div><div className="code-map"><em className="map-road r1"/><em className="map-road r2"/><em className="map-road r3"/><AppPhoto src={communitySceneUrl} className="map-scene"/><b className="map-pin p1">取</b><b className="map-pin p2">车</b><b className="map-pin p3">借</b><small>翠湖花园</small></div>{card("帮忙取一下驿站快递", "今晚加班，取件码已备好。")}</>}
-    {view === 1 && <><header><strong>快递代取</strong><span>筛选</span></header><div className="app-tabs"><b>待取件 2</b><span>已取件</span><span>代收中</span></div><div className="code-photo-card"><AppPhoto src={communitySceneUrl} className="parcel-photo"/><div><b>2号驿站 · 取件码 6682</b><p>丰巢智能柜 · 北门隔壁</p><button>我已取件</button></div></div>{card("再带一件 1 栋的快递", "同一路线，还差 1 位邻居。", "compact")}</>}
-    {view === 2 && <><header><strong>物品互借</strong><span>分类</span></header><div className="app-chip-row"><i>全部</i><i>工具</i><i>家居</i><i>运动</i></div>{[["电钻（含钻头）", "9成新 · 3人借过"], ["折叠梯", "可借 2 小时"], ["工具箱套装", "周末可取"]].map(([title, meta], item) => <div className="borrow-row" key={title}><AppPhoto src={communitySceneUrl} className={`borrow-photo photo-${item}`}/><div><b>{title}</b><p>{meta}</p><span>查看详情 ›</span></div></div>)}</>}
-    {view === 3 && <><header><strong>顺路出行</strong><span>发布</span></header><div className="carpool-hero"><AppPhoto src={communitySceneUrl}/><div><small>明天 08:30</small><b>翠湖花园 → 交管路地铁站</b><p>还剩 2 个座位 · 车主已认证</p></div></div><div className="app-chip-row"><i>今天 16:30</i><i>明天 08:30</i></div>{["李师傅 · 5.0分", "王女士 · 4.9分"].map((driver) => <div className="driver-row" key={driver}><span>李</span><div><b>{driver}</b><p>翠湖花园出发 · 准点</p></div><i>加入</i></div>)}</>}
-    {view === 4 && <><header><strong>我的</strong><span>⚙</span></header><div className="profile-cover"><AppPhoto src={communitySceneUrl}/><div><b>程知远</b><small>翠湖花园 · 已认证居民</small></div></div><div className="app-stats"><span><b>18</b>帮助邻居</span><span><b>96</b>邻里信用</span><span><b>7</b>收到感谢</span></div><p className="app-section-title">MY NEIGHBORHOOD</p>{["我发布的需求", "我响应的请求", "我的借用记录", "常用地点"].map((item, idx) => <div className="code-menu" key={item}>{item}<span>{idx < 3 ? [2, 1, 3][idx] : ""}　›</span></div>)}</>}
-    <AppNav active={view === 0 ? "附近" : view === 4 ? "我的" : "互助"} insight={["附近还有 3 个需求等待回应", "今日已有 6 件快递被顺路带回", "你的物品借用守约率 100%", "同路线还有 2 位邻居准备出发", "本周收到 2 句邻里感谢"][view]}/>
-  </div></CodePhone>;
+  return <CodePhone label={labels[view]} index={view}><img className="app-photo" src={communityPrototypeScreenImages[view]} alt={`${labels[view]}界面原型`} /></CodePhone>;
 }
 
 function EnergyAppScreen({ view }: { view: number }) {
@@ -614,6 +612,28 @@ function HomePage({ navigate }: { navigate: (to: RoutePath) => void }) {
         <PageRail current="/" navigate={navigate} />
       </section>
 
+      <section className="home-portfolio-reader" aria-labelledby="home-portfolio-reader-title">
+        <div className="home-portfolio-reader-intro">
+          <div>
+            <span className="home-portfolio-reader-kicker">01 / ONLINE PORTFOLIO</span>
+            <h2 id="home-portfolio-reader-title">翻阅完整作品集</h2>
+            <p>从设计策略到图纸表达，在线查看全部作品版面。</p>
+          </div>
+          <a className="home-portfolio-reader-link" href={portfolioPreviewUrl} target="_blank" rel="noreferrer">
+            全屏打开 <ExternalLink size={16} />
+          </a>
+        </div>
+        <div className="home-portfolio-reader-frame">
+          <div className="home-portfolio-reader-frame-label" aria-hidden="true">CHENG ZHIYUAN · SELECTED WORKS</div>
+          <iframe
+            src={portfolioPreviewUrl}
+            title="程志远在线作品集预览"
+            loading="lazy"
+            allowFullScreen
+          />
+        </div>
+      </section>
+
       <section className="home-project-preview" aria-label="项目详情滚动预览">
         <div className="home-project-preview-gallery">
           {homeProjectPreviewColumns.map((column, columnIndex) => (
@@ -815,6 +835,11 @@ function ProjectsPage({ navigate }: { navigate: (to: RoutePath) => void }) {
         <span>ABOUT ME</span>
         <h1>Project</h1>
         <p>项目</p>
+        <a className="project-portfolio-entry" href={portfolioPreviewUrl} target="_blank" rel="noreferrer">
+          <span>在线翻阅完整作品集</span>
+          <small>VIEW ONLINE PORTFOLIO</small>
+          <ExternalLink size={15} />
+        </a>
       </section>
       <section className="project-index-grid" aria-label="项目列表">
         {projects.map((project) => <ProjectIndexCard project={project} navigate={navigate} key={project.number} />)}
