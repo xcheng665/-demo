@@ -2570,9 +2570,10 @@ img {
 
 /* Source prototypes include their own device edge; crop it so only the shared showcase frame remains. */
 .community-prototype-screen {
-  width: 114%;
-  max-width: none;
-  margin-left: -7%;
+  width: 100%;
+  margin-left: 0;
+  transform: scaleX(1.14) !important;
+  transform-origin: center center !important;
 }
 
 .app-code {
