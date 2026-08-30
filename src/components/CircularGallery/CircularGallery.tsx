@@ -76,7 +76,7 @@ class GalleryMedia {
     private readonly geometry: Plane,
     private readonly scene: Transform,
     private readonly item: GalleryItem,
-    private readonly index: number,
+    readonly index: number,
     private readonly length: number,
     private readonly bend: number,
     private readonly borderRadius: number,
@@ -300,9 +300,26 @@ class OglGallery {
     this.scroll.target = this.scroll.position + distance;
   };
 
-  private onPointerUp = () => {
+  private getIndexAtPointer(clientX: number) {
+    const rect = this.container.getBoundingClientRect();
+    const worldX = ((clientX - rect.left) / rect.width - 0.5) * this.viewport.width;
+    const nearest = this.media.reduce((best, media) => (
+      Math.abs(media.plane.position.x - worldX) < Math.abs(best.plane.position.x - worldX) ? media : best
+    ));
+    return modulo(nearest.index, this.items.length);
+  }
+
+  private onPointerUp = (event: PointerEvent) => {
     if (!this.pointer) return;
+    const pointer = this.pointer;
     this.pointer = null;
+    if (this.container.hasPointerCapture(pointer.id)) this.container.releasePointerCapture(pointer.id);
+    if (event.type === "pointerup" && Math.abs(event.clientX - pointer.x) < 8) {
+      const index = this.getIndexAtPointer(event.clientX);
+      this.setActiveIndex(index);
+      this.onActiveIndexChange(index);
+      return;
+    }
     this.selectNearest();
   };
 
