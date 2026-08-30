@@ -63,11 +63,11 @@ type SkillGroup = {
 const portfolioPreviewUrl = "https://publuu.com/flip-book/1168841/2600272/";
 const resumePdfUrl = publicPath("resume.pdf");
 const practiceCardImages = {
-  frontend: publicPath("assets/practice-cards/frontend-ui-tarot-card.png"),
-  research: publicPath("assets/practice-cards/research-papers-tarot-card-v2.png"),
-  modeling: publicPath("assets/practice-cards/modeling-tarot-card.png"),
-  green: publicPath("assets/practice-cards/green-performance-male-card.png"),
-  drawings: publicPath("assets/practice-cards/working-drawings-male-card.png")
+  frontend: publicPath("assets/practice-cards/ui-design-reality-restaged.png"),
+  research: publicPath("assets/practice-cards/research-reality-restaged.png"),
+  modeling: publicPath("assets/practice-cards/modeling-reality-restaged.png"),
+  green: publicPath("assets/practice-cards/green-performance-reality-restaged.png"),
+  drawings: publicPath("assets/practice-cards/internship-reality-restaged.png")
 } as const;
 const energySceneUrl = publicPath("assets/energy-manager/energy-scene.png");
 const communityPrototypeScreenImages = [
