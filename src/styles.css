@@ -2157,37 +2157,56 @@ img {
 }
 
 .practice-card-shade {
-  position: absolute;
-  z-index: 2;
-  inset: auto 0 0;
-  height: 44%;
-  background: rgba(59, 53, 47, 0.72);
+  display: none;
 }
 
 .practice-card-copy {
   position: absolute;
   z-index: 3;
-  right: 16px;
-  bottom: 16px;
-  left: 16px;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
   display: grid;
-  gap: 5px;
-  color: var(--paper-strong);
+  grid-template-columns: 36px minmax(0, 1fr);
+  column-gap: 9px;
+  padding: 9px 10px 8px;
+  border-left: 3px solid var(--accent);
+  background: rgba(247, 241, 229, 0.9);
+  box-shadow: 0 7px 16px rgba(59, 53, 47, 0.16);
+  color: var(--ink);
   text-align: left;
+  backdrop-filter: blur(7px);
 }
 
 .practice-card-copy small,
 .practice-card-copy em {
-  color: rgba(247, 241, 229, 0.78);
+  color: var(--muted);
   font-family: var(--font-en);
   font-size: 9px;
   font-style: normal;
   font-weight: 700;
 }
 
+.practice-card-copy small {
+  grid-row: 1 / span 2;
+  align-self: center;
+  padding-right: 8px;
+  border-right: 1px solid rgba(59, 53, 47, 0.2);
+  line-height: 1.2;
+}
+
 .practice-card-copy strong {
+  grid-column: 2;
   font-family: var(--font-display);
-  font-size: clamp(19px, 1.7vw, 27px);
+  font-size: clamp(17px, 1.45vw, 22px);
+  line-height: 1.1;
+}
+
+.practice-card-copy em {
+  grid-column: 2;
+  margin-top: 3px;
+  font-size: 8px;
+  letter-spacing: 0.02em;
 }
 
 .practice-card:hover,

@@ -29,6 +29,7 @@ import { useEffect, useRef, useState } from "react";
 import type { AnchorHTMLAttributes, CSSProperties, KeyboardEvent as ReactKeyboardEvent, ReactNode, TouchEvent, WheelEvent as ReactWheelEvent } from "react";
 import { AiChat } from "./components/AiChat";
 import BorderGlow from "./components/BorderGlow";
+import { GlobalCursorGlow } from "./components/GlobalCursorGlow";
 // @ts-expect-error The official React Bits JS-CSS registry component is intentionally JavaScript-only.
 import DepthCarousel from "./components/DepthCarousel/DepthCarousel";
 import { RagOverview } from "./components/RagOverview";
@@ -1534,6 +1535,7 @@ export default function App() {
 
   return (
     <div className="app-shell">
+      <GlobalCursorGlow />
       <AnimatePresence mode="wait">
         <motion.div key={route} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.22 }}>
           {route === "/" ? <HomePage navigate={navigate} /> : null}
