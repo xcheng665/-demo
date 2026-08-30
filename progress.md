@@ -74,6 +74,23 @@
 
 ---
 
+## 会话：2026-08-30（横向浮动 OGL 画廊）
+
+### 方案确认
+- **状态：** complete
+- 用户确认将 `/other` 实践卡片改为横向、无弧线的 OGL 画廊，并要求加入轻微浮动感。
+- 已提交设计说明：`10fc087 docs: define horizontal floating practice gallery`。
+- 实现状态：组件接入中。
+
+### 构建检查
+- **状态：** in_progress
+- `npm run build` 首次失败：新组件将 OGL 上下文标注为原生 `WebGLRenderingContext`，与 OGL 的扩展上下文类型不兼容；同时 canvas 联合类型需要缩窄。正在修正类型，不改变交互方案。
+- 类型修正后，`npm run build` 已通过（TypeScript + Vite）。
+- 自动浏览器检查未能启动 Chromium（CDP 通道关闭）；未重复相同启动方式，改为保留已打开的本地 `/other` 页面供人工视觉确认。
+- 已补充点击卡片自动居中与详情同步：短点击移动到被点击卡片，拖拽仍执行原有吸附。
+
+---
+
 ## 会话：2026-08-15（项目封面编辑式三联画）
 
 ### 实现与验证
