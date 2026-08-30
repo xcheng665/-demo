@@ -2080,6 +2080,15 @@ img {
   overflow: hidden;
 }
 
+.practice-gallery {
+  position: relative;
+  height: clamp(310px, 31vw, 440px);
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: radial-gradient(circle at 50% 58%, rgba(255, 253, 247, 0.92), rgba(234, 227, 211, 0.42) 72%, transparent 100%);
+}
+
 .practice-card {
   position: absolute;
   top: 12px;
@@ -3935,6 +3944,12 @@ img {
     overflow-x: auto;
     padding: 4px 2px 12px;
     scroll-snap-type: x mandatory;
+  }
+
+  .practice-gallery {
+    height: 286px;
+    margin-right: -2px;
+    margin-left: -2px;
   }
 
   .practice-card {

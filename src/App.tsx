@@ -25,11 +25,11 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { AnchorHTMLAttributes, CSSProperties, KeyboardEvent as ReactKeyboardEvent, ReactNode, TouchEvent, WheelEvent as ReactWheelEvent } from "react";
 import { AiChat } from "./components/AiChat";
 import BorderGlow from "./components/BorderGlow";
-import { GlobalCursorGlow } from "./components/GlobalCursorGlow";
+import CircularGallery from "./components/CircularGallery/CircularGallery";
 // @ts-expect-error The official React Bits JS-CSS registry component is intentionally JavaScript-only.
 import DepthCarousel from "./components/DepthCarousel/DepthCarousel";
 import { RagOverview } from "./components/RagOverview";
@@ -1299,13 +1299,12 @@ function ResearchPaperArchive({ papers }: { papers: ResearchPaper[] }) {
 function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
   const [activePractice, setActivePractice] = useState(0);
   const practice = practices[activePractice];
-
-  const getOffset = (index: number) => {
-    let offset = index - activePractice;
-    if (offset > Math.floor(practices.length / 2)) offset -= practices.length;
-    if (offset < -Math.floor(practices.length / 2)) offset += practices.length;
-    return offset;
-  };
+  const galleryItems = useMemo(() => practices.map((item) => ({
+    image: item.image,
+    eyebrow: item.eyebrow,
+    title: item.title,
+    subtitle: item.titleEn
+  })), []);
 
   const movePractice = (direction: number) => {
     setActivePractice((current) => (current + direction + practices.length) % practices.length);
@@ -1321,38 +1320,17 @@ function OtherPage({ navigate }: { navigate: (to: RoutePath) => void }) {
         <p>把 UI 设计、科研写作、数学建模、绿色性能与实习项目整理成五个可被快速理解的主题。</p>
       </section>
       <section className="practice-stage" aria-label="Cross-disciplinary practice cards">
-        <div className="practice-deck">
-          {practices.map((item, index) => {
-            const offset = getOffset(index);
-            const isActive = index === activePractice;
-            return (
-              <BorderGlow
-                className={`practice-card ${isActive ? "is-active" : ""}`}
-                key={item.title}
-                borderRadius={4}
-                glowRadius={18}
-                glowIntensity={0.55}
-                style={{
-                  "--card-x": `${offset * 218}px`,
-                  "--card-rotation": `${offset * 5.2}deg`,
-                  "--card-scale": offset === 0 ? "1" : String(0.84 - Math.abs(offset) * 0.035),
-                  "--card-z": String(10 - Math.abs(offset))
-                } as CSSProperties}
-              >
-                <button
-                  className="practice-card-button"
-                  type="button"
-                  onClick={() => setActivePractice(index)}
-                  aria-pressed={isActive}
-                  aria-label={`查看${item.title}`}
-                >
-                  <img src={item.image} alt={`${item.title}能力插画卡片`} />
-                  <span className="practice-card-shade" aria-hidden="true" />
-                  <span className="practice-card-copy"><small>{item.eyebrow}</small><strong>{item.title}</strong><em>{item.titleEn}</em></span>
-                </button>
-              </BorderGlow>
-            );
-          })}
+        <div className="practice-gallery">
+          <CircularGallery
+            items={galleryItems}
+            activeIndex={activePractice}
+            onActiveIndexChange={setActivePractice}
+            bend={0}
+            borderRadius={0.05}
+            scrollEase={0.02}
+            scrollSpeed={5}
+            floatAmplitude={0.1}
+          />
         </div>
         <motion.div
           className={`practice-detail ${practice.mode === "phones" || practice.videos?.length ? "practice-detail-wide" : ""}`}
@@ -1535,7 +1513,6 @@ export default function App() {
 
   return (
     <div className="app-shell">
-      <GlobalCursorGlow />
       <AnimatePresence mode="wait">
         <motion.div key={route} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.22 }}>
           {route === "/" ? <HomePage navigate={navigate} /> : null}
