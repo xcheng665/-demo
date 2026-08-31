@@ -231,3 +231,20 @@
   html body .project-cover-content.project-cover-content-03 .project-cover-personal-info,
   html body .project-cover-content.project-cover-content-04 .project-cover-personal-info { font-size: 10px !important; }
 }
+
+/* Keep project-information labels and their values on one shared text scale. */
+.project-cover-personal-info p,
+.project-cover-personal-info p strong {
+  font-family: var(--font-song);
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: 400;
+}
+
+@media (min-width: 761px) {
+  html body .project-cover-slide .project-cover-meta .project-cover-personal-info p,
+  html body .project-cover-slide .project-cover-meta .project-cover-personal-info p strong {
+    font-size: var(--project-detail-body-size) !important;
+    line-height: var(--project-detail-body-leading) !important;
+  }
+}
