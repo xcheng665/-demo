@@ -248,3 +248,14 @@
     line-height: var(--project-detail-body-leading) !important;
   }
 }
+
+/* Lift every project's caption/media group to the same position as project 01. */
+@media (min-width: 761px) {
+  .project-detail-scroll .project-cover-content.project-cover-content-01,
+  .project-detail-scroll .project-cover-content.project-cover-content-02,
+  .project-detail-scroll .project-cover-content.project-cover-content-03,
+  .project-detail-scroll .project-cover-content.project-cover-content-04,
+  .project-detail-scroll .project-cover-content.project-cover-content-05 {
+    --project-media-lift: clamp(140px, 15svh, 180px);
+  }
+}
