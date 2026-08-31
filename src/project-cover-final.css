@@ -259,3 +259,23 @@
     --project-media-lift: clamp(140px, 15svh, 180px);
   }
 }
+
+/* Ease the shared project-information block by two pixels for every project. */
+@media (min-width: 761px) {
+  .project-detail-scroll .project-cover-content.project-cover-content {
+    --project-detail-body-size: clamp(14px, 1.25vw, 22px);
+    --project-detail-label-size: clamp(14px, 1.3vw, 20px);
+  }
+
+  html body .project-cover-content .project-cover-statement-copy {
+    font-size: clamp(15px, 1.15vw, 18px) !important;
+  }
+
+  html body .project-cover-content .project-cover-statement > div > span {
+    font-size: clamp(13px, 1.1vw, 16px) !important;
+  }
+
+  html body .project-cover-content .project-cover-statement small {
+    font-size: clamp(15px, 1.2vw, 19px) !important;
+  }
+}

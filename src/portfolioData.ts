@@ -307,7 +307,7 @@ export const projects: Project[] = [
     titleEn: "Selected Works",
     category: "技术与艺术 / 综合作品",
     categoryEn: "Technology, Art and Mixed Works",
-    year: "2022",
+    year: "整个本科生涯",
     description: "以低饱和水彩、线稿与统一版式串联不同媒介的建筑片段，形成从概念、场所到空间体验的连续叙事。",
     descriptionEn: "Watercolor texture, linework and a shared layout connect architectural fragments into one continuous spatial narrative.",
     thumbnail: projectCover("项目5-首页封面.png"),
@@ -325,6 +325,12 @@ export const projects: Project[] = [
       { src: projectCover("项目5_剖面816.png"), type: "image", size: "landscape", aspectRatio: 1.69, label: "项目 5 - 1", caption: "建筑剖面图，展示空间层次、结构节点与建筑内部的连续动线。", captionEn: "Building section, showing spatial layers, structural nodes and continuous interior circulation." },
       { src: projectCover("项目5_3.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 5 - 3", caption: "现代建筑立面图，展示光影、材料与尺度在连续叙事中的转译。", captionEn: "Modern façade study, translating light, material and scale into a continuous narrative." },
       { src: projectCover("项目5_2.jpg"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 5 - 2", caption: "传统建筑剖面图，呈现历史细部与空间构造之间的对应关系。", captionEn: "Traditional section, showing the relationship between historic detail and spatial construction." }
+    ],
+    personalInfo: [
+      { label: "作品类型", value: "个人综合作品集" },
+      { label: "主要内容", value: "水彩、建筑线稿与空间表达" },
+      { label: "表达范围", value: "概念、场所与空间体验" },
+      { label: "完成时间", value: "整个本科生涯" }
     ],
     statement: {
       problem: "不同题材、媒介与完成时间的作品彼此分散，需要建立清晰而连续的阅读关系。",
