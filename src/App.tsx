@@ -987,7 +987,7 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
     container.addEventListener("touchstart", pause, { passive: true });
     container.addEventListener("touchend", resume, { passive: true });
     observer.observe(container);
-    const intervalId = window.setInterval(advance, 2000);
+    const intervalId = window.setInterval(advance, 4000);
 
     return () => {
       window.clearInterval(intervalId);
