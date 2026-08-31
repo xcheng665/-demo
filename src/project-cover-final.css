@@ -265,6 +265,7 @@
   .project-detail-scroll .project-cover-content.project-cover-content {
     --project-detail-body-size: clamp(14px, 1.25vw, 22px);
     --project-detail-label-size: clamp(14px, 1.3vw, 20px);
+    --project-statement-lift: clamp(16px, 2.2svh, 30px);
   }
 
   html body .project-cover-content .project-cover-statement-copy {
@@ -277,5 +278,10 @@
 
   html body .project-cover-content .project-cover-statement small {
     font-size: clamp(15px, 1.2vw, 19px) !important;
+  }
+
+  html body .project-cover-content .project-cover-description-label,
+  html body .project-cover-content .project-cover-statement {
+    transform: translateY(calc(-1 * var(--project-statement-lift)));
   }
 }
