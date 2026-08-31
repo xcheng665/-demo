@@ -7255,6 +7255,166 @@ img {
   }
 }
 
+/*
+ * Project profile grid — the desktop cover is resolved on one 12-column
+ * editorial grid.  This final layer deliberately owns placement so earlier
+ * project-specific experiments cannot drift the title, statement, and media
+ * into separate alignment systems.
+ */
+@media (min-width: 761px) {
+  .project-cover-content,
+  .project-cover-content-01,
+  .project-cover-content-02,
+  .project-cover-content-03,
+  .project-cover-content-04,
+  .project-cover-content-05 {
+    display: grid !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    grid-template-rows: minmax(0, 41fr) minmax(0, 59fr) !important;
+    column-gap: clamp(20px, 1.7vw, 34px) !important;
+    row-gap: 0 !important;
+    align-content: stretch !important;
+    width: min(1720px, calc(100vw - 144px)) !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    margin: 0 auto !important;
+    padding: clamp(76px, 9.5svh, 112px) 0 0 !important;
+  }
+
+  .project-cover-left {
+    grid-column: 1 / span 5 !important;
+    grid-row: 1 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding-right: clamp(8px, 1vw, 18px) !important;
+  }
+
+  .project-cover-left .project-cover-heading {
+    margin-left: 0 !important;
+  }
+
+  /* The facts use columns 2–5: clear of the title, but still tied to it. */
+  .project-cover-left .project-cover-meta {
+    width: calc(100% - clamp(34px, 3vw, 60px)) !important;
+    margin-left: clamp(34px, 3vw, 60px) !important;
+    padding-top: 14px !important;
+  }
+
+  .project-cover-personal-info {
+    gap: 3px !important;
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    font-size: clamp(13px, 0.95vw, 16px) !important;
+    line-height: 1.42 !important;
+  }
+
+  .project-cover-description,
+  .project-cover-content-01 .project-cover-description,
+  .project-cover-content-02 .project-cover-description,
+  .project-cover-content-03 .project-cover-description,
+  .project-cover-content-04 .project-cover-description,
+  .project-cover-content-05 .project-cover-description {
+    grid-column: 7 / -1 !important;
+    grid-row: 1 !important;
+    align-self: start !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin-top: clamp(42px, 5.2svh, 74px) !important;
+    padding: 0 0 0 clamp(22px, 2.2vw, 42px) !important;
+  }
+
+  .project-cover-description-label {
+    margin-bottom: 14px !important;
+    font-size: clamp(13px, 0.92vw, 16px) !important;
+    letter-spacing: 0.19em !important;
+  }
+
+  .project-cover-statement {
+    display: block !important;
+    height: auto !important;
+  }
+
+  .project-cover-statement > div,
+  .project-cover-statement > div + div {
+    display: grid !important;
+    grid-template-columns: 46px minmax(0, 1fr) !important;
+    min-height: clamp(68px, 8svh, 100px) !important;
+    height: auto !important;
+    padding: 12px 0 !important;
+  }
+
+  .project-cover-statement > div > span {
+    grid-column: 1 !important;
+    font-size: clamp(13px, 0.95vw, 17px) !important;
+  }
+
+  .project-cover-statement p {
+    display: grid !important;
+    grid-column: 2 !important;
+    grid-template-columns: clamp(76px, 5.5vw, 108px) minmax(0, 1fr) !important;
+    gap: clamp(12px, 1.2vw, 22px) !important;
+    margin: 0 !important;
+  }
+
+  .project-cover-statement small {
+    grid-column: 1 !important;
+    margin: 0 !important;
+    font-size: clamp(17px, 1.28vw, 22px) !important;
+  }
+
+  .project-cover-statement-copy {
+    grid-column: 2 !important;
+    width: auto !important;
+    font-size: clamp(14px, 1vw, 17px) !important;
+    line-height: 1.52 !important;
+  }
+
+  .project-cover-media,
+  .project-cover-content-01 .project-cover-media,
+  .project-cover-content-02 .project-cover-media,
+  .project-cover-content-03 .project-cover-media,
+  .project-cover-content-04 .project-cover-media,
+  .project-cover-content-05 .project-cover-media {
+    display: grid !important;
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    column-gap: clamp(20px, 1.7vw, 34px) !important;
+    align-items: start !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding-top: clamp(16px, 2svh, 30px) !important;
+  }
+
+  .project-cover-media-item:nth-child(1) { grid-column: span 5 !important; }
+  .project-cover-media-item:nth-child(2) { grid-column: span 3 !important; }
+  .project-cover-media-item:nth-child(3) { grid-column: span 4 !important; }
+
+  .project-cover-media-caption,
+  .project-cover-content-01 .project-cover-media-caption,
+  .project-cover-content-02 .project-cover-media-caption,
+  .project-cover-content-03 .project-cover-media-caption,
+  .project-cover-content-04 .project-cover-media-caption,
+  .project-cover-content-05 .project-cover-media-caption {
+    min-height: clamp(58px, 7.2svh, 82px) !important;
+    height: auto !important;
+    padding-left: 13px !important;
+    font-size: clamp(12px, 0.86vw, 15px) !important;
+    line-height: 1.42 !important;
+  }
+
+  .project-cover-card,
+  .project-cover-content-01 .project-cover-card,
+  .project-cover-content-02 .project-cover-card,
+  .project-cover-content-03 .project-cover-card,
+  .project-cover-content-04 .project-cover-card,
+  .project-cover-content-05 .project-cover-card {
+    height: clamp(250px, 36svh, 520px) !important;
+  }
+}
+
 /* The statement column is intentionally more legible than its compact labels. */
 @media (min-width: 761px) {
   .project-cover-description-label {
@@ -7498,4 +7658,157 @@ img {
   .project-cover-content-03 .project-cover-card,
   .project-cover-content-04 .project-cover-card,
   .project-cover-content-05 .project-cover-card { height: calc(56svh - 82px) !important; }
+}
+
+/* Final desktop grid placement.  This comes after legacy per-project rules. */
+@media (min-width: 761px) {
+  .project-cover-content,
+  .project-cover-content-01,
+  .project-cover-content-02,
+  .project-cover-content-03,
+  .project-cover-content-04,
+  .project-cover-content-05 {
+    display: grid !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    grid-template-rows: minmax(0, 41fr) minmax(0, 59fr) !important;
+    column-gap: clamp(20px, 1.7vw, 34px) !important;
+    row-gap: 0 !important;
+    align-content: stretch !important;
+    width: min(1720px, calc(100vw - 144px)) !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
+    margin: 0 auto !important;
+    padding: clamp(76px, 9.5svh, 112px) 0 0 !important;
+  }
+
+  .project-cover-left {
+    grid-column: 1 / span 5 !important;
+    grid-row: 1 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding-right: clamp(8px, 1vw, 18px) !important;
+    overflow: visible !important;
+  }
+
+  .project-cover-left .project-cover-heading { margin-left: 0 !important; }
+
+  .project-cover-left .project-cover-meta {
+    width: calc(100% - clamp(34px, 3vw, 60px)) !important;
+    margin-left: clamp(34px, 3vw, 60px) !important;
+    padding-top: 14px !important;
+  }
+
+  .project-cover-personal-info {
+    gap: 3px !important;
+    margin-top: 10px !important;
+    padding-top: 10px !important;
+    font-size: clamp(13px, 0.95vw, 16px) !important;
+    line-height: 1.42 !important;
+  }
+
+  .project-cover-description,
+  .project-cover-content-01 .project-cover-description,
+  .project-cover-content-02 .project-cover-description,
+  .project-cover-content-03 .project-cover-description,
+  .project-cover-content-04 .project-cover-description,
+  .project-cover-content-05 .project-cover-description {
+    grid-column: 7 / -1 !important;
+    grid-row: 1 !important;
+    align-self: start !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin-top: clamp(42px, 5.2svh, 74px) !important;
+    padding: 0 0 0 clamp(22px, 2.2vw, 42px) !important;
+  }
+
+  .project-cover-description-label {
+    margin-bottom: 14px !important;
+    font-size: clamp(13px, 0.92vw, 16px) !important;
+    letter-spacing: 0.19em !important;
+  }
+
+  .project-cover-statement {
+    display: block !important;
+    height: auto !important;
+  }
+
+  .project-cover-statement > div,
+  .project-cover-statement > div + div {
+    display: grid !important;
+    grid-template-columns: 46px minmax(0, 1fr) !important;
+    min-height: clamp(68px, 8svh, 100px) !important;
+    height: auto !important;
+    padding: 12px 0 !important;
+  }
+
+  .project-cover-statement > div > span {
+    grid-column: 1 !important;
+    font-size: clamp(13px, 0.95vw, 17px) !important;
+  }
+
+  .project-cover-statement p {
+    display: grid !important;
+    grid-column: 2 !important;
+    grid-template-columns: clamp(76px, 5.5vw, 108px) minmax(0, 1fr) !important;
+    gap: clamp(12px, 1.2vw, 22px) !important;
+    margin: 0 !important;
+  }
+
+  .project-cover-statement small {
+    grid-column: 1 !important;
+    margin: 0 !important;
+    font-size: clamp(17px, 1.28vw, 22px) !important;
+  }
+
+  .project-cover-statement-copy {
+    grid-column: 2 !important;
+    width: auto !important;
+    font-size: clamp(14px, 1vw, 17px) !important;
+    line-height: 1.52 !important;
+  }
+
+  .project-cover-media,
+  .project-cover-content-01 .project-cover-media,
+  .project-cover-content-02 .project-cover-media,
+  .project-cover-content-03 .project-cover-media,
+  .project-cover-content-04 .project-cover-media,
+  .project-cover-content-05 .project-cover-media {
+    display: grid !important;
+    grid-column: 1 / -1 !important;
+    grid-row: 2 !important;
+    grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+    column-gap: clamp(20px, 1.7vw, 34px) !important;
+    align-items: start !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding-top: clamp(16px, 2svh, 30px) !important;
+  }
+
+  .project-cover-media-item:nth-child(1) { grid-column: span 5 !important; }
+  .project-cover-media-item:nth-child(2) { grid-column: span 3 !important; }
+  .project-cover-media-item:nth-child(3) { grid-column: span 4 !important; }
+
+  .project-cover-media-caption,
+  .project-cover-content-01 .project-cover-media-caption,
+  .project-cover-content-02 .project-cover-media-caption,
+  .project-cover-content-03 .project-cover-media-caption,
+  .project-cover-content-04 .project-cover-media-caption,
+  .project-cover-content-05 .project-cover-media-caption {
+    min-height: clamp(58px, 7.2svh, 82px) !important;
+    height: auto !important;
+    padding-left: 13px !important;
+    font-size: clamp(12px, 0.86vw, 15px) !important;
+    line-height: 1.42 !important;
+  }
+
+  .project-cover-card,
+  .project-cover-content-01 .project-cover-card,
+  .project-cover-content-02 .project-cover-card,
+  .project-cover-content-03 .project-cover-card,
+  .project-cover-content-04 .project-cover-card,
+  .project-cover-content-05 .project-cover-card {
+    height: clamp(250px, 36svh, 520px) !important;
+  }
 }
