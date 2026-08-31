@@ -7270,7 +7270,7 @@ img {
   .project-cover-content-05 {
     display: grid !important;
     grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
-    grid-template-rows: minmax(0, 41fr) minmax(0, 59fr) !important;
+    grid-template-rows: minmax(0, 46fr) minmax(0, 54fr) !important;
     column-gap: clamp(20px, 1.7vw, 34px) !important;
     row-gap: 0 !important;
     align-content: stretch !important;
@@ -7279,6 +7279,12 @@ img {
     min-height: 100svh !important;
     margin: 0 auto !important;
     padding: clamp(76px, 9.5svh, 112px) 0 0 !important;
+  }
+
+  /* Projects 01 and 02 have longer upper profiles, so lift their media farther. */
+  .project-detail-scroll .project-cover-content.project-cover-content-01,
+  .project-detail-scroll .project-cover-content.project-cover-content-02 {
+    --project-media-lift: clamp(84px, 9svh, 104px);
   }
 
   .project-cover-left {
@@ -7301,11 +7307,11 @@ img {
   }
 
   .project-cover-personal-info {
-    gap: 3px !important;
-    margin-top: 10px !important;
-    padding-top: 10px !important;
-    font-size: clamp(13px, 0.95vw, 16px) !important;
-    line-height: 1.42 !important;
+    gap: 4px !important;
+    margin-top: 14px !important;
+    padding-top: 14px !important;
+    font-size: clamp(18px, 1.35vw, 26px) !important;
+    line-height: 1.45 !important;
   }
 
   .project-cover-description,
@@ -7320,14 +7326,38 @@ img {
     width: auto !important;
     height: auto !important;
     min-height: 0 !important;
-    margin-top: clamp(42px, 5.2svh, 74px) !important;
+    margin-top: 0 !important;
     padding: 0 0 0 clamp(22px, 2.2vw, 42px) !important;
   }
 
+  .project-cover-slide .project-cover-description {
+    border-left: 0 !important;
+  }
+
   .project-cover-description-label {
-    margin-bottom: 14px !important;
+    margin: 14px 0 !important;
     font-size: clamp(13px, 0.92vw, 16px) !important;
     letter-spacing: 0.19em !important;
+  }
+
+  .project-cover-right-category {
+    display: grid;
+    gap: 3px;
+    color: var(--ink);
+  }
+
+  .project-cover-right-category > span {
+    font-size: clamp(20px, 1.55vw, 30px);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .project-cover-right-category > small {
+    color: var(--accent);
+    font-family: var(--font-en);
+    font-size: clamp(12px, 0.92vw, 16px);
+    letter-spacing: 0.08em;
+    line-height: 1.3;
   }
 
   .project-cover-statement {
@@ -7388,6 +7418,15 @@ img {
     padding-top: clamp(16px, 2svh, 30px) !important;
   }
 
+  .project-detail-scroll .project-cover-content.project-cover-content .project-cover-media {
+    margin-top: 0 !important;
+    transform: translateY(calc(-1 * var(--project-media-lift))) !important;
+  }
+
+  .project-cover-slide .project-cover-media {
+    border-top: 0 !important;
+  }
+
   .project-cover-media-item:nth-child(1) { grid-column: span 5 !important; }
   .project-cover-media-item:nth-child(2) { grid-column: span 3 !important; }
   .project-cover-media-item:nth-child(3) { grid-column: span 4 !important; }
@@ -7413,6 +7452,67 @@ img {
   .project-cover-content-05 .project-cover-card {
     height: clamp(250px, 36svh, 520px) !important;
   }
+
+  /* Remove the framing rules between the information and media grid areas. */
+  .project-cover-description,
+  .project-cover-content-01 .project-cover-description,
+  .project-cover-content-02 .project-cover-description,
+  .project-cover-content-03 .project-cover-description,
+  .project-cover-content-04 .project-cover-description,
+  .project-cover-content-05 .project-cover-description {
+    border-left: 0 !important;
+  }
+
+  .project-cover-media,
+  .project-cover-content-01 .project-cover-media,
+  .project-cover-content-02 .project-cover-media,
+  .project-cover-content-03 .project-cover-media,
+  .project-cover-content-04 .project-cover-media,
+  .project-cover-content-05 .project-cover-media {
+    border-top: 0 !important;
+  }
+}
+
+/* Highest-priority refinements for the project profile information hierarchy. */
+@media (min-width: 761px) {
+  .project-cover-content,
+  .project-cover-content-01,
+  .project-cover-content-02,
+  .project-cover-content-03,
+  .project-cover-content-04,
+  .project-cover-content-05 {
+    grid-template-rows: minmax(0, 58fr) minmax(0, 42fr) !important;
+  }
+
+  .project-cover-personal-info {
+    gap: 4px !important;
+    margin-top: 14px !important;
+    padding-top: 14px !important;
+    font-size: clamp(18px, 1.35vw, 26px) !important;
+    line-height: 1.45 !important;
+  }
+
+  .project-cover-right-category {
+    display: grid !important;
+    gap: 3px !important;
+    color: var(--ink) !important;
+  }
+
+  .project-cover-right-category > span {
+    font-size: clamp(20px, 1.55vw, 30px) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+  }
+
+  .project-cover-right-category > small {
+    color: var(--accent) !important;
+    font-family: var(--font-en) !important;
+    font-size: clamp(12px, 0.92vw, 16px) !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.3 !important;
+  }
+
+  .project-cover-description-label { margin: 14px 0 !important; }
 }
 
 /* The statement column is intentionally more legible than its compact labels. */
@@ -7662,6 +7762,35 @@ img {
 
 /* Final desktop grid placement.  This comes after legacy per-project rules. */
 @media (min-width: 761px) {
+  .project-detail-scroll .project-cover-content.project-cover-content {
+    --project-detail-body-size: clamp(16px, 1.25vw, 24px);
+    --project-detail-body-leading: 1.48;
+    --project-detail-label-size: clamp(16px, 1.3vw, 22px);
+    --project-media-lift: clamp(24px, 3svh, 42px);
+    grid-template-rows: minmax(0, 54fr) minmax(0, 46fr) !important;
+  }
+
+  .project-cover-slide .project-cover-meta .project-cover-personal-info {
+    gap: 4px !important;
+    margin-top: 14px !important;
+    padding-top: 14px !important;
+    font-size: clamp(42px, 3.1vw, 58px) !important;
+    line-height: 1.24 !important;
+  }
+
+  .project-cover-slide .project-cover-description .project-cover-right-category > span {
+    font-size: clamp(20px, 1.55vw, 30px) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+  }
+
+  .project-cover-slide .project-cover-description .project-cover-right-category > small {
+    color: var(--accent) !important;
+    font-family: var(--font-en) !important;
+    font-size: clamp(12px, 0.92vw, 16px) !important;
+    letter-spacing: 0.08em !important;
+  }
+
   .project-cover-content,
   .project-cover-content-01,
   .project-cover-content-02,
@@ -7670,7 +7799,7 @@ img {
   .project-cover-content-05 {
     display: grid !important;
     grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
-    grid-template-rows: minmax(0, 41fr) minmax(0, 59fr) !important;
+    grid-template-rows: minmax(0, 58fr) minmax(0, 42fr) !important;
     column-gap: clamp(20px, 1.7vw, 34px) !important;
     row-gap: 0 !important;
     align-content: stretch !important;
@@ -7682,12 +7811,13 @@ img {
   }
 
   .project-cover-left {
-    grid-column: 1 / span 5 !important;
+    grid-column: 1 / span 6 !important;
     grid-row: 1 !important;
     height: auto !important;
     min-height: 0 !important;
     padding-right: clamp(8px, 1vw, 18px) !important;
     overflow: visible !important;
+    justify-content: flex-start !important;
   }
 
   .project-cover-left .project-cover-heading { margin-left: 0 !important; }
@@ -7695,15 +7825,16 @@ img {
   .project-cover-left .project-cover-meta {
     width: calc(100% - clamp(34px, 3vw, 60px)) !important;
     margin-left: clamp(34px, 3vw, 60px) !important;
+    margin-top: clamp(34px, 4svh, 56px) !important;
     padding-top: 14px !important;
   }
 
   .project-cover-personal-info {
-    gap: 3px !important;
-    margin-top: 10px !important;
-    padding-top: 10px !important;
-    font-size: clamp(13px, 0.95vw, 16px) !important;
-    line-height: 1.42 !important;
+    gap: 4px !important;
+    margin-top: 14px !important;
+    padding-top: 14px !important;
+    font-size: clamp(18px, 1.35vw, 26px) !important;
+    line-height: 1.45 !important;
   }
 
   .project-cover-description,
@@ -7718,14 +7849,34 @@ img {
     width: auto !important;
     height: auto !important;
     min-height: 0 !important;
-    margin-top: clamp(42px, 5.2svh, 74px) !important;
+    margin-top: 0 !important;
     padding: 0 0 0 clamp(22px, 2.2vw, 42px) !important;
   }
 
   .project-cover-description-label {
-    margin-bottom: 14px !important;
-    font-size: clamp(13px, 0.92vw, 16px) !important;
+    margin: 14px 0 !important;
+    font-size: clamp(10px, 0.67vw, 12px) !important;
     letter-spacing: 0.19em !important;
+  }
+
+  .project-cover-right-category {
+    display: grid !important;
+    gap: 3px !important;
+    color: var(--ink) !important;
+  }
+
+  .project-cover-right-category > span {
+    font-size: clamp(20px, 1.55vw, 30px) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+  }
+
+  .project-cover-right-category > small {
+    color: var(--accent) !important;
+    font-family: var(--font-en) !important;
+    font-size: clamp(12px, 0.92vw, 16px) !important;
+    letter-spacing: 0.08em !important;
+    line-height: 1.3 !important;
   }
 
   .project-cover-statement {
@@ -7737,35 +7888,36 @@ img {
   .project-cover-statement > div + div {
     display: grid !important;
     grid-template-columns: 46px minmax(0, 1fr) !important;
-    min-height: clamp(68px, 8svh, 100px) !important;
+    min-height: clamp(58px, 6.2svh, 76px) !important;
     height: auto !important;
-    padding: 12px 0 !important;
+    padding: 8px 0 !important;
   }
 
   .project-cover-statement > div > span {
     grid-column: 1 !important;
-    font-size: clamp(13px, 0.95vw, 17px) !important;
+    font-size: clamp(9px, 0.58vw, 12px) !important;
   }
 
   .project-cover-statement p {
     display: grid !important;
     grid-column: 2 !important;
-    grid-template-columns: clamp(76px, 5.5vw, 108px) minmax(0, 1fr) !important;
-    gap: clamp(12px, 1.2vw, 22px) !important;
+    grid-template-columns: clamp(68px, 4.8vw, 92px) minmax(0, 1fr) !important;
+    gap: clamp(10px, 1vw, 16px) !important;
     margin: 0 !important;
   }
 
   .project-cover-statement small {
     grid-column: 1 !important;
     margin: 0 !important;
-    font-size: clamp(17px, 1.28vw, 22px) !important;
+    font-size: clamp(13px, 0.85vw, 15px) !important;
+    line-height: 1.25 !important;
   }
 
   .project-cover-statement-copy {
     grid-column: 2 !important;
     width: auto !important;
-    font-size: clamp(14px, 1vw, 17px) !important;
-    line-height: 1.52 !important;
+    font-size: clamp(11px, 0.72vw, 14px) !important;
+    line-height: 1.4 !important;
   }
 
   .project-cover-media,
@@ -7782,7 +7934,8 @@ img {
     align-items: start !important;
     height: auto !important;
     min-height: 0 !important;
-    margin: 0 !important;
+    /* Lift the complete media group without reducing any image card. */
+    margin: calc(-1 * var(--project-media-lift)) 0 0 !important;
     padding-top: clamp(16px, 2svh, 30px) !important;
   }
 
@@ -7810,5 +7963,96 @@ img {
   .project-cover-content-04 .project-cover-card,
   .project-cover-content-05 .project-cover-card {
     height: clamp(250px, 36svh, 520px) !important;
+  }
+
+  .project-cover-description,
+  .project-cover-content-01 .project-cover-description,
+  .project-cover-content-02 .project-cover-description,
+  .project-cover-content-03 .project-cover-description,
+  .project-cover-content-04 .project-cover-description,
+  .project-cover-content-05 .project-cover-description {
+    border-left: 0 !important;
+  }
+
+  .project-cover-media,
+  .project-cover-content-01 .project-cover-media,
+  .project-cover-content-02 .project-cover-media,
+  .project-cover-content-03 .project-cover-media,
+  .project-cover-content-04 .project-cover-media,
+  .project-cover-content-05 .project-cover-media {
+    border-top: 0 !important;
+  }
+
+  /* Keep each metadata value on the exact body scale used at the right. */
+  .project-cover-slide .project-cover-meta .project-cover-meta-year,
+  .project-cover-slide .project-cover-meta .project-cover-credit-value,
+  .project-cover-slide .project-cover-meta .project-cover-personal-info p,
+  .project-cover-slide .project-cover-description .project-cover-statement-copy {
+    font-size: var(--project-detail-body-size) !important;
+    line-height: var(--project-detail-body-leading) !important;
+  }
+
+  .project-cover-slide .project-cover-meta .project-cover-credit small,
+  .project-cover-slide .project-cover-description .project-cover-statement small {
+    font-size: var(--project-detail-label-size) !important;
+    line-height: 1.25 !important;
+  }
+
+  .project-cover-slide .project-cover-meta .project-cover-personal-info {
+    gap: 4px !important;
+  }
+
+  /* Final media placement: move the complete group, never resize its cards. */
+  .project-detail-scroll .project-cover-content.project-cover-content-01 {
+    --project-media-lift: clamp(140px, 15svh, 180px);
+  }
+
+  .project-detail-scroll .project-cover-content.project-cover-content-02 {
+    --project-media-lift: clamp(84px, 9svh, 104px);
+  }
+
+  .project-detail-scroll .project-cover-content.project-cover-content-03,
+  .project-detail-scroll .project-cover-content.project-cover-content-04,
+  .project-detail-scroll .project-cover-content.project-cover-content-05 {
+    --project-media-lift: clamp(54px, 6svh, 72px);
+  }
+
+  .project-detail-scroll .project-cover-content.project-cover-content .project-cover-media {
+    margin-top: 0 !important;
+    transform: translateY(calc(-1 * var(--project-media-lift))) !important;
+  }
+
+  /* Align the complete project facts block with the left title baseline. */
+  .project-cover-left .project-cover-meta {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  /* Keep every project profile focused on the introduction, without the redundant year/author row. */
+  .project-cover-content-01 .project-cover-meta-year,
+  .project-cover-content-02 .project-cover-meta-year,
+  .project-cover-content-03 .project-cover-meta-year,
+  .project-cover-content-04 .project-cover-meta-year,
+  .project-cover-content-05 .project-cover-meta-year,
+  .project-cover-content-01 .project-cover-credit,
+  .project-cover-content-02 .project-cover-credit,
+  .project-cover-content-03 .project-cover-credit,
+  .project-cover-content-04 .project-cover-credit,
+  .project-cover-content-05 .project-cover-credit {
+    display: none !important;
+  }
+
+  .project-cover-content-01 .project-cover-meta,
+  .project-cover-content-02 .project-cover-meta,
+  .project-cover-content-03 .project-cover-meta,
+  .project-cover-content-04 .project-cover-meta,
+  .project-cover-content-05 .project-cover-meta {
+    min-height: 0 !important;
+    align-content: start !important;
+  }
+
+  .project-cover-content-01 .project-cover-personal-info {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
   }
 }

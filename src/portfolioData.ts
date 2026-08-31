@@ -193,6 +193,12 @@ export const projects: Project[] = [
       { label: "SITE", value: "海口市琼山区历史街区附近" },
       { label: "TEAM", value: "程志远 · 岑伊林 · 林倩 · 陈华琳 · 崔溪源" }
     ],
+    personalInfo: [
+      { label: "团队设计", value: "主创/队长" },
+      { label: "指导老师", value: "易法珠、张忆先" },
+      { label: "设计区位", value: "海口市琼山区历史街区附近" },
+      { label: "完成时间", value: "2025年7月—2026年3月" }
+    ],
     preludeMedia: [
       { src: projectCover("项目2_生长动画.mp4"), type: "video", size: "landscape", clipEndSeconds: 15, label: "生长动画" }
     ],

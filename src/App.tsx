@@ -1062,8 +1062,6 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
                 <p className="project-cover-title-en">{project.titleEn}</p>
               </div>
               <div className="project-cover-meta">
-                <span className="project-cover-meta-category">{project.category}</span>
-                <span className="project-cover-meta-category-en">{project.categoryEn}</span>
                 <span className="project-cover-meta-year">{project.year}</span>
                 {(project.credits ?? [{ label: "AUTHOR", value: "程志远" }]).map((credit) => (
                   <span className="project-cover-credit" key={credit.label}>
@@ -1080,6 +1078,10 @@ function ProjectDetailPage({ project, navigate }: { project: Project; navigate: 
               </div>
             </div>
             <div className="project-cover-description">
+              <div className="project-cover-right-category">
+                <span>{project.category}</span>
+                <small>{project.categoryEn}</small>
+              </div>
               <p className="project-cover-description-label">PROJECT STATEMENT</p>
               <div className="project-cover-statement" aria-label={`${project.title}项目说明`}>
                 <div><span>01</span><p><small>问题</small><span className="project-cover-statement-copy">{project.statement.problem}</span></p></div>
