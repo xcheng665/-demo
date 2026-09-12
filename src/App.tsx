@@ -61,7 +61,7 @@ type SkillGroup = {
   items: SkillItem[];
 };
 
-const portfolioPreviewUrl = "https://publuu.com/flip-book/1168841/2600272/";
+const portfolioPreviewUrl = "https://online.fliphtml5.com/onmsp/ctwz/";
 const resumePdfUrl = publicPath("resume.pdf");
 const practiceCardImages = {
   frontend: publicPath("assets/practice-cards/ui-design-reality-restaged.png"),
