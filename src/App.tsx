@@ -61,7 +61,7 @@ type SkillGroup = {
   items: SkillItem[];
 };
 
-const portfolioPreviewUrl = "https://book.yunzhan365.com/dpzee/wvzq/mobile/index.html/";
+const portfolioPreviewUrl = "https://book.yunzhan365.com/dpzee/wvzq/mobile/index.html";
 const resumePdfUrl = publicPath("resume.pdf");
 const practiceCardImages = {
   frontend: publicPath("assets/practice-cards/ui-design-reality-restaged.png"),
