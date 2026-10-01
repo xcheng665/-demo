@@ -187,15 +187,9 @@ export const projects: Project[] = [
       { src: projectCover("项目2_2.jpg"), type: "image", size: "landscape", aspectRatio: 1, label: "项目 2 - 2", caption: "建筑空间细节图，展示黎锦形态转译后的屋面、庭院与公共界面。", captionEn: "Architectural spatial details, showing the translated roof form, courtyard and public interface." },
       { src: projectCover("项目2_1.png"), type: "image", size: "portrait", aspectRatio: 0.82, label: "项目 2 - 1", caption: "剖面表达图，展示传统船形屋意向与现代社区功能的叠合方式。", captionEn: "Sectional diagrams, illustrating the integration of traditional boat-shaped house concepts with modern community functions." }
     ],
-    credits: [
-      { label: "ROLE", value: "团队设计 · 主创 / 队长 · 程志远" },
-      { label: "ADVISORS", value: "易法珠 · 张忆先" },
-      { label: "SITE", value: "海口市琼山区历史街区附近" },
-      { label: "TEAM", value: "程志远 · 岑伊林 · 林倩 · 陈华琳 · 崔溪源" }
-    ],
     personalInfo: [
       { label: "团队设计", value: "主创/队长" },
-      { label: "指导老师", value: "易法珠、张忆先" },
+      { label: "指导老师", value: "易法珠、张亿先" },
       { label: "设计区位", value: "海口市琼山区历史街区附近" },
       { label: "完成时间", value: "2025年7月—2026年3月" }
     ],
@@ -244,7 +238,7 @@ export const projects: Project[] = [
     ],
     personalInfo: [
       { label: "个人设计", value: "大三学年" },
-      { label: "指导老师", value: "蔡家庆、吉伟" },
+      { label: "指导老师", value: "葛家乐、吉志伟" },
       { label: "设计区位", value: "海口市琼山区红城湖南侧历史保护街区" },
       { label: "完成时间", value: "2024年9月—2024年11月" }
     ],
@@ -284,7 +278,7 @@ export const projects: Project[] = [
     ],
     personalInfo: [
       { label: "团队设计", value: "程志远、岑伊林" },
-      { label: "指导老师", value: "张慕馨、黎志才" },
+      { label: "指导老师", value: "张素馨、黎志才" },
       { label: "设计区位", value: "海口市海岸片区免税城旁" },
       { label: "完成时间", value: "2025年9月—2025年11月" }
     ],

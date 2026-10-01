@@ -792,7 +792,7 @@ function AboutPage({ navigate }: { navigate: (to: RoutePath) => void }) {
           <span>ABOUT ME</span>
           <h1>建筑技术，是我理解<br />场地与人的方式。</h1>
           <p>我是程志远，海南大学土木建筑工程学院建筑学专业学生。我的设计与研究关注在地性、气候适应、绿色建筑性能与数字工具的结合。</p>
-          <p>我希望把建筑设计、BIM、参数化流程和 Python 数据分析放在同一条工作链中，让空间判断既有感受，也有证据。</p>
+          <p>我希望把建筑设计、BIM、参数化流程和 Python 数据分析放在同一条工作流中，让空间判断既有感受，也有证据。</p>
           <dl className="about-facts">
             <div><dt>EDUCATION</dt><dd>海南大学 · 建筑学</dd></div>
             <div><dt>FOCUS</dt><dd>绿色性能 · 数字建造 · 韧性研究</dd></div>
@@ -1440,7 +1440,7 @@ function AiPage({ navigate }: { navigate: (to: RoutePath) => void }) {
       <section className="ai-heading">
         <span><Sparkles size={15} /> PERSONAL AI AVATAR · RAG</span>
         <h1>AI 分身</h1>
-        <p>先检索公开证据，再回答你的问题。30 秒了解程志远能为一个项目带来什么。</p>
+        <p>先检索公开证据，再回答你的问题。30 秒了解他能为一个项目带来什么。</p>
       </section>
       <section className="ai-layout">
         <motion.div initial={{ opacity: 0, x: -18 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
